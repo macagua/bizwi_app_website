@@ -1,0 +1,3 @@
+django-cassandra-engine
+django rest-framework
+django-uuidfield
