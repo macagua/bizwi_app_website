@@ -1,14 +1,14 @@
 from rest_framework import serializers
 
 
-class Clients(serializers.Serializer):
+class ClientsSerializer(serializers.Serializer):
     client_id = serializers.UUIDField(required=True)
-    business_name = serializers.CharField(required=True, max_length=200)
-    prefix = serializers.CharField(required=True, max_length=4)
-    description = serializers.CharField(required=True, max_length=250)
+    business_name = serializers.CharField(required=False, max_length=200)
+    prefix = serializers.CharField(required=False, max_length=4)
+    description = serializers.CharField(required=False, max_length=250)
 
     def create(self, validated_data):
-        return Clients.objects.create(**validated_data)
+        return ClientsSerializer.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
 
