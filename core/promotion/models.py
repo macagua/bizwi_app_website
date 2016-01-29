@@ -4,6 +4,24 @@ from core.client.models import Clients
 from core.store.models import Stores
 
 
+# Promotion status
+class PromotionsStatus(models.Model):
+    promotions_status_id = models.IntegerField(primary_key=True, null=False)
+    name = models.CharField(max_length=150)
+
+    class Meta:
+        db_table = 'promotions_status'
+
+
+# Type Promotions
+class PromotionsType(models.Model):
+    promotion_type_id = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=250)
+
+    class Meta:
+        db_table = 'promotions_type'
+
+
 # Promotions
 class Promotions(models.Model):
     promotion_id = models.IntegerField(primary_key=True, null=False)
@@ -23,23 +41,6 @@ class Promotions(models.Model):
     class Meta:
         db_table = 'promotions'
 
-
-# Promotion status
-class PromotionsStatus(models.Model):
-    promotions_status_id = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=150)
-
-    class Meta:
-        db_table = 'promotions_status'
-
-
-# Type Promotions
-class PromotionsType(models.Model):
-    promotion_type_id = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=250)
-
-    class Meta:
-        db_table = 'promotions_type'
 
 
 # Relationship between Promotions and store

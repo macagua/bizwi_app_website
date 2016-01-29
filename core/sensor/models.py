@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 from django.db import models
-from core.store.models import Departaments
+from core.store.models import Departments
 
 
 class Sensors(models.Model):
@@ -15,7 +15,7 @@ class Sensors(models.Model):
     essid = models.CharField(max_length=200)
     register_time = models.DateTimeField()
     sensor_ip = models.CharField(max_length=100)
-    departament = models.ForeignKey(Departaments, on_delete=models.CASCADE())
+    departament = models.ForeignKey(Departments, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'sensors'
