@@ -1,3 +1,4 @@
+from core.brand.models import Brands
 from django.contrib import admin
 
-# Register your models here.
+admin.site.register(Brands)

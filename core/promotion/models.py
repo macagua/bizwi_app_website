@@ -42,7 +42,6 @@ class Promotions(models.Model):
         db_table = 'promotions'
 
 
-
 # Relationship between Promotions and store
 class PromotionsOnStores(models.Model):
     store = models.ForeignKey(Stores, on_delete=models.CASCADE)

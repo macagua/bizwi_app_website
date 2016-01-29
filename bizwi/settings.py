@@ -87,7 +87,7 @@ WSGI_APPLICATION = 'bizwi.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'bizwi-master',                      # Or path to database file if using sqlite3.
+        'NAME': 'bizwi-demo',                      # Or path to database file if using sqlite3.
         'USER': 'bizwi',                      # Not used with sqlite3.
         'PASSWORD': 'bizwi',                  # Not used with sqlite3.
         'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.

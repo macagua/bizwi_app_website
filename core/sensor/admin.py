@@ -1,3 +1,4 @@
 from django.contrib import admin
+from core.sensor.models import Sensors
 
-# Register your models here.
+admin.site.register(Sensors)
