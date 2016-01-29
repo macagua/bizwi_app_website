@@ -4,6 +4,7 @@ from core.promotion.models import Promotions
 from core.store.models import Stores
 from core.user.models import Users
 
+
 class CouponsStatus(models.Model):
     coupon_status_id = models.IntegerField(primary_key=True, null=False)
     description = models.CharField(max_length=250)

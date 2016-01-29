@@ -10,12 +10,12 @@ class Sensors(models.Model):
     name = models.CharField(max_length=200)
     mac = models.CharField(max_length=17)
     call_home = models.BooleanField()
-    rate = models.DecimalField()
+    rate = models.DecimalField(max_digits=8, decimal_places=5)
+    department = models.ForeignKey(Departments, on_delete=models.CASCADE)
     public_key = models.TextField()
     essid = models.CharField(max_length=200)
     register_time = models.DateTimeField()
     sensor_ip = models.CharField(max_length=100)
-    departament = models.ForeignKey(Departments, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'sensors'

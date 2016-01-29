@@ -42,10 +42,9 @@ INSTALLED_APPS = [
     'core.coupon',
     'core.device',
     'core.employee',
-    'core.pedestrian',
     'core.promotion',
-    'core.sensor',
     'core.store',
+    'core.sensor',
     'core.user',
 
 ]

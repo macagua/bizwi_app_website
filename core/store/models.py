@@ -21,7 +21,7 @@ class Cities(models.Model):
 
 # Models
 class Stores(models.Model):
-    store_id = models.UUIDField(primary_key=True)
+    store_id = models.UUIDField(primary_key=True, null=False)
     name = models.CharField(max_length=100)
     description = models.TextField()
     url = models.CharField(max_length=400)
@@ -45,7 +45,7 @@ class Departments(models.Model):
 class Locations(models.Model):
     location_id = models.IntegerField(primary_key=True, null=False)
     name = models.CharField(max_length=150)
-    address = models.CharField(200)
+    address = models.CharField(max_length=200)
     latitude = models.DecimalField(max_digits=8, decimal_places=5)
     longitude = models.DecimalField(max_digits=8, decimal_places=5)
     distance_threshold = models.DecimalField(max_digits=5, decimal_places=2)
