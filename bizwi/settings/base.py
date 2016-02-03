@@ -1,4 +1,3 @@
-from sys import path
 import os
 __author__ = 'alex'
 
@@ -45,13 +44,15 @@ MIDDLEWARE_CLASSES = [
 ]
 
 ROOT_URLCONF = 'bizwi.urls'
+STATIC_URL = 'http://127.0.0.1/static/'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-                    path.join(BASE_DIR, 'template')
-        ],
+            BASE_DIR + '/home/templates/',
+            '/home/jelitox/PycharmProjects/Bizwi-App/templates/'
+                  ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
