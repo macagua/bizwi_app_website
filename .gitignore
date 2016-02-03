@@ -1,14 +1,2 @@
 .idea/*
 *.pyc
-core/*.pyc
-core/brand/*.pyc
-core/client/*.pyc
-core/coupon/*.pyc
-core/device/*.pyc
-core/employee/*.pyc
-core/migrations/*.pyc
-core/pedestrian/*.pyc
-core/promotion/*.pyc
-core/sensor/*.pyc
-core/store/*.pyc
-core/user/*.pyc
