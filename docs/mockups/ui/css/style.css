@@ -1,0 +1,7 @@
+header,main,footer {padding-left:240px}
+
+@media only screen and (max-width: 992px) {header,main,footer {padding-left:0}}
+
+ul.side-nav.leftside-navigation li {line-height: 44px;}
+
+.tabs .indicator {background-color:#607d8b !important;}
