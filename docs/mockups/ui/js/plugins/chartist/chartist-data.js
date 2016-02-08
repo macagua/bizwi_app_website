@@ -1,3 +1,47 @@
+//CPU
+new Chartist.Line('#cpu-chart-bar', {
+  labels: [1, 2, 3, 4, 5, 6, 7, 8],
+  series: [
+    [5, 9, 7, 8, 5, 3, 5, 4]
+  ]
+}, {
+  low: 0,
+  showArea: true
+});
+
+//MEMORY
+new Chartist.Line('#mem-chart-bar', {
+  labels: [1, 2, 3, 4, 5, 6, 7, 8],
+  series: [
+    [5, 9, 7, 8, 5, 3, 5, 4]
+  ]
+}, {
+  low: 0,
+  showArea: true
+});
+
+//DISK
+new Chartist.Line('#disk-chart-bar', {
+  labels: [1, 2, 3, 4, 5, 6, 7, 8],
+  series: [
+    [5, 9, 7, 8, 5, 3, 5, 4]
+  ]
+}, {
+  low: 0,
+  showArea: true
+});
+
+//BANDWIDTH
+new Chartist.Line('#bandwidth-chart-bar', {
+  labels: [1, 2, 3, 4, 5, 6, 7, 8],
+  series: [
+    [5, 9, 7, 8, 5, 3, 5, 4]
+  ]
+}, {
+  low: 0,
+  showArea: true
+});
+
 //SIMPLE LINE CHART
 new Chartist.Line('#ct1-chart', {
   labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
