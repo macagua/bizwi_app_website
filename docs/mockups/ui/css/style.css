@@ -5,3 +5,16 @@ header,main,footer {padding-left:240px}
 ul.side-nav.leftside-navigation li {line-height: 44px;}
 
 .tabs .indicator {background-color:#607d8b !important;}
+
+nav.top-nav a.page-title {
+	position: absolute;
+	color: #fff;
+	display: inline-block;
+	font-size: 3rem;
+	padding: 0;
+	white-space: nowrap;
+	left: 10%;
+	transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
+}
+@media only screen and (max-width: 992px) { nav.top-nav a.page-title {left: 50% !important;}}
