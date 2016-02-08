@@ -4,4 +4,5 @@ $(document).ready(function(){
   $('.dropdown-button').dropdown();
   $('select').material_select();
   $('.modal-trigger').leanModal();
+  $('table.display').DataTable();
 });
