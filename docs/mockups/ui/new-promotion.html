@@ -1,0 +1,247 @@
+
+  <!DOCTYPE html>
+  <html lang="en">
+
+<!--================================================================================
+  Item Name: BiZWi Dashboard
+  Version: 1.0
+  (c)2016 BIZWI SISTEMAS INFORMATICOS SL, All rights reserved. 
+================================================================================ -->
+
+    <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="description" content="">
+      <meta name="keywords" content="">
+      <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="css/style.css"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="js/plugins/perfect-scrollbar/perfect-scrollbar.min.css" media="screen,projection">
+      <link type="text/css" rel="stylesheet" href="js/plugins/data-tables/css/jquery.dataTables.min.css" media="screen,projection">
+      <link rel="stylesheet" type="text/css" href="js/plugins/materialize-datatables/css/dataTables.materialize.css">
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
+      <!--[if IE]><link rel="shortcut icon" href="images/favicon.ico"><![endif]-->
+
+      <!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. --> 
+      <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-precomposed.png">
+
+      <!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
+      <link rel="icon" href="images/favicon.ico">
+      <title>BiZWi - Promotions</title>
+    </head>
+
+    <body class="">
+  <!-- Start Page Loading -->
+
+  <!-- End Page Loading -->
+
+  <header>
+  <ul id="dropdown1" class="dropdown-content">
+    <li><a href="#!"><i class="material-icons left">person_outline</i>Edit Profile</a></li>
+    <li><a href="#!"><i class="material-icons left">settings</i>Settings</a></li>
+    <li class="divider"></li>
+    <li><a href="#!"><i class="material-icons left">exit_to_app</i>Logout</a></li>
+  </ul>
+  <nav class="top-nav">
+      <div class="nav-wrapper blue-grey darken-4">
+        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+        <a href="#!" class="page-title">Promotions</a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="promotions.html"><i class="material-icons left">loyalty</i>Promotions</a></li>
+          <li><a href="birthdays.html"><i class="material-icons left">cake</i>Birthdays</a></li>
+          <li><a href="messages.html"><i class="material-icons left">message</i>Messages <span class="new badge">4</span></a></li>
+          <li><a class="dropdown-button" href="profile.html" data-activates="dropdown1"><i class="material-icons right">person</i>MyUsername</a></li>
+        </ul>
+      </div>
+  </nav>
+
+      <ul style="left: 0px;" id="nav-mobile" class="side-nav fixed">
+        <li class="logo"><a id="logo-container" class="brand-logo valign-wrapper" href="dashboard.html">
+        <object id="front-page-logo" class="valign" data="images/Logo_Bizwi_head.png" type="image/png"></object></a></li>
+        <li class="bold no-padding"><a href="dashboard.html" class="waves-effect waves-teal collapsible-header"><i class="material-icons">dashboard</i>Dashboard</a></li>
+        <li class="bold no-padding">
+          <ul class="collapsible collapsible-accordion">
+            <li class="bold"><a class="collapsible-header waves-effect waves-teal"><i class="material-icons">work</i>Management</a>
+              <div style="" class="collapsible-body" style="display: block;">
+                <ul>
+                  <li><a href="locals.html" class="collapsible-header"><i class="material-icons">store</i>Locals</a></li>
+                  <li><a href="employees.html" class="collapsible-header"><i class="material-icons">group</i>Employees</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li class="bold no-padding"><a href="statistics.html" class="waves-effect waves-teal collapsible-header"><i class="material-icons">assessment</i>Statistics</a></li>
+        <li class="bold no-padding"><a href="sensors.html" class="waves-effect waves-teal collapsible-header"><i class="material-icons">settings_input_antenna</i>Sensors</a></li>
+        <li class="bold no-padding">
+          <ul class="collapsible collapsible-accordion">
+            <li class="bold"><a class="collapsible-header waves-effect waves-teal"><i class="material-icons">message</i>Messages</a>
+              <div style="" class="collapsible-body">
+                <ul>
+                  <li><a href="messages_compose.html" class="collapsible-header"><i class="material-icons">create</i>Compose</a></li>
+                  <li><a href="messages_inbox.html" class="collapsible-header"><i class="material-icons">inbox</i>Inbox</a></li>
+                  <li><a href="messages_sent.html" class="collapsible-header"><i class="material-icons">send</i>Sent</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li class="bold active no-padding"><a href="promotions.html" class="waves-effect waves-teal collapsible-header"><i class="material-icons">loyalty</i>Promotions</a></li>
+      </ul>
+    </header>
+
+    <main>
+    <div class="container" style="width: 98%; max-width: 1500px;">
+    <h4>Add Promotion</h4>
+        <div id="container" class="">
+          <div class="">
+            <div class="container">
+                <form class="col s12">
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input id="name" type="text" class="validate">
+                      <label for="name">Name</label>
+                    </div>
+                    <div class="input-field col s12">
+                      <textarea id="textarea1" class="materialize-textarea"></textarea>
+                      <label for="description">Description</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <input id="email" type="email" class="validate" value="http://">
+                      <label for="url">URL</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                        <input type="checkbox" class="filled-in" id="email-newsletter" />
+                        <label for="email-newsletter">Send promotion by e-mail when shown to the client</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <label class="active" for="begin-date">Begins</label>
+                      <input type="date" class="datepicker">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <label class="active" for="end-date">Ends</label>
+                      <input type="date" class="datepicker">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <label class="active" for="start-time">From</label>
+                      <input type="time" class="datepicker">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <label class="active" for="end-time">To</label>
+                      <input type="time" class="datepicker">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                    <label class="active" for="">Repeat on</label>
+                      <input type="checkbox" class="filled-in" id="monday" /><label for="monday">MON</label>
+                      <input type="checkbox" class="filled-in" id="tuesday" /><label for="tuesday">TUE</label>
+                      <input type="checkbox" class="filled-in" id="wednesday" /><label for="wednesday">WED</label>
+                      <input type="checkbox" class="filled-in" id="thursday" /><label for="thursday">THU</label>
+                      <input type="checkbox" class="filled-in" id="friday" /><label for="friday">FRI</label>
+                      <input type="checkbox" class="filled-in" id="saturday" /><label for="saturday">SAT</label>
+                      <input type="checkbox" class="filled-in" id="sunday" /><label for="sunday">SUN</label>
+                      
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <a class="waves-effect waves-light btn">Set filters</a>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <img class="file-img" src="http://placehold.it/250x250&amp;text=no+image" style="max-height:100%; max-width:100%;">
+                      <div class="file-field input-field">
+                        <div class="btn">
+                          <span>Image Upload</span>
+                          <input type="file">
+                        </div>
+                        <div class="btn" style="margin-left: 5px;">
+                          <span>Remove Image</span>
+                          <input type="file">
+                        </div>
+                        <div class="file-path-wrapper">
+                          <input class="file-path validate" type="text">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                          <select multiple>
+                          <option value="" disabled selected>Select Location</option>
+                          <option value="1">Location 1</option>
+                          <option value="2">Location 2</option>
+                        </select>
+                        <label>Locations</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                          <select>
+                          <option value="" disabled selected>Choose Loyalty Promotion</option>
+                          <option value="1">Promo A</option>
+                          <option value="1">Promo B</option>
+                        </select>
+                        <label>Loyalty Promotions</label>
+                    </div>
+                  </div>
+                </form>
+              <div class="row">
+                <div class="input-field col s6 l6 left-align">
+                  <button class="btn waves-effect waves-light" type="submit" name="action">Back
+                    <i class="material-icons left">backspace</i>
+                  </button>
+                </div>
+                <div class="input-field col s6 l6 right-align">
+                  <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                    <i class="material-icons right">send</i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+    </div>
+    </div>
+    </main>
+    
+        <footer class="page-footer blue-grey darken-4">
+          <div class="footer-copyright blue-grey darken-3">
+            <div class="container">
+            &copy; 2016 BIZWI SISTEMAS INFORMATICOS SL, All rights reserved. 
+            </div>
+          </div>
+        </footer>
+    
+    <!-- ================================================
+    Scripts
+    ================================================ -->
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+      <script type="text/javascript" src="js/scripts.js"></script>
+      <script type="text/javascript" src="js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+      <!-- data-tables -->
+      <script type="text/javascript" src="js/plugins/data-tables/js/jquery.dataTables.min.js"></script>
+      <script type="text/javascript" src="js/plugins/data-tables/data-tables-script.js"></script>
+      <script type="text/javascript" src="js/plugins/materialize-datatables/dataTables.materialize.js"></script>
+  </body>
+</html>
