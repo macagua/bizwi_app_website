@@ -1,0 +1,34 @@
+Django==1.9.2 # A high-level Python Web framework that encourages rapid development and clean, pragmatic design.
+cassandra-driver==3.0.0 # Python driver for Cassandra
+psycopg2==2.6.1 # psycopg2 - Python-PostgreSQL Database Adapter
+boto==2.39.0 # Amazon Web Services Library
+Pillow==2.9.0 # Python Imaging Library (Fork)
+django-appconf==1.0.1 # A helper class for handling configuration defaults of packaged apps gracefully.
+django-avatar==2.2.0 # A Django app for handling user avatars
+django-ipware==1.1.3 # A Django utility application that returns client's real IP address
+django-jsonify==0.3.0 # JSON library for working with django + json
+PyJWT==1.0.1 # JSON Web Token implementation in Python
+httplib2==0.9.2 #A comprehensive HTTP client library.
+pytz==2015.6 # World timezone definitions, modern and historical
+PyYAML==3.11 # YAML parser and emitter for Python
+requests==2.9.1 # Python HTTP for Humans.
+requests-oauthlib==0.6.0 # OAuthlib authentication support for Requests.
+shortuuid==0.4.3 # A generator library for concise, unambiguous and URL-safe UUIDs.
+six==1.10.0 # Python 2 and 3 compatibility utilities
+South==1.0.2 # South: Migrations for Django
+ua-parser==0.6.1 #Python port of Browserscope's user agent parser
+user-agents==1.0.1 #A library to identify devices (phones, tablets) and their capabilities by parsing (browser/HTTP) user agent strings
+
+#django-oauth-plus==2.2.4 # Support of OAuth 1.0a in Django using python-oauth2.
+#django-oauth2-provider==0.2.6.1 # django-oauth2-provider is a Django application that provides customizable OAuth2-authentication for your Django projects.
+#django-rest==0.0.1 # Restful API for Django.
+#django-rest-framework-oauth==0.0.2
+#django-social-auth==0.7.28
+#django-storages==1.1.8
+#djangorestframework==3.1.1
+#graypy==0.2.11 # Python logging handler that sends messages in GELF (Graylog Extended Log Format).
+#oauth==1.0.1
+#oauth2==1.5.211
+#oauthlib==0.7.2
+#python-openid==2.2.5
+#python-social-auth==0.2.3
