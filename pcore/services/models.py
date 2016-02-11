@@ -5,11 +5,10 @@ from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 import pytz
 from django.utils.translation import ugettext_lazy as _
 
-
 # Users Models
 class UserManager(BaseUserManager):
     def _create_user(self, username, email, password, is_staff, is_superuser, is_admin, **extra_fields):
-        now = datetime.utcnow()
+        now = datetime.now()
         if not username:
             raise ValueError(_('The given username must be set'))
         email = self.normalize_email(email)
@@ -147,9 +146,9 @@ class Employees(CustomUser):
 
 
 class Clients(CustomUser):
+    client_id = models.CharField(primary_key=True, max_length=10, null=False, blank=False)
     client_name = models.CharField(max_length=100, null=True, blank=True)
     code_crm = models.CharField(max_length=10, null=False, blank=False)
-    client_id = models.CharField(max_length=10, null=False, blank=False)
     telephone = models.CharField(max_length=50)
     web_site = models.URLField(null=True, blank=True)
     description = models.CharField(max_length=250)
@@ -192,16 +191,16 @@ class StoreTags(models.Model):
 
 class Stores(models.Model):
     store_id = models.CharField(max_length=10, primary_key=True)
-    client_id = models.ForeignKey('Clients', blank=False, null=False)
+    client = models.ForeignKey('Clients', blank=False, null=False)
     store_name = models.CharField(max_length=100)
     register_date = models.DateTimeField(default=datetime.utcnow())
-    region_id = models.ForeignKey('Regions', blank=True, null=True)
-    country_id = models.ForeignKey('Countries', blank=True, null=True)
-    city_id = models.ForeignKey('Cities', blank=True, null=True)
+    region = models.ForeignKey('Regions', blank=True, null=True)
+    country = models.ForeignKey('Countries', blank=True, null=True)
+    city = models.ForeignKey('Cities', blank=True, null=True)
     address = models.CharField(max_length=200)
     geoloc_point = models.DecimalField(decimal_places=2, max_digits=5)
     distance_threshold = models.DecimalField(decimal_places=2, max_digits=5)
-    geoloc_poly = ArrayField(models.CharField(max_length=200), blank=True)
+    geoloc_poly = models.CharField(max_length=200, blank=True)
     telephone = models.CharField(max_length=50)
     web_site = models.URLField(null=True, blank=True)
     description = models.CharField(max_length=250)
@@ -230,7 +229,7 @@ class Departments(models.Model):
     register_date = models.DateTimeField(default=datetime.utcnow())
     geoloc_point = models.DecimalField(decimal_places=2, max_digits=5)
     distance_threshold = models.DecimalField(decimal_places=2, max_digits=5)
-    geoloc_poly = ArrayField(models.CharField(max_length=200), blank=True)
+    geoloc_poly = models.CharField(max_length=200, blank=True)
 
     def __str__(self):
         return "%s: %s" % (self.customer, self.name)
