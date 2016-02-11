@@ -149,7 +149,6 @@ class Clients(CustomUser):
     foreground_color = models.CharField(max_length=7, default='#ffffff')
     background_img = models.URLField(null=True, blank=True)
     ttf_font = models.CharField(max_length=100, null=True, blank=True)
-    is_active = models.BooleanField(default=False)
     promotion_enable = models.BooleanField(default=False)
     city = models.CharField(max_length=100, null=True, blank=True)
     country = models.CharField(max_length=100, null=True, blank=True)
@@ -183,6 +182,7 @@ class Stores(models.Model):
     latitude = models.DecimalField(decimal_places=5, max_digits=7)
     longitude = models.DecimalField(decimal_places=5, max_digits=8)
     distance_threshold = models.DecimalField(decimal_places=2, max_digits=5)
+    employee = models.ManyToManyField(Employees)
 
     class Meta:
         db_table = 'stores'
