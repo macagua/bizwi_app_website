@@ -5,6 +5,7 @@ from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 import pytz
 from django.utils.translation import ugettext_lazy as _
 
+
 # Users Models
 class UserManager(BaseUserManager):
     def _create_user(self, username, email, password, is_staff, is_superuser, is_admin, **extra_fields):
@@ -44,12 +45,6 @@ GENDER_CHOICES = (
     ('F', 'Female'),
 )
 
-GENDER_CHOICES_PROMOTION = (
-    ('A', 'All'),
-    ('M', 'Male'),
-    ('F', 'Female'),
-)
-
 
 class CustomUser(AbstractBaseUser):
     """
@@ -79,9 +74,6 @@ class CustomUser(AbstractBaseUser):
     def get_short_name(self):
         return self.first_name
 
-    #def get_lang(self):
-    #    return self.lang
-
     def has_perm(self, perm, obj=None):
         # Does the user have a specific permission?
         # Simplest possible answer: Yes, always
@@ -98,44 +90,46 @@ class CustomUser(AbstractBaseUser):
     def is_client(self):
         return False
 
+    def is_people(self):
+        return False
 
 
 class Employee(CustomUser):
-    location = models.ForeignKey('Location', blank=True, null=True)
     language = models.CharField(max_length=2, default="en", blank=False, null=True)
-    is_customer_admin = models.BooleanField(default=False)
-    customer = models.ForeignKey('Customer', blank=True, null=True)
+    is_client_admin = models.BooleanField(default=False)
+    is_store_manager = models.BooleanField(default=False)
+    is_marketing = models.BooleanField(default=False)
     confirmation_code = models.CharField(max_length=66, blank=True, null=True)
 
     class Meta:
-        db_table = 'employee'
+        db_table = 'employees'
 
     def is_employee(self):
         return True
 
 
 class Client(CustomUser):
-	client_name = models.CharField(max_length=100, null=True, blank=True)
-	code _crm = models.CharField(max_length=10, null=False, blank=False)
-	client_id = models.CharField(max_length=10, null=False, blank=False)
-	telephone = models.CharField(max_length=50)
-	web_site  = models.URLField(null=True, blank=True)
+    client_name = models.CharField(max_length=100, null=True, blank=True)
+    code_crm = models.CharField(max_length=10, null=False, blank=False)
+    client_id = models.CharField(max_length=10, null=False, blank=False)
+    telephone = models.CharField(max_length=50)
+    web_site = models.URLField(null=True, blank=True)
     description = models.CharField(max_length=250)
-	logo_url  = models.URLField(null=True, blank=True)
-	background_color  = models.CharField(max_length=7, default='#ffffff')
-	foreground_color = models.CharField(max_length=7, default='#ffffff')
-	backgroud_img = models.URLField(null=True, blank=True)
-	ttf_font= models.CharField(max_length=100, null=True, blank=True)
-	is_active = models.BooleanField(default=False)
-	promotion_enable = models.BooleanField(default=False)
+    logo_url = models.URLField(null=True, blank=True)
+    background_color = models.CharField(max_length=7, default='#ffffff')
+    foreground_color = models.CharField(max_length=7, default='#ffffff')
+    background_img = models.URLField(null=True, blank=True)
+    ttf_font= models.CharField(max_length=100, null=True, blank=True)
+    is_active = models.BooleanField(default=False)
+    promotion_enable = models.BooleanField(default=False)
     city = models.CharField(max_length=100, null=True, blank=True)
     country = models.CharField(max_length=100, null=True, blank=True)
     photo_url = models.URLField(null=True, blank=True)
     facebook_id = models.BigIntegerField(null=True, blank=True, default=0)
     facebook_link = models.URLField(null=True, blank=True, default=None)
-	facebook_fanpage  = models.URLField(null=True, blank=True)
-	facebook_merchant_id  = models.CharField(max_length=250)
-	twitter_account = models.CharField(max_length=250)
+    facebook_fanpage = models.URLField(null=True, blank=True)
+    facebook_merchant_id = models.CharField(max_length=250)
+    twitter_account = models.CharField(max_length=250)
     gplus_id = models.CharField(max_length=30, null=True, blank=True, default=None)
     language = models.CharField(max_length=10, null=True, blank=True)
     locale = models.CharField(max_length=10, null=True, blank=True)
@@ -146,6 +140,7 @@ class Client(CustomUser):
 
     def is_client(self):
         return True
+
 
 class Vendor(models.Model):
     oui = models.CharField(max_length=17, primary_key=True)
