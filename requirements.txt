@@ -18,6 +18,8 @@ six==1.10.0 # Python 2 and 3 compatibility utilities
 South==1.0.2 # South: Migrations for Django
 ua-parser==0.6.1 #Python port of Browserscope's user agent parser
 user-agents==1.0.1 #A library to identify devices (phones, tablets) and their capabilities by parsing (browser/HTTP) user agent strings
+djangorestframework==3.3.2
+django-filter==0.12
 
 #django-oauth-plus==2.2.4 # Support of OAuth 1.0a in Django using python-oauth2.
 #django-oauth2-provider==0.2.6.1 # django-oauth2-provider is a Django application that provides customizable OAuth2-authentication for your Django projects.
@@ -25,7 +27,6 @@ user-agents==1.0.1 #A library to identify devices (phones, tablets) and their ca
 #django-rest-framework-oauth==0.0.2
 #django-social-auth==0.7.28
 #django-storages==1.1.8
-#djangorestframework==3.1.1
 #graypy==0.2.11 # Python logging handler that sends messages in GELF (Graylog Extended Log Format).
 #oauth==1.0.1
 #oauth2==1.5.211

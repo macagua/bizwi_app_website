@@ -15,7 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from services import views
+from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^api-dashboard/v1/employee/$', views.EmployeeList.as_view()),
 ]
+
+urlpatterns = format_suffix_patterns(urlpatterns)
