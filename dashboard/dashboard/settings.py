@@ -76,12 +76,14 @@ WSGI_APPLICATION = 'dashboard.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'new_bizwi',                      # Or path to database file if using sqlite3.
+        'USER': 'bizwi',                      # Not used with sqlite3.
+        'PASSWORD': 'bizwi',                  # Not used with sqlite3.
+        'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '5432',
     }
 }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
@@ -119,3 +121,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# to local_settings ( in the future)
+
+URL_CORE = "http://127.0.0.1:8001"
+URL_API_V1 = URL_CORE + '/api/v1/'
