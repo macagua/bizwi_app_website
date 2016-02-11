@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Employees, Clients, Stores, StoresTags, Brands, Departments, Promotions, PromotionsTypes
+from .models import Employees, Clients, Stores, Tags, Brands, Departments, Promotions, PromotionsTypes
 
 
 class EmployeeSerializer(serializers.ModelSerializer):
