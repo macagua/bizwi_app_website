@@ -70,3 +70,6 @@ target/
 
 # pyenv
 .python-version
+
+pcore/services/migrations/*
+ccore/services/migrations/*

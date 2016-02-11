@@ -5,6 +5,7 @@ from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 import pytz
 from django.utils.translation import ugettext_lazy as _
 
+
 # Users Models
 class UserManager(BaseUserManager):
     def _create_user(self, username, email, password, is_staff, is_superuser, is_admin, **extra_fields):
@@ -31,6 +32,7 @@ class UserManager(BaseUserManager):
         user.is_active = True
         user.save(using=self._db)
         return user
+
 
 
 STATUS_CHOICES = (
@@ -92,6 +94,9 @@ class CustomUser(AbstractBaseUser):
     def is_people(self):
         return False
 
+    class Meta:
+        db_table = 'custom_users'
+
 
 # class basic
 class Countries(models.Model):
@@ -137,6 +142,7 @@ class Employees(CustomUser):
     phone_employee = models.CharField(max_length=20, blank=True, null=True)
     confirmation_code = models.CharField(max_length=66, blank=True, null=True)
     token = models.CharField(max_length=200, blank=True, null=True)
+    client = models.ForeignKey(Clients, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'employees'
@@ -189,6 +195,7 @@ class StoreTags(models.Model):
     def __unicode__(self):
         return "%s" % self.tag_name
 
+
 class Stores(models.Model):
     store_id = models.CharField(max_length=10, primary_key=True)
     client = models.ForeignKey('Clients', blank=False, null=False)
@@ -208,15 +215,13 @@ class Stores(models.Model):
     background_color = models.CharField(max_length=7, default='#ffffff')
     foreground_color = models.CharField(max_length=7, default='#ffffff')
     backgroud_img = models.ImageField(upload_to='media')
-    ttf_font= models.CharField(max_length=100, null=True, blank=True)
+    ttf_font = models.CharField(max_length=100, null=True, blank=True)
     is_active = models.BooleanField(default=False)
     promotion_enable = models.BooleanField(default=False)
+    employee = models.ManyToManyField(Employees)
     
     def __str__(self):
-        return "%s: %s" % (self.customer, self.name)
-
-    def fullname(self):
-        return "%s: %s" % (self.customer, self.name)
+        return "%s" % self.store_name
 
     class Meta:
         db_table = 'stores'
@@ -232,10 +237,7 @@ class Departments(models.Model):
     geoloc_poly = models.CharField(max_length=200, blank=True)
 
     def __str__(self):
-        return "%s: %s" % (self.customer, self.name)
-
-    def fullname(self):
-        return "%s: %s" % (self.customer, self.name)
+        return "%s:" % self.department_name
 
     class Meta:
         db_table = 'departments'
