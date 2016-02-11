@@ -99,52 +99,6 @@ class CustomUser(AbstractBaseUser):
         return False
 
 
-class Roles(models.Model):
-    rol_id = models.IntegerField(primary_key=True, null=False)
-    description = models.CharField(max_length=250)
-
-    class Meta:
-        db_table = 'roles'
-
-
-class Employees(models.Model):
-    employee_id = models.IntegerField(primary_key=True, null=False)
-    language = models.CharField(max_length=2)
-    name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    username = models.CharField(max_length=20)
-    password = models.CharField(max_length=200)
-
-    class Meta:
-        db_table = 'employees'
-
-
-class EmployeesStores(models.Model):
-    store = models.ForeignKey(Stores, on_delete=models.CASCADE)
-    rol = models.ForeignKey(Roles, on_delete=models.CASCADE)
-    employee = models.ForeignKey(Employees, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        db_table = 'employees_stores'
-
-
-class Permissions(models.Model):
-    permission_id = models.IntegerField(primary_key=True, null=False)
-    description = models.CharField(max_length=250)
-
-    class Meta:
-        db_table = 'permissions'
-
-
-class PermissionsRoles(models.Model):
-    permission_role_id = models.IntegerField(primary_key=True, null=False)
-    permission = models.ForeignKey(Permissions, on_delete=models.CASCADE)
-    rol = models.ForeignKey(Roles, on_delete=models.CASCADE)
-
-    class Meta:
-        db_table = 'permissions_roles'
 
 class Employee(CustomUser):
     location = models.ForeignKey('Location', blank=True, null=True)
@@ -161,66 +115,37 @@ class Employee(CustomUser):
 
 
 class Client(CustomUser):
-Client_name: Cosmopolitan
-Code _CRM: BIZ001
-Client_id: (autoincrement)01
-telephone: +34 55555555
-web_site: URL
-description: 
-facebook_fanpage:
-facebook_merchant_id
-	twitter: twitter account
-	logo_url
-	background_color
-	foreground_color
-	backgroud_img
-	ttf_font
-	is_active: boolean
-	promotion_enable
+	client_name = models.CharField(max_length=100, null=True, blank=True)
+	code _crm = models.CharField(max_length=10, null=False, blank=False)
+	client_id = models.CharField(max_length=10, null=False, blank=False)
+	telephone = models.CharField(max_length=50)
+	web_site  = models.URLField(null=True, blank=True)
+    description = models.CharField(max_length=250)
+	logo_url  = models.URLField(null=True, blank=True)
+	background_color  = models.CharField(max_length=7, default='#ffffff')
+	foreground_color = models.CharField(max_length=7, default='#ffffff')
+	backgroud_img = models.URLField(null=True, blank=True)
+	ttf_font= models.CharField(max_length=100, null=True, blank=True)
+	is_active = models.BooleanField(default=False)
+	promotion_enable = models.BooleanField(default=False)
     city = models.CharField(max_length=100, null=True, blank=True)
     country = models.CharField(max_length=100, null=True, blank=True)
     photo_url = models.URLField(null=True, blank=True)
     facebook_id = models.BigIntegerField(null=True, blank=True, default=0)
     facebook_link = models.URLField(null=True, blank=True, default=None)
+	facebook_fanpage  = models.URLField(null=True, blank=True)
+	facebook_merchant_id  = models.CharField(max_length=250)
+	twitter_account = models.CharField(max_length=250)
     gplus_id = models.CharField(max_length=30, null=True, blank=True, default=None)
-    timezone = models.CharField(max_length=10, null=True, blank=True)
     language = models.CharField(max_length=10, null=True, blank=True)
     locale = models.CharField(max_length=10, null=True, blank=True)
+    timezone = models.CharField(max_length=255, choices=[(x, x) for x in pytz.common_timezones])
 
     class Meta:
         db_table = 'client'
 
     def is_client(self):
         return True
-
-
-telephone: +34 55555555
-web_site: URL
-description: 
-facebook_fanpage:
-facebook_merchant_id
-twitter: twitter account
-(colo schema)
-logo_url
-background_color
-foreground_color
-backgroud_img
-ttf_font
-language: es|en
-country: (país por defecto)
-is_active: boolean
-enable: (es activo para crear promociones)
-
-Rango de edades
-categoría y sub-categoría 
-etiquetas adicionales para categorizar al cliente
-
-
-
-
-
-
-
 
 class Vendor(models.Model):
     oui = models.CharField(max_length=17, primary_key=True)
@@ -310,219 +235,3 @@ class Location(models.Model):
 
     class Meta:
         db_table = 'location'
-
-
-class MessageToCustomer(models.Model):
-    sender = models.ForeignKey(Client)
-    receiver = models.ForeignKey(Customer)
-    content = models.TextField()
-    date = models.DateTimeField(auto_now_add=True, editable=False)
-    read = models.BooleanField(default=False)
-
-    class Meta:
-        db_table = 'message_to_customer'
-
-
-class MessageToClient(models.Model):
-    sender = models.ForeignKey(Customer)
-    receiver = models.ForeignKey(Client)
-    content = models.TextField()
-    date = models.DateTimeField(auto_now_add=True, editable=False)
-    read = models.BooleanField(default=False)
-
-    class Meta:
-        db_table = 'message_to_client'
-
-
-class Application(models.Model):
-    user_agent = models.CharField(max_length=200)
-    url = models.URLField(max_length=200, null=True, blank=True)
-    name = models.CharField(max_length=200, null=True, blank=True)
-    ver = models.CharField(max_length=30, null=True, blank=True)
-    ua_ver = models.CharField(max_length=30, null=True, blank=True)
-    device = models.ForeignKey(Device)
-
-    class Meta:
-        db_table = 'application'
-
-
-class PromotionImpact(models.Model):
-    promotion = models.ForeignKey('Promotion')
-    client = models.ForeignKey(Client)
-    impact_time = models.DateTimeField(null=True, blank=True, default=datetime.utcnow())
-    promo_code = models.CharField(max_length=200, null=True, blank=True)
-    check_in = models.BooleanField(default=False)
-    check_in_number = models.DecimalField(max_digits=3, decimal_places=0, default=0)
-    check_in_time = models.DateTimeField(null=True, blank=True)
-
-    class Meta:
-        db_table = 'promotion_impact'
-
-
-class PromotionImpactExternal(models.Model):
-    promotion = models.ForeignKey('PromotionExternal')
-    client = models.ForeignKey(Client)
-    impact_time = models.DateTimeField(null=True, blank=True, default=datetime.utcnow())
-    promo_code = models.CharField(max_length=200, null=True, blank=True)
-    check_in = models.BooleanField(default=False)
-    check_in_number = models.DecimalField(max_digits=3, decimal_places=0, default=0)
-    check_in_time = models.DateTimeField(null=True, blank=True)
-    location = models.ForeignKey(Location)
-
-    class Meta:
-        db_table = 'promotion_impact_external'
-
-
-class PromotionImpactSpecial(models.Model):
-    promotion = models.ForeignKey('SpecialPromotion')
-    client = models.ForeignKey(Client)
-    impact_time = models.DateTimeField(null=True, blank=True, default=datetime.utcnow())
-    promo_code = models.CharField(max_length=200, null=True, blank=True)
-    check_in = models.BooleanField(default=False)
-    check_in_number = models.DecimalField(max_digits=3, decimal_places=0, default=0)
-    check_in_time = models.DateTimeField(null=True, blank=True)
-    next_check_in = models.DecimalField(max_digits=3, decimal_places=0, default=0)
-
-    class Meta:
-        db_table = 'promotion_impact_special'
-
-
-class SpecialPromotion(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField()
-    url = models.URLField(max_length=200, null=True, blank=True)
-    required_check_ins = models.DecimalField(max_digits=3, decimal_places=0, default=3)
-    active = models.BooleanField(default=True)
-    img_url = models.URLField(max_length=200, null=True, blank=True)
-    impact = models.ManyToManyField(Client, through=PromotionImpactSpecial)
-    customer_id = models.ForeignKey(Customer)
-    email_send = models.BooleanField(default=True)
-
-    def __unicode__(self):
-        return "%s" % (self.name)
-
-    class Meta:
-        db_table = 'special_promotion'
-
-
-class Promotion(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField()
-    url = models.URLField(max_length=200, null=True, blank=True)
-    active = models.BooleanField(default=True)
-    start_date = models.DateField(null=True, blank=True)
-    end_date = models.DateField(null=True, blank=True)
-    start_time = models.TimeField(null=True, blank=True)
-    end_time = models.TimeField(null=True, blank=True)
-    monday = models.BooleanField(default=True)
-    tuesday = models.BooleanField(default=True)
-    wednesday = models.BooleanField(default=True)
-    thursday = models.BooleanField(default=True)
-    friday = models.BooleanField(default=True)
-    saturday = models.BooleanField(default=True)
-    sunday = models.BooleanField(default=True)
-    location = models.ManyToManyField(Location)
-    img_url = models.URLField(max_length=200, null=True, blank=True)
-    impact = models.ManyToManyField(Client, through=PromotionImpact)
-    # gender = models.CharField(max_length=1, default='A', choices=GENDER_CHOICES_PROMOTION, null=True, blank=True)
-    # birthday = models.BooleanField(default=False)
-    # locale = models.CharField(max_length=2, default='xx', null=True, blank=True)
-    filter_str = models.CharField(max_length=200, default='', null=True, blank=True)
-    special_promotion = models.ForeignKey(SpecialPromotion, blank=True, null=True)
-    email_send = models.BooleanField(default=True)
-
-    def __unicode__(self):
-        return "%s" % (self.name)
-
-    class Meta:
-        db_table = 'promotion'
-
-
-class PromotionExternal(models.Model):
-    customer = models.ForeignKey(Customer)
-    name = models.CharField(max_length=100)
-    description = models.TextField()
-    url = models.URLField(max_length=200, null=True, blank=True)
-    active = models.BooleanField(default=True)
-    start_date = models.DateField(null=True, blank=True)
-    end_date = models.DateField(null=True, blank=True)
-    start_time = models.TimeField(null=True, blank=True)
-    end_time = models.TimeField(null=True, blank=True)
-    monday = models.BooleanField(default=True)
-    tuesday = models.BooleanField(default=True)
-    wednesday = models.BooleanField(default=True)
-    thursday = models.BooleanField(default=True)
-    friday = models.BooleanField(default=True)
-    saturday = models.BooleanField(default=True)
-    sunday = models.BooleanField(default=True)
-    location = models.ManyToManyField(Location, through='PromotionLocation')
-    img_url = models.URLField(max_length=200, null=True, blank=True)
-    impact = models.ManyToManyField(Client, through=PromotionImpactExternal)
-    filter_str = models.CharField(max_length=200, default='', null=True, blank=True)
-    email_send = models.BooleanField(default=True)
-
-    def __unicode__(self):
-        return "%s" % (self.name)
-
-    class Meta:
-        db_table = 'promotion_external'
-
-
-class PromotionLocation(models.Model):
-    promotion = models.ForeignKey(PromotionExternal)
-    location = models.ForeignKey(Location)
-    status = models.CharField(max_length=1, choices=STATUS_CHOICES, default='P')
-
-    def __unicode__(self):
-        return "%s, %s - status: %s " % (self.promotion.name, self.location.name, self.status)
-
-    def fullname(self):
-        return "%s, %s" % (self.promotion.name, self.promotion.description)
-
-MODELS = (
-    ('TP-LINK TL-MR3020', 'MR-3020'),
-    ('TP-LINK TL-WDR3600', 'WDR-3600'),
-    ('TP-LINK TL-WR1043', 'WR-1043'),
-    ('TP-LINK TL-MR3040', 'MR-3040'),
-    ('TP-LINK AC1750', 'AC1750'),
-)
-
-
-class Sensor(models.Model):
-    sid = models.CharField(max_length=120, unique=True)
-    mac = models.CharField(max_length=17, unique=True)
-    model = models.CharField(max_length=30, choices=MODELS, null=True)
-    register_time = models.DateTimeField(null=True, default=datetime.utcnow())
-    sensor_ip = models.GenericIPAddressField(protocol='IPv4', null=True)
-    public_key = models.CharField(max_length=700)
-    name = models.CharField(max_length=100, null=True)
-    call_home = models.BooleanField(default=False)
-    essid = models.CharField(max_length=200, null=True)
-    rate = models.FloatField(null=True)
-    location = models.ForeignKey(Location, null=True)
-
-    def __str__(self):
-        return "%s" % (self.mac)
-
-    class Meta:
-        db_table = 'sensor'
-
-
-class Ratio(models.Model):
-    name = models.CharField(max_length=100)
-    value = models.FloatField()
-    time = models.FloatField()
-    sensor = models.ForeignKey(Sensor)
-
-    class Meta:
-        db_table = 'ratio'
-
-
-class Counter(models.Model):
-    name = models.CharField(max_length=100)
-    value = models.FloatField()
-    time = models.FloatField()
-    sensor = models.ForeignKey(Sensor)
-
-    class Meta:
-        db_table = 'counter'
