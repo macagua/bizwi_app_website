@@ -183,15 +183,14 @@ class Employees(CustomUser):
         return True
 
 
-
 class Stores(models.Model):
-    store = models.CharField(max_length=10, primary_key=True)
-    client = models.ForeignKey('Clients', blank=False, null=False)
+    store_id = models.CharField(max_length=10, primary_key=True, null=False)
+    client = models.ForeignKey(Clients, blank=False, null=False)
     store_name = models.CharField(max_length=100)
     register_date = models.DateTimeField(default=datetime.utcnow())
-    region = models.ForeignKey('Regions', blank=True, null=True)
-    country = models.ForeignKey('Countries', blank=True, null=True)
-    city = models.ForeignKey('Cities', blank=True, null=True)
+    region = models.ForeignKey(Regions, blank=True, null=True)
+    country = models.ForeignKey(Countries, blank=True, null=True)
+    city = models.ForeignKey(Cities, blank=True, null=True)
     address = models.CharField(max_length=200)
     geoloc_point = models.DecimalField(decimal_places=2, max_digits=5)
     distance_threshold = models.DecimalField(decimal_places=2, max_digits=5)
@@ -209,42 +208,42 @@ class Stores(models.Model):
     employee = models.ManyToManyField(Employees)
     
     def __str__(self):
-        return "%s: %s" % (self.store_name)
+        return "%s: %s" % self.store_name
 
     def fullname(self):
-        return "%s: %s" % (self.store_name)
+        return "%s: %s" % self.store_name
 
     class Meta:
         db_table = 'stores'
         
 
-class StoresTags(models.Model):
-    store_tag = models.CharField(max_length=10, primary_key=True)
+class Tags(models.Model):
+    tag = models.CharField(max_length=10, primary_key=True)
     tag_name = models.CharField(max_length=255)
     store = models.ManyToManyField(Stores)
 
     class Meta:
-        db_table = 'stores_tags'
+        db_table = 'tags'
 
     def __unicode__(self):
         return "%s" % self.tag_name
 
 
-class StoresCategories(models.Model):
-    store_categories = models.CharField(max_length=10, primary_key=True)
-    store_categories_name = models.CharField(max_length=255)
+class Categories(models.Model):
+    category = models.CharField(max_length=10, primary_key=True)
+    categories_name = models.CharField(max_length=255)
     store = models.ManyToManyField(Stores)
     
     class Meta:
-        db_table = 'stores_categories'
+        db_table = 'categories'
 
     def __unicode__(self):
-        return "%s" % self.store_categories_name
+        return "%s" % self.categories_name
 
 
 class Departments(models.Model):
     department_id = models.CharField(max_length=10, primary_key=True)
-    store = models.ForeignKey('Stores', blank=False, null=False)
+    store = models.ForeignKey(Stores, blank=False, null=False)
     department_name = models.CharField(max_length=100,default='all')
     register_date = models.DateTimeField(default=datetime.utcnow())
     geoloc_point = models.DecimalField(decimal_places=2, max_digits=5)
@@ -283,7 +282,7 @@ class Sensors(models.Model):
     department = models.ForeignKey(Departments, null=True)
 
     def __str__(self):
-        return "%s" % (self.mac)
+        return "%s" % self.mac
 
     class Meta:
         db_table = 'sensors'
@@ -291,7 +290,7 @@ class Sensors(models.Model):
 
 class Brands(models.Model):
     brand = models.CharField(max_length=10, primary_key=True)
-    client = models.ForeignKey('Clients', blank=False, null=False)
+    client = models.ForeignKey(Clients, blank=False, null=False)
     brand_name = models.CharField(max_length=100)
     register_date = models.DateTimeField(default=datetime.utcnow())
     telephone = models.CharField(max_length=50)
@@ -306,35 +305,37 @@ class Brands(models.Model):
     promotion_enable = models.BooleanField(default=False)
     
     def __str__(self):
-        return "%s: %s" % (self.brand_name)
+        return "%s: %s" % self.brand_name
 
     def fullname(self):
-        return "%s: %s" % (self.brand_name)
+        return "%s: %s" % self.brand_name
 
     class Meta:
         db_table = 'brands'
-
 
 
 class PromotionsTypes(models.Model):
     promotion_type = models.CharField(max_length=10, primary_key=True)
     promotion_type_name = models.CharField(max_length=50,default='default')
     description = models.CharField(max_length=100)
+
     def __str__(self):
-        return "%s: %s" % (self.promotion_type_name)
+        return "%s: %s" % self.promotion_type_name
 
     def fullname(self):
-        return "%s: %s" % (self.promotion_type_name)
+        return "%s: %s" % self.promotion_type_name
 
     class Meta:
         db_table = 'promotions_types'
+
 
 class PromotionsFilters(models.Model):
     promotion_filter = models.CharField(max_length=10, primary_key=True)
     promotion_filter_name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
+
     def __str__(self):
-        return "%s: %s" % (self.promotion_filter_name)
+        return "%s: %s" % self.promotion_filter_name
 
     def fullname(self):
         return "%s: %s" % (self.promotion_filter_name)
@@ -342,11 +343,13 @@ class PromotionsFilters(models.Model):
     class Meta:
         db_table = 'promotions_filters'
 
+
 class PromotionsLoyalties(models.Model):
     promotion = models.CharField(max_length=10, primary_key=True)
     promotion_loyalty_name = models.CharField(max_length=50)
     check_in_number = models.DecimalField(max_digits=3, decimal_places=0, default=0)
     description = models.CharField(max_length=100)
+
     def __str__(self):
         return "%s: %s" % (self.promotion_loyalty_name)
 
@@ -355,7 +358,6 @@ class PromotionsLoyalties(models.Model):
 
     class Meta:
         db_table = 'promotions_loyalties'
-
 
 
 class PromotionsSpecials(models.Model):
@@ -372,23 +374,10 @@ class PromotionsSpecials(models.Model):
         db_table = 'promotions_specials'
 
 
-class PromotionsImpacts(models.Model):
-    promotion = models.ForeignKey('Promotions')
-    client = models.ForeignKey(Clients)
-    store = models.ForeignKey(Stores)
-    impact_time = models.DateTimeField(null=True, blank=True, default=datetime.utcnow())
-    promo_code = models.CharField(max_length=200, null=True, blank=True)
-    check_in = models.BooleanField(default=False)
-    check_in_number = models.DecimalField(max_digits=3, decimal_places=0, default=0)
-    check_in_time = models.DateTimeField(null=True, blank=True)
-
-    class Meta:
-        db_table = 'promotions_impacts'
-
 
 class Promotions(models.Model):
-    promotion = models.CharField(max_length=10, primary_key=True)
-    client = models.ForeignKey('Clients', blank=False, null=False)
+    promotion_id = models.CharField(max_length=10, primary_key=True)
+    client = models.ForeignKey(Clients, blank=False, null=False)
     promotion_name = models.CharField(max_length=100)
     register_date = models.DateTimeField(default=datetime.utcnow())   
     description = models.TextField()
@@ -415,7 +404,21 @@ class Promotions(models.Model):
     promotion_filter = models.ManyToManyField(PromotionsFilters)
 
     def __unicode__(self):
-        return "%s" % (self.promotion_name)
+        return "%s" % self.promotion_name
 
     class Meta:
         db_table = 'promotions'
+
+
+class PromotionsImpacts(models.Model):
+    promotion = models.ForeignKey(Promotions)
+    client = models.ForeignKey(Clients)
+    store = models.ForeignKey(Stores, on_delete=models.CASCADE)
+    impact_time = models.DateTimeField(null=True, blank=True, default=datetime.utcnow())
+    promo_code = models.CharField(max_length=200, null=True, blank=True)
+    check_in = models.BooleanField(default=False)
+    check_in_number = models.DecimalField(max_digits=3, decimal_places=0, default=0)
+    check_in_time = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        db_table = 'promotions_impacts'
