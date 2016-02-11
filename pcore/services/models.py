@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 from django.db import models
-from datetime import datetime
+import datetime
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 import pytz
 from django.utils.translation import ugettext_lazy as _
@@ -59,7 +59,7 @@ class CustomUser(AbstractBaseUser):
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
-    date_joined = models.DateTimeField(default=datetime.utcnow(), editable=False)
+    date_joined = models.DateTimeField(default=datetime.datetime.now(), editable=False)
     lang = models.CharField(max_length=2, default='es', blank=False, null=False)
 
     class Meta:
@@ -99,7 +99,7 @@ class CustomUser(AbstractBaseUser):
 
 # class basic
 class Countries(models.Model):
-    country_id = models.IntegerField(primary_key=True, null=False)
+    country_id = models.AutoField(primary_key=True,default='1')
     country_name = models.CharField(max_length=200, default='default')
 
     class Meta:
@@ -110,7 +110,7 @@ class Countries(models.Model):
 
 
 class Cities(models.Model):
-    city_id = models.IntegerField(primary_key=True, null=False)
+    city_id = models.AutoField(primary_key=True,default='1')
     city_name = models.CharField(max_length=100)
     country = models.ForeignKey(Countries, on_delete=models.CASCADE)
 
@@ -122,7 +122,7 @@ class Cities(models.Model):
 
 
 class Regions(models.Model):
-    region_id = models.IntegerField(primary_key=True, null=False)
+    region_id = models.AutoField(primary_key=True,default='1')
     region_name = models.CharField(max_length=100)
 
     class Meta:
@@ -134,7 +134,7 @@ class Regions(models.Model):
 
 # class business logic
 class Clients(CustomUser):
-    client_id = models.CharField(primary_key=True, max_length=10, null=False, blank=False)
+    client_id = models.AutoField(primary_key=True,default='1')
     client_name = models.CharField(max_length=100, null=True, blank=True)
     code_crm = models.CharField(max_length=10, null=False, blank=False)
     telephone = models.CharField(max_length=50)
@@ -184,10 +184,10 @@ class Employees(CustomUser):
 
 
 class Stores(models.Model):
-    store_id = models.CharField(max_length=10, primary_key=True, null=False)
+    store_id = models.AutoField(primary_key=True,default='1')
     client = models.ForeignKey(Clients, blank=False, null=False)
     store_name = models.CharField(max_length=100)
-    register_date = models.DateTimeField(default=datetime.utcnow())
+    register_date = models.DateTimeField(default=datetime.datetime.now())
     region = models.ForeignKey(Regions, blank=True, null=True)
     country = models.ForeignKey(Countries, blank=True, null=True)
     city = models.ForeignKey(Cities, blank=True, null=True)
@@ -218,7 +218,7 @@ class Stores(models.Model):
         
 
 class Tags(models.Model):
-    tag = models.CharField(max_length=10, primary_key=True)
+    tag = models.AutoField(primary_key=True,default='1')
     tag_name = models.CharField(max_length=255)
     store = models.ManyToManyField(Stores)
 
@@ -230,7 +230,7 @@ class Tags(models.Model):
 
 
 class Categories(models.Model):
-    category = models.CharField(max_length=10, primary_key=True)
+    category = models.AutoField(primary_key=True,default='1')
     categories_name = models.CharField(max_length=255)
     store = models.ManyToManyField(Stores)
     
@@ -242,10 +242,10 @@ class Categories(models.Model):
 
 
 class Departments(models.Model):
-    department_id = models.CharField(max_length=10, primary_key=True)
+    department_id = models.AutoField(primary_key=True,default='1')
     store = models.ForeignKey(Stores, blank=False, null=False)
     department_name = models.CharField(max_length=100,default='all')
-    register_date = models.DateTimeField(default=datetime.utcnow())
+    register_date = models.DateTimeField(default=datetime.datetime.now())
     geoloc_point = models.DecimalField(decimal_places=2, max_digits=5)
     distance_threshold = models.DecimalField(decimal_places=2, max_digits=5)
     geoloc_poly = models.CharField(max_length=200, blank=True)
@@ -269,6 +269,7 @@ MODELS = (
 
 
 class Sensors(models.Model):
+    sensor_id = models.AutoField(primary_key=True,default='1')
     sid = models.CharField(max_length=120, unique=True)
     model = models.CharField(max_length=30, choices=MODELS, null=True)
     name = models.CharField(max_length=100, null=True)
@@ -277,7 +278,7 @@ class Sensors(models.Model):
     rate = models.FloatField(null=True)
     public_key = models.CharField(max_length=700)
     essid = models.CharField(max_length=200, null=True)
-    register_time = models.DateTimeField(null=True, default=datetime.utcnow())
+    register_time = models.DateTimeField(null=True, default=datetime.datetime.now())
     sensor_ip = models.GenericIPAddressField(protocol='IPv4', null=True)
     department = models.ForeignKey(Departments, null=True)
 
@@ -289,10 +290,10 @@ class Sensors(models.Model):
 
 
 class Brands(models.Model):
-    brand = models.CharField(max_length=10, primary_key=True)
+    brand_id = models.AutoField(primary_key=True,default='1')
     client = models.ForeignKey(Clients, blank=False, null=False)
     brand_name = models.CharField(max_length=100)
-    register_date = models.DateTimeField(default=datetime.utcnow())
+    register_date = models.DateTimeField(default=datetime.datetime.now())
     telephone = models.CharField(max_length=50)
     web_site = models.URLField(null=True, blank=True)
     description = models.CharField(max_length=250)
@@ -315,7 +316,7 @@ class Brands(models.Model):
 
 
 class PromotionsTypes(models.Model):
-    promotion_type = models.CharField(max_length=10, primary_key=True)
+    promotion_type_id = models.AutoField(primary_key=True,default='1')
     promotion_type_name = models.CharField(max_length=50,default='default')
     description = models.CharField(max_length=100)
 
@@ -330,7 +331,7 @@ class PromotionsTypes(models.Model):
 
 
 class PromotionsFilters(models.Model):
-    promotion_filter = models.CharField(max_length=10, primary_key=True)
+    promotion_filter_id = models.AutoField(primary_key=True,default='1')
     promotion_filter_name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
 
@@ -345,7 +346,7 @@ class PromotionsFilters(models.Model):
 
 
 class PromotionsLoyalties(models.Model):
-    promotion = models.CharField(max_length=10, primary_key=True)
+    promotion_loyalty_id = models.AutoField(primary_key=True,default='1')
     promotion_loyalty_name = models.CharField(max_length=50)
     check_in_number = models.DecimalField(max_digits=3, decimal_places=0, default=0)
     description = models.CharField(max_length=100)
@@ -361,7 +362,7 @@ class PromotionsLoyalties(models.Model):
 
 
 class PromotionsSpecials(models.Model):
-    promotion_special = models.CharField(max_length=10, primary_key=True)
+    promotion_special_id = models.AutoField(primary_key=True,default='1')
     promotion_special_name = models.CharField(max_length=50)
     description = models.CharField(max_length=100)
     def __str__(self):
@@ -376,10 +377,10 @@ class PromotionsSpecials(models.Model):
 
 
 class Promotions(models.Model):
-    promotion_id = models.CharField(max_length=10, primary_key=True)
+    promotion_id = models.AutoField(primary_key=True,default='1')
     client = models.ForeignKey(Clients, blank=False, null=False)
     promotion_name = models.CharField(max_length=100)
-    register_date = models.DateTimeField(default=datetime.utcnow())   
+    register_date = models.DateTimeField(default=datetime.datetime.now())   
     description = models.TextField()
     short_description  = models.CharField(max_length=100)
     long_description = models.TextField()
@@ -399,7 +400,7 @@ class Promotions(models.Model):
     sunday = models.BooleanField(default=True)
     img_url = models.URLField(max_length=200, null=True, blank=True)
     email_send = models.BooleanField(default=True)
-    expiration_time_range = models.DateTimeField(default=datetime.utcnow())   
+    expiration_time_range = models.DateTimeField(default=datetime.datetime.now())   
     promotion_type = models.ForeignKey(PromotionsTypes, null=True)
     promotion_filter = models.ManyToManyField(PromotionsFilters)
 
@@ -414,7 +415,7 @@ class PromotionsImpacts(models.Model):
     promotion = models.ForeignKey(Promotions)
     client = models.ForeignKey(Clients)
     store = models.ForeignKey(Stores, on_delete=models.CASCADE)
-    impact_time = models.DateTimeField(null=True, blank=True, default=datetime.utcnow())
+    impact_time = models.DateTimeField(null=True, blank=True, default=datetime.datetime.now())
     promo_code = models.CharField(max_length=200, null=True, blank=True)
     check_in = models.BooleanField(default=False)
     check_in_number = models.DecimalField(max_digits=3, decimal_places=0, default=0)
