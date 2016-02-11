@@ -133,23 +133,6 @@ class Regions(models.Model):
 
 
 # class business logic
-class Employees(CustomUser):
-    language = models.CharField(max_length=2, blank=False, null=True) # default lang client
-    is_client_admin = models.BooleanField(default=False)
-    is_store_manager = models.BooleanField(default=False)
-    is_marketing = models.BooleanField(default=False)
-    phone_employee = models.CharField(max_length=20, blank=True, null=True)
-    confirmation_code = models.CharField(max_length=66, blank=True, null=True)
-    token = models.CharField(max_length=200, blank=True, null=True)
-    client = models.ForeignKey(Clients, on_delete=models.CASCADE)
-
-    class Meta:
-        db_table = 'employees'
-
-    def is_employee(self):
-        return True
-
-
 class Clients(CustomUser):
     client_id = models.CharField(primary_key=True, max_length=10, null=False, blank=False)
     client_name = models.CharField(max_length=100, null=True, blank=True)
@@ -181,6 +164,24 @@ class Clients(CustomUser):
 
     def is_client(self):
         return True
+
+
+class Employees(CustomUser):
+    language = models.CharField(max_length=2, blank=False, null=True) # default lang client
+    is_client_admin = models.BooleanField(default=False)
+    is_store_manager = models.BooleanField(default=False)
+    is_marketing = models.BooleanField(default=False)
+    phone_employee = models.CharField(max_length=20, blank=True, null=True)
+    confirmation_code = models.CharField(max_length=66, blank=True, null=True)
+    token = models.CharField(max_length=200, blank=True, null=True)
+    client = models.ForeignKey(Clients, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'employees'
+
+    def is_employee(self):
+        return True
+
 
 
 class Stores(models.Model):
