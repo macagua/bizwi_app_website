@@ -68,7 +68,8 @@
             <li class="bold active"><a class="collapsible-header active waves-effect waves-teal"><i class="material-icons">work</i>Management</a>
               <div style="" class="collapsible-body" style="display: block;">
                 <ul>
-                  <li><a href="locals.html" class="collapsible-header"><i class="material-icons">store</i>Locals</a></li>
+                  <li><a href="brands.html" class="collapsible-header"><i class="material-icons">local_offer</i>Brands</a></li>
+                  <li><a href="stores.html" class="collapsible-header"><i class="material-icons">store</i>Stores</a></li>
                   <li class="active blue-grey darken-4"><a href="employees.html" class="collapsible-header"><i class="material-icons">group</i>Employees</a></li>
                 </ul>
               </div>
@@ -99,9 +100,9 @@
     <h4>Manage employees</h4>
     <div class="row">
     <div class="col s12">
-        <a class="waves-effect waves-light btn modal-trigger" href="#createlocal"><i class="material-icons right">group</i>Create new employee</a>
+        <a class="waves-effect waves-light btn modal-trigger" href="#create-employee"><i class="material-icons right">group</i>Create new employee</a>
         <!-- Modal Structure -->
-        <div id="createlocal" class="modal modal-fixed-footer">
+        <div id="create-employee" class="modal modal-fixed-footer">
           <div class="modal-content">
             <h4>Add Employee</h4>
             <div class="container">
@@ -147,12 +148,12 @@
                   </div>
                   <div class="row">
                     <div class="input-field col s12">
-                          <select>
-                          <option value="" disabled selected>Select language</option>
-                          <option value="1">English</option>
-                          <option value="2">Spanish</option>
+                        <select>
+                          <option value="" disabled selected>Choose employee role</option>
+                          <option value="1">Store Employee</option>
+                          <option value="1">Store Manager</option>
                         </select>
-                        <label>Language</label>
+                        <label>Employee role</label>
                     </div>
                   </div>
                   <div class="row">
@@ -164,6 +165,107 @@
                         </select>
                         <label>Location</label>
                     </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                          <select>
+                          <option value="" disabled selected>Select language</option>
+                          <option value="1">English</option>
+                          <option value="2">Spanish</option>
+                        </select>
+                        <label>Language</label>
+                    </div>
+                  </div>
+                </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                      <i class="material-icons right">send</i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Modal Structure -->
+        <div id="edit-employee" class="modal modal-fixed-footer">
+          <div class="modal-content">
+            <h4>Edit Employee</h4>
+            <div class="container">
+                <form class="col s12">
+                  <div class="row">
+                    <div class="input-field col s6">
+                      <i class="material-icons prefix">account_circle</i>
+                      <input id="first_name" type="text" class="validate">
+                      <label for="first_name">First Name</label>
+                    </div>
+                    <div class="input-field col s6">
+                      <input id="last_name" type="text" class="validate">
+                      <label for="last_name">Last Name</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <i class="material-icons prefix">email</i>
+                      <input id="email" type="email" class="validate">
+                      <label for="email">Email</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <i class="material-icons prefix">account_box</i>
+                      <input id="username" type="text" class="validate">
+                      <label for="username">Username</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <i class="material-icons prefix">vpn_key</i>
+                      <input id="password" type="password" class="validate">
+                      <label for="password">Password</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                      <i class="material-icons prefix">vpn_key</i>  
+                      <input id="repeat-password" type="password" class="validate">
+                      <label for="repeat-password">Verify password</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                        <select>
+                          <option value="" disabled selected>Choose employee role</option>
+                          <option value="1">Store Employee</option>
+                          <option value="1">Store Manager</option>
+                        </select>
+                        <label>Employee role</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                          <select>
+                          <option value="" disabled selected>Choose employee location</option>
+                          <option value="1">Store A</option>
+                          <option value="1">Store B</option>
+                        </select>
+                        <label>Location</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s12">
+                          <select>
+                          <option value="" disabled selected>Select language</option>
+                          <option value="1">English</option>
+                          <option value="2">Spanish</option>
+                        </select>
+                        <label>Language</label>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <p>
+                      <input type="checkbox" id="remove-employee"/>
+                      <label for="remove-employee">Remove this employee</label>
+                    </p>
                   </div>
                 </form>
             </div>
@@ -187,8 +289,10 @@
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Location</th>
+                            <th>Role</th>
                             <th>Username</th>
                             <th>Email</th>
+                            <th>Edit/Remove</th>
                         </tr>
                     </thead>
                  
@@ -197,8 +301,10 @@
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Location</th>
+                            <th>Role</th>
                             <th>Username</th>
                             <th>Email</th>
+                            <th>Edit/Remove</th>
                         </tr>
                     </tfoot>
                  
@@ -206,86 +312,110 @@
                         <tr>
                             <td>Tiger</td>
                             <td>Perez</td>
-                            <td>Madrid</td>
+                            <td>Store A</td>
+                            <td>Manager</td>
                             <td>test_user1</td>
                             <td>test_email1@bizwi.com</td>
+                            <td><a class="modal-trigger" href="#edit-employee">Edit</a></td>
                         </tr>
                         <tr>
                             <td>Lion</td>
                             <td>Perez</td>
-                            <td>Barcelona</td>
+                            <td>Store B</td>
+                            <td>Employee</td>
                             <td>test_user2</td>
                             <td>test_email2@bizwi.com</td>
+                            <td><a class="modal-trigger" href="#edit-employee">Edit</a></td>
                         </tr>
                         <tr>
                             <td>Bear</td>
                             <td>Perez</td>
-                            <td>Sevilla</td>
+                            <td>Store C</td>
+                            <td>Employee</td>
                             <td>test_user3</td>
                             <td>test_email3@bizwi.com</td>
+                            <td><a class="modal-trigger" href="#edit-employee">Edit</a></td>
                         </tr>
                         <tr>
                             <td>Whale</td>
                             <td>Perez</td>
-                            <td>Bilbao</td>
+                            <td>Store D</td>
+                            <td>Employee</td>
                             <td>test_user4</td>
                             <td>test_email4@bizwi.com</td>
+                            <td><a class="modal-trigger" href="#edit-employee">Edit</a></td>
                         </tr>
                         <tr>
                             <td>Monkey</td>
                             <td>Perez</td>
-                            <td>Valencia</td>
+                            <td>Store E</td>
+                            <td>Employee</td>
                             <td>test_user15</td>
                             <td>test_email5@bizwi.com</td>
+                            <td><a class="modal-trigger" href="#edit-employee">Edit</a></td>
                         </tr>
                         <tr>
                             <td>Fish</td>
                             <td>Perez</td>
-                            <td>Malaga</td>
+                            <td>Store F</td>
+                            <td>Manager</td>
                             <td>test_user16</td>
                             <td>test_email6@bizwi.com</td>
+                            <td><a class="modal-trigger" href="#edit-employee">Edit</a></td>
                         </tr>
                         <tr>
                             <td>Panda</td>
                             <td>Perez</td>
-                            <td>Murcia</td>
+                            <td>Store G</td>
+                            <td>Employee</td>
                             <td>test_user17</td>
                             <td>test_email7@bizwi.com</td>
+                            <td><a class="modal-trigger" href="#edit-employee">Edit</a></td>
                         </tr>
                         <tr>
                             <td>Rat</td>
                             <td>Perez</td>
-                            <td>Toledo</td>
+                            <td>Store H</td>
+                            <td>Employee</td>
                             <td>test_user18</td>
                             <td>test_email8@bizwi.com</td>
+                            <td><a class="modal-trigger" href="#edit-employee">Edit</a></td>
                         </tr>
                         <tr>
                             <td>Horse</td>
                             <td>Perez</td>
-                            <td>Zaragoza</td>
+                            <td>Store I</td>
+                            <td>Employee</td>
                             <td>test_user19</td>
                             <td>test_email9@bizwi.com</td>
+                            <td><a class="modal-trigger" href="#edit-employee">Edit</a></td>
                         </tr>
                         <tr>
                             <td>Donkey</td>
                             <td>Perez</td>
-                            <td>Salamanca</td>
+                            <td>Store J</td>
+                            <td>Employee</td>
                             <td>test_user110</td>
                             <td>test_email10@bizwi.com</td>
+                            <td><a class="modal-trigger" href="#edit-employee">Edit</a></td>
                         </tr>
                         <tr>
                             <td>Polar Bear</td>
                             <td>Perez</td>
-                            <td>Granada</td>
+                            <td>Store K</td>
+                            <td>Manager</td>
                             <td>test_user111</td>
                             <td>test_email11@bizwi.com</td>
+                            <td><a class="modal-trigger" href="#edit-employee">Edit</a></td>
                         </tr>
                         <tr>
                             <td>Penguin</td>
                             <td>Perez</td>
-                            <td>Oviedo</td>
+                            <td>Store L</td>
+                            <td>Employee</td>
                             <td>test_user112</td>
                             <td>test_email12@bizwi.com</td>
+                            <td><a class="modal-trigger" href="#edit-employee">Edit</a></td>
                         </tr>
                     </tbody>
                   </table>
