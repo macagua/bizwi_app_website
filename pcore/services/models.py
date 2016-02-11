@@ -94,12 +94,41 @@ class CustomUser(AbstractBaseUser):
         return False
 
 
-class Employee(CustomUser):
-    language = models.CharField(max_length=2, default="en", blank=False, null=True)
+# class basic
+class Countries(models.Model):
+    country_id = models.IntegerField(primary_key=True, null=False)
+    country = models.CharField(max_length=200)
+
+    class Meta:
+        db_table = 'countries'
+
+
+class Cities(models.Model):
+    city_id = models.IntegerField(primary_key=True, null=False)
+    city = models.CharField(max_length=100)
+    country = models.ForeignKey(Countries, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'cities'
+
+
+class Regions(models.Model):
+    region_id = models.IntegerField(primary_key=True, null=False)
+    region = models.CharField(max_length=100)
+
+    class Meta:
+        db_table = 'regions'
+
+
+# class business logic
+class Employees(CustomUser):
+    language = models.CharField(max_length=2, blank=False, null=True) # default lang client
     is_client_admin = models.BooleanField(default=False)
     is_store_manager = models.BooleanField(default=False)
     is_marketing = models.BooleanField(default=False)
+    phone_employee = models.CharField(max_length=20, blank=True, null=True)
     confirmation_code = models.CharField(max_length=66, blank=True, null=True)
+    token = models.CharField(max_length=200, blank=True, null=True)
 
     class Meta:
         db_table = 'employees'
@@ -108,7 +137,7 @@ class Employee(CustomUser):
         return True
 
 
-class Client(CustomUser):
+class Clients(CustomUser):
     client_name = models.CharField(max_length=100, null=True, blank=True)
     code_crm = models.CharField(max_length=10, null=False, blank=False)
     client_id = models.CharField(max_length=10, null=False, blank=False)
@@ -119,7 +148,7 @@ class Client(CustomUser):
     background_color = models.CharField(max_length=7, default='#ffffff')
     foreground_color = models.CharField(max_length=7, default='#ffffff')
     background_img = models.URLField(null=True, blank=True)
-    ttf_font= models.CharField(max_length=100, null=True, blank=True)
+    ttf_font = models.CharField(max_length=100, null=True, blank=True)
     is_active = models.BooleanField(default=False)
     promotion_enable = models.BooleanField(default=False)
     city = models.CharField(max_length=100, null=True, blank=True)
@@ -142,91 +171,19 @@ class Client(CustomUser):
         return True
 
 
-class Vendor(models.Model):
-    oui = models.CharField(max_length=17, primary_key=True)
-    name = models.CharField(max_length=255)
-
-    class Meta:
-        db_table = 'vendor'
-
-    def __unicode__(self):
-        return "%s" % (self.name)
-
-
-class SsidRegister(models.Model):
-    name = models.CharField(max_length=200, unique=True)
-
-    def __str__(self):
-        return "%s" % (self.name)
-
-
-class Device(models.Model):
-    mac = models.CharField(max_length=17, unique=True)
-    name = models.CharField(max_length=200, null=True, blank=True)
-    type = models.CharField(max_length=30, null=True, blank=True)
-    family = models.CharField(max_length=30, null=True, blank=True)
-    os_family = models.CharField(max_length=30, null=True, blank=True)
-    os_ver = models.CharField(max_length=30, null=True, blank=True)
-    first_seen = models.DateTimeField(default=datetime.utcnow())
-    last_seen = models.DateTimeField(default=datetime.utcnow())
-    vendor = models.ForeignKey(Vendor, null=True, blank=True)
-    user_agent = models.CharField(max_length=500, null=True, blank=True)
-    ssids = models.ManyToManyField(SsidRegister)
-    client = models.ForeignKey(Client, null=True, blank=True)
-
-    def __str__(self):
-        return "%s" % (self.mac)
-
-    class Meta:
-        db_table = 'device'
-
-
-class LocationDeviceClient(models.Model):
-    location = models.ForeignKey('Location')
-    device = models.ForeignKey(Device)
-    visits = models.IntegerField(default=1)
-    last_login = models.DateTimeField(default=datetime.utcnow())
-
-    def __str__(self):
-        return "%s %s %s" % (self.location, self.device, self.visits)
-
-    class Meta:
-        db_table = 'location_device_client'
-
-
-class Customer(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField(null=True, blank=True)
-    url = models.URLField(max_length=200, null=True, blank=True)
-    timezone = models.CharField(max_length=255, choices=[(x, x) for x in pytz.common_timezones])
-    img_url = models.URLField(max_length=200, null=True, blank=True)
-    cover_img_url = models.URLField(max_length=200, null=True, blank=True)
-    uppercolor = models.CharField(max_length=7, default='#ffffff')
-    lowercolor = models.CharField(max_length=7, default='#ffffff')
-
-    def __unicode__(self):
-        return "%s" % (self.name)
-
-    class Meta:
-        db_table = 'customer'
-
-
-class Location(models.Model):
-    name = models.CharField(max_length=100)
-    country = models.CharField(max_length=100)
-    city = models.CharField(max_length=100)
+class Stores(models.Model):
+    store_id = models.CharField(max_length=100, primary_key=True, null=False)
+    client = models.ForeignKey(Clients, on_delete=models.CASCADE)
+    store_name = models.CharField(max_length=150)
     address = models.CharField(max_length=200)
+    country = models.ForeignKey(Countries, on_delete=models.CASCADE)
+    city = models.ForeignKey(Cities, on_delete=models.CASCADE)
+    region = models.ForeignKey(Regions, on_delete=models.CASCADE)
+    # add more fields here
     latitude = models.DecimalField(decimal_places=5, max_digits=7)
     longitude = models.DecimalField(decimal_places=5, max_digits=8)
     distance_threshold = models.DecimalField(decimal_places=2, max_digits=5)
-    clients_devices = models.ManyToManyField(Device, through=LocationDeviceClient)
-    customer = models.ForeignKey(Customer)
-
-    def __str__(self):
-        return "%s: %s" % (self.customer, self.name)
-
-    def fullname(self):
-        return "%s: %s" % (self.customer, self.name)
 
     class Meta:
-        db_table = 'location'
+        db_table = 'stores'
+
