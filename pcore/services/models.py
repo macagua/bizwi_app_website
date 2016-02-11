@@ -201,7 +201,7 @@ class Stores(models.Model):
     logo_url = models.URLField(null=True, blank=True)
     background_color = models.CharField(max_length=7, default='#ffffff')
     foreground_color = models.CharField(max_length=7, default='#ffffff')
-    backgroud_img = models.ImageField(upload_to='media')
+    background_img = models.ImageField(upload_to='media')
     ttf_font = models.CharField(max_length=100, null=True, blank=True)
     is_active = models.BooleanField(default=False)
     promotion_enable = models.BooleanField(default=False)
