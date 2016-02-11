@@ -31,7 +31,7 @@
 
       <!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
       <link rel="icon" href="images/favicon.ico">
-      <title>BiZWi - Locals</title>
+      <title>BiZWi - Stores</title>
     </head>
 
     <body class="">
@@ -49,7 +49,7 @@
   <nav class="top-nav">
       <div class="nav-wrapper blue-grey darken-4">
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-        <a href="#!" class="page-title">Locals</a>
+        <a href="#!" class="page-title">Stores</a>
         <ul class="right hide-on-med-and-down">
           <li><a href="promotions.html"><i class="material-icons left">loyalty</i>Promotions</a></li>
           <li><a href="birthdays.html"><i class="material-icons left">cake</i>Birthdays</a></li>
@@ -68,7 +68,8 @@
             <li class="bold active"><a class="collapsible-header active waves-effect waves-teal"><i class="material-icons">work</i>Management</a>
               <div style="" class="collapsible-body" style="display: block;">
                 <ul>
-                  <li class="active blue-grey darken-4"><a href="locals.html" class="collapsible-header"><i class="material-icons">store</i>Locals</a></li>
+                  <li><a href="brands.html" class="collapsible-header"><i class="material-icons">local_offer</i>Brands</a></li>
+                  <li class="active blue-grey darken-4"><a href="stores.html" class="collapsible-header"><i class="material-icons">store</i>Stores</a></li>
                   <li><a href="employees.html" class="collapsible-header"><i class="material-icons">group</i>Employees</a></li>
                 </ul>
               </div>
@@ -96,27 +97,49 @@
 
     <main>
     <div class="container">
-    <h4>Manage locals</h4>
+    <h4>Manage Stores</h4>
     <div class="row">
     <div class="col s12">
-        <a class="waves-effect waves-light btn modal-trigger" href="#createlocal"><i class="material-icons right">store</i>Create new local</a>
+        <a class="waves-effect waves-light btn modal-trigger" href="#create-store"><i class="material-icons right">store</i>Create new store</a>
         <!-- Modal Structure -->
-        <div id="createlocal" class="modal modal-fixed-footer">
+        <div id="create-store" class="modal modal-fixed-footer">
           <div class="modal-content">
-            <h4>Add Local</h4>
+            <h4>Add Store</h4>
             <div class="container">
               <form class="col s12">
                 <div class="row">
                   <div class="input-field col s12">
                     <input id="name" type="text" class="validate">
-                    <label for="name">Name</label>
+                    <label for="name">Store Name</label>
                   </div>
                 </div>
                 <div class="row">
                   <div class="input-field col s12">
-                    <div id="map-canvas">
-                      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3037.6343069179184!2d-3.705717184269981!3d40.41695136354924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd42287e19e23f5f%3A0xcec2a0e4d9bed6fb!2sPuerta+del+Sol!5e0!3m2!1ses-419!2sve!4v1454881286486" width="100%" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
-                    </div>
+                    <select multiple>
+                      <option value="" disabled selected>Select categories</option>
+                      <option value="1">Category 1</option>
+                      <option value="2">Category 2</option>
+                      <option value="3">Category 3</option>
+                    </select>
+                    <label>Your store categories</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input id="username" type="text" class="validate">
+                    <label for="username">Store Username</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input id="password" type="password" class="validate">
+                    <label for="password">Store Password</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input id="repeat-password" type="password" class="validate">
+                    <label for="repeat-password">Verify password</label>
                   </div>
                 </div>
                 <div class="row">
@@ -127,8 +150,65 @@
                 </div>
                 <div class="row">
                   <div class="input-field col s12">
-                    <input id="city" type="text" class="validate">
-                    <label for="city">City</label>
+                    <input id="address" type="text" class="validate">
+                    <label for="address">Address</label>
+                  </div>
+                </div>
+
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                      <i class="material-icons right">send</i>
+            </button>
+          </div>
+        </div>
+        <!-- Modal Structure -->
+        <div id="edit-store" class="modal modal-fixed-footer">
+          <div class="modal-content">
+            <h4>Edit Store</h4>
+            <div class="container">
+              <form class="col s12">
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input id="name" type="text" class="validate">
+                    <label for="name">Store Name</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <select multiple>
+                      <option value="" disabled selected>Select categories</option>
+                      <option value="1">Category 1</option>
+                      <option value="2">Category 2</option>
+                      <option value="3">Category 3</option>
+                    </select>
+                    <label>Your store categories</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input id="username" type="text" class="validate">
+                    <label for="username">Store Username</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input id="password" type="password" class="validate">
+                    <label for="password">Store Password</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input id="repeat-password" type="password" class="validate">
+                    <label for="repeat-password">Verify password</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input id="country" type="text" class="validate">
+                    <label for="country">Country</label>
                   </div>
                 </div>
                 <div class="row">
@@ -138,10 +218,10 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="input-field col s12">
-                    <p class="range-field"><input type="range" id="distance-threshold" value="0" min="0" max="100" /></p>
-                    <label for="distance-threshold">Distance threshold</label>
-                  </div>
+                  <p>
+                    <input type="checkbox" id="remove-store"/>
+                    <label for="remove-store">Remove this store</label>
+                  </p>
                 </div>
               </form>
             </div>
@@ -166,6 +246,8 @@
                             <th>Country</th>
                             <th>City</th>
                             <th>Address</th>
+                            <th>Categories</th>
+                            <th>Edit/Remove</th>
                         </tr>
                     </thead>
                  
@@ -175,6 +257,8 @@
                             <th>Country</th>
                             <th>City</th>
                             <th>Address</th>
+                            <th>Categories</th>
+                            <th>Edit/Remove</th>
                         </tr>
                     </tfoot>
                  
@@ -184,72 +268,96 @@
                             <td>Spain</td>
                             <td>Madrid</td>
                             <td>Address 11</td>
+                            <td>Category 1, Category 2, Category 3</td>
+                            <td><a class="modal-trigger" href="#edit-store">Edit</a></td>
                         </tr>
                         <tr>
                             <td>Lion</td>
                             <td>Spain</td>
                             <td>Barcelona</td>
                             <td>Address 22</td>
+                            <td>Category 1, Category 2, Category 3</td>
+                            <td><a class="modal-trigger" href="#edit-store">Edit</a></td>
                         </tr>
                         <tr>
                             <td>Bear</td>
                             <td>Spain</td>
                             <td>Sevilla</td>
                             <td>Address 33</td>
+                            <td>Category 1, Category 2, Category 3</td>
+                            <td><a class="modal-trigger" href="#edit-store">Edit</a></td>
                         </tr>
                         <tr>
                             <td>Whale</td>
                             <td>Spain</td>
                             <td>Bilbao</td>
                             <td>Address 44</td>
+                            <td>Category 1, Category 2, Category 3</td>
+                            <td><a class="modal-trigger" href="#edit-store">Edit</a></td>
                         </tr>
                         <tr>
                             <td>Monkey</td>
                             <td>Spain</td>
                             <td>Valencia</td>
                             <td>Address 55</td>
+                            <td>Category 1, Category 2, Category 3</td>
+                            <td><a class="modal-trigger" href="#edit-store">Edit</a></td>
                         </tr>
                         <tr>
                             <td>Fish</td>
                             <td>Spain</td>
                             <td>Malaga</td>
                             <td>Address 66</td>
+                            <td>Category 1, Category 2, Category 3</td>
+                            <td><a class="modal-trigger" href="#edit-store">Edit</a></td>
                         </tr>
                         <tr>
                             <td>Panda</td>
                             <td>Spain</td>
                             <td>Murcia</td>
                             <td>Address 77</td>
+                            <td>Category 1, Category 2, Category 3</td>
+                            <td><a class="modal-trigger" href="#edit-store">Edit</a></td>
                         </tr>
                         <tr>
                             <td>Rat</td>
                             <td>Spain</td>
                             <td>Toledo</td>
                             <td>Address 88</td>
+                            <td>Category 1, Category 2, Category 3</td>
+                            <td><a class="modal-trigger" href="#edit-store">Edit</a></td>
                         </tr>
                         <tr>
                             <td>Horse</td>
                             <td>Spain</td>
                             <td>Zaragoza</td>
                             <td>Address 99</td>
+                            <td>Category 1, Category 2, Category 3</td>
+                            <td><a class="modal-trigger" href="#edit-store">Edit</a></td>
                         </tr>
                         <tr>
                             <td>Donkey</td>
                             <td>Spain</td>
                             <td>Salamanca</td>
                             <td>Address 10</td>
+                            <td>Category 1, Category 2, Category 3</td>
+                            <td><a class="modal-trigger" href="#edit-store">Edit</a></td>
                         </tr>
                         <tr>
                             <td>Polar Bear</td>
                             <td>Spain</td>
                             <td>Granada</td>
                             <td>Address 12</td>
+                            <td>Category 1, Category 2, Category 3</td>
+                            <td><a class="modal-trigger" href="#edit-store">Edit</a></td>
                         </tr>
                         <tr>
                             <td>Penguin</td>
                             <td>Spain</td>
                             <td>Oviedo</td>
                             <td>Address 13</td>
+                            <td>Category 1, Category 2, Category 3</td>
+                            <td><a class="modal-trigger" href="#edit-store">Edit</a></td>
                         </tr>
                     </tbody>
                   </table>
