@@ -1,0 +1,33 @@
+{% extends "base_register.html" %}
+{% load i18n %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="row" style="margin-bottom: 15px;">
+        <div class="col s12 m2 l2"><p>&nbsp;</p></div>
+        <div class="col s12 m8 l8 center-align white z-depth-3" style="padding-bottom: 40px">
+            <div>
+                <h2 class="page-header">{% trans "Congratulations!" %}</h2>
+
+                <div class="well well-lg" style="color: #3c763d; background-color: #dff0d8; border-color: #d6e9c6;">
+                    {% trans "Your user has been created. A confirmation email has been sent to your email account." %}
+                </div>
+                <div>
+                    <button class="btn waves-effect waves-light" type="button" onclick="location='{%  url "new_client" %}'"> Continue
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m2 l2 hide-on-small-only"><p>&nbsp;</p></div>
+    </div>
+{% endblock %}
+
+
+{% block scripts %}
+
+{% endblock %}

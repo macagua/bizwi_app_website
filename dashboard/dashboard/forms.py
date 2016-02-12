@@ -1,18 +1,6 @@
 from django import forms
 
 
-class EmployeeForm(forms.Form):
-    username = forms.CharField(max_length=100)
-    email = forms.EmailField(required=True)
-    first_name = forms.CharField(max_length=100)
-    phone = forms.CharField(max_length=20)
-    last_name = forms.CharField(max_length=200)
-    language = forms.CharField(max_length=2)
-    location = forms.DecimalField(min_value=0)
-    password = forms.CharField(max_length=100)
-    checkpass = forms.BooleanField(initial=False, required=False)
-
-
 class AdminForm(forms.Form):
     name = forms.CharField(max_length=255, required=True)
     lastname = forms.CharField(max_length=255, required=True)
@@ -32,6 +20,19 @@ class AdminForm(forms.Form):
                 self.add_error('password2', "The two password fields didn't match.")
 
         return cleaned_data
+
+
+class EmployeeForm(forms.Form):
+    username = forms.CharField(max_length=100)
+    email = forms.EmailField(required=True)
+    first_name = forms.CharField(max_length=100)
+    phone = forms.CharField(max_length=20)
+    last_name = forms.CharField(max_length=200)
+    language = forms.CharField(max_length=2)
+    location = forms.DecimalField(min_value=0)
+    password = forms.CharField(max_length=100)
+    checkpass = forms.BooleanField(initial=False, required=False)
+
 
 
 class ClientForm(forms.Form):

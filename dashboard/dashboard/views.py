@@ -1,3 +1,4 @@
+# coding=utf-8
 from django.http import JsonResponse, HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render, redirect, render_to_response
 from django.template import RequestContext
@@ -5,6 +6,8 @@ from core_wrapper import *
 from .settings import APP_OWNER, APP_NAME
 from .forms import AdminForm, ClientForm, StoreForm, BrandForm, EmployeeForm, SettingsEmployeeForm
 import pytz
+import json
+import sys
 
 # Parameter basics
 DEFAULT_APP_CONTEXT = {'title': APP_OWNER, 'name': APP_NAME, }
@@ -20,6 +23,7 @@ def index(request):
 
 # Registration new clients
 def new_client_admin(request):
+    form = AdminForm()
     info = {}
 
     if request.method == 'POST':
@@ -56,6 +60,8 @@ def new_client_admin(request):
         else:
             info['error'] = True
             info['form'] = form
+
+
 
     return render(request, 'new_client_admin.html', info)
 

@@ -26,8 +26,7 @@ class RegionsSerializer(serializers.ModelSerializer):
 class ClientsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Clients
-        fields = ('client_id',
-                  'client_name',
+        fields = ('client_name',
                   'code_crm',
                   'telephone',
                   'web_site',
@@ -43,7 +42,7 @@ class ClientsSerializer(serializers.ModelSerializer):
                   'photo_url',
                   'facebook_id',
                   'facebook_link',
-                  'facebook_fanpage',
+                  'facebook_fan_page',
                   'facebook_merchant_id',
                   'twitter_account',
                   'gplus_id',
