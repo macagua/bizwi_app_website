@@ -9,6 +9,7 @@ class CountriesSerializer(serializers.ModelSerializer):
         fields =  ('country_id',
                    'country_name')
 
+
 class CitiesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cities
@@ -16,11 +17,13 @@ class CitiesSerializer(serializers.ModelSerializer):
                    'city_name',
                    'country')
 
+
 class RegionsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Regions
         fields =  ('region_id',
                    'region_name')
+
 
 class ClientsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -50,6 +53,7 @@ class ClientsSerializer(serializers.ModelSerializer):
                   'locale',
                   'timezone')
 
+
 class EmployeeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Employees
@@ -63,6 +67,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
                   'is_marketing',
                   'is_active',
                   'is_superuser')
+
 
 class StoresSerializer(serializers.ModelSerializer):
     class Meta:
@@ -90,6 +95,7 @@ class StoresSerializer(serializers.ModelSerializer):
                    'promotion_enable',
                    'employee')
 
+
 class TagsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tags
@@ -97,12 +103,14 @@ class TagsSerializer(serializers.ModelSerializer):
                   'tag_name',
                   'store')
 
+
 class CategoriesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Categories
         fields = ('category',
                   'categories_name',
                   'store')
+
 
 class DepartmentsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -114,6 +122,7 @@ class DepartmentsSerializer(serializers.ModelSerializer):
                   'geoloc_point',
                   'distance_threshold',
                   'geoloc_poly')
+
 
 class SensorsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -130,6 +139,7 @@ class SensorsSerializer(serializers.ModelSerializer):
                   'register_time',
                   'sensor_ip',
                   'department')
+
 
 class BrandsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -149,6 +159,7 @@ class BrandsSerializer(serializers.ModelSerializer):
                    'is_active',
                    'promotion_enable')
 
+
 class PromotionsTypesSerializer(serializers.ModelSerializer):
     class Meta:
         model = PromotionsTypes
@@ -156,12 +167,14 @@ class PromotionsTypesSerializer(serializers.ModelSerializer):
                   'promotion_type_name',
                   'description')
 
+
 class PromotionsFiltersSerializer(serializers.ModelSerializer):
     class Meta:
         model = PromotionsFilters
         fields =  ('promotion_filter_id',
                    'promotion_filter_name',
                    'description')
+
 
 class PromotionsLoyaltiesSerializer(serializers.ModelSerializer):
     class Meta:
@@ -171,12 +184,14 @@ class PromotionsLoyaltiesSerializer(serializers.ModelSerializer):
                    'check_in_number',
                    'description')
 
+
 class PromotionsSpecialsSerializer(serializers.ModelSerializer):
     class Meta:
         model = PromotionsSpecials
         fields =  ('promotion_special_id',
                    'promotion_special_name',
                    'description')
+
 
 class PromotionsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -207,6 +222,7 @@ class PromotionsSerializer(serializers.ModelSerializer):
                    'expiration_time_range',
                    'promotion_type',
                    'promotion_filter')
+
 
 class PromotionsImpactsSerializer(serializers.ModelSerializer):
     class Meta:

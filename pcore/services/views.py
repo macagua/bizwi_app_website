@@ -8,6 +8,7 @@ class CountriesList(generics.ListCreateAPIView):
     queryset = Countries.objects.all()
     serializer_class = CountriesSerializer
 
+
 class CountryDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Countries.objects.all()
     serializer_class = CountriesSerializer
@@ -16,6 +17,7 @@ class CountryDetail(generics.RetrieveUpdateDestroyAPIView):
 class CitiesList(generics.ListCreateAPIView):
     queryset = Cities.objects.all()
     serializer_class = CitiesSerializer
+
 
 class CityDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Cities.objects.all()
@@ -26,6 +28,7 @@ class RegionsList(generics.ListCreateAPIView):
     queryset = Regions.objects.all()
     serializer_class = RegionsSerializer
 
+
 class RegionDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Regions.objects.all()
     serializer_class = RegionsSerializer
@@ -34,6 +37,7 @@ class RegionDetail(generics.RetrieveUpdateDestroyAPIView):
 class EmployeeList(generics.ListCreateAPIView):
     queryset = Employees.objects.all()
     serializer_class = EmployeeSerializer
+
 
 class EmployeeDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Employees.objects.all()
@@ -44,6 +48,7 @@ class ClientsList(generics.ListCreateAPIView):
     queryset = Clients.objects.all()
     serializer_class = ClientsSerializer
 
+
 class ClientDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Clients.objects.all()
     serializer_class = ClientsSerializer
@@ -52,6 +57,7 @@ class ClientDetail(generics.RetrieveUpdateDestroyAPIView):
 class StoresList(generics.ListCreateAPIView):
     queryset = Stores.objects.all()
     serializer_class = StoresSerializer
+
 
 class StoreDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Stores.objects.all()
@@ -62,6 +68,7 @@ class TagsList(generics.ListCreateAPIView):
     queryset = Tags.objects.all()
     serializer_class = TagsSerializer
 
+
 class TagDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Tags.objects.all()
     serializer_class = TagsSerializer
@@ -70,6 +77,7 @@ class TagDetail(generics.RetrieveUpdateDestroyAPIView):
 class CategoriesList(generics.ListCreateAPIView):
     queryset = Categories.objects.all()
     serializer_class = CategoriesSerializer
+
 
 class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Categories.objects.all()
@@ -80,6 +88,7 @@ class DepartmentsList(generics.ListCreateAPIView):
     queryset = Departments.objects.all()
     serializer_class = DepartmentsSerializer
 
+
 class DepartmentDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Departments.objects.all()
     serializer_class = DepartmentsSerializer
@@ -88,6 +97,7 @@ class DepartmentDetail(generics.RetrieveUpdateDestroyAPIView):
 class SensorsList(generics.ListCreateAPIView):
     queryset = Sensors.objects.all()
     serializer_class = SensorsSerializer
+
 
 class SensorDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Sensors.objects.all()
@@ -98,6 +108,7 @@ class BrandsList(generics.ListCreateAPIView):
     queryset = Brands.objects.all()
     serializer_class = BrandsSerializer
 
+
 class BrandDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Brands.objects.all()
     serializer_class = BrandsSerializer
@@ -106,6 +117,7 @@ class BrandDetail(generics.RetrieveUpdateDestroyAPIView):
 class PromotionsTypesList(generics.ListCreateAPIView):
     queryset = PromotionsTypes.objects.all()
     serializer_class = PromotionsTypesSerializer
+
 
 class PromotionTypeDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = PromotionsTypes.objects.all()
@@ -116,6 +128,7 @@ class PromotionsFiltersList(generics.ListCreateAPIView):
     queryset = PromotionsFilters.objects.all()
     serializer_class = PromotionsFiltersSerializer
 
+
 class PromotionFilterDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = PromotionsFilters.objects.all()
     serializer_class = PromotionsFiltersSerializer
@@ -124,6 +137,7 @@ class PromotionFilterDetail(generics.RetrieveUpdateDestroyAPIView):
 class PromotionsLoyaltiesList(generics.ListCreateAPIView):
     queryset = PromotionsLoyalties.objects.all()
     serializer_class = PromotionsLoyaltiesSerializer
+
 
 class PromotionLoyaltyDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = PromotionsLoyalties.objects.all()
@@ -134,6 +148,7 @@ class PromotionsSpecialsList(generics.ListCreateAPIView):
     queryset = PromotionsSpecials.objects.all()
     serializer_class = PromotionsSpecialsSerializer
 
+
 class PromotionSpecialDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = PromotionsSpecials.objects.all()
     serializer_class = PromotionsSpecialsSerializer
@@ -143,6 +158,7 @@ class PromotionsList(generics.ListCreateAPIView):
     queryset = Promotions.objects.all()
     serializer_class = PromotionsSerializer
 
+
 class PromotionDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Promotions.objects.all()
     serializer_class = PromotionsSerializer
@@ -151,6 +167,7 @@ class PromotionDetail(generics.RetrieveUpdateDestroyAPIView):
 class PromotionsImpactsList(generics.ListCreateAPIView):
     queryset = PromotionsImpacts.objects.all()
     serializer_class = PromotionsImpactsSerializer
+
 
 class PromotionImpactDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = PromotionsImpacts.objects.all()
