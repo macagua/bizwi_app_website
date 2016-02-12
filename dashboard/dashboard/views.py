@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, render_to_response
 from django.template import RequestContext
 from core_wrapper import *
 from .settings import APP_OWNER, APP_NAME
-from .forms import AdminForm, ClientForm
+from .forms import AdminForm, ClientForm, StoreForm, BrandForm, EmployeeForm, SettingsEmployeeForm
 import pytz
 
 # Parameter basics
@@ -114,6 +114,73 @@ def new_client(request):
     return render(request, 'new_client.html', info)
 
 
+def stores(request):
+    client = request.session.get("client")
+    stores_list = {'data': get_stores(client),
+                   'customer_name': request.session.get("client_name")}
+    if type(stores_list['data']) is not list:
+        stores_list['data'] = []
+    return render(request, 'stores.html', stores_list)
+
+
+def store(request, id_local=None):
+    id_customer = request.session.get("client")
+    form = StoreForm()
+    info = {'customer_name': request.session.get("customer_name")}
+    if request.method == 'POST':
+        form = StoreForm(request.POST)
+
+        if form.is_valid():
+            local_info = {
+                'name': form.cleaned_data['name'],
+                'country': form.cleaned_data['country'],
+                'city': form.cleaned_data['city'],
+                'region': form.cleaned_data['region'],
+                'logo_url': form.cleaned_data['logo_url'],
+                'background_color': form.cleaned_data['background_color'],
+                'foreground_color': form.cleaned_data['foreground_color'],
+                'ttf_font': form.cleaned_data['ttf_font'],
+                'address': form.cleaned_data['address'],
+                'latitude': str(form.cleaned_data['latitude']),
+                'longitude': str(form.cleaned_data['longitude']),
+                'distance_threshold': str(form.cleaned_data['distance_threshold']),
+            }
+            if id_local:
+                result = save_store(id_customer, local_info, id_local)
+                info['page'] = "update"
+                info['local'] = local_info
+            else:
+                result = save_store(id_customer, local_info)
+                info['page'] = "add"
+
+            if result:
+                info['success'] = True
+            else:
+                info['error'] = True
+                info['local'] = local_info
+        else:
+            info['error'] = True
+            info['form'] = form
+            info['local'] = form.data
+            if id_local:
+                info['page'] = "update"
+            else:
+                info['page'] = "add"
+
+    if request.method == 'GET':
+        if id_local:
+            info['page'] = "update"
+            local = get_stores(id_customer, id_local)
+            if local:
+                info['local'] = local
+            else:
+                raise Http404
+        else:
+            info['page'] = "add"
+
+    return render(request, 'stores.html', info)
+
+
 def employees_list(request):
     client = request.session.get("client")
     employees = {'data': get_employees(client),
@@ -121,3 +188,133 @@ def employees_list(request):
     if type(employees['data']) is not list:
         employees['data'] = []
     return render(request, 'employees.html', employees)
+
+
+def employee(request, id_employee=None):
+    id_customer = request.session.get("id_customer")
+    locations_list = get_stores(id_customer)
+    info = {'customer_name': request.session.get("customer_name"),
+            'languages': LANGUAGE_LIST,
+            'locations': locations_list}
+
+    if request.method == 'POST':
+
+        form = EmployeeForm(request.POST)
+        if form.is_valid():
+            employee_info = {
+                'username': form.cleaned_data['username'],
+                'email': form.cleaned_data['email'],
+                'first_name': form.cleaned_data['first_name'],
+                'last_name': form.cleaned_data['last_name'],
+                'phone': form.cleaned_data['phone'],
+                'language': form.cleaned_data['language'],
+                'location': str(form.cleaned_data['location']),
+                'checkpass': str(form.cleaned_data['checkpass']),
+                'password': str(form.cleaned_data['password']),
+            }
+            if id_employee:
+                result = save_employee(id_customer, employee_info, id_employee)
+                info['page'] = "update"
+                info['employee'] = employee_info
+            else:
+                result = save_employee(id_customer, employee_info)
+                info['page'] = "add"
+
+            if result:
+                info['success'] = True
+            else:
+                info['error'] = True
+                info['employee'] = employee_info
+        else:
+            info['error'] = True
+            info['form'] = form
+            info['employee'] = form.data
+            if id_employee:
+                info['page'] = "update"
+            else:
+                info['page'] = "add"
+
+    if request.method == 'GET':
+        if id_employee:
+            info['page'] = "update"
+            employee = get_employees(id_customer, id_employee)
+            if employee:
+                info['employee'] = employee
+            else:
+                raise Http404
+        else:
+            info['page'] = "add"
+
+    return render(request, 'employee.html', info)
+
+
+def settings_employee(request):
+    id_location = '0'
+    id_customer = request.session.get("id_customer")
+    customer_name = request.session.get("customer_name")
+
+    form = SettingsEmployeeForm()
+    info = {}
+    user = request.session["username"]
+
+    if request.method == 'POST':
+        form = SettingsEmployeeForm(request.POST)
+        lang_ok = False
+        for l in LANGUAGE_LIST:
+            if l == form.data['language']:
+                lang_ok = True
+        if form.is_valid() and lang_ok:
+            url = form.cleaned_data['url']
+            description = form.cleaned_data['description']
+            time_zone = form.cleaned_data['time_zone']
+            language = form.cleaned_data['language']
+            img_url = form.cleaned_data['image']
+            cover_img_url = form.cleaned_data['cover_image']
+            uppercolor = form.cleaned_data['uppercolor']
+            lowercolor = form.cleaned_data['lowercolor']
+            info = {'id_customer': id_customer,
+                    'id_location': id_location,
+                    'url': url,
+                    'img_url': img_url,
+                    'cover_img_url': cover_img_url,
+                    'description': description,
+                    'time_zone': time_zone,
+                    'language': language,
+                    'username': user,
+                    'uppercolor': uppercolor,
+                    'lowercolor': lowercolor,
+            }
+
+            result = save_workplace_info(info)
+
+            if result:
+                info['success'] = True
+                request.session["time_zone"] = time_zone
+                request.session[LANGUAGE_SESSION_KEY] = language
+                request.session["lang"] = language
+                request.session["date_format"] = DATE_FORMATS[language]
+            else:
+                info['error'] = True
+                info['url'] = url
+                info['description'] = description
+                info['time_zone'] = time_zone
+                info['language'] = language
+                info['img_url'] = img_url
+                info['cover_img_url'] = cover_img_url
+                info['uppercolor'] = uppercolor
+                info['lowercolor'] = lowercolor
+        else:
+            info = form.cleaned_data
+            info['img_url'] = form.cleaned_data['image']
+            info['error'] = True
+
+    elif request.method == 'GET':
+        info = get_workplace_info(id_location, id_customer, user)
+
+    info['form'] = form
+    info['timezones'] = pytz.common_timezones
+    info['time_zone'] = request.session.get("time_zone")
+    info['customer_name'] = customer_name
+    info['languages'] = LANGUAGE_LIST
+
+    return render(request, 'settings_employee.html', info)
