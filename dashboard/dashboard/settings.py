@@ -73,7 +73,7 @@ WSGI_APPLICATION = 'dashboard.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'new_bizwi',                      # Or path to database file if using sqlite3.
+        'NAME': 'bizwi',                      # Or path to database file if using sqlite3.
         'USER': 'bizwi',                      # Not used with sqlite3.
         'PASSWORD': 'bizwi',                  # Not used with sqlite3.
         'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
