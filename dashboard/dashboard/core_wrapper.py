@@ -42,7 +42,7 @@ End functions basics
 
 
 def create_client_admin(info):
-    url_path = 'clients/'
+    url_path = 'create_client_admin/'
     result = base_post(url_path, info)
     try:
         if result.status_code == 201:
@@ -52,6 +52,7 @@ def create_client_admin(info):
             resp['success'] = False
             return resp
     except Exception as e:
+        print e
         return {'success': False, 'error': 'undefined'}
 
 

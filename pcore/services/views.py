@@ -2,6 +2,7 @@ from .models import Countries, Cities, Regions, Employees, Clients, Stores, Tags
     Brands, PromotionsTypes, PromotionsFilters, PromotionsLoyalties, PromotionsSpecials, Promotions, PromotionsImpacts
 from .serializers import CountriesSerializer, CitiesSerializer, RegionsSerializer, EmployeeSerializer, ClientsSerializer, StoresSerializer, TagsSerializer, CategoriesSerializer, DepartmentsSerializer, SensorsSerializer, BrandsSerializer, PromotionsTypesSerializer, PromotionsFiltersSerializer, PromotionsLoyaltiesSerializer, PromotionsSpecialsSerializer, PromotionsSerializer, PromotionsImpactsSerializer
 from rest_framework import generics
+from rest_framework.decorators import api_view
 import random
 import string
 
@@ -9,14 +10,16 @@ from rest_framework.response import Response
 from rest_framework import status
 
 
+@api_view(['POST'])
 def create_client_admin(request):
     try:
         if request.method == 'POST':
-            new_name = request.DATA.get('name')
-            new_last_name = request.DATA.get('lastname')
-            new_username = request.DATA.get('username')
-            new_email = request.DATA.get('email')
-            new_password = request.DATA.get('password')
+            new_name = request.data.get('name')
+            new_last_name = request.data.get('lastname')
+            new_username = request.data.get('username')
+            new_email = request.data.get('email')
+            new_password = request.data.get('password')
+
 
             #if CustomUser.objects.filter(email=new_email).count() != 0:
             #    return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR, data={"error": "duplicate_email"})
@@ -27,11 +30,12 @@ def create_client_admin(request):
                 random.choice(string.ascii_uppercase + string.digits + string.ascii_lowercase) for x in range(66))
 
             e = Clients.objects.create(first_name=new_name, last_name=new_last_name, username=new_username,
-                                       email=new_email, is_customer_admin=True, is_active=True,
-                                       confirmation_code=confirmation_code,)
+                                       email=new_email, is_client_admin=True, is_active=True
+                                       )
+
             e.set_password(new_password)
             e.save()
-
+            """
             confirmation_link = "/registration/admin_user/confirm/" + e.username + "/" + e.confirmation_code
 
             about_text = "Activate your Bizwi account."
@@ -40,7 +44,7 @@ def create_client_admin(request):
 
             message_welcome = message_welcome.replace("{{ client }}", str(e.get_short_name()))
             message_text = message_text.replace("{{ link }}", str(confirmation_link))
-
+            """
             """
             mail = get_template('mail.html')
             d = Context({
@@ -54,15 +58,6 @@ def create_client_admin(request):
                 'customer': "Bizwi"
             })
             """
-
-            #content_text = mail.render(d)
-
-            #send_email(source=EMAIL_INFO,
-            #           to=e.email,
-            #           about=about_text,
-            #           content=content_text,
-            #           message_format='html')
-
             return Response(status=status.HTTP_201_CREATED)
     except Exception as e:
         print e

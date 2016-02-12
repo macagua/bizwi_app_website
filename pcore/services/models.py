@@ -59,6 +59,7 @@ class CustomUser(AbstractBaseUser):
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
+    is_client_admin = models.BooleanField(default=False)
     date_joined = models.DateTimeField(default=datetime.datetime.now(), editable=False)
     lang = models.CharField(max_length=2, default='es', blank=False, null=False)
 
@@ -156,7 +157,7 @@ class Clients(CustomUser):
     gplus_id = models.CharField(max_length=30, null=True, blank=True, default=None)
     language = models.CharField(max_length=10, null=True, blank=True)
     locale = models.CharField(max_length=10, null=True, blank=True)
-    timezone = models.CharField(max_length=255, choices=[(x, x) for x in pytz.common_timezones])
+    timezone = models.CharField(max_length=255, choices=[(x, x) for x in pytz.common_timezones], null=True)
 
     class Meta:
         db_table = 'clients'
@@ -167,7 +168,6 @@ class Clients(CustomUser):
 
 class Employees(CustomUser):
     language = models.CharField(max_length=2, blank=False, null=True) # default lang client
-    is_client_admin = models.BooleanField(default=False)
     is_store_manager = models.BooleanField(default=False)
     is_marketing = models.BooleanField(default=False)
     phone_employee = models.CharField(max_length=20, blank=True, null=True)
