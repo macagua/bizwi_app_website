@@ -1,0 +1,145 @@
+{% extends "base_register.html" %}
+{% load i18n %}
+{% load tz %}
+
+{% block css %}
+{% endblock %}
+
+
+{% block content %}
+
+    {% if form.non_field_errors %}
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            {{ form.non_field_errors }}
+        </div>
+    {% elif error %}
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            {% trans "Failed to save your data. Try again later." %}
+        </div>
+    {% endif %}
+
+
+    <div class="row valign">
+        <div class="col s12 m2 l2 hide-on-small-only"><p>&nbsp;</p></div>
+        <div class="col s12 m8 l8 center-align white">
+            <div class="container">
+                <div class="row">
+                    <h5>{% trans "Customer Register" %}</h5>
+
+                    <form class="col s12" method="POST">
+                        {% csrf_token %}
+
+                        <div class="row">
+
+                            <div {% if form.name.errors %}class="form-group has-error"
+                                 {% else %}class="form-group"{% endif %}>
+                                <label for="inputName" class="col-sm-2 control-label">{% trans "Name" %}</label>
+
+                                <div class="col-sm-10">
+                                    <input id="inputName" name="name" type="text" class="form-control"
+                                           value="" data-error="{% trans "Complete this field" %}"
+                                           required>
+                                    {% for error in form.name.errors %}
+                                        <label class="control-label" for="inputName">{{ error|escape }}</label>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            <div {% if form.description.errors %}class="form-group has-error"
+                                 {% else %}class="form-group"{% endif %}>
+                                <label for="inputDescription"
+                                       class="col-sm-2 control-label">{% trans "Description" %}</label>
+
+                                <div class="col-sm-10">
+                                <textarea id="inputDescription" name="description" class="materialize-textarea"
+                                          rows="3" data-error="{% trans "Complete this field" %}"></textarea>
+                                    {% for error in form.description.errors %}
+                                        <label class="control-label" for="inputDescription">{{ error|escape }}</label>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            <div {% if form.url.errors %}class="form-group has-error"
+                                 {% else %}class="form-group"{% endif %}>
+                                <label for="inputUrl" class="col-sm-2 control-label">{% trans "URL" %}</label>
+
+                                <div class="col-sm-10">
+                                    <input id="inputUrl" name="url" type="url" class="form-control" value="http://"
+                                           data-error="{% trans "Complete this field" %}"
+                                           data-error-url="{% trans "The URL must begin with http://" %}" required>
+                                    {% for error in form.url.errors %}
+                                        <label class="control-label" for="inputUrl">{{ error|escape }}</label>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            <div {% if form.time_zone.errors %}class="form-group has-error"
+                                 {% else %}class="form-group"{% endif %}>
+                                <label for="inputTimeZone"
+                                       class="col-sm-2 control-label">{% trans "Time Zone" %}</label>
+
+                                <div class="col-sm-10">
+                                    <select id="inputTimeZone" name="time_zone" class="form-control">
+                                        {% for tz in timezones %}
+                                            <option value="{{ tz }}"{% if tz == time_zone %}
+                                                    selected="selected"{% endif %}>{{ tz }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    {% for error in form.time_zone.errors %}
+                                        <label class="control-label" for="inputTimeZone">{{ error|escape }}</label>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputImage"
+                                       class="col-sm-2 control-label">{% trans "Image" %}</label>
+
+                                <div class="file-field input-field">
+                                    <div class="btn">
+                                        <span>File</span>
+                                        <input type="file">
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" type="text">
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-primary">{% trans "Send" %}</button>
+                                </div>
+                            </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m2 l2 hide-on-small-only"><p>&nbsp;</p></div>
+    </div>
+
+
+{% endblock %}
+
+
+{% block scripts %}
+    {{ form.media }}
+    <script>
+        {% if img_url %}
+            $('#id_image').attr('value', '{{ img_url }}');
+        {% else %}
+            $('#file-img').attr('src', 'http://placehold.it/250x250&text=no+image');
+        {% endif %}
+        $("#bt-clear").click(function () {
+            $('#id_image').attr('value', '');
+            $('#file-img').attr('src', 'http://placehold.it/250x250&text=no+image');
+        });
+    </script>
+{% endblock %}
