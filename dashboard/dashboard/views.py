@@ -412,3 +412,56 @@ def settings_employee(request):
     info['languages'] = LANGUAGE_LIST
 
     return render(request, 'settings_employee.html', info)
+
+@only_employee(LOGIN_URL)
+#@extra_info
+#def profile_edit(request, extra_info):
+def profile_edit(request):
+    employee_id = request.user.id
+    employee_info = get_info(employee_id)
+    email = employee_info['email']
+
+    info = {}
+
+    if request.method == 'POST':
+        if "profileForm" in request.POST:
+            form = ProfileForm(request.POST)
+
+            if form.is_valid():
+                try:
+                    email = form.cleaned_data['email']
+                    employee_info['email'] = email
+                    result = save_info(employee_id, employee_info)
+                    if result:
+                        info['save_success'] = True
+                    else:
+                        info['save_error'] = True
+                        info['form'] = form
+
+                except Exception as e:
+                    print e
+                    info['save_error'] = True
+                    info['form'] = form
+            else:
+                info['save_error'] = True
+                info['form'] = form
+
+        elif "changePasswordForm" in request.POST:
+            form = SetPasswordForm(request.user, request.POST)
+            if form.is_valid():
+                try:
+                    new_password = form.cleaned_data['new_password1']
+                    result = change_password(employee_id, new_password)
+                    if result:
+                        info['change_success'] = True
+                except Exception as e:
+                    print e
+                    info['change_error'] = True
+                    info['form'] = form
+            else:
+                info['change_error'] = True
+                info['form'] = form
+
+    info['email'] = email
+    #info.update(extra_info)
+    return render(request, 'profile_form.html', info)
