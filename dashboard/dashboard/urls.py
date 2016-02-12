@@ -10,6 +10,8 @@ urlpatterns = [
 
     # login
     url(r'^dashboard/login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}, name='login'),
+    url(r'^dashboard/logout/$', views.logout, name='logout'),
+    url(r'^done/$', views.done, name='done'),
 
     # Register URLS
     url(r'registration/client_admin/$', views.new_client_admin, name='new_client_admin'),
@@ -21,6 +23,7 @@ urlpatterns = [
     url(r'^stores/$', views.stores, name='stores'),
     url(r'^store/$', views.store, name='new_store'),
     url(r'^local_admin/(?P<id_local>\d+)/$', views.store, name='store'),
+    url(r'^dashboard/$', views.dashboard, name='home'),
 
     url(r'^employees/$', views.employees_list, name='employees_list'),
     url(r'^employee/$', views.employee, name='new_employee'),
