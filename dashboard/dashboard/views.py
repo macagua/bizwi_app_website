@@ -84,24 +84,29 @@ def logout(request):
 
 
 @only_employee(LOGIN_URL)
-@extra_info
-def dashboard(request, extra_info):
-    id_location = request.session.get("id_location")
-    stats = get_stats(id_location)
+#@extra_info
+#def dashboard(request, extra_info):
+def dashboard(request):
+#    id_location = request.session.get("id_location")
+#    stats = get_stats(id_location)
+#
+#    # create context
+#    info = {
+#        'unique_users': stats["unique_users"],
+#        'recurring': stats["recurring"],
+#        'pedestrians': stats["pedestrians"],
+#        'visitors': stats["visitors"],
+#        'impacts': stats["impacts"],
+#        'check_ins': stats["check_ins"],
+#    }
+#
+#    info.update(extra_info)
+#    return render(request, 'dashboard.html', info)
+    return render(request, 'dashboard.html')
 
-    # create context
-    info = {
-        'unique_users': stats["unique_users"],
-        'recurring': stats["recurring"],
-        'pedestrians': stats["pedestrians"],
-        'visitors': stats["visitors"],
-        'impacts': stats["impacts"],
-        'check_ins': stats["check_ins"],
-    }
 
-    info.update(extra_info)
-    return render(request, 'dashboard.html', info)
 # Registration new clients
+
 def new_client_admin(request):
     info = {}
 
