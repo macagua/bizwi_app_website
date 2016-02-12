@@ -200,6 +200,7 @@ class PromotionsFiltersList(generics.ListCreateAPIView):
     queryset = PromotionsFilters.objects.all()
     serializer_class = PromotionsFiltersSerializer
 
+
 class PromotionFilterDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = PromotionsFilters.objects.all()
     serializer_class = PromotionsFiltersSerializer
@@ -208,6 +209,7 @@ class PromotionFilterDetail(generics.RetrieveUpdateDestroyAPIView):
 class PromotionsLoyaltiesList(generics.ListCreateAPIView):
     queryset = PromotionsLoyalties.objects.all()
     serializer_class = PromotionsLoyaltiesSerializer
+
 
 class PromotionLoyaltyDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = PromotionsLoyalties.objects.all()
@@ -218,6 +220,7 @@ class PromotionsSpecialsList(generics.ListCreateAPIView):
     queryset = PromotionsSpecials.objects.all()
     serializer_class = PromotionsSpecialsSerializer
 
+
 class PromotionSpecialDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = PromotionsSpecials.objects.all()
     serializer_class = PromotionsSpecialsSerializer
@@ -227,6 +230,7 @@ class PromotionsList(generics.ListCreateAPIView):
     queryset = Promotions.objects.all()
     serializer_class = PromotionsSerializer
 
+
 class PromotionDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Promotions.objects.all()
     serializer_class = PromotionsSerializer
@@ -235,6 +239,7 @@ class PromotionDetail(generics.RetrieveUpdateDestroyAPIView):
 class PromotionsImpactsList(generics.ListCreateAPIView):
     queryset = PromotionsImpacts.objects.all()
     serializer_class = PromotionsImpactsSerializer
+
 
 class PromotionImpactDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = PromotionsImpacts.objects.all()

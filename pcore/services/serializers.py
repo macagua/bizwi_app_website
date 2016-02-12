@@ -181,6 +181,7 @@ class PromotionsLoyaltiesSerializer(serializers.ModelSerializer):
                    'check_in_number',
                    'description')
 
+
 class PromotionsSpecialsSerializer(serializers.ModelSerializer):
     class Meta:
         model = PromotionsSpecials

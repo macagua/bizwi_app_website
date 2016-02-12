@@ -3,6 +3,9 @@ from django.http import JsonResponse, HttpResponse, Http404, HttpResponseRedirec
 from django.shortcuts import render, redirect, render_to_response
 from django.template import RequestContext
 from core_wrapper import *
+from .settings import APP_OWNER, APP_NAME, LANGUAGE_LIST, DATE_FORMATS, LOGIN_URL
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout as auth_logout
 from .settings import APP_OWNER, APP_NAME
 from .forms import AdminForm, ClientForm, StoreForm, BrandForm, EmployeeForm, SettingsEmployeeForm
 import pytz
@@ -21,6 +24,86 @@ def index(request):
     return render_to_response('home.html', context_instance=context)
 
 
+def only_employee(login_url):
+    def decorator(a_view):
+        def _wrapped_view(request, *args, **kwargs):
+            if request.user.is_authenticated() and not request.session.get("is_customer_admin"):
+                return a_view(request, *args, **kwargs)
+            if len(request.GET) > 0:
+                params = '?'
+                for k, v in request.GET.items():
+                    params = params + k + '=' + v + '&'
+                params = params[:-1]
+                return HttpResponseRedirect(LOGIN_URL + '?next=' + request.path + params)
+            else:
+                return HttpResponseRedirect(LOGIN_URL + '?next=' + request.path)
+        return _wrapped_view
+    return decorator
+
+
+def extra_info(the_func):
+    def _decorated(request, *args, **kwargs):
+        id_customer = request.session.get("id_customer")
+        id_location = request.session.get("id_location")
+        customer_name = request.session.get("customer_name")
+        messages = get_messages(id_customer, limit=3)
+        birthdays = get_today_birthdays(id_location)
+        next_birthdays_count = birthdays[0]
+        promotion_location = get_promotion_requests(id_customer)
+        del birthdays[0]
+        extrainfo = {'messages_count': messages[0],
+                     'customer_name': customer_name,
+                     'preview_messages': messages[1:],
+                     'birthdays': birthdays,
+                     'next_birthdays_count': next_birthdays_count,
+                     'promotion_requests': promotion_location,
+                     }
+        kwargs['extra_info'] = extrainfo
+        return the_func(request, *args, **kwargs)
+    return _decorated
+
+
+@login_required
+def done(request):
+    is_customer_admin = request.session.get("is_customer_admin")
+
+    if is_customer_admin:
+        customer = request.session.get("id_customer")
+        if customer:
+            # go to admin dashboard
+            return redirect("locals_admin")
+        else:
+            # go to customer creation
+            return redirect("new_customer")
+    else:
+        # go to dashboard
+        return redirect("home")
+
+def logout(request):
+    """Logs out user"""
+    auth_logout(request)
+    request.session.flush()
+    return redirect('index')
+
+
+@only_employee(LOGIN_URL)
+@extra_info
+def dashboard(request, extra_info):
+    id_location = request.session.get("id_location")
+    stats = get_stats(id_location)
+
+    # create context
+    info = {
+        'unique_users': stats["unique_users"],
+        'recurring': stats["recurring"],
+        'pedestrians': stats["pedestrians"],
+        'visitors': stats["visitors"],
+        'impacts': stats["impacts"],
+        'check_ins': stats["check_ins"],
+    }
+
+    info.update(extra_info)
+    return render(request, 'dashboard.html', info)
 # Registration new clients
 def new_client_admin(request):
     form = AdminForm()

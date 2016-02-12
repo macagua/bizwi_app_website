@@ -103,15 +103,32 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LOGIN_URL = '/dashboard/login/'
 
-TIME_ZONE = 'UTC'
+LOGIN_REDIRECT_URL = '/done/'
+
+TIME_ZONE = 'Europe/Madrid'
+
+LANGUAGE_CODE = 'en'
+
+LANGUAGE_LIST = ['en', 'es']
+
+DATE_FORMATS = {'en': '%m/%d/%Y %H:%M',
+                'es': '%d/%m/%Y %H:%M'}
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
 
 USE_I18N = True
 
 USE_L10N = True
 
 USE_TZ = True
+
+MEDIA_ROOT = ''
+
+MEDIA_URL = ''
 
 
 # Static files (CSS, JavaScript, Images)
