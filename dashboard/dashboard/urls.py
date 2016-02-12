@@ -18,10 +18,10 @@ urlpatterns = [
     url(r'registration/client/', views.new_client, name='new_client'),
 
     # dashoard urls
-    url(r'^locals_admin/$', views.stores, name='stores'),
+    url(r'^stores/$', views.stores, name='stores'),
     url(r'^store/$', views.store, name='new_store'),
+    url(r'^local_admin/(?P<id_local>\d+)/$', views.store, name='store'),
 
-    url(r'^local_admin/(?P<id_local>\d+)/$', views.local_admin, name='local_admin'),
     url(r'^employees/$', views.employees_list, name='employees_list'),
     url(r'^employee/$', views.employee, name='new_employee'),
     url(r'^employee/(?P<id_employee>\d+)/$', views.employee, name='employee'),
