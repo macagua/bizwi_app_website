@@ -32,3 +32,12 @@ class AdminForm(forms.Form):
                 self.add_error('password2', "The two password fields didn't match.")
 
         return cleaned_data
+
+
+class ClientForm(forms.Form):
+    name = forms.CharField(max_length=255, required=True)
+    description = forms.CharField()
+    url = forms.URLField(max_length=255)
+    time_zone = forms.CharField(max_length=255)
+
+
