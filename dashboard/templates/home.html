@@ -18,7 +18,7 @@
 
     <!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
     <link rel="icon" href="{{ STATIC_URL }}images/favicon.ico">
-    <title>BiZWi - Login</title>
+    <title>BiZWi - Welcome</title>
     <style type="text/css">
         header, main, footer {
             padding-left: 0px
@@ -34,8 +34,8 @@
     <div class="container" style="padding-top: 5%;">
         <div class="row" style="margin-bottom: 0px;">
             <div class="col s12 m2 l2"><p>&nbsp;</p></div>
-            <div class="col s12 m8 l8 center-align white z-depth-3">
-                <div>
+            <div class="col s12 m8 l8 center-align">
+                <div class="white z-depth-3" style="display: inline-block; width: 100%;">
                     <div class="container hide-on-med-and-down">
                         <h2>BIZWI RETAIL ANALYTICS</h2>
 
@@ -50,57 +50,35 @@
             </div>
             <div class="col s12 m2 l2 hide-on-small-only"><p>&nbsp;</p></div>
         </div>
-        <div class="row valign">
+        <div class="row">
             <div class="col s12 m2 l2 hide-on-small-only"><p>&nbsp;</p></div>
-            <div class="col s12 m8 l8 center-align white">
-                <div class="container">
-                    <h3>Login</h3>
+            <div class="col s12 m8 l8 center-align">
+                <ul class="tabs">
+                    <li class="tab col s3"><a class="active black-text" href="#test1">Register Store</a></li>
+                    <li class="tab col s3"><a class="black-text" href="#test2">Existing Store</a></li>
+                </ul>
+                <div>
+                    <div id="test1" class="col s12 white section z-depth-3" style="padding-bottom: 2rem;">
+                        <h3>Start Here!</h3>
 
-                    <form class="col s12" role="form" method="post"
-                          action="{% url 'django.contrib.auth.views.login' %}">
-                        {% csrf_token %}
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <i class="material-icons prefix">account_circle</i>
-                                <input type="text" maxlength="30" id="id_username" name="username" class="validate"
-                                       placeholder="user name" required autofocus>
-                                <label for="id_username">Username</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <i class="material-icons prefix">vpn_key</i>
-                                <input type="password" id="id_password" maxlength="4096" name="password"
-                                       class="validate"
-                                       placeholder="password" required>
-                                <label for="id_password">Password</label>
-                            </div>
-                        </div>
+                        <p>Register your store to measure, analyze, improve and optimize the shopping experience of your
+                            customers.</p>
+                        <a class="waves-effect waves-light btn-large" href="{% url "new_client" %}">><i
+                                class="material-icons left">person_add</i>Register</a>
+                    </div>
+                    <div id="test2" class="col s12 white section z-depth-3" style="padding-bottom: 2rem;">
+                        <h3>Management dashboard</h3>
 
-                        <input type="hidden" name="next" value="{{ next }}"/>
-
-
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <button class="btn waves-effect waves-light" type="reset" onclick="history.back(-1)">
-                                    Back
-                                    <i class="material-icons left">backspace</i>
-                                </button>
-                                <button class="btn waves-effect waves-light" type="submit" name="action">Sign in
-                                    <i class="material-icons right">send</i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                    {% if form.errors %}
-                        <br>
-                        <p align="center">Your username and password didn't match. Please try again.</p>
-                    {% endif %}
+                        <p>Manage your store, see metrics and contact your customers. Everything you need on a single
+                            page.</p>
+                        <a class="waves-effect waves-light btn-large" href="{% url "login" %}">><i
+                                class="material-icons left">account_circle</i>Login</a>
+                    </div>
                 </div>
             </div>
             <div class="col s12 m2 l2 hide-on-small-only"><p>&nbsp;</p></div>
         </div>
-        <div class="row valign">
+        <div class="row">
             <footer class="page-footer transparent">
                 <div class="footer-copyright transparent">
                     <div class="container center-align black-text">
@@ -113,7 +91,7 @@
 </main>
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-<script type="text/javascript" src="js/materialize.min.js"></script>
-<script type="text/javascript" src="js/scripts.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/materialize.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/scripts.js"></script>
 </body>
 </html>

@@ -1,8 +1,6 @@
 from rest_framework import serializers
 from .models import Countries, Cities, Regions, Employees, Clients, Stores, Tags, Categories, Departments, Sensors, Brands, PromotionsTypes, PromotionsFilters, PromotionsLoyalties, PromotionsSpecials, Promotions, PromotionsImpacts
 
-
-
 class CountriesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Countries

@@ -2,50 +2,230 @@
 {% load jsonify %}
 {% load i18n %}
 {% block css %}
-    <link href="{{ STATIC_URL }}css/jquery.dataTables.min.css" rel="stylesheet">
-    <link href="{{ STATIC_URL }}css/jquery.dataTables_themeroller.css" rel="stylesheet">
-    <link href="{{ STATIC_URL }}css/employees_admin.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+          href="{{ STATIC_URL }}js/plugins/materialize-datatables/css/dataTables.materialize.css">
 {% endblock %}
 {% block content %}
-    <div class="row">
-        <div class="col-md-12">
-            <h4 class="page-header">{% trans "Manage Employees" %}</h4>
-        </div>
-    </div>
-        <a style="margin-bottom: 20px;" class="btn btn-success btn-lg" href="{% url "employee_admin_new" %}"><i class="material-icons right">group</i>{% trans "Create new employee" %}</a>
-    <div id="my-tab-content" class="tab-content">
-        <div class="tab-pane active" id="employees">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <table class="datatable table table-striped table-bordered" id="employees_tb">
-                                <thead>
-                                <tr>
-                                    <th>{% trans "First Name" %}</th>
-                                    <th>{% trans "Last Name" %}</th>
-                                    <th>{% trans "Location" %}</th>
-                                    <th>{% trans "Username" %}</th>
-                                    <th>{% trans "E-mail" %}</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
+    <div class="container">
+        <h4>Manage employees</h4>
+        <div class="row">
+            <div class="col s12">
+                <a class="waves-effect waves-light btn modal-trigger" href="#create-employee"><i
+                        class="material-icons right">group</i>Create new employee</a>
+                <!-- Modal Structure -->
+                <div id="create-employee" class="modal modal-fixed-footer">
+                    <div class="modal-content">
+                        <h4>Add Employee</h4>
+
+                        <div class="container">
+                            <form class="col s12">
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <i class="material-icons prefix">account_circle</i>
+                                        <input id="first_name" type="text" class="validate">
+                                        <label for="first_name">First Name</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input id="last_name" type="text" class="validate">
+                                        <label for="last_name">Last Name</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">email</i>
+                                        <input id="email" type="email" class="validate">
+                                        <label for="email">Email</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">account_box</i>
+                                        <input id="username" type="text" class="validate">
+                                        <label for="username">Username</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">vpn_key</i>
+                                        <input id="password" type="password" class="validate">
+                                        <label for="password">Password</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">vpn_key</i>
+                                        <input id="repeat-password" type="password" class="validate">
+                                        <label for="repeat-password">Verify password</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <select>
+                                            <option value="" disabled selected>Choose employee role</option>
+                                            <option value="1">Store Employee</option>
+                                            <option value="1">Store Manager</option>
+                                        </select>
+                                        <label>Employee role</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <select>
+                                            <option value="" disabled selected>Choose employee location</option>
+                                            <option value="1">Store A</option>
+                                            <option value="1">Store B</option>
+                                        </select>
+                                        <label>Location</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <select>
+                                            <option value="" disabled selected>Select language</option>
+                                            <option value="1">English</option>
+                                            <option value="2">Spanish</option>
+                                        </select>
+                                        <label>Language</label>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Modal Structure -->
+
+                <div id="edit-employee" class="modal modal-fixed-footer">
+                    <div class="modal-content">
+                        <h4>Edit Employee</h4>
+
+                        <div class="container">
+                            <form class="col s12">
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <i class="material-icons prefix">account_circle</i>
+                                        <input id="first_name" type="text" class="validate">
+                                        <label for="first_name">First Name</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input id="last_name" type="text" class="validate">
+                                        <label for="last_name">Last Name</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">email</i>
+                                        <input id="email" type="email" class="validate">
+                                        <label for="email">Email</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">account_box</i>
+                                        <input id="username" type="text" class="validate">
+                                        <label for="username">Username</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">vpn_key</i>
+                                        <input id="password" type="password" class="validate">
+                                        <label for="password">Password</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <i class="material-icons prefix">vpn_key</i>
+                                        <input id="repeat-password" type="password" class="validate">
+                                        <label for="repeat-password">Verify password</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <select>
+                                            <option value="" disabled selected>Choose employee role</option>
+                                            <option value="1">Store Employee</option>
+                                            <option value="1">Store Manager</option>
+                                        </select>
+                                        <label>Employee role</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <select>
+                                            <option value="" disabled selected>Choose employee location</option>
+                                            <option value="1">Store A</option>
+                                            <option value="1">Store B</option>
+                                        </select>
+                                        <label>Location</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <select>
+                                            <option value="" disabled selected>Select language</option>
+                                            <option value="1">English</option>
+                                            <option value="2">Spanish</option>
+                                        </select>
+                                        <label>Language</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p>
+                                        <input type="checkbox" id="remove-employee"/>
+                                        <label for="remove-employee">Remove this employee</label>
+                                    </p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                            <i class="material-icons right">send</i>
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!--DataTables example-->
+        <div id="table-datatables">
+                <div class="row">
+                <div class="col s12">
+                    <table class="datatable responsive-table display" id="employees_tb">
+                        <thead>
+                        <tr>
+                            <th>{% trans "First Name" %}</th>
+                            <th>{% trans "Last Name" %}</th>
+                            <th>{% trans "Location" %}</th>
+                            <th>{% trans "Username" %}</th>
+                            <th>{% trans "E-mail" %}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
+
 {% endblock %}
 {% block scripts %}
-    <script src="{{ STATIC_URL }}js/jquery.dataTables.min.js"></script>
-    <script src="{{ STATIC_URL }}js/data-tables-script.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/data-tables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/data-tables/data-tables-script.js"></script>
+    <script type="text/javascript"
+        src="{{ STATIC_URL }}js/plugins/materialize-datatables/dataTables.materialize.js"></script>
+
     <script type='text/javascript'>
         var lang = '{{ request.session.lang }}';
         var employeesData = {{ data|jsonify }};
-        var url_employee = '{% url "employee_admin_new" %}';
+
     </script>
-    <script src="{{ STATIC_URL }}js/employees_admin.js"></script>
+    <script src="{{ STATIC_URL }}js/employees.js"></script>
 {% endblock %}
