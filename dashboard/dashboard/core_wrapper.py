@@ -41,6 +41,20 @@ End functions basics
 """
 
 
+def create_client_admin(info):
+    url_path = 'clients/'
+    result = base_post(url_path, info)
+    try:
+        if result.status_code == 201:
+            return {'success': True}
+        else:
+            resp = json.loads(result.text)
+            resp['success'] = False
+            return resp
+    except Exception as e:
+        return {'success': False, 'error': 'undefined'}
+
+
 def auth(username, password):
     url_path = 'auth/'
     content = {'username': username, 'password': password}
@@ -306,19 +320,6 @@ def validate_promotion(validationstring):
 
     return result
 
-
-def create_customer_admin(info):
-    url_path = 'create_customer_admin/'
-    result = base_post(url_path, info)
-    try:
-        if result.status_code == 201:
-            return {'success': True}
-        else:
-            resp = json.loads(result.text)
-            resp['success'] = False
-            return resp
-    except Exception as e:
-        return {'success': False, 'error': 'undefined'}
 
 
 def confirm_customer_admin(info):
