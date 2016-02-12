@@ -25,7 +25,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'jsonify',
 ]
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -47,17 +53,19 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
+                'django.core.context_processors.debug',
+                'django.core.context_processors.i18n',
+                'django.core.context_processors.request',
+                'django.core.context_processors.static',
                 'django.contrib.messages.context_processors.messages',
+                'django.core.context_processors.request',
             ],
         },
     },
 ]
 
 WSGI_APPLICATION = 'dashboard.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
@@ -110,8 +118,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
 # to local_settings ( in the future)
 
 URL_CORE = "http://127.0.0.1:8001"
 URL_API_V1 = URL_CORE + '/api/v1/'
+
+APP_RELEASE = ""
+APP_OWNER = 'Bizwi'
+APP_NAME = 'Retail Analytics'
