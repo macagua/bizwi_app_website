@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-from dashboard.rest_gateway import auth, get_info
+from dashboard.core_wrapper import auth, get_info
 
 
 class CoreBackend(object):

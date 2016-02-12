@@ -68,6 +68,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'dashboard.wsgi.application'
 
+
+AUTHENTICATION_BACKENDS = (
+    'dashboard.middleware.authentication.CoreBackend',
+)
+
+AUTH_USER_MODEL = 'auth.User'
+
+COMMERCIAL_NAME = "Bizwi"
+
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 

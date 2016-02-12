@@ -6,6 +6,8 @@ from rest_framework.urlpatterns import format_suffix_patterns
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
+    url(r'^api/v1/auth/$', views.auth),
+
     url(r'^api/v1/countries/$', views.CountriesList.as_view()),
     url(r'^api/v1/country/(?P<pk>[0-9]+)$', views.CountryDetail.as_view()),
 
