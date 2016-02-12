@@ -70,7 +70,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
 class StoresSerializer(serializers.ModelSerializer):
     class Meta:
         model = Stores
-        fields =  ('store_id',
+        fields = ('store_id',
                    'client',
                    'store_name',
                    'register_date',
