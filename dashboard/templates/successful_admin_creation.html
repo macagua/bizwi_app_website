@@ -14,10 +14,11 @@
                 <h2 class="page-header">{% trans "Congratulations!" %}</h2>
 
                 <div class="well well-lg" style="color: #3c763d; background-color: #dff0d8; border-color: #d6e9c6;">
-                    {% trans "Your user has been created. A confirmation email has been sent to your email account." %}
+                    {% trans "Your user has been created." %}
                 </div>
                 <div>
-                    <button class="btn waves-effect waves-light" type="button" onclick="location='{%  url "login" %}'"> Continue
+                    <button class="btn waves-effect waves-light" type="button" onclick="location='{% url "login" %}'">
+                        Continue
                         <i class="material-icons right">send</i>
                     </button>
                 </div>
