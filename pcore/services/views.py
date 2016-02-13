@@ -119,6 +119,8 @@ def stores(request, client, id_local=None):
             background_img = request.data.get('background_img')
             ttf_font = request.data.get('ttf_font')
 
+            print name
+
             if id_local:
                 loc = Stores.objects.get(id=id_local)
                 loc.name = name
