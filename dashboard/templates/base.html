@@ -51,22 +51,22 @@ Version: 1.0
 
 <header>
     <ul id="dropdown1" class="dropdown-content">
-        <li><a href="#!"><i class="material-icons left">person_outline</i>Edit Profile</a></li>
+        <li><a href="#!"><i class="material-icons left">person_outline</i>{% trans "Edit profile" %}</a></li>
         <li><a href="#!"><i class="material-icons left">settings</i>Settings</a></li>
         <li class="divider"></li>
-        <li><a href="#!"><i class="material-icons left">exit_to_app</i>Logout</a></li>
+        <li><a href="{% url "logout" %}"><i class="material-icons left">exit_to_app</i>{% trans "Logout" %}</a></li>
     </ul>
     <nav class="top-nav">
         <div class="nav-wrapper blue-grey darken-4">
             <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-            <a href="#!" class="page-title">Employees</a>
+            <a href="#!" class="page-title">Dashboard</a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="promotions.html"><i class="material-icons left">loyalty</i>Promotions</a></li>
                 <li><a href="birthdays.html"><i class="material-icons left">cake</i>Birthdays</a></li>
                 <li><a href="messages.html"><i class="material-icons left">message</i>Messages <span
                         class="new badge">4</span></a></li>
                 <li><a class="dropdown-button" href="profile.html" data-activates="dropdown1"><i
-                        class="material-icons right">person</i>MyUsername</a></li>
+                        class="material-icons right">person</i>{{ customer_name }}</a></li>
             </ul>
         </div>
     </nav>
@@ -75,8 +75,7 @@ Version: 1.0
         <li class="logo"><a id="logo-container" class="brand-logo valign-wrapper" href="dashboard.html">
             <object id="front-page-logo" class="valign" data="{{ STATIC_URL }}images/Logo_Bizwi_head.png" type="image/png"></object>
         </a></li>
-        <li class="bold no-padding"><a href="dashboard.html" class="waves-effect waves-teal collapsible-header"><i
-                class="material-icons">dashboard</i>Dashboard</a></li>
+        <li class="bold no-padding blue-grey darken-4"><a href="dashboard.html" class="waves-effect waves-teal collapsible-header"> <i class="active material-icons">dashboard</i>Dashboard</a></li>
         <li class="bold no-padding">
             <ul class="collapsible collapsible-accordion">
                 <li class="bold active"><a class="collapsible-header active waves-effect waves-teal"><i
@@ -86,10 +85,10 @@ Version: 1.0
                         <ul>
                             <li><a href="brands.html" class="collapsible-header"><i
                                     class="material-icons">local_offer</i>Brands</a></li>
-                            <li><a href="stores.html" class="collapsible-header"><i class="material-icons">store</i>Stores</a>
+                            <li><a href="{% url "stores" %}" class="collapsible-header"><i class="material-icons">store</i>Stores</a>
                             </li>
-                            <li class="active blue-grey darken-4"><a href="employees.html" class="collapsible-header"><i
-                                    class="material-icons">group</i>Employees</a></li>
+                            <li><a href="employees.html" class="collapsible-header"><i
+                                    class="active material-icons">group</i>Employees</a></li>
                         </ul>
                     </div>
                 </li>
