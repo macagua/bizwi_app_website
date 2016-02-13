@@ -33,97 +33,60 @@
         </div>
     {% endif %}
 
-    <div class="row valign">
-        <div class="col s12 m2 l2 hide-on-small-only"><p>&nbsp;</p></div>
-        <div class="col s12 m8 l8 center-align white">
-            <div class="container">
+
+    <div class="container">
+        <div class="row">
+            <h4>Edit Profile</h4>
+
+            <form class="col s12" method="post">
+                {% csrf_token %}
                 <div class="row">
-                    <h4>Edit Profile</h4>
+                    <div class="input-field col s6">
+                        <input id="inputFirstName" name="first_name" type="text"
+                               value="{{ first_name }}">
+                        <label class="active" for="inputLastName">First Name</label>
+                    </div>
 
-                    <form class="col s12" method="POST">
-                        {% csrf_token %}
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <i class="material-icons prefix">account_circle</i>
-                                <input id="inputFirstName" name="first_name" type="text"
-                                       value="{{ first_name }}">
-                                <label class="active" for="inputLastName">Last Name</label>
-                            </div>
-
-                            <div class="input-field col s6">
-                                <input id="inputLastName" name="last_name" type="text" class="validate"
-                                       value="{{ last_name }}">
-                                <label class="active" for="inputLastName">Last Name</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <i class="material-icons prefix">email</i>
-                                <input id="inputEmail" name="email" type="email" class="validate"
-                                       value="{{ email }}">
-                                <label class="active" for="inputEmail">Email</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <select name="gender" id="inputGender">
-                                    <option value="m">Male</option>
-                                    <option value="f">Female</option>
-                                </select>
-                                <label for="inputGender">Gender</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input type="date" class="datepicker">
-                                <label class="active" for="inputBirthday">Birthday</label>
-                            </div>
-                        </div>
-
-
-                    </form>
-
-
-                    <form class="form-horizontal" method="POST">
-                        {% csrf_token %}
-                        <div {% if form.new_password1.errors %}class="form-group has-error"
-                             {% else %}class="form-group"{% endif %}>
-                            <label for="inputPassword" class="col-sm-4 control-label">{% trans "New password" %}</label>
-
-                            <div class="col-sm-8">
-                                <input id="inputPassword" name="new_password1" type="password" class="form-control">
-                                {% for error in form.new_password1.errors %}
-                                    <label class="control-label" for="inputPassword">{{ error|escape }}</label>
-                                {% endfor %}
-                            </div>
-                        </div>
-
-
-                        <div {% if form.new_password2.errors %}class="form-group has-error"
-                             {% else %}class="form-group"{% endif %}>
-                            <label for="inputPassword_repeat"
-                                   class="col-sm-4 control-label">{% trans "Repeat new password" %}</label>
-
-                            <div class="col-sm-8">
-                                <input id="inputPassword_repeat" name="new_password2" type="password"
-                                       class="form-control">
-                                {% for error in form.new_password2.errors %}
-                                    <label class="control-label" for="inputPassword_repeat">{{ error|escape }}</label>
-                                {% endfor %}
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-sm-offset-4 col-sm-8">
-                                <button type="submit" class="btn btn-primary"
-                                        name="changePasswordForm">{% trans "Change password" %}</button>
-                            </div>
-                        </div>
-                    </form>
+                    <div class="input-field col s6">
+                        <input id="inputLastName" name="last_name" type="text" class="validate"
+                               value="{{ last_name }}">
+                        <label class="active" for="inputLastName">Last Name</label>
+                    </div>
                 </div>
-            </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="inputEmail" name="email" type="email" class="validate"
+                               value="{{ email }}">
+                        <label class="active" for="inputEmail">Email</label>
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="input-field col s12">
+                        <select>
+                            <option value="" disabled selected>Choose your sex</option>
+                            <option value="1">Male</option>
+                            <option value="2">Female</option>
+                        </select>
+                        <label>Biological sex</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input type="date" class="datepicker">
+                        <label class="active" for="inputBirthday">Birthday</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6 l6 right-align">
+                        <button class="btn waves-effect waves-light" type="submit" name="action">Update
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </div>
+
+            </form>
         </div>
-        <div class="col s12 m2 l2 hide-on-small-only"><p>&nbsp;</p></div>
     </div>
 
 

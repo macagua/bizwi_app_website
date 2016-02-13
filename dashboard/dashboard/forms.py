@@ -24,6 +24,14 @@ class AdminForm(forms.Form):
         return cleaned_data
 
 
+class CustomUserForm(forms.Form):
+    first_name = forms.CharField(max_length=255, required=True)
+    last_name = forms.CharField(max_length=255, required=True)
+    email = forms.EmailField(required=True)
+    gender = forms.CharField(max_length=255, required=True)
+    birthday = forms.DateField()
+
+
 class EmployeeForm(forms.Form):
     username = forms.CharField(max_length=100)
     email = forms.EmailField(required=True)

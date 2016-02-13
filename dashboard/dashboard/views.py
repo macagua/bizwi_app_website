@@ -7,7 +7,7 @@ from .settings import APP_OWNER, APP_NAME, LANGUAGE_LIST, DATE_FORMATS, LOGIN_UR
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout as auth_logout
 from .settings import APP_OWNER, APP_NAME
-from .forms import AdminForm, ClientForm, StoreForm, BrandForm, EmployeeForm, SettingsEmployeeForm
+from .forms import AdminForm, ClientForm, StoreForm, BrandForm, EmployeeForm, SettingsEmployeeForm, CustomUserForm
 import pytz
 import json
 import sys
@@ -448,25 +448,38 @@ def settings_employee(request):
 
 def user_profile(request):
     user_id = request.user.id
-    client_info = get_info_user(user_id)
-    email = client_info['email']
+    user_info = get_info_user(user_id)
+    email = user_info['email']
 
     info = {}
 
     if request.method == 'POST':
         if "profileForm" in request.POST:
             form = CustomUserForm(request.POST)
-
             if form.is_valid():
                 try:
                     email = form.cleaned_data['email']
-                    employee_info['email'] = email
-                    result = save_info(client_id, employee_info)
+                    first_name = form.cleaned_data['first_name']
+                    last_name = form.cleaned_data['last_name']
+                    gender = form.cleaned_data['gender']
+                    birthday = form.cleaned_data['birthday']
+
+                    user_info['email'] = email
+                    user_info['first_name'] = first_name
+                    user_info['last_name'] = last_name
+                    user_info['gender'] = gender
+                    user_info['birthday'] = birthday
+
+                    print user_info
+
+                    result = save_info_user(user_id, user_info)
                     if result:
                         info['save_success'] = True
                     else:
                         info['save_error'] = True
                         info['form'] = form
+
+                    print info
 
                 except Exception as e:
                     print e
@@ -493,22 +506,18 @@ def user_profile(request):
                 info['form'] = form
 
     info['email'] = email
-    return render(request, 'profile.html', client_info)
+    return render(request, 'profile.html', user_info)
 
 
-
-
-
-def profile_edit(request):
-    client_id = request.user.id
-    client_info = get_info_client(client_id)
+def settings(request):
+    user_id = request.user.id
+    client_info = get_info_client(user_id)
     email = client_info['email']
 
     info = {}
-
     if request.method == 'POST':
         if "profileForm" in request.POST:
-            form = ProfileForm(request.POST)
+            form = ClientForm(request.POST)
 
             if form.is_valid():
                 try:
@@ -529,24 +538,4 @@ def profile_edit(request):
                 info['save_error'] = True
                 info['form'] = form
 
-        elif "changePasswordForm" in request.POST:
-            form = SetPasswordForm(request.user, request.POST)
-            if form.is_valid():
-                try:
-                    new_password = form.cleaned_data['new_password1']
-                    result = change_password(client_id, new_password)
-                    if result:
-                        info['change_success'] = True
-                except Exception as e:
-                    print e
-                    info['change_error'] = True
-                    info['form'] = form
-            else:
-                info['change_error'] = True
-                info['form'] = form
-
-    info['email'] = email
-    #info.update(extra_info)
-    return render(request, 'profile_form.html', info)
-
-
+    return render(request, 'setting.html', client_info)

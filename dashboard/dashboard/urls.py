@@ -17,7 +17,8 @@ urlpatterns = [
 
     # Profile user
     url(r'dashboard/user_profile/', views.user_profile, name='user_profile'),
-    #url(r'dashboard/settings/', views.settings, name='settings'),
+    url(r'dashboard/settings/', views.settings, name='settings'),
+
     #url(r'dashboard/profile/(?P<id_client>\d+)/$', views.profile, name='profile'),
 
 

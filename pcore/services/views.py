@@ -72,6 +72,41 @@ def custom_user(request, user_id):
         return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
+@api_view(['GET', 'POST'])
+def client(request, user_id):
+    try:
+        if request.method == "GET":
+            serializer = ClientsSerializer(Clients.objects.get(id=user_id))
+            return Response(serializer.data)
+
+        elif request.method == 'POST':
+            client_name = request.data.get('client_name')
+            code_crm = request.data.get('code_crm')
+            telephone = request.data.get('telephone')
+            web_site = request.data.get('web_site')
+            description = request.data.get('description')
+            country = request.data.get('country')
+            city = request.data.get('city')
+
+            cli = Clients.objects.get(id=user_id)
+            cli.username = username
+            cli.email = email
+            cli.first_name = first_name
+            cli.last_name = last_name
+            cli.lang = lang
+            cli.save()
+
+            return Response(status=status.HTTP_200_OK)
+
+    except Exception as e:
+        print e
+        return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+
+
+
+
 @api_view(['POST'])
 def create_client_admin(request):
     try:
