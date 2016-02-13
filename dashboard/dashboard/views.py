@@ -308,6 +308,10 @@ def employees_list(request):
         employees['data'] = []
     return render(request, 'employees_admin.html', employees)
 
+# Mientras
+
+def stats(request):
+    return render(request, 'employees_admin.html', employees)
 
 
 

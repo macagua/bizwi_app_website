@@ -6,6 +6,8 @@
 __pycache__/
 *.py[cod]
 *$py.class
+*.sqlite3
+
 
 # C extensions
 *.so
@@ -68,3 +70,6 @@ target/
 
 # pyenv
 .python-version
+
+pcore/services/migrations/*
+ccore/services/migrations/*
