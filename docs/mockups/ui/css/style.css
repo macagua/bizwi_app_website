@@ -16,8 +16,7 @@ ul.side-nav.leftside-navigation li {line-height: 44px;}
 #card-stats .card-stats-number {font-size: 1.8rem; line-height: 2.0rem; margin: 0.2rem 0 0.2rem 0; font-weight: 500;}
 #card-stats .card-content {text-align: center;}
 .card {overflow: hidden;}
-@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {.doughnut-chart-status {display:none;}}
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {.doughnut-chart-status {display:none} #card-stats .card-stats-compare {font-size:0.8rem}}
+
 /* ------------------*/
 
 /* Placeholder background fix */
@@ -100,6 +99,11 @@ nav.top-nav a.page-title {
 }
 
 /* doughnut chart */
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {.doughnut-chart-status {display:none;}}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {.doughnut-chart-status {display:none} #card-stats .card-stats-compare {font-size:0.8rem;}}
+@media only screen and (min-device-width: 1280px) and (max-device-width: 1440px) {.doughnut-chart-status {top:-75px !important;}}
+@media only screen and (min-device-width: 1920px) {.doughnut-chart-status {top:-100px !important;}}
+
 .doughnut-chart-status {
   position: relative;
   top: -90px;
