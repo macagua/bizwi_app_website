@@ -129,7 +129,7 @@
         <div class="nav-wrapper blue-grey darken-4">
             <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-                <li><a class="dropdown-button" data-activates="dropdown4" href="#"><i class="material-icons left">loyalty</i>Promotions<span
+                <li><a class="dropdown-button" data-activates="dropdown4" href="{% url "promotions" %}"><i class="material-icons left">loyalty</i>Promotions<span
                         class="badge">({{ promotion_requests|length }})</span></a></li>
                 <li><a class="dropdown-button" data-activates="dropdown3" href="#"><i
                         class="material-icons left">cake</i>Birthdays<span class="badge">({{ birthdays|length }})</span></a>
@@ -150,7 +150,7 @@
             <object id="front-page-logo" class="valign" data="{{ STATIC_URL }}images/biz_horiz_high.png"
                     type="image/png"></object>
         </a></li>
-        <li class="bold no-padding"><a href="dashboard.html" class="waves-effect waves-teal collapsible-header"><i
+        <li class="bold no-padding"><a href="/" class="waves-effect waves-teal collapsible-header"><i
                 class="material-icons">dashboard</i>Dashboard</a></li>
 
         <li class="bold no-padding">
@@ -158,14 +158,14 @@
         <!--<li class="bold"><a href="#" class="waves-effect waves-teal collapsible-header"><i
                 class="material-icons">dashboard</i> {% trans "Dashboard" %}</a>
         </li>-->
-        <li class="bold"><a href="#" class="waves-effect waves-teal collapsible-header"><i
-                class="material-icons">assessment</i>{% trans "Statistics" %}</a>
+        <li class="bold"><a href="{% url "statistics" %}" class="waves-effect waves-teal collapsible-header"><i
+                class="material-icons">assessment</i>{% trans "Statistics   " %}</a>
         </li>
-        <li class="bold"><a href="#" class="waves-effect waves-teal collapsible-header"><i
+        <li class="bold"><a href="{% url "sensors" %}" class="waves-effect waves-teal collapsible-header"><i
                 class="material-icons">settings_input_antenna</i>{% trans "Sensors" %}</a>
         </li>
 
-        <li class="bold"><a href="promotions.html" class="waves-effect waves-teal collapsible-header"><i
+        <li class="bold"><a href="{% url "promotions" %}" class="waves-effect waves-teal collapsible-header"><i
                 class="material-icons">loyalty</i>Promotions</a></li>
     </ul>
 
@@ -187,9 +187,9 @@
                         <ul>
                              <li><a href="{% url "stores" %}" class="collapsible-header"><i
                                     class="material-icons">store</i>Store</a></li>
-                            <li><a href="brands.html" class="collapsible-header"><i
+                            <li><a href="{% url "brands" %}" class="collapsible-header"><i
                                     class="material-icons">local_offer</i>Brands</a></li>
-                            <li><a href="employees.html" class="collapsible-header"><i
+                            <li><a href="{% url "employees_list" %}" class="collapsible-header"><i
                                     class="material-icons">group</i>Employees</a></li>
                             <li><a href="{% url "stores" %}" class="collapsible-header"><i class="material-icons">store</i>{% trans "Stores" %}
                             </a></li>
@@ -200,9 +200,9 @@
                 </li>
             </ul>
         </li>
-        <li class="bold no-padding"><a href="#" class="waves-effect waves-teal collapsible-header"><i
+        <li class="bold no-padding"><a href="{% url "statistics" %}" class="waves-effect waves-teal collapsible-header"><i
                 class="material-icons">assessment</i>{% trans "Statistics" %}</a></li>
-        <li class="bold no-padding"><a href="#" class="waves-effect waves-teal collapsible-header"><i
+        <li class="bold no-padding"><a href="{% url "stores" %}" class="waves-effect waves-teal collapsible-header"><i
                 class="material-icons">settings_input_antenna</i>{% trans "Sensors" %}</a></li>
         <li class="bold no-padding">
             <ul class="collapsible collapsible-accordion">
@@ -222,7 +222,7 @@
                 </li>
             </ul>
         </li>
-        <li class="bold no-padding"><a href="#" class="waves-effect waves-teal collapsible-header"><i
+        <li class="bold no-padding"><a href="{% url "promotions" %}" class="waves-effect waves-teal collapsible-header"><i
                 class="material-icons">loyalty</i>{% trans "Promotions" %}</a></li>
     </ul>
     <!-- /Left Nav-->
