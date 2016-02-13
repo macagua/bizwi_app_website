@@ -164,19 +164,6 @@ Version: 1.0
                     </div>
                 </li>
             </ul>
-        <li class="bold"><a href="#"
-                            class="waves-effect waves-teal collapsible-header"><i
-                class="material-icons">dashboard</i> {% trans "Dashboard" %}</a>
-        </li>
-        <li class="bold"><a href="#" class="waves-effect waves-teal collapsible-header"><i
-                class="material-icons">assessment</i>{% trans "Statistics" %}</a>
-        </li>
-        <li class="bold"><a href="#" class="waves-effect waves-teal collapsible-header"><i
-                class="material-icons">settings_input_antenna</i>{% trans "Sensors" %}</a>
-        </li>
-
-        <li class="bold"><a href="promotions.html" class="waves-effect waves-teal collapsible-header"><i
-                class="material-icons">loyalty</i>Promotions</a></li>
     </ul>
 
     <!-- Left Nav-->
@@ -200,9 +187,9 @@ Version: 1.0
             </li>
           </ul>
         </li>
-        <li class="bold no-padding"><a href="#" class="waves-effect waves-teal collapsible-header"><i
+        <li class="bold no-padding"><a href="{% url "statistics" %}" class="waves-effect waves-teal collapsible-header"><i
                 class="material-icons">assessment</i>{% trans "Statistics" %}</a></li>
-        <li class="bold no-padding"><a href="#" class="waves-effect waves-teal collapsible-header"><i
+        <li class="bold no-padding"><a href="{% url "sensors" %}" class="waves-effect waves-teal collapsible-header"><i
                 class="material-icons">settings_input_antenna</i>{% trans "Sensors" %}</a></li>
         <li class="bold no-padding">
             <ul class="collapsible collapsible-accordion">
@@ -222,7 +209,7 @@ Version: 1.0
                 </li>
             </ul>
         </li>
-        <li class="bold no-padding"><a href="#" class="waves-effect waves-teal collapsible-header"><i
+        <li class="bold no-padding"><a href="{% url "promotions" %}" class="waves-effect waves-teal collapsible-header"><i
                 class="material-icons">loyalty</i>{% trans "Promotions" %}</a></li>
     </ul>
     <!-- /Left Nav-->

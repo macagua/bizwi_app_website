@@ -1,0 +1,659 @@
+{% extends "base_admin.html" %}
+{% load jsonify %}
+{% load i18n %}
+{% block css %}
+     
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/materialize.min.css"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/style.css"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}js/plugins/perfect-scrollbar/perfect-scrollbar.min.css" media="screen,projection">
+      <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}js/plugins/chartist/chartist.min.css" media="screen,projection">
+      <!--Let browser know website is optimized for mobile-->
+{% endblock %}
+{% block content %}
+    <div class="container" style="width: 98%; max-width: 1500px;">
+    <h4>Manage promotions</h4>
+    <!--New Promotions Buttons-->
+    <div class="row">
+    <!--New Promo-->
+    <div class="col s12 m4 l2">
+        <a class="waves-effect waves-light btn" href="new-promotion.html"><i class="material-icons right">loyalty</i>New Promotion</a>
+    </div>
+    <!--New Promo End-->
+    <!--New Loyal Promo-->
+    <div class="col s12 m4 l2">
+        <a class="waves-effect waves-light btn" href="new-loyalty-promotion.html"><i class="material-icons right">loyalty</i>New Loyalty Promotion</a>
+    </div>
+    <!--New Loyal Promo End-->
+    <!--New Ext Promo-->
+    <div class="col s12 m4 l2">
+        <a class="waves-effect waves-light btn" href="new-ext-promotion.html"><i class="material-icons right">loyalty</i>New External Promotion</a>
+    </div>
+    <!--New Ext Promo End-->
+    </div>
+    <!--New Promotion Buttons End-->
+    <div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+              <li class="tab col s3"><a class="active black-text" href="#promos">Promotions</a></li>
+              <li class="tab col s3"><a class="black-text" href="#loyal-promos">Loyalty Promotions</a></li>
+              <li class="tab col s3"><a class="black-text" href="#ext-promos">External Promotions</a></li>
+              <li class="tab col s3 disabled"></li>
+      </ul>
+      <div>
+        <div id="promos" class="col s12 white section" style="padding-bottom: 2rem;">
+      <!--DataTables in house-->
+            <div id="table-datatables">
+              <div class="row">
+                <div class="col s12">
+                  <table id="" class="responsive-table display" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Promo ID</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Impacts</th>
+                            <th>Unique Check-ins</th>
+                            <th>All Check-ins</th>
+                            <th>Active</th>
+                            <th>Details</th>
+                            <th>Edit</th>
+                            <th>Preview</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                 
+                    <tbody>
+                        <tr>
+                            <td>01</td>
+                            <td>Free Beer</td>
+                            <td>We will give beer for free</td>
+                            <td>1000</td>
+                            <td>10000</td>
+                            <td>1000000</td>
+                            <td>Yes</td>
+                            <td>Details</td>
+                            <td>Edit</td>
+                            <td>Preview</td>
+                            <td>Email</td>
+                        </tr>
+                        <tr>
+                            <td>02</td>
+                            <td>Free Beer</td>
+                            <td>We will give beer for free</td>
+                            <td>1000</td>
+                            <td>10000</td>
+                            <td>1000000</td>
+                            <td>Yes</td>
+                            <td>Details</td>
+                            <td>Edit</td>
+                            <td>Preview</td>
+                            <td>Email</td>
+                        </tr>
+                        <tr>
+                            <td>03</td>
+                            <td>Free Beer</td>
+                            <td>We will give beer for free</td>
+                            <td>1000</td>
+                            <td>10000</td>
+                            <td>1000000</td>
+                            <td>Yes</td>
+                            <td>Details</td>
+                            <td>Edit</td>
+                            <td>Preview</td>
+                            <td>Email</td>
+                        </tr>
+                        <tr>
+                            <td>04</td>
+                            <td>Free Beer</td>
+                            <td>We will give beer for free</td>
+                            <td>1000</td>
+                            <td>10000</td>
+                            <td>1000000</td>
+                            <td>Yes</td>
+                            <td>Details</td>
+                            <td>Edit</td>
+                            <td>Preview</td>
+                            <td>Email</td>
+                        </tr>
+                        <tr>
+                            <td>05</td>
+                            <td>Free Beer</td>
+                            <td>We will give beer for free</td>
+                            <td>1000</td>
+                            <td>10000</td>
+                            <td>1000000</td>
+                            <td>Yes</td>
+                            <td>Details</td>
+                            <td>Edit</td>
+                            <td>Preview</td>
+                            <td>Email</td>
+                        </tr>
+                        <tr>
+                            <td>06</td>
+                            <td>Free Beer</td>
+                            <td>We will give beer for free</td>
+                            <td>1000</td>
+                            <td>10000</td>
+                            <td>1000000</td>
+                            <td>Yes</td>
+                            <td>Details</td>
+                            <td>Edit</td>
+                            <td>Preview</td>
+                            <td>Email</td>
+                        </tr>
+                        <tr>
+                            <td>07</td>
+                            <td>Free Beer</td>
+                            <td>We will give beer for free</td>
+                            <td>1000</td>
+                            <td>10000</td>
+                            <td>1000000</td>
+                            <td>Yes</td>
+                            <td>Details</td>
+                            <td>Edit</td>
+                            <td>Preview</td>
+                            <td>Email</td>
+                        </tr>
+                        <tr>
+                            <td>08</td>
+                            <td>Free Beer</td>
+                            <td>We will give beer for free</td>
+                            <td>1000</td>
+                            <td>10000</td>
+                            <td>1000000</td>
+                            <td>Yes</td>
+                            <td>Details</td>
+                            <td>Edit</td>
+                            <td>Preview</td>
+                            <td>Email</td>
+                        </tr>
+                        <tr>
+                            <td>09</td>
+                            <td>Free Beer</td>
+                            <td>We will give beer for free</td>
+                            <td>1000</td>
+                            <td>10000</td>
+                            <td>1000000</td>
+                            <td>Yes</td>
+                            <td>Details</td>
+                            <td>Edit</td>
+                            <td>Preview</td>
+                            <td>Email</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>Free Beer</td>
+                            <td>We will give beer for free</td>
+                            <td>1000</td>
+                            <td>10000</td>
+                            <td>1000000</td>
+                            <td>Yes</td>
+                            <td>Details</td>
+                            <td>Edit</td>
+                            <td>Preview</td>
+                            <td>Email</td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>Free Beer</td>
+                            <td>We will give beer for free</td>
+                            <td>1000</td>
+                            <td>10000</td>
+                            <td>1000000</td>
+                            <td>Yes</td>
+                            <td>Details</td>
+                            <td>Edit</td>
+                            <td>Preview</td>
+                            <td>Email</td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>Free Beer</td>
+                            <td>We will give beer for free</td>
+                            <td>1000</td>
+                            <td>10000</td>
+                            <td>1000000</td>
+                            <td>Yes</td>
+                            <td>Details</td>
+                            <td>Edit</td>
+                            <td>Preview</td>
+                            <td>Email</td>
+                        </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div> 
+        </div>
+        <div id="loyal-promos" class="col s12 white section" style="padding-bottom: 2rem;">
+      <!--DataTables All-->
+            <div id="table-datatables">
+              <div class="row">
+                <div class="col s12">
+                  <table id="" class="responsive-table display" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Promo ID</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Impacts</th>
+                            <th>Unique Check-ins</th>
+                            <th>All Check-ins</th>
+                            <th>Active</th>
+                            <th>Details</th>
+                            <th>Edit</th>
+                            <th>Preview</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                 
+                    <tbody>
+                        <tr>
+                            <td>01</td>
+                            <td>Free Beer</td>
+                            <td>We will give beer for free</td>
+                            <td>1000</td>
+                            <td>10000</td>
+                            <td>1000000</td>
+                            <td>Yes</td>
+                            <td>Details</td>
+                            <td>Edit</td>
+                            <td>Preview</td>
+                            <td>Email</td>
+                        </tr>
+                        <tr>
+                            <td>02</td>
+                            <td>Free Beer</td>
+                            <td>We will give beer for free</td>
+                            <td>1000</td>
+                            <td>10000</td>
+                            <td>1000000</td>
+                            <td>Yes</td>
+                            <td>Details</td>
+                            <td>Edit</td>
+                            <td>Preview</td>
+                            <td>Email</td>
+                        </tr>
+                        <tr>
+                            <td>03</td>
+                            <td>Free Beer</td>
+                            <td>We will give beer for free</td>
+                            <td>1000</td>
+                            <td>10000</td>
+                            <td>1000000</td>
+                            <td>Yes</td>
+                            <td>Details</td>
+                            <td>Edit</td>
+                            <td>Preview</td>
+                            <td>Email</td>
+                        </tr>
+                        <tr>
+                            <td>04</td>
+                            <td>Free Beer</td>
+                            <td>We will give beer for free</td>
+                            <td>1000</td>
+                            <td>10000</td>
+                            <td>1000000</td>
+                            <td>Yes</td>
+                            <td>Details</td>
+                            <td>Edit</td>
+                            <td>Preview</td>
+                            <td>Email</td>
+                        </tr>
+                        <tr>
+                            <td>05</td>
+                            <td>Free Beer</td>
+                            <td>We will give beer for free</td>
+                            <td>1000</td>
+                            <td>10000</td>
+                            <td>1000000</td>
+                            <td>Yes</td>
+                            <td>Details</td>
+                            <td>Edit</td>
+                            <td>Preview</td>
+                            <td>Email</td>
+                        </tr>
+                        <tr>
+                            <td>06</td>
+                            <td>Free Beer</td>
+                            <td>We will give beer for free</td>
+                            <td>1000</td>
+                            <td>10000</td>
+                            <td>1000000</td>
+                            <td>Yes</td>
+                            <td>Details</td>
+                            <td>Edit</td>
+                            <td>Preview</td>
+                            <td>Email</td>
+                        </tr>
+                        <tr>
+                            <td>07</td>
+                            <td>Free Beer</td>
+                            <td>We will give beer for free</td>
+                            <td>1000</td>
+                            <td>10000</td>
+                            <td>1000000</td>
+                            <td>Yes</td>
+                            <td>Details</td>
+                            <td>Edit</td>
+                            <td>Preview</td>
+                            <td>Email</td>
+                        </tr>
+                        <tr>
+                            <td>08</td>
+                            <td>Free Beer</td>
+                            <td>We will give beer for free</td>
+                            <td>1000</td>
+                            <td>10000</td>
+                            <td>1000000</td>
+                            <td>Yes</td>
+                            <td>Details</td>
+                            <td>Edit</td>
+                            <td>Preview</td>
+                            <td>Email</td>
+                        </tr>
+                        <tr>
+                            <td>09</td>
+                            <td>Free Beer</td>
+                            <td>We will give beer for free</td>
+                            <td>1000</td>
+                            <td>10000</td>
+                            <td>1000000</td>
+                            <td>Yes</td>
+                            <td>Details</td>
+                            <td>Edit</td>
+                            <td>Preview</td>
+                            <td>Email</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>Free Beer</td>
+                            <td>We will give beer for free</td>
+                            <td>1000</td>
+                            <td>10000</td>
+                            <td>1000000</td>
+                            <td>Yes</td>
+                            <td>Details</td>
+                            <td>Edit</td>
+                            <td>Preview</td>
+                            <td>Email</td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>Free Beer</td>
+                            <td>We will give beer for free</td>
+                            <td>1000</td>
+                            <td>10000</td>
+                            <td>1000000</td>
+                            <td>Yes</td>
+                            <td>Details</td>
+                            <td>Edit</td>
+                            <td>Preview</td>
+                            <td>Email</td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>Free Beer</td>
+                            <td>We will give beer for free</td>
+                            <td>1000</td>
+                            <td>10000</td>
+                            <td>1000000</td>
+                            <td>Yes</td>
+                            <td>Details</td>
+                            <td>Edit</td>
+                            <td>Preview</td>
+                            <td>Email</td>
+                        </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div> 
+        </div>
+
+        <div id="ext-promos" class="col s12 white section" style="padding-bottom: 2rem;">
+      <!--DataTables All-->
+            <div id="table-datatables">
+              <div class="row">
+                <div class="col s12">
+                  <table id="" class="responsive-table display" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Promo ID</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Impacts</th>
+                            <th>Unique Check-ins</th>
+                            <th>All Check-ins</th>
+                            <th>Active</th>
+                            <th>Details</th>
+                            <th>Edit</th>
+                            <th>Preview</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                 
+                    <tbody>
+                        <tr>
+                            <td>01</td>
+                            <td>Free Beer</td>
+                            <td>We will give beer for free</td>
+                            <td>1000</td>
+                            <td>10000</td>
+                            <td>1000000</td>
+                            <td>Yes</td>
+                            <td>Details</td>
+                            <td>Edit</td>
+                            <td>Preview</td>
+                            <td>Email</td>
+                        </tr>
+                        <tr>
+                            <td>02</td>
+                            <td>Free Beer</td>
+                            <td>We will give beer for free</td>
+                            <td>1000</td>
+                            <td>10000</td>
+                            <td>1000000</td>
+                            <td>Yes</td>
+                            <td>Details</td>
+                            <td>Edit</td>
+                            <td>Preview</td>
+                            <td>Email</td>
+                        </tr>
+                        <tr>
+                            <td>03</td>
+                            <td>Free Beer</td>
+                            <td>We will give beer for free</td>
+                            <td>1000</td>
+                            <td>10000</td>
+                            <td>1000000</td>
+                            <td>Yes</td>
+                            <td>Details</td>
+                            <td>Edit</td>
+                            <td>Preview</td>
+                            <td>Email</td>
+                        </tr>
+                        <tr>
+                            <td>04</td>
+                            <td>Free Beer</td>
+                            <td>We will give beer for free</td>
+                            <td>1000</td>
+                            <td>10000</td>
+                            <td>1000000</td>
+                            <td>Yes</td>
+                            <td>Details</td>
+                            <td>Edit</td>
+                            <td>Preview</td>
+                            <td>Email</td>
+                        </tr>
+                        <tr>
+                            <td>05</td>
+                            <td>Free Beer</td>
+                            <td>We will give beer for free</td>
+                            <td>1000</td>
+                            <td>10000</td>
+                            <td>1000000</td>
+                            <td>Yes</td>
+                            <td>Details</td>
+                            <td>Edit</td>
+                            <td>Preview</td>
+                            <td>Email</td>
+                        </tr>
+                        <tr>
+                            <td>06</td>
+                            <td>Free Beer</td>
+                            <td>We will give beer for free</td>
+                            <td>1000</td>
+                            <td>10000</td>
+                            <td>1000000</td>
+                            <td>Yes</td>
+                            <td>Details</td>
+                            <td>Edit</td>
+                            <td>Preview</td>
+                            <td>Email</td>
+                        </tr>
+                        <tr>
+                            <td>07</td>
+                            <td>Free Beer</td>
+                            <td>We will give beer for free</td>
+                            <td>1000</td>
+                            <td>10000</td>
+                            <td>1000000</td>
+                            <td>Yes</td>
+                            <td>Details</td>
+                            <td>Edit</td>
+                            <td>Preview</td>
+                            <td>Email</td>
+                        </tr>
+                        <tr>
+                            <td>08</td>
+                            <td>Free Beer</td>
+                            <td>We will give beer for free</td>
+                            <td>1000</td>
+                            <td>10000</td>
+                            <td>1000000</td>
+                            <td>Yes</td>
+                            <td>Details</td>
+                            <td>Edit</td>
+                            <td>Preview</td>
+                            <td>Email</td>
+                        </tr>
+                        <tr>
+                            <td>09</td>
+                            <td>Free Beer</td>
+                            <td>We will give beer for free</td>
+                            <td>1000</td>
+                            <td>10000</td>
+                            <td>1000000</td>
+                            <td>Yes</td>
+                            <td>Details</td>
+                            <td>Edit</td>
+                            <td>Preview</td>
+                            <td>Email</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>Free Beer</td>
+                            <td>We will give beer for free</td>
+                            <td>1000</td>
+                            <td>10000</td>
+                            <td>1000000</td>
+                            <td>Yes</td>
+                            <td>Details</td>
+                            <td>Edit</td>
+                            <td>Preview</td>
+                            <td>Email</td>
+                        </tr>
+                        <tr>
+                            <td>11</td>
+                            <td>Free Beer</td>
+                            <td>We will give beer for free</td>
+                            <td>1000</td>
+                            <td>10000</td>
+                            <td>1000000</td>
+                            <td>Yes</td>
+                            <td>Details</td>
+                            <td>Edit</td>
+                            <td>Preview</td>
+                            <td>Email</td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>Free Beer</td>
+                            <td>We will give beer for free</td>
+                            <td>1000</td>
+                            <td>10000</td>
+                            <td>1000000</td>
+                            <td>Yes</td>
+                            <td>Details</td>
+                            <td>Edit</td>
+                            <td>Preview</td>
+                            <td>Email</td>
+                        </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div> 
+        </div>
+      </div>
+
+    </div>
+    </div>
+
+
+    </div>
+    </div>
+          
+{% endblock %}
+
+<!--   <script type="text/javascript">
+       $(document).ready(function(){
+         $(".button-collapse").sideNav();
+         $('.collapsible').collapsible();
+         $(".dropdown-button").dropdown();
+       });
+   </script> -->
+
+<!-- ================================================
+Scripts
+================================================ -->
+<!--External -->
+<!--Import jQuery before materialize.js-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.10/js/min/perfect-scrollbar.min.js"></script>
+<!--ChartJS Script -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+<!--Chartist Script & Data-->
+<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/chartist/chartist.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/chartist/chartist-data.js"></script>
+<!--Sparkline Chart Script & Data-->
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
+
+
+<!--Internal -->
+<!--Import jQuery before materialize.js-->
+<!--<script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>-->
+<!--<script type="text/javascript" src="js/materialize.min.js"></script>-->
+<script type="text/javascript" src="{{ STATIC_URL }}js/scripts.js"></script>
+<!--<script type="text/javascript" src="js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>-->
+<!--ChartJS Script & Data-->
+<!--<script type="text/javascript" src="js/plugins/chartjs/Chart.min.js"></script>-->
+<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/chartjs/chartjs-data.js"></script>
+<!--Chartist Script & Data-->
+<!--<script type="text/javascript" src="js/plugins/chartist/chartist.min.js"></script>-->
+<!--<script type="text/javascript" src="js/plugins/chartist/chartist-data.js"></script>-->
+
+<!--Sparkline Chart Script & Data-->
+<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/sparkline/jquery.sparkline.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/sparkline/sparkline-data.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/data-tables/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/data-tables/data-tables-script.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/materialize-datatables/dataTables.materialize.js"></script>
+
+{% block scripts %}{% endblock %}

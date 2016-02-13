@@ -108,6 +108,24 @@ def dashboard(request):
 #    return render(request, 'dashboard.html', info)
     return render(request, 'dashboard.html')
 
+def statistics(request):
+
+    return render(request, 'statistics.html')
+
+
+def brands(request):
+
+    return render(request, 'brands.html')
+
+
+def sensors(request):
+
+    return render(request, 'sensors.html')
+
+
+def promotions(request):
+
+    return render(request, 'promotions.html')
 
 # Registration new clients
 
