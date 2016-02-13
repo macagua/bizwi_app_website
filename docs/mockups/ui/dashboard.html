@@ -38,20 +38,48 @@
   <!-- End Page Loading -->
 
   <header>
+  <!-- Dropdowns -->
+  <!-- Dropdown for Customer  -->
   <ul id="dropdown1" class="dropdown-content">
-    <li><a href="#!"><i class="material-icons left">person_outline</i>Edit Profile</a></li>
-    <li><a href="#!"><i class="material-icons left">settings</i>Settings</a></li>
+    <li><a href="profile.html"><i class="material-icons left">person_outline</i>Edit Profile</a></li>
+    <li><a href="settings.html"><i class="material-icons left">settings</i>Settings</a></li>
     <li class="divider"></li>
     <li><a href="#!"><i class="material-icons left">exit_to_app</i>Logout</a></li>
   </ul>
+  <!-- Dropdown for Messages  -->
+  <ul id="dropdown2" class="dropdown-content">
+    <li><a href="#!"><i class="material-icons left">create</i>Compose</a></li>
+    <li><a href="#!"><i class="material-icons left">inbox</i>Inbox</a></li>
+    <li><a href="#!"><i class="material-icons left">send</i>Sent</a></li>
+  </ul>
+  <!-- Dropdown for Birthdays  -->
+  <ul id="dropdown3" class="dropdown-content">
+    <li>
+      <div class="row valign-wrapper" style="padding: 14px 16px; margin-bottom: 0px;">
+        <div class="col s2">
+          <img src="images/yuna.jpg" alt="John Doe" class="circle responsive-img">
+        </div>
+        <div class="col s10">
+          <span class="black-text valign">Today is John Doe Birthday!</span>
+        </div>
+      </div>      
+    </li>
+    <li><a href="#!"><i class="material-icons left">cake</i>See upcoming birthdays</a></li>
+  </ul>
+  <!-- Dropdown for Promotions  -->
+  <ul id="dropdown4" class="dropdown-content">
+    <li><a href="#!">No external promotion requests pending</a></li>
+    <li><a href="#!">Pending request list</a></li>
+  </ul>
+  <!-- /Dropdowns -->
   <nav class="top-nav">
       <div class="nav-wrapper blue-grey darken-4">
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
         <a href="#!" class="page-title">Dashboard</a>
         <ul class="right hide-on-med-and-down">
-          <li><a href="promotions.html"><i class="material-icons left">loyalty</i>Promotions</a></li>
-          <li><a href="birthdays.html"><i class="material-icons left">cake</i>Birthdays</a></li>
-          <li><a href="messages.html"><i class="material-icons left">message</i>Messages <span class="new badge">4</span></a></li>
+          <li><a class="dropdown-button" href="promotions.html" data-activates="dropdown4"><i class="material-icons left">loyalty</i>Promotions</a></li>
+          <li><a class="dropdown-button" href="birthdays.html" data-activates="dropdown3"><i class="material-icons left">cake</i>Birthdays</a></li>
+          <li><a class="dropdown-button" href="messages_inbox.html" data-activates="dropdown2"><i class="material-icons left">message</i>Messages <span class="new badge">4</span></a></li>
           <li><a class="dropdown-button" href="profile.html" data-activates="dropdown1"><i class="material-icons right">person</i>MyUsername</a></li>
         </ul>
       </div>
