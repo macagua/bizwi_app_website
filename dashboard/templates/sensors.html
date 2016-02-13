@@ -2,12 +2,6 @@
 {% load jsonify %}
 {% load i18n %}
 {% block css %}
-      <!--Import Google Icon Font-->
-      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--Import materialize.css-->
-      <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/materialize.min.css"  media="screen,projection"/>
-      <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/style.css"  media="screen,projection"/>
-      <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}js/plugins/perfect-scrollbar/perfect-scrollbar.min.css" media="screen,projection">
       <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}js/plugins/chartist/chartist.min.css" media="screen,projection">
       <!--Let browser know website is optimized for mobile-->
 {% endblock %}
@@ -94,19 +88,11 @@
       </div>
 
     </div>
-
-
 {% endblock %}
 {% block scripts %}
-    
     <!-- ================================================
     Scripts
-    ================================================ -->
-      <!--Import jQuery before materialize.js-->
-      <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-2.2.0.min.js"></script>
-      <script type="text/javascript" src="{{ STATIC_URL }}js/materialize.min.js"></script>
-      <script type="text/javascript" src="{{ STATIC_URL }}js/scripts.js"></script>
-      <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    ================================================ --> 
       <!-- hartist Script & Data -->
       <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/chartist/chartist.min.js"></script>
       <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/chartist/chartist-data.js"></script>

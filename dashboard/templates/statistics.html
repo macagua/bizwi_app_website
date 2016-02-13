@@ -2,8 +2,8 @@
 {% load jsonify %}
 {% load i18n %}
 {% block css %}
-    <link rel="stylesheet" type="text/css"
-          href="{{ STATIC_URL }}js/plugins/materialize-datatables/css/dataTables.materialize.css">
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}js/plugins/data-tables/css/jquery.dataTables.min.css" media="screen,projection">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}js/plugins/materialize-datatables/css/dataTables.materialize.css">
 {% endblock %}
 {% block content %}
     <div class="container">
@@ -349,14 +349,6 @@
 Scripts
 ================================================ -->
 <!--External -->
-<!--Import jQuery before materialize.js-->
-<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.10/js/min/perfect-scrollbar.min.js"></script>
-<!--ChartJS Script -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
 <!--Chartist Script & Data-->
 <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/chartist/chartist.min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/chartist/chartist-data.js"></script>
@@ -364,15 +356,6 @@ Scripts
 <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
 
-
-<!--Internal -->
-<!--Import jQuery before materialize.js-->
-<!--<script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>-->
-<!--<script type="text/javascript" src="js/materialize.min.js"></script>-->
-<script type="text/javascript" src="{{ STATIC_URL }}js/scripts.js"></script>
-<!--<script type="text/javascript" src="js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>-->
-<!--ChartJS Script & Data-->
-<!--<script type="text/javascript" src="js/plugins/chartjs/Chart.min.js"></script>-->
 <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/chartjs/chartjs-data.js"></script>
 <!--Chartist Script & Data-->
 <!--<script type="text/javascript" src="js/plugins/chartist/chartist.min.js"></script>-->
@@ -386,3 +369,14 @@ Scripts
 <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/materialize-datatables/dataTables.materialize.js"></script>
 
 {% block scripts %}{% endblock %}
+
+     <script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+      <script type="text/javascript" src="js/scripts.js"></script>
+      <script type="text/javascript" src="js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+      <script type="text/javascript" src="js/plugins/chartjs/Chart.min.js"></script>
+      <script type="text/javascript" src="js/plugins/chartist/chartist.min.js"></script>
+      <!-- data-tables -->
+      <script type="text/javascript" src="js/plugins/data-tables/js/jquery.dataTables.min.js"></script>
+      <script type="text/javascript" src="js/plugins/data-tables/data-tables-script.js"></script>
+      <script type="text/javascript" src="js/plugins/materialize-datatables/dataTables.materialize.js"></script>
