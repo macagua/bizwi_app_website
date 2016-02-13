@@ -2,7 +2,7 @@ from .models import Countries, Cities, Regions, Employees, Clients, Stores, Tags
     Brands, PromotionsTypes, PromotionsFilters, PromotionsLoyalties, PromotionsSpecials, Promotions, PromotionsImpacts
 from .serializers import CountriesSerializer, CitiesSerializer, RegionsSerializer, EmployeeSerializer, \
     ClientsSerializer, StoresSerializer, TagsSerializer, CategoriesSerializer, DepartmentsSerializer, \
-    SensorsSerializer, BrandsSerializer, PromotionsTypesSerializer, PromotionsFiltersSerializer,\
+    SensorsSerializer, BrandsSerializer, PromotionsTypesSerializer, PromotionsFiltersSerializer, \
     PromotionsLoyaltiesSerializer, PromotionsSpecialsSerializer, PromotionsSerializer, PromotionsImpactsSerializer
 from rest_framework import generics
 from rest_framework.decorators import api_view
@@ -12,7 +12,6 @@ from django.contrib.auth import authenticate
 from rest_framework.response import Response
 from rest_framework import status
 from django.http import HttpResponse
-
 
 
 @api_view(['POST'])
@@ -51,9 +50,9 @@ def create_client_admin(request):
             new_telephone = request.data.get('telephone')
 
 
-            #if CustomUser.objects.filter(email=new_email).count() != 0:
+            # if CustomUser.objects.filter(email=new_email).count() != 0:
             #    return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR, data={"error": "duplicate_email"})
-            #if CustomUser.objects.filter(username=new_username).count() != 0:
+            # if CustomUser.objects.filter(username=new_username).count() != 0:
             #    return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR, data={"error": "duplicate_username"})
 
             confirmation_code = ''.join(
@@ -107,16 +106,17 @@ def stores(request, client, id_local=None):
 
         elif request.method == 'POST':
             name = request.data.get('name')
+            telephone = request.data.get('telephone')
+            web_site = request.data.get('web_site')
+            description = request.data.get('name')
             country = request.data.get('country')
             city = request.data.get('city')
             region = request.data.get('region')
             address = request.data.get('address')
-            latitude = request.data.get('latitude')
-            longitude = request.data.get('longitude')
-            distance_threshold = request.data.get('distance_threshold')
             logo_url = request.data.get('logo_url')
             background_color = request.data.get('background_color')
             foreground_color = request.data.get('foreground_color')
+            background_img = request.data.get('background_img')
             ttf_font = request.data.get('ttf_font')
 
             if id_local:
@@ -125,9 +125,6 @@ def stores(request, client, id_local=None):
                 loc.country = country
                 loc.city = city
                 loc.address = address
-                loc.latitude = latitude
-                loc.longitude = longitude
-                loc.distance_threshold = distance_threshold
                 loc.region = region
                 loc.logo_url = logo_url
                 loc.background_color = background_color
@@ -138,16 +135,17 @@ def stores(request, client, id_local=None):
                 loc = Stores(
                     client_id=client,
                     store_name=name,
+                    telephone=telephone,
+                    web_site=web_site,
+                    description=description,
                     country=country,
                     city=city,
-                    address=address,
-                    latitude=latitude,
-                    longitude=longitude,
-                    distance_threshold=distance_threshold,
-                    logo_url=logo_url,
                     region=region,
+                    address=address,
+                    logo_url=logo_url,
                     background_color=background_color,
                     foreground_color=foreground_color,
+                    background_img=background_img,
                     ttf_font=ttf_font,
                 )
                 loc.save()
@@ -189,7 +187,6 @@ def get_employee_context(request, id):
     except Exception as e:
         print e
         return HttpResponse(status=404)
-
 
 
 # Countries,
@@ -323,6 +320,7 @@ class PromotionTypeDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = PromotionsTypes.objects.all()
     serializer_class = PromotionsTypesSerializer
 
+
 # PromotionsFilters,
 class PromotionsFiltersList(generics.ListCreateAPIView):
     queryset = PromotionsFilters.objects.all()
@@ -332,6 +330,7 @@ class PromotionsFiltersList(generics.ListCreateAPIView):
 class PromotionFilterDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = PromotionsFilters.objects.all()
     serializer_class = PromotionsFiltersSerializer
+
 
 # PromotionsLoyalties,
 class PromotionsLoyaltiesList(generics.ListCreateAPIView):
@@ -343,6 +342,7 @@ class PromotionLoyaltyDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = PromotionsLoyalties.objects.all()
     serializer_class = PromotionsLoyaltiesSerializer
 
+
 # PromotionsSpecials,
 class PromotionsSpecialsList(generics.ListCreateAPIView):
     queryset = PromotionsSpecials.objects.all()
@@ -353,6 +353,7 @@ class PromotionSpecialDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = PromotionsSpecials.objects.all()
     serializer_class = PromotionsSpecialsSerializer
 
+
 # Promotions,
 class PromotionsList(generics.ListCreateAPIView):
     queryset = Promotions.objects.all()
@@ -362,6 +363,7 @@ class PromotionsList(generics.ListCreateAPIView):
 class PromotionDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Promotions.objects.all()
     serializer_class = PromotionsSerializer
+
 
 # PromotionsImpacts
 class PromotionsImpactsList(generics.ListCreateAPIView):

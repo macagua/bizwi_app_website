@@ -70,33 +70,13 @@ Version: 1.0
 
         <li class="bold no-padding">
             <ul class="collapsible collapsible-accordion">
-                <li class="bold"><a
-                        class="collapsible-header waves-effect"><i
-                        class="material-icons">store</i>Stores</a>
-
-                    <div style="" class="collapsible-body" style="display: block;">
-                        <ul>
-                            <li><a href="{% url "stores" %}" class="collapsible-header"><i
-                                    class="material-icons">store</i>Basic</a></li>
-
-                            <li><a href="{% url "store_style" %}" class="collapsible-header"><i
-                                    class="material-icons">settings_brightness</i>Style</a>
-                            </li>
-                            <li><a href="{% url "store_location" %}" class="collapsible-header"><i
-                                    class="material-icons">navigation</i>Location</a></li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
-        </li>
-
-        <li class="bold no-padding">
-            <ul class="collapsible collapsible-accordion">
                 <li class="bold"><a class="collapsible-header waves-effect waves-teal"><i
                         class="material-icons">work</i>Management</a>
 
                     <div style="" class="collapsible-body" style="display: block;">
                         <ul>
+                             <li><a href="{% url "stores" %}" class="collapsible-header"><i
+                                    class="material-icons">store</i>Store</a></li>
                             <li><a href="brands.html" class="collapsible-header"><i
                                     class="material-icons">local_offer</i>Brands</a></li>
                             <li><a href="employees.html" class="collapsible-header"><i

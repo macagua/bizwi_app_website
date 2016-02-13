@@ -225,31 +225,33 @@ def stores(request):
 # Select store o push post
 def store(request, id_local=None):
     form = StoreForm()
-    info = {'client_name': request.session.get("customuser_ptr_id")}
+    client_id = request.user.id
+    info = {'client_id': request.user.id}
     if request.method == 'POST':
         form = StoreForm(request.POST)
 
         if form.is_valid():
             local_info = {
                 'name': form.cleaned_data['name'],
+                'telephone': form.cleaned_data['telephone'],
+                'web_site': form.cleaned_data['web_site'],
+                'description': form.cleaned_data['description'],
                 'country': form.cleaned_data['country'],
                 'city': form.cleaned_data['city'],
                 'region': form.cleaned_data['region'],
+                'address': form.cleaned_data['address'],
                 'logo_url': form.cleaned_data['logo_url'],
                 'background_color': form.cleaned_data['background_color'],
                 'foreground_color': form.cleaned_data['foreground_color'],
+                'background_img': form.cleaned_data['background_img'],
                 'ttf_font': form.cleaned_data['ttf_font'],
-                'address': form.cleaned_data['address'],
-                'latitude': str(form.cleaned_data['latitude']),
-                'longitude': str(form.cleaned_data['longitude']),
-                'distance_threshold': str(form.cleaned_data['distance_threshold']),
             }
             if id_local:
-                result = save_store(id_customer, local_info, id_local)
+                result = save_store(client_id, local_info, id_local)
                 info['page'] = "update"
                 info['local'] = local_info
             else:
-                result = save_store(id_customer, local_info)
+                result = save_store(client_id, local_info)
                 info['page'] = "add"
 
             if result:
@@ -269,7 +271,7 @@ def store(request, id_local=None):
     if request.method == 'GET':
         if id_local:
             info['page'] = "update"
-            local = get_stores(id_customer, id_local)
+            local = get_stores(client_id, id_local)
             if local:
                 info['local'] = local
             else:
@@ -277,149 +279,7 @@ def store(request, id_local=None):
         else:
             info['page'] = "add"
 
-    return render(request, 'store.html', info)
-
-
-# Select store o push post
-def new_store(request, id_local=None):
-    form = StoreForm()
-    info = {'client_name': request.session.get("customuser_ptr_id")}
-    if request.method == 'POST':
-        form = StoreForm(request.POST)
-
-        if form.is_valid():
-            local_info = {
-                'name': form.cleaned_data['name'],
-                'country': form.cleaned_data['country'],
-                'city': form.cleaned_data['city'],
-                'region': form.cleaned_data['region'],
-                'logo_url': form.cleaned_data['logo_url'],
-                'background_color': form.cleaned_data['background_color'],
-                'foreground_color': form.cleaned_data['foreground_color'],
-                'ttf_font': form.cleaned_data['ttf_font'],
-                'address': form.cleaned_data['address'],
-                'latitude': str(form.cleaned_data['latitude']),
-                'longitude': str(form.cleaned_data['longitude']),
-                'distance_threshold': str(form.cleaned_data['distance_threshold']),
-            }
-            if id_local:
-                result = save_store(id_customer, local_info, id_local)
-                info['page'] = "update"
-                info['local'] = local_info
-            else:
-                result = save_store(id_customer, local_info)
-                info['page'] = "add"
-
-            if result:
-                info['success'] = True
-            else:
-                info['error'] = True
-                info['local'] = local_info
-        else:
-            info['error'] = True
-            info['form'] = form
-            info['local'] = form.data
-            if id_local:
-                info['page'] = "update"
-            else:
-                info['page'] = "add"
-
     return render(request, 'store_basic.html', info)
-
-
-# Select store o push post
-def store_style(request, id_local=None):
-    form = StoreForm()
-    info = {'client_name': request.session.get("customuser_ptr_id")}
-    if request.method == 'POST':
-        form = StoreForm(request.POST)
-
-        if form.is_valid():
-            local_info = {
-                'name': form.cleaned_data['name'],
-                'country': form.cleaned_data['country'],
-                'city': form.cleaned_data['city'],
-                'region': form.cleaned_data['region'],
-                'logo_url': form.cleaned_data['logo_url'],
-                'background_color': form.cleaned_data['background_color'],
-                'foreground_color': form.cleaned_data['foreground_color'],
-                'ttf_font': form.cleaned_data['ttf_font'],
-                'address': form.cleaned_data['address'],
-                'latitude': str(form.cleaned_data['latitude']),
-                'longitude': str(form.cleaned_data['longitude']),
-                'distance_threshold': str(form.cleaned_data['distance_threshold']),
-            }
-            if id_local:
-                result = save_store(id_customer, local_info, id_local)
-                info['page'] = "update"
-                info['local'] = local_info
-            else:
-                result = save_store(id_customer, local_info)
-                info['page'] = "add"
-
-            if result:
-                info['success'] = True
-            else:
-                info['error'] = True
-                info['local'] = local_info
-        else:
-            info['error'] = True
-            info['form'] = form
-            info['local'] = form.data
-            if id_local:
-                info['page'] = "update"
-            else:
-                info['page'] = "add"
-
-    return render(request, 'store_style.html', info)
-
-
-# Select store o push post
-def store_location(request, id_local=None):
-    form = StoreForm()
-    info = {'client_name': request.session.get("customuser_ptr_id")}
-    if request.method == 'POST':
-        form = StoreForm(request.POST)
-
-        if form.is_valid():
-            local_info = {
-                'name': form.cleaned_data['name'],
-                'country': form.cleaned_data['country'],
-                'city': form.cleaned_data['city'],
-                'region': form.cleaned_data['region'],
-                'logo_url': form.cleaned_data['logo_url'],
-                'background_color': form.cleaned_data['background_color'],
-                'foreground_color': form.cleaned_data['foreground_color'],
-                'ttf_font': form.cleaned_data['ttf_font'],
-                'address': form.cleaned_data['address'],
-                'latitude': str(form.cleaned_data['latitude']),
-                'longitude': str(form.cleaned_data['longitude']),
-                'distance_threshold': str(form.cleaned_data['distance_threshold']),
-            }
-            if id_local:
-                result = save_store(id_customer, local_info, id_local)
-                info['page'] = "update"
-                info['local'] = local_info
-            else:
-                result = save_store(id_customer, local_info)
-                info['page'] = "add"
-
-            if result:
-                info['success'] = True
-            else:
-                info['error'] = True
-                info['local'] = local_info
-        else:
-            info['error'] = True
-            info['form'] = form
-            info['local'] = form.data
-            if id_local:
-                info['page'] = "update"
-            else:
-                info['page'] = "add"
-
-    return render(request, 'store_location.html', info)
-
 
 
 def employees_list(request):

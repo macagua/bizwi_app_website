@@ -23,13 +23,7 @@ urlpatterns = [
     url(r'^stores/$', views.stores, name='stores'),
 
     # create basic data store
-    url(r'^store/$', views.new_store, name='new_store'),
-
-    # style data store
-    url(r'^store_style/$', views.store_style, name='store_style'),
-
-    # location data store
-    url(r'^store_location/$', views.store_location, name='store_location'),
+    url(r'^store/$', views.store, name='new_store'),
 
     url(r'^store/(?P<id_local>\d+)/$', views.store, name='store'),
     url(r'^dashboard/$', views.dashboard, name='home'),

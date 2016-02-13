@@ -349,8 +349,8 @@ def get_stores(client, id_local=None):  # same as get_locations but with more at
     return result
 
 
-def save_local(id_customer, local_info, id_local=None):
-    url_path = 'locals/' + str(id_customer)
+def save_store(client_id, local_info, id_local=None):
+    url_path = 'stores/' + str(client_id)
     if id_local:
         url_path += '/' + str(id_local)
     result = base_post(url_path, local_info)

@@ -9,9 +9,187 @@
     <div class="container">
         <h4>Create Stores</h4>
 
+
         <div class="row">
             <div class="col s12">
-                <form class="form-horizontal" method="POST" id="form_promotion">
+                <ul class="tabs">
+                    <li class="tab col s4"><a class="active" href="#basic"> Basic </a></li>
+                    <li class="tab col s4"><a href="#style">Style</a></li>
+                    <li class="tab col s4"><a href="#location">Location</a></li>
+                </ul>
+            </div>
+
+            <div id="basic" class="col s12">
+                <form class="form-horizontal" method="POST" id="store_basic">
+                    {% csrf_token %}
+
+                    <div {% if form.store_name.errors %}class="form-group has-error"
+                         {% else %}class="form-group"{% endif %}>
+                        <label for="inputStoreName" class="col-sm-2 control-label">{% trans "Name" %}</label>
+
+                        <div class="col-sm-10">
+                            <i class="material-icons prefix">perm_identity</i>
+                            <input id="inputStoreName" name="store_name" type="text" class="form-control"
+                                   value="{{ local.store_name }}" data-error="{% trans "Complete this field" %}"
+                                   required>
+                            {% for error in form.store_name.errors %}
+                                <label class="control-label" for="inputStoreName">{{ error|escape }}</label>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div {% if form.telephone.errors %}class="form-group has-error"
+                         {% else %}class="form-group"{% endif %}>
+                        <label for="inputTelephone" class="col-sm-2 control-label">{% trans "Telephone" %}</label>
+
+                        <div class="col-sm-10">
+                            <i class="material-icons prefix">phone</i>
+                            <input id="inputTelephone" name="telephone" type="text" class="form-control"
+                                   value="{{ local.city }}" data-error="{% trans "Complete this field" %}"
+                                   required>
+                            {% for error in form.telephone.errors %}
+                                <label class="control-label" for="inputTelephone">{{ error|escape }}</label>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+
+                    <div {% if form.web_site.errors %}class="form-group has-error"
+                         {% else %}class="form-group"{% endif %}>
+                        <label for="inputWebsite" class="col-sm-2 control-label">{% trans "Website" %}</label>
+
+                        <div class="col-sm-10">
+                            <i class="material-icons prefix">web</i>
+                            <input id="inputWebsite" name="web_site" type="text" class="form-control"
+                                   value="{{ local.web_site }}" data-error="{% trans "Complete this field" %}"
+                                   required>
+                            {% for error in form.web_site.errors %}
+                                <label class="control-label" for="inputWebsite">{{ error|escape }}</label>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+
+                    <div {% if form.description.errors %}class="form-group has-error"
+                         {% else %}class="form-group"{% endif %}>
+                        <label for="inputDescription" class="col-sm-2 control-label">{% trans "Description" %}</label>
+
+                        <div class="col-sm-10">
+                            <i class="material-icons prefix">chat_bubble_outline</i>
+                            <input id="inputDescription" name="description" type="text" class="form-control"
+                                   value="{{ local.description }}" data-error="{% trans "Complete this field" %}"
+                                   required>
+                            {% for error in form.description.errors %}
+                                <label class="control-label" for="inputDescription">{{ error|escape }}</label>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button id="bt-send" type="" class="btn btn-primary">{% trans "Save" %}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div id="style" class="col s12">
+
+                <form class="form-horizontal" method="POST" id="store_style">
+                    {% csrf_token %}
+
+                    <div {% if form.logo.errors %}class="form-group has-error"
+                         {% else %}class="form-group"{% endif %}>
+                        <label for="inputStoreName" class="col-sm-2 control-label">{% trans "Logo" %}</label>
+
+                        <div class="col-sm-10">
+                            <i class="material-icons prefix">group_work</i>
+                            <input id="inputStoreName" name="logo" type="text" class="form-control"
+                                   value="{{ local.store_name }}" data-error="{% trans "Complete this field" %}"
+                                   required>
+                            {% for error in form.store_name.errors %}
+                                <label class="control-label" for="inputStoreName">{{ error|escape }}</label>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div {% if form.telephone.errors %}class="form-group has-error"
+                         {% else %}class="form-group"{% endif %}>
+                        <label for="inputTelephone"
+                               class="col-sm-2 control-label">{% trans "Background Color" %}</label>
+
+                        <div class="col-sm-10">
+                            <i class="material-icons prefix">invert_colors</i>
+                            <input id="inputTelephone" name="telephone" type="text" class="form-control"
+                                   value="{{ local.city }}" data-error="{% trans "Complete this field" %}"
+                                   required>
+                            {% for error in form.telephone.errors %}
+                                <label class="control-label" for="inputTelephone">{{ error|escape }}</label>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+
+                    <div {% if form.web_site.errors %}class="form-group has-error"
+                         {% else %}class="form-group"{% endif %}>
+                        <label for="inputWebsite" class="col-sm-2 control-label">{% trans "Foreground Color" %}</label>
+
+                        <div class="col-sm-10">
+                            <i class="material-icons prefix">invert_colors</i>
+                            <input id="inputWebsite" name="web_site" type="text" class="form-control"
+                                   value="{{ local.web_site }}" data-error="{% trans "Complete this field" %}"
+                                   required>
+                            {% for error in form.web_site.errors %}
+                                <label class="control-label" for="inputWebsite">{{ error|escape }}</label>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+
+                    <div {% if form.description.errors %}class="form-group has-error"
+                         {% else %}class="form-group"{% endif %}>
+                        <label for="inputDescription"
+                               class="col-sm-2 control-label">{% trans "Background image" %}</label>
+
+                        <div class="col-sm-10">
+                            <i class="material-icons prefix">invert_colors</i>
+                            <input id="inputDescription" name="description" type="text" class="form-control"
+                                   value="{{ local.description }}" data-error="{% trans "Complete this field" %}"
+                                   required>
+                            {% for error in form.description.errors %}
+                                <label class="control-label" for="inputDescription">{{ error|escape }}</label>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+
+                    <div {% if form.description.errors %}class="form-group has-error"
+                         {% else %}class="form-group"{% endif %}>
+                        <label for="inputDescription"
+                               class="col-sm-2 control-label">{% trans "Font" %}</label>
+
+                        <div class="col-sm-10">
+                            <i class="material-icons prefix">invert_colors</i>
+                            <input id="inputDescription" name="description" type="text" class="form-control"
+                                   value="{{ local.description }}" data-error="{% trans "Complete this field" %}"
+                                   required>
+                            {% for error in form.description.errors %}
+                                <label class="control-label" for="inputDescription">{{ error|escape }}</label>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button id="bt-send" type="" class="btn btn-primary">{% trans "Save" %}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div id="location" class="col s12">
+                <form class="form-horizontal" method="POST" id="store_location">
                     {% csrf_token %}
 
                     <div {% if form.country.errors %}class="form-group has-error"
@@ -306,5 +484,9 @@
 
 {% endblock %}
 {% block scripts %}
-
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('ul.tabs').tabs();
+        });
+    </script>
 {% endblock %}

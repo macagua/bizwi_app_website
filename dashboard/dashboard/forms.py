@@ -53,17 +53,18 @@ class BrandForm(forms.Form):
 
 class StoreForm(forms.Form):
     name = forms.CharField(max_length=100)
+    telephone = forms.CharField(max_length=100)
+    web_site = forms.CharField(max_length=100)
+    description = forms.CharField(max_length=250)
     country = forms.CharField(max_length=100)
     city = forms.CharField(max_length=100)
     region = forms.CharField(max_length=100)
     address = forms.CharField(max_length=200)
-    latitude = forms.DecimalField(decimal_places=5, max_digits=7)
-    longitude = forms.DecimalField(decimal_places=5, max_digits=8)
-    distance_threshold = forms.DecimalField(min_value=0)
     logo_url = forms.CharField(max_length=400)
     background_color = forms.CharField(max_length=10)
     foreground_color = forms.CharField(max_length=10)
-    ttf_font = forms.CharField(max_length=400)
+    background_img = forms.CharField(max_length=10)
+    ttf_font = forms.URLField()
 
 
 class SettingsEmployeeForm(forms.Form):
