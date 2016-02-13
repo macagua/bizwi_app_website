@@ -139,7 +139,7 @@ Version: 1.0
                 <li><a class="dropdown-button" data-activates="dropdown2" href="#"><i class="material-icons left">message</i>Messages<span
                         class="badge">({{ messages_count }})</span></a></li>
 
-                <li><a class="dropdown-button" data-activates="dropdown1" href="#"><i class="material-icons right">person</i>{{ customer_name }}
+                <li><a class="dropdown-button" data-activates="dropdown1" href="#"><i class="material-icons right">person</i>{{ client_name }}
                 </a></li>
             </ul>
         </div>
@@ -156,9 +156,9 @@ Version: 1.0
                         <ul>
                             <li><a href="{% url "stores" %}" class="collapsible-header"><i class="material-icons">store</i>Stores</a>
                             </li>
-                            <li><a href="brands.html" class="collapsible-header"><i
+                            <li><a href="{% url "brands" %}" class="collapsible-header"><i
                                     class="material-icons">local_offer</i>Brands</a></li>
-                            <li><a href="employees.html" class="collapsible-header"><i
+                            <li><a href="{% url "employees_list" %}" class="collapsible-header"><i
                                     class="active material-icons">group</i>Employees</a></li>
                         </ul>
                     </div>

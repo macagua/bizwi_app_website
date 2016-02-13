@@ -1,0 +1,190 @@
+header,main,footer {padding-left:240px}
+
+@media only screen and (max-width: 992px) {header,main,footer {padding-left:0}}
+
+ul.side-nav.leftside-navigation li {line-height: 44px;}
+
+.tabs .indicator {background-color:#607d8b !important;}
+
+#left-sidebar-nav span.badge.new{line-height: 20px; margin-top: 11px;}
+
+.ps-scrollbar-x-rail,.ps-scrollbar-y-rail{z-index: 9999;}
+
+
+/* Dashboard Card Stats */
+.stats-title {font-size: 1.2rem !important; line-height: 1.5 !important;}
+#card-stats .card-stats-number {font-size: 1.8rem; line-height: 2.0rem; margin: 0.2rem 0 0.2rem 0; font-weight: 500;}
+#card-stats .card-content {text-align: center;}
+.card {overflow: hidden;}
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {.doughnut-chart-status {display:none;}}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {.doughnut-chart-status {display:none} #card-stats .card-stats-compare {font-size:0.8rem}}
+/* ------------------*/
+
+nav.top-nav a.page-title {
+	position: absolute;
+	color: #fff;
+	display: inline-block;
+	font-size: 3rem;
+	padding: 0;
+	white-space: nowrap;
+	left: 10%;
+	transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
+}
+@media only screen and (max-width: 992px) { nav.top-nav a.page-title {left: 50% !important;}}
+
+
+
+/*----------------------------------------
+    Charts
+------------------------------------------*/
+
+#chart-dashboard {
+  padding-top: 12px;
+}
+#chart-dashboard .card .card-content,
+#card-stats .card .card-content,
+#card-stats .card .card-action {
+  padding: 10px 14px;  
+}
+#line-updated {
+  /*background: #00bcd4;*/
+}
+.sample-chart-wrapper {
+  width: 100%;
+}
+.chart-title {
+  font-size: 1.6rem;
+  font-weight: 300;
+}
+/* Revenue Chart */
+
+.chart-revenue {
+  float: right;
+  text-align: center;
+  padding: 8px;
+  border-radius: 3px;
+}
+.chart-revenue .chart-revenue-total {
+  font-size: 0.9rem;
+  margin: 0;
+}
+.chart-revenue .chart-revenue-per {
+  font-size: 0.8rem;
+  margin: 0;
+}
+.chart-revenue .chart-revenue-per i{
+  position: relative;
+  top: 5px;
+}
+.chart-revenue-switch {
+  padding-top: 28px;
+  padding-right: 10px;
+  color: #fff;
+  text-align: right;
+}
+
+/* doughnut chart */
+.doughnut-chart-status {
+  position: relative;
+  top: -90px;
+  left: 0;
+  font-size: 14px;
+  font-weight: 500;
+  height: 0px;
+  text-align: center;
+}
+.doughnut-chart-status p {
+  margin-top: -5px;
+}
+.doughnut-chart-legend li{
+  padding: 2px 0;
+  font-size: 0.9rem;
+}
+.doughnut-chart-legend li:before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  display: block;
+  float: left;
+  margin-top: 6px;
+  margin-right: 4px;
+}
+li.android:before {
+  background: #F7464A;
+}
+li.windows:before {
+  background: #46BFBD;
+}
+li.ios:before {
+  background: #FDB45C;
+}
+li.other:before {
+  background: #4CAF50;
+}
+a.button-collapse.top-nav {
+  position: absolute;
+  left: 7.5%;
+  top: 0;
+  float: none;
+  margin-left: 1.5rem;
+  color: #fff;
+  font-size: 32px;
+  z-index: 2;
+}
+/* trending bar chart */
+
+.trending-bar-chart-wrapper {
+  width: 100%;
+}
+.btn-move-up {
+  position: relative;
+  top: -28px;
+  right: -18px;
+  margin-right: 10px !important;
+}
+/* Flot Chart*/
+
+.flotchart-placeholder {
+  width: 100%;
+  height: 300px;
+  font-size: 13px;
+  line-height: 1.2em;
+}
+#flotchart table {
+  position: absolute;
+  top: 13px;
+  right: 17px;
+  font-size: smaller;
+  color: #545454;
+  width: 100px;
+}
+#flotchart td,
+th {
+  padding: 5px;
+}
+/* xCharts */
+
+.xchart-placeholder {
+  width: 90%;
+  height: 300px;
+}
+/*Sparkline*/
+
+.tooltip-class {
+  overflow: hidden;
+  color: #fff;
+  height: 20px;
+  width: 30px;
+}
+
+/**/
+#ct2-chart .ct-series.ct-series-a .ct-area{
+  fill: #00BCD4;
+}
+#ct2-chart .ct-series.ct-series-a .ct-point{
+  stroke:#00BCD4;
+}
+#ct2-chart .ct-series.ct-series-a .ct-line{
+  stroke: #54E2F4;
+}

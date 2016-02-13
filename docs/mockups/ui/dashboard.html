@@ -1,0 +1,402 @@
+
+  <!DOCTYPE html>
+  <html lang="en">
+
+<!--================================================================================
+  Item Name: BiZWi Dashboard
+  Version: 1.0
+  (c)2016 BIZWI SISTEMAS INFORMATICOS SL, All rights reserved. 
+================================================================================ -->
+
+    <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="description" content="">
+      <meta name="keywords" content="">
+      <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="css/style.css"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="js/plugins/perfect-scrollbar/perfect-scrollbar.min.css" media="screen,projection">
+      <link type="text/css" rel="stylesheet" href="js/plugins/chartist/chartist.min.css" media="screen,projection">
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
+      <!--[if IE]><link rel="shortcut icon" href="images/favicon.ico"><![endif]-->
+
+      <!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. --> 
+      <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-precomposed.png">
+
+      <!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
+      <link rel="icon" href="images/favicon.ico">
+      <title>BiZWi - Dashboard</title>
+    </head>
+
+    <body class="">
+  <!-- Start Page Loading -->
+
+  <!-- End Page Loading -->
+
+  <header>
+  <ul id="dropdown1" class="dropdown-content">
+    <li><a href="#!"><i class="material-icons left">person_outline</i>Edit Profile</a></li>
+    <li><a href="#!"><i class="material-icons left">settings</i>Settings</a></li>
+    <li class="divider"></li>
+    <li><a href="#!"><i class="material-icons left">exit_to_app</i>Logout</a></li>
+  </ul>
+  <nav class="top-nav">
+      <div class="nav-wrapper blue-grey darken-4">
+        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+        <a href="#!" class="page-title">Dashboard</a>
+        <ul class="right hide-on-med-and-down">
+          <li><a href="promotions.html"><i class="material-icons left">loyalty</i>Promotions</a></li>
+          <li><a href="birthdays.html"><i class="material-icons left">cake</i>Birthdays</a></li>
+          <li><a href="messages.html"><i class="material-icons left">message</i>Messages <span class="new badge">4</span></a></li>
+          <li><a class="dropdown-button" href="profile.html" data-activates="dropdown1"><i class="material-icons right">person</i>MyUsername</a></li>
+        </ul>
+      </div>
+  </nav>
+      <ul style="left: 0px;" id="nav-mobile" class="side-nav fixed">
+        <li class="logo"><a id="logo-container" class="brand-logo valign-wrapper" href="dashboard.html">
+        <object id="front-page-logo" class="valign" data="images/Logo_Bizwi_head.png" type="image/png"></object></a></li>
+        <li class="bold no-padding active"><a href="dashboard.html" class="waves-effect waves-teal collapsible-header"><i class="material-icons">dashboard</i>Dashboard</a></li>
+        <li class="bold no-padding">
+          <ul class="collapsible collapsible-accordion">
+            <li class="bold"><a class="collapsible-header waves-effect waves-teal"><i class="material-icons">work</i>Management</a>
+              <div style="" class="collapsible-body" style="display: block;">
+                <ul>
+                  <li><a href="brands.html" class="collapsible-header"><i class="material-icons">local_offer</i>Brands</a></li>
+                  <li><a href="stores.html" class="collapsible-header"><i class="material-icons">store</i>Stores</a></li>
+                  <li><a href="employees.html" class="collapsible-header"><i class="material-icons">group</i>Employees</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li class="bold no-padding"><a href="statistics.html" class="waves-effect waves-teal collapsible-header"><i class="material-icons">assessment</i>Statistics</a></li>
+        <li class="bold no-padding"><a href="sensors.html" class="waves-effect waves-teal collapsible-header"><i class="material-icons">settings_input_antenna</i>Sensors</a></li>
+        <li class="bold no-padding">
+          <ul class="collapsible collapsible-accordion">
+            <li class="bold"><a class="collapsible-header waves-effect waves-teal"><i class="material-icons">message</i>Messages</a>
+              <div style="" class="collapsible-body">
+                <ul>
+                  <li><a href="messages_compose.html" class="collapsible-header"><i class="material-icons">create</i>Compose</a></li>
+                  <li><a href="messages_inbox.html" class="collapsible-header"><i class="material-icons">inbox</i>Inbox</a></li>
+                  <li><a href="messages_sent.html" class="collapsible-header"><i class="material-icons">send</i>Sent</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li class="bold no-padding"><a href="promotions.html" class="waves-effect waves-teal collapsible-header"><i class="material-icons">loyalty</i>Promotions</a></li>
+      </ul>
+    </header>
+
+    <main>
+    <div class="container" style="width: 98%; max-width: 1500px;">
+      <!--chart dashboard start-->
+      <div id="chart-dashboard">
+          <div class="row">
+              <div class="col s12 m8 l8">
+                  <div class="card" style="overflow: hidden;">
+                      <div class="card-content waves-effect waves-block waves-light cyan darken-2">
+                          <div class="">
+                              <div>
+                                  <span class="chart-title white-text">Pedestrians</span>
+                                  <div class="chart-revenue cyan darken-2 white-text">
+                                      <p class="chart-revenue-total">4,500.85</p>
+                                      <p class="chart-revenue-per"><i class="mdi-navigation-arrow-drop-up"></i> 21.80 %</p>
+                                  </div>
+                                  <div class="switch chart-revenue-switch right">
+                                      <label class="cyan-text text-lighten-5">
+                                        Monthly
+                                        <input type="checkbox">
+                                        <span class="lever"></span> Weekly
+                                      </label>
+                                  </div>
+                              </div>
+                              <div class="trending-line-chart-wrapper">
+                                  <canvas id="trending-line-chart" height="70"></canvas>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="card-content">
+                          <a class="btn-floating btn-move-up waves-effect waves-light darken-2 right"><i class="mdi-content-add activator"></i></a>
+                          <div class="col s12 m3 l3">
+                              <div id="doughnut-chart-wrapper">
+                                  <canvas id="doughnut-chart" height="200"></canvas>
+                                  <div class="doughnut-chart-status">4500
+                                      <p class="ultra-small center-align">Visitors</p>
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col s12 m2 l3">
+                              <ul class="doughnut-chart-legend">
+                                  <li class="android ultra-small"><span class="legend-color"></span>Android</li>
+                                  <li class="ios ultra-small"><span class="legend-color"></span> iOS</li>
+                                  <li class="windows ultra-small"><span class="legend-color"></span> Windows</li>
+                                  <li class="other ultra-small"><span class="legend-color"></span> Other</li>
+                              </ul>
+                          </div>
+                          <div class="col s12 m5 l6">
+                              <div class="trending-bar-chart-wrapper">
+                                  <canvas id="trending-bar-chart" height="90"></canvas>                                                
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="card-reveal">
+                          <span class="card-title grey-text text-darken-4">Pedestrians per Month <i class="mdi-navigation-close right"></i></span>
+                          <table class="responsive-table">
+                              <thead>
+                                  <tr>
+                                      <th data-field="id">ID</th>
+                                      <th data-field="month">Month</th>
+                                      <th data-field="item-sold"># of Pedestrians</th>
+                                      <th data-field="item-price">% Change</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                      <td>1</td>
+                                      <td>January</td>
+                                      <td>122</td>
+                                      <td>+11</td>
+                                  </tr>
+                                  <tr>
+                                      <td>2</td>
+                                      <td>February</td>
+                                      <td>122</td>
+                                      <td>-3</td>
+                                  </tr>
+                                  <tr>
+                                      <td>3</td>
+                                      <td>March</td>
+                                      <td>122</td>
+                                      <td>+30</td>
+                                  </tr>
+                                  <tr>
+                                      <td>4</td>
+                                      <td>April</td>
+                                      <td>122</td>
+                                      <td>-1</td>
+                                  </tr>
+                                  <tr>
+                                      <td>5</td>
+                                      <td>May</td>
+                                      <td>122</td>
+                                      <td>+40</td>
+                                  </tr>
+                                  <tr>
+                                      <td>6</td>
+                                      <td>June</td>
+                                      <td>122</td>
+                                      <td>-10</td>
+                                  </tr>
+                                  <tr>
+                                      <td>7</td>
+                                      <td>July</td>
+                                      <td>122</td>
+                                      <td>+100</td>
+                                  </tr>
+                                  <tr>
+                                      <td>8</td>
+                                      <td>August</td>
+                                      <td>122</td>
+                                      <td>+100</td>
+                                  </tr>
+                                  <tr>
+                                      <td>9</td>
+                                      <td>Septmber</td>
+                                      <td>122</td>
+                                      <td>+100</td>
+                                  </tr>
+                                  <tr>
+                                      <td>10</td>
+                                      <td>Octomber</td>
+                                      <td>122</td>
+                                      <td>+100</td>
+                                  </tr>
+                                  <tr>
+                                      <td>11</td>
+                                      <td>November</td>
+                                      <td>122</td>
+                                      <td>+100</td>
+                                  </tr>
+                                  <tr>
+                                      <td>12</td>
+                                      <td>December</td>
+                                      <td>122</td>
+                                      <td>+100</td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </div>
+
+
+                  </div>
+              </div>
+
+              <div class="col s12 m4 l4">
+                  <div class="card">
+                      <div class="card-content teal darken-2 waves-effect waves-block waves-light">
+                          <div class="">
+                              <p class="margin white-text">Social networks</p>
+                              <canvas id="trending-radar-chart" height="114"></canvas>
+                          </div>
+                      </div>
+                      <div class="card-content  teal darken-4">
+                          <a class="btn-floating btn-move-up waves-effect waves-light darken-2 right"><i class="mdi-content-add activator"></i></a>
+                          <div class="line-chart-wrapper">
+                              <p class="margin white-text">Daily visits</p>
+                              <canvas id="line-chart" height="114"></canvas>
+                          </div>
+                      </div>
+                      <div class="card-reveal">
+                          <span class="card-title grey-text text-darken-4">Last Week visits <i class="mdi-navigation-close right"></i></span>
+                          <table class="responsive-table">
+                              <thead>
+                                  <tr>
+                                      <th data-field="country-name">Day</th>
+                                      <th data-field="item-sold"># of Visits</th>
+                                      <th data-field="total-profit">% Change</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                      <td>Monday</td>
+                                      <td>65</td>
+                                      <td>+5</td>
+                                  </tr>
+                                  <tr>
+                                      <td>Tuesday</td>
+                                      <td>76</td>
+                                      <td>-5</td>
+                                  </tr>
+                                  <tr>
+                                      <td>Wednesday</td>
+                                      <td>65</td>
+                                      <td>+55</td>
+                                  </tr>
+                                  <tr>
+                                      <td>Thursday</td>
+                                      <td>76</td>
+                                      <td>-5</td>
+                                  </tr>
+                                  <tr>
+
+                                      <td>Friday</td>
+                                      <td>65</td>
+                                      <td>+5</td>
+                                  </tr>
+                                  <tr>
+                                      <td>Saturday</td>
+                                      <td>76</td>
+                                      <td>-5</td>
+                                  </tr>
+                                  <tr>
+                                      <td>Sunday</td>
+                                      <td>65</td>
+                                      <td>+5</td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!--chart dashboard end-->
+<!--card stats start-->
+      <div id="card-stats">
+          <div class="row">
+              <div class="col s12 m6 l3">
+                  <div class="card">
+                      <div class="card-content green darken-1 white-text">
+                          <p class="card-title stats-title"><i class="material-icons">loyalty</i> Active Promotions</p>
+                          <h4 class="card-stats-number">16</h4>
+                          <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> 15% <span class="green-text text-lighten-5">last month</span>
+                          </p>
+                      </div>
+                      <div class="card-action green darken-2">
+                          <div id="active-promotions" class="center-align"></div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col s12 m6 l3">
+                  <div class="card">
+                      <div class="card-content purple darken-1 white-text">
+                          <p class="card-title stats-title"><i class="material-icons">whatshot</i></i> Promotional Impact</p>
+                          <h4 class="card-stats-number">63</h4>
+                          <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> 70% <span class="purple-text text-lighten-5">from yesterday</span>
+                          </p>
+                      </div>
+                      <div class="card-action purple darken-2">
+                          <div id="promotion-impact" class="center-align"></div>
+
+                      </div>
+                  </div>
+              </div>                            
+              <div class="col s12 m6 l3">
+                  <div class="card">
+                      <div class="card-content blue-grey darken-1 white-text">
+                          <p class="card-title stats-title"><i class="material-icons">local_activity</i> Promotion Checkins</p>
+                          <h4 class="card-stats-number">42</h4>
+                          <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> 80% <span class="blue-grey-text text-lighten-5">from yesterday</span>
+                          </p>
+                      </div>
+                      <div class="card-action blue-grey darken-2">
+                          <div id="promotion-checkins" class="center-align"></div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col s12 m6 l3">
+                  <div class="card">
+                      <div class="card-content pink lighten-1 white-text">
+                          <p class="card-title stats-title"><i class="material-icons">loyalty</i> Average Visitors</p>
+                          <h4 class="card-stats-number">1806</h4>
+                          <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-down"></i> 3% <span class="deep-purple-text text-lighten-5">from last week</span>
+                          </p>
+                      </div>
+                      <div class="card-action  pink darken-2">
+                          <div id="average-visitors" class="center-align"></div>
+                      </div>
+                  </div>
+              </div>
+              
+          </div>
+      </div>
+      <!--card stats end-->
+    </div>
+    </main>
+    
+        <footer class="page-footer blue-grey darken-4">
+          <div class="footer-copyright blue-grey darken-3">
+            <div class="container">
+            &copy; 2016 BIZWI SISTEMAS INFORMATICOS SL, All rights reserved. 
+            </div>
+          </div>
+        </footer>
+    
+    <!-- ================================================
+    Scripts
+    ================================================ -->
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+      <script type="text/javascript" src="js/scripts.js"></script>
+      <script type="text/javascript" src="js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+      <!--ChartJS Script & Data-->
+      <script type="text/javascript" src="js/plugins/chartjs/Chart.min.js"></script>
+      <script type="text/javascript" src="js/plugins/chartjs/chartjs-data.js"></script>
+      <!--
+      Chartist Script & Data
+      <script type="text/javascript" src="js/plugins/chartist/chartist.min.js"></script>
+      <script type="text/javascript" src="js/plugins/chartist/chartist-data.js"></script>
+      -->
+      <!--Sparkline Chart Script & Data-->
+      <script type="text/javascript" src="js/plugins/sparkline/jquery.sparkline.min.js"></script>
+      <script type="text/javascript" src="js/plugins/sparkline/sparkline-data.js"></script>
+
+  </body>
+</html>
