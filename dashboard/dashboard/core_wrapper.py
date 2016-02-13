@@ -68,6 +68,25 @@ def get_info(employee_id):
     result = base_request(url_path)
     return result
 
+# news
+def get_info_client(client_id):
+    url_path = 'client/' + str(client_id)
+    result = base_request(url_path)
+    return result
+
+
+def get_info_user(user_id):
+    url_path = 'user/' + str(user_id)
+    result = base_request(url_path)
+    return result
+
+
+def save_info_user(employee_id, content):
+    url_path = 'user/' + str(employee_id)
+    result = base_post(url_path, content)
+    return result.status_code == 204
+
+
 
 def save_info(employee_id, content):
     url_path = 'employee/' + str(employee_id)

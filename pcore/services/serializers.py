@@ -1,5 +1,19 @@
 from rest_framework import serializers
-from .models import Countries, Cities, Regions, Employees, Clients, Stores, Tags, Categories, Departments, Sensors, Brands, PromotionsTypes, PromotionsFilters, PromotionsLoyalties, PromotionsSpecials, Promotions, PromotionsImpacts
+from .models import CustomUser, Countries, Cities, Regions, Employees, Clients, Stores, Tags, Categories, Departments, Sensors, Brands, PromotionsTypes, PromotionsFilters, PromotionsLoyalties, PromotionsSpecials, Promotions, PromotionsImpacts
+
+
+class CustomUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ('username',
+                  'email',
+                  'first_name',
+                  'last_name',
+                  'birthday',
+                  'lang',
+                  'gender',
+                  'last_login')
+
 
 class CountriesSerializer(serializers.ModelSerializer):
     class Meta:

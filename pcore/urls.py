@@ -20,6 +20,12 @@ urlpatterns = [
     url(r'^api/v1/clients/$', views.ClientsList.as_view()),
     url(r'^api/v1/client/(?P<pk>[0-9]+)$', views.ClientDetail.as_view()),
 
+    url(r'^api/v1/clients/$', views.ClientsList.as_view()),
+    url(r'^api/v1/client/(?P<pk>[0-9]+)$', views.ClientDetail.as_view()),
+
+    url(r'^api/v1/user/(?P<user_id>\d+)$', views.custom_user),
+
+
     # Create user admin of client
     url(r'^api/v1/create_client_admin/$', views.create_client_admin),
 

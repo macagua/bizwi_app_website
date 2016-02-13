@@ -1,9 +1,11 @@
 from .models import Countries, Cities, Regions, Employees, Clients, Stores, Tags, Categories, Departments, Sensors, \
-    Brands, PromotionsTypes, PromotionsFilters, PromotionsLoyalties, PromotionsSpecials, Promotions, PromotionsImpacts
+    Brands, PromotionsTypes, PromotionsFilters, PromotionsLoyalties, PromotionsSpecials, Promotions, \
+    PromotionsImpacts, CustomUser
 from .serializers import CountriesSerializer, CitiesSerializer, RegionsSerializer, EmployeeSerializer, \
     ClientsSerializer, StoresSerializer, TagsSerializer, CategoriesSerializer, DepartmentsSerializer, \
     SensorsSerializer, BrandsSerializer, PromotionsTypesSerializer, PromotionsFiltersSerializer, \
-    PromotionsLoyaltiesSerializer, PromotionsSpecialsSerializer, PromotionsSerializer, PromotionsImpactsSerializer
+    PromotionsLoyaltiesSerializer, PromotionsSpecialsSerializer, PromotionsSerializer, \
+    PromotionsImpactsSerializer, CustomUserSerializer
 from rest_framework import generics
 from rest_framework.decorators import api_view
 import random
@@ -35,6 +37,39 @@ def auth(request):
 
     except Exception as e:
         print e
+
+
+@api_view(['GET', 'POST'])
+def custom_user(request, user_id):
+    try:
+        if request.method == "GET":
+            serializer = CustomUserSerializer(CustomUser.objects.get(id=user_id))
+            return Response(serializer.data)
+
+        elif request.method == 'POST':
+            username = request.data.get('username')
+            email = request.data.get('email')
+            first_name = request.data.get('first_name')
+            last_name = request.data.get('last_name')
+            lang = request.data.get('language')
+            checkpass = bool(request.data.get('checkpass'))
+            password = request.data.get('password')
+
+            usr = CustomUser.objects.get(id=user_id)
+            usr.username = username
+            usr.email = email
+            usr.first_name = first_name
+            usr.last_name = last_name
+            usr.lang = lang
+            if checkpass:
+                usr.set_password(password)
+            usr.save()
+
+            return Response(status=status.HTTP_200_OK)
+
+    except Exception as e:
+        print e
+        return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 @api_view(['POST'])

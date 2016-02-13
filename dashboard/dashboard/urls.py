@@ -13,9 +13,12 @@ urlpatterns = [
     url(r'^dashboard/logout/$', views.logout, name='logout'),
     url(r'^done/$', views.done, name='done'),
 
-    # mientras
     url(r'^statics/$', views.stats, name='stadistics'),
-    url(r'^done/$', views.done, name='done'),
+
+    # Profile user
+    url(r'dashboard/user_profile/', views.user_profile, name='user_profile'),
+    #url(r'dashboard/settings/', views.settings, name='settings'),
+    #url(r'dashboard/profile/(?P<id_client>\d+)/$', views.profile, name='profile'),
 
 
     # Register URLS
@@ -44,6 +47,4 @@ urlpatterns = [
     url(r'^sensors/$', views.sensors, name='sensors'),
     url(r'^promotions/$', views.promotions, name='promotions'),
 
-
 ]
-

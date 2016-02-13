@@ -67,22 +67,22 @@
 
     <!-- Dropdown for Birthdays  -->
     <ul id="dropdown3" class="dropdown-content">
-        
+        {% for birthday in birthdays %}
             <li>
                 <a href="#">
                     <div>
                         <img src="{{ birthday.photo_url }}" height="32" width="32">
-                        <span class="text-center"><strong></strong></span>
+                        <span class="text-center"><strong>{{ birthday.first_name }} {{ birthday.last_name }}</strong></span>
                     </div>
                 </a>
             </li>
             <li class="divider"></li>
-        
+        {% empty %}
             <li style="text-align: center; color: #AAA;">
                 <span>{% trans "No birthdays today" %}</span>
             </li>
             <li class="divider"></li>
-        
+        {% endfor %}
         <li>
             <a class="text-center" href="#">
                 <strong>{% trans "See upcoming birthdays" %} ({{ next_birthdays_count }})</strong>
@@ -129,7 +129,7 @@
         <div class="nav-wrapper blue-grey darken-4">
             <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
-                <li><a class="dropdown-button" data-activates="dropdown4" href="{% url "promotions" %}"><i class="material-icons left">loyalty</i>Promotions<span
+                <li><a class="dropdown-button" data-activates="dropdown4" href="#"><i class="material-icons left">loyalty</i>Promotions<span
                         class="badge">({{ promotion_requests|length }})</span></a></li>
                 <li><a class="dropdown-button" data-activates="dropdown3" href="#"><i
                         class="material-icons left">cake</i>Birthdays<span class="badge">({{ birthdays|length }})</span></a>
@@ -138,7 +138,7 @@
                 <li><a class="dropdown-button" data-activates="dropdown2" href="#"><i class="material-icons left">message</i>Messages<span
                         class="badge">({{ messages_count }})</span></a></li>
 
-                <li><a class="dropdown-button" data-activates="dropdown1" href="#"><i class="material-icons right">person</i>{{ customer_name }}
+                <li><a class="dropdown-button" data-activates="dropdown1" href="#"><i class="material-icons right">person</i>{{ client_name }}
                 </a></li>
             </ul>
         </div>
@@ -150,59 +150,45 @@
             <object id="front-page-logo" class="valign" data="{{ STATIC_URL }}images/biz_horiz_high.png"
                     type="image/png"></object>
         </a></li>
-        <li class="bold no-padding"><a href="/" class="waves-effect waves-teal collapsible-header"><i
-                class="material-icons">dashboard</i>Dashboard</a></li>
-
-        <li class="bold no-padding">
-            <ul class="collapsible collapsible-accordion">
-        <!--<li class="bold"><a href="#" class="waves-effect waves-teal collapsible-header"><i
-                class="material-icons">dashboard</i> {% trans "Dashboard" %}</a>
-        </li>-->
-        <li class="bold"><a href="{% url "statistics" %}" class="waves-effect waves-teal collapsible-header"><i
-                class="material-icons">assessment</i>{% trans "Statistics   " %}</a>
-        </li>
-        <li class="bold"><a href="{% url "sensors" %}" class="waves-effect waves-teal collapsible-header"><i
-                class="material-icons">settings_input_antenna</i>{% trans "Sensors" %}</a>
-        </li>
-
-        <li class="bold"><a href="{% url "promotions" %}" class="waves-effect waves-teal collapsible-header"><i
-                class="material-icons">loyalty</i>Promotions</a></li>
-    </ul>
-
-    <!-- Left Nav-->
-    <ul style="left: 0px;" id="nav-mobile" class="side-nav fixed">
-        <li class="logo"><a id="logo-container" class="brand-logo valign-wrapper" href="#">
-            <object id="front-page-logo" class="valign" data="{{ STATIC_URL }}images/Logo_Bizwi_head.png"
-                    type="image/png"></object>
-        </a></li>
-        <li class="bold no-padding active"><a href="{% url "home" %}"
-                                              class="waves-effect waves-teal collapsible-header"><i
-                class="material-icons">dashboard</i>{% trans "Dashboard" %}</a></li>
-        <li class="bold no-padding">
-            <ul class="collapsible collapsible-accordion">
-                <li class="bold"><a class="collapsible-header waves-effect waves-teal"><i
-                        class="material-icons">work</i>{% trans "Management" %}</a>
 
                     <div style="" class="collapsible-body" style="display: block;">
                         <ul>
-                             <li><a href="{% url "stores" %}" class="collapsible-header"><i
-                                    class="material-icons">store</i>Store</a></li>
+                            <li><a href="{% url "stores" %}" class="collapsible-header"><i class="material-icons">store</i>Stores</a>
+                            </li>
                             <li><a href="{% url "brands" %}" class="collapsible-header"><i
                                     class="material-icons">local_offer</i>Brands</a></li>
                             <li><a href="{% url "employees_list" %}" class="collapsible-header"><i
-                                    class="material-icons">group</i>Employees</a></li>
-                            <li><a href="{% url "stores" %}" class="collapsible-header"><i class="material-icons">store</i>{% trans "Stores" %}
-                            </a></li>
-                            <li><a href="{% url "employees_list" %}" class="collapsible-header"><i
-                                    class="material-icons">group</i>{% trans "Employees" %}</a></li>
+                                    class="active material-icons">group</i>Employees</a></li>
                         </ul>
                     </div>
                 </li>
             </ul>
+    </ul>
+
+    <!-- Left Nav-->
+    <ul style="left: 0px;" id="nav-mobile" class="side-nav fixed">
+        <li class="logo"><a id="logo-container" class="brand-logo valign-wrapper" href="/">
+            <object id="front-page-logo" class="valign" data="{{ STATIC_URL }}images/Logo_Bizwi_head.png"
+                    type="image/png"></object>
+        </a></li>
+        <li class="bold no-padding active"><a href="/"
+                                              class="waves-effect waves-teal collapsible-header"><i
+                class="material-icons">dashboard</i>{% trans "Dashboard" %}</a></li>
+        <li class="bold no-padding">
+          <ul class="collapsible collapsible-accordion">
+            <li class="bold"><a class="collapsible-header waves-effect waves-teal"><i class="material-icons">work</i>{% trans "Management" %}</a>
+              <div style="" class="collapsible-body" style="display: block;">
+                <ul>
+                  <li><a href="{% url "stores" %}" class="collapsible-header"><i class="material-icons">store</i>{% trans "Stores" %}</a></li>
+                  <li><a href="#" class="collapsible-header"><i class="material-icons">group</i>{% trans "Employees" %}</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
         </li>
         <li class="bold no-padding"><a href="{% url "statistics" %}" class="waves-effect waves-teal collapsible-header"><i
                 class="material-icons">assessment</i>{% trans "Statistics" %}</a></li>
-        <li class="bold no-padding"><a href="{% url "stores" %}" class="waves-effect waves-teal collapsible-header"><i
+        <li class="bold no-padding"><a href="{% url "sensors" %}" class="waves-effect waves-teal collapsible-header"><i
                 class="material-icons">settings_input_antenna</i>{% trans "Sensors" %}</a></li>
         <li class="bold no-padding">
             <ul class="collapsible collapsible-accordion">

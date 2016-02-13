@@ -245,12 +245,13 @@ def store(request, id_local=None):
     form = StoreForm()
     client_id = request.user.id
     info = {'client_id': request.user.id}
+
     if request.method == 'POST':
         form = StoreForm(request.POST)
 
         if form.is_valid():
             local_info = {
-                'name': form.cleaned_data['name'],
+                'name': form.cleaned_data['store_name'],
                 'telephone': form.cleaned_data['telephone'],
                 'web_site': form.cleaned_data['web_site'],
                 'description': form.cleaned_data['description'],
@@ -444,25 +445,23 @@ def settings_employee(request):
 
     return render(request, 'settings_employee.html', info)
 
-@only_employee(LOGIN_URL)
-#@extra_info
-#def profile_edit(request, extra_info):
-def profile_edit(request):
-    employee_id = request.user.id
-    employee_info = get_info(employee_id)
-    email = employee_info['email']
+
+def user_profile(request):
+    user_id = request.user.id
+    client_info = get_info_user(user_id)
+    email = client_info['email']
 
     info = {}
 
     if request.method == 'POST':
         if "profileForm" in request.POST:
-            form = ProfileForm(request.POST)
+            form = CustomUserForm(request.POST)
 
             if form.is_valid():
                 try:
                     email = form.cleaned_data['email']
                     employee_info['email'] = email
-                    result = save_info(employee_id, employee_info)
+                    result = save_info(client_id, employee_info)
                     if result:
                         info['save_success'] = True
                     else:
@@ -482,7 +481,60 @@ def profile_edit(request):
             if form.is_valid():
                 try:
                     new_password = form.cleaned_data['new_password1']
-                    result = change_password(employee_id, new_password)
+                    result = change_password(client_id, new_password)
+                    if result:
+                        info['change_success'] = True
+                except Exception as e:
+                    print e
+                    info['change_error'] = True
+                    info['form'] = form
+            else:
+                info['change_error'] = True
+                info['form'] = form
+
+    info['email'] = email
+    return render(request, 'profile.html', client_info)
+
+
+
+
+
+def profile_edit(request):
+    client_id = request.user.id
+    client_info = get_info_client(client_id)
+    email = client_info['email']
+
+    info = {}
+
+    if request.method == 'POST':
+        if "profileForm" in request.POST:
+            form = ProfileForm(request.POST)
+
+            if form.is_valid():
+                try:
+                    email = form.cleaned_data['email']
+                    employee_info['email'] = email
+                    result = save_info(client_id, employee_info)
+                    if result:
+                        info['save_success'] = True
+                    else:
+                        info['save_error'] = True
+                        info['form'] = form
+
+                except Exception as e:
+                    print e
+                    info['save_error'] = True
+                    info['form'] = form
+            else:
+                info['save_error'] = True
+                info['form'] = form
+
+        elif "changePasswordForm" in request.POST:
+            form = SetPasswordForm(request.user, request.POST)
+            if form.is_valid():
+                try:
+                    new_password = form.cleaned_data['new_password1']
+                    result = change_password(client_id, new_password)
                     if result:
                         info['change_success'] = True
                 except Exception as e:
