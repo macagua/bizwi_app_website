@@ -21,8 +21,17 @@ urlpatterns = [
 
     # dashoard urls
     url(r'^stores/$', views.stores, name='stores'),
-    url(r'^store/$', views.store, name='new_store'),
-    url(r'^local_admin/(?P<id_local>\d+)/$', views.store, name='store'),
+
+    # create basic data store
+    url(r'^store/$', views.new_store, name='new_store'),
+
+    # style data store
+    url(r'^store_style/$', views.store_style, name='store_style'),
+
+    # location data store
+    url(r'^store_location/$', views.store_location, name='store_location'),
+
+    url(r'^store/(?P<id_local>\d+)/$', views.store, name='store'),
     url(r'^dashboard/$', views.dashboard, name='home'),
 
     url(r'^employees/$', views.employees_list, name='employees_list'),
@@ -37,3 +46,4 @@ urlpatterns = [
     # url(r'^employee_admin/$', views.employee_admin, name='employee_admin_new'),
     # url(r'^employee_admin/(?P<id_employee>\d+)/$', views.employee_admin, name='employee_admin'),
 ]
+
