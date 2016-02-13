@@ -288,7 +288,9 @@ def employees_list(request):
                  'customer_name': request.session.get("client_name")}
     if type(employees['data']) is not list:
         employees['data'] = []
-    return render(request, 'employees.html', employees)
+    return render(request, 'employees_admin.html', employees)
+
+
 
 
 def employee(request, id_employee=None):
@@ -296,7 +298,7 @@ def employee(request, id_employee=None):
     locations_list = get_stores(id_customer)
     info = {'customer_name': request.session.get("customer_name"),
             'languages': LANGUAGE_LIST,
-            'locations': locations_list}
+            'stores': stores}
 
     if request.method == 'POST':
 
@@ -309,7 +311,7 @@ def employee(request, id_employee=None):
                 'last_name': form.cleaned_data['last_name'],
                 'phone': form.cleaned_data['phone'],
                 'language': form.cleaned_data['language'],
-                'location': str(form.cleaned_data['location']),
+                'stores': str(form.cleaned_data['stores']),
                 'checkpass': str(form.cleaned_data['checkpass']),
                 'password': str(form.cleaned_data['password']),
             }
@@ -346,7 +348,7 @@ def employee(request, id_employee=None):
         else:
             info['page'] = "add"
 
-    return render(request, 'employee.html', info)
+    return render(request, 'employee_admin.html', info)
 
 
 def settings_employee(request):
@@ -472,3 +474,5 @@ def profile_edit(request):
     info['email'] = email
     #info.update(extra_info)
     return render(request, 'profile_form.html', info)
+
+

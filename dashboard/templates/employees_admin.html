@@ -1,0 +1,51 @@
+{% extends "base_admin.html" %}
+{% load jsonify %}
+{% load i18n %}
+{% block css %}
+    <link href="{{ STATIC_URL }}css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}css/jquery.dataTables_themeroller.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}css/employees_admin.css" rel="stylesheet">
+{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <h4 class="page-header">{% trans "Manage Employees" %}</h4>
+        </div>
+    </div>
+        <a style="margin-bottom: 20px;" class="btn btn-success btn-lg" href="{% url "new_employee" %}"><i class="material-icons right">group</i>{% trans "Create new employee" %}</a>
+    <div id="my-tab-content" class="tab-content">
+        <div class="tab-pane active" id="employees">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <table class="datatable table table-striped table-bordered" id="employees_tb">
+                                <thead>
+                                <tr>
+                                    <th>{% trans "First Name" %}</th>
+                                    <th>{% trans "Last Name" %}</th>
+                                    <th>{% trans "Location" %}</th>
+                                    <th>{% trans "Username" %}</th>
+                                    <th>{% trans "E-mail" %}</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script src="{{ STATIC_URL }}js/jquery.dataTables.min.js"></script>
+    <script src="{{ STATIC_URL }}js/data-tables-script.js"></script>
+    <script type='text/javascript'>
+        var lang = '{{ request.session.lang }}';
+        var employeesData = {{ data|jsonify }};
+        var url_employee = '{% url "new_employee" %}';
+    </script>
+    <script src="{{ STATIC_URL }}js/employees_admin.js"></script>
+{% endblock %}

@@ -1,0 +1,184 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+<!--================================================================================
+Item Name: BiZWi Dashboard
+Version: 1.0
+(c)2016 BIZWI SISTEMAS INFORMATICOS SL, All rights reserved.
+================================================================================ -->
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <!--External -->
+    <link type="text/css" rel="stylesheet"
+          href="http://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css"
+          media="screen,projection"/>
+    <link type="text/css" rel="stylesheet"
+          href="http://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.10/css/perfect-scrollbar.min.css"
+          media="screen,projection">
+    <link type="text/css" rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/chartist/0.9.5/chartist.min.css"
+          media="screen,projection">
+
+    <!--Internal -->
+    <!-- <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/materialize.min.css"  media="screen,projection"/> -->
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/style.css" media="screen,projection"/>
+    <!--<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}js/plugins/perfect-scrollbar/perfect-scrollbar.min.css" media="screen,projection"> -->
+    <!--<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}js/plugins/chartist/chartist.min.css" media="screen,projection">-->
+    <!--Let browser know website is optimized for mobile-->
+    <!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
+    <!--[if IE]><link rel="shortcut icon" href="images/favicon.ico"><![endif]-->
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
+    <!--[if IE]><link rel="shortcut icon" href="images/favicon.ico"><![endif]-->
+    <!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. -->
+    <link rel="apple-touch-icon-precomposed" href="{{ STATIC_URL }}images/apple-touch-icon-precomposed.png">
+    <!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
+    <link rel="icon" href="{{ STATIC_URL }}images/favicon.ico">
+    <title>{{ COMMERCIAL_NAME }}</title>
+    {% block css %}{% endblock %}
+
+</head>
+
+<body class="">
+
+<header>
+    <ul id="dropdown1" class="dropdown-content">
+        <li><a href="#!"><i class="material-icons left">person_outline</i>{% trans "Edit profile" %}</a></li>
+        <li><a href="#!"><i class="material-icons left">settings</i>Settings</a></li>
+        <li class="divider"></li>
+        <li><a href="{% url "logout" %}"><i class="material-icons left">exit_to_app</i>{% trans "Logout" %}</a></li>
+    </ul>
+    <nav class="top-nav">
+        <div class="nav-wrapper blue-grey darken-4">
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+            <a href="#!" class="page-title">Dashboard</a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="promotions.html"><i class="material-icons left">loyalty</i>Promotions</a></li>
+                <li><a href="birthdays.html"><i class="material-icons left">cake</i>Birthdays</a></li>
+                <li><a href="messages.html"><i class="material-icons left">message</i>Messages <span
+                        class="new badge">4</span></a></li>
+                <li><a class="dropdown-button" href="profile.html" data-activates="dropdown1"><i
+                        class="material-icons right">person</i>{{ customer_name }}</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul style="left: 0px;" id="nav-mobile" class="side-nav fixed">
+        <li class="logo"><a id="logo-container" class="brand-logo valign-wrapper" href="/">
+            <object id="front-page-logo" class="valign" data="{{ STATIC_URL }}images/Logo_Bizwi_head.png" type="image/png"></object>
+        </a></li>
+        <li class="bold no-padding active"><a href="/" class="waves-effect waves-teal collapsible-header"> <i class="active material-icons">dashboard</i>Dashboard</a></li>
+        <li class="bold no-padding">
+            <ul class="collapsible collapsible-accordion">
+                <li class="bold active"><a class="collapsible-header active waves-effect waves-teal"><i
+                        class="material-icons">work</i>Management</a>
+
+                    <div style="" class="collapsible-body" style="display: block;">
+                        <ul>
+                            <li><a href="brands.html" class="collapsible-header"><i
+                                    class="material-icons">local_offer</i>Brands</a></li>
+                            <li><a href="{% url "stores" %}" class="collapsible-header"><i class="material-icons">store</i>Stores</a>
+                            </li>
+                            <li><a href="{% url "employees" %}" class="collapsible-header"><i
+                                    class="active material-icons">group</i>Employees</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li class="bold no-padding"><a href="statistics.html" class="waves-effect waves-teal collapsible-header"><i
+                class="material-icons">assessment</i>Statistics</a></li>
+        <li class="bold no-padding"><a href="sensors.html" class="waves-effect waves-teal collapsible-header"><i
+                class="material-icons">settings_input_antenna</i>Sensors</a></li>
+        <li class="bold no-padding">
+            <ul class="collapsible collapsible-accordion">
+                <li class="bold"><a class="collapsible-header waves-effect waves-teal"><i
+                        class="material-icons">message</i>Messages</a>
+
+                    <div style="" class="collapsible-body">
+                        <ul>
+                            <li><a href="messages_compose.html" class="collapsible-header"><i class="material-icons">create</i>Compose</a>
+                            </li>
+                            <li><a href="messages_inbox.html" class="collapsible-header"><i
+                                    class="material-icons">inbox</i>Inbox</a></li>
+                            <li><a href="messages_sent.html" class="collapsible-header"><i
+                                    class="material-icons">send</i>Sent</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li class="bold no-padding"><a href="promotions.html" class="waves-effect waves-teal collapsible-header"><i
+                class="material-icons">loyalty</i>Promotions</a></li>
+    </ul>
+</header>
+
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+<footer class="page-footer blue-grey darken-4">
+    <div class="footer-copyright blue-grey darken-3">
+        <div class="container">
+            &copy; 2016 BIZWI SISTEMAS INFORMATICOS SL, All rights reserved.
+        </div>
+    </div>
+</footer>
+<!--   <script type="text/javascript">
+       $(document).ready(function(){
+         $(".button-collapse").sideNav();
+         $('.collapsible').collapsible();
+         $(".dropdown-button").dropdown();
+       });
+   </script> -->
+
+<!-- ================================================
+Scripts
+================================================ -->
+<!--External -->
+<!--Import jQuery before materialize.js-->
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+<script type="text/javascript"
+        src="http://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+<script type="text/javascript"
+        src="http://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.10/js/min/perfect-scrollbar.min.js"></script>
+<!--ChartJS Script -->
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+<!--
+Chartist Script & Data
+<script type="text/javascript" src="js/plugins/chartist/chartist.min.js"></script>
+<script type="text/javascript" src="js/plugins/chartist/chartist-data.js"></script>
+-->
+<!--Sparkline Chart Script & Data-->
+<script type="text/javascript"
+        src="http://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
+
+
+<!--Internal -->
+<!--Import jQuery before materialize.js-->
+<!--<script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>-->
+<!--<script type="text/javascript" src="js/materialize.min.js"></script>-->
+<script type="text/javascript" src="{{ STATIC_URL }}js/scripts.js"></script>
+<!--<script type="text/javascript" src="js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>-->
+<!--ChartJS Script & Data-->
+<!--<script type="text/javascript" src="js/plugins/chartjs/Chart.min.js"></script>-->
+<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/chartjs/chartjs-data.js"></script>
+<!--Chartist Script & Data-->
+<!--<script type="text/javascript" src="js/plugins/chartist/chartist.min.js"></script>-->
+<!--<script type="text/javascript" src="js/plugins/chartist/chartist-data.js"></script>-->
+
+<!--Sparkline Chart Script & Data-->
+<!--<script type="text/javascript" src="js/plugins/sparkline/jquery.sparkline.min.js"></script>-->
+<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/sparkline/sparkline-data.js"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

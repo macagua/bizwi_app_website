@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^dashboard/logout/$', views.logout, name='logout'),
     url(r'^done/$', views.done, name='done'),
 
+
     # Register URLS
     url(r'registration/client_admin/$', views.new_client_admin, name='new_client_admin'),
     url(r'registration/client_admin/confirm/(?P<username>\w+)/(?P<code>\w+)/$', views.confirm_client,
