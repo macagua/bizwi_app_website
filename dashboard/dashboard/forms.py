@@ -6,6 +6,8 @@ class AdminForm(forms.Form):
     lastname = forms.CharField(max_length=255, required=True)
     email = forms.EmailField(required=True)
     username = forms.CharField(max_length=255, required=True)
+    client_name = forms.CharField(max_length=255, required=True)
+    telephone = forms.CharField(max_length=255, required=True)
     password1 = forms.CharField()
     password2 = forms.CharField()
 

@@ -1,6 +1,9 @@
 from .models import Countries, Cities, Regions, Employees, Clients, Stores, Tags, Categories, Departments, Sensors, \
     Brands, PromotionsTypes, PromotionsFilters, PromotionsLoyalties, PromotionsSpecials, Promotions, PromotionsImpacts
-from .serializers import CountriesSerializer, CitiesSerializer, RegionsSerializer, EmployeeSerializer, ClientsSerializer, StoresSerializer, TagsSerializer, CategoriesSerializer, DepartmentsSerializer, SensorsSerializer, BrandsSerializer, PromotionsTypesSerializer, PromotionsFiltersSerializer, PromotionsLoyaltiesSerializer, PromotionsSpecialsSerializer, PromotionsSerializer, PromotionsImpactsSerializer
+from .serializers import CountriesSerializer, CitiesSerializer, RegionsSerializer, EmployeeSerializer, \
+    ClientsSerializer, StoresSerializer, TagsSerializer, CategoriesSerializer, DepartmentsSerializer, \
+    SensorsSerializer, BrandsSerializer, PromotionsTypesSerializer, PromotionsFiltersSerializer,\
+    PromotionsLoyaltiesSerializer, PromotionsSpecialsSerializer, PromotionsSerializer, PromotionsImpactsSerializer
 from rest_framework import generics
 from rest_framework.decorators import api_view
 import random
@@ -8,6 +11,8 @@ import string
 from django.contrib.auth import authenticate
 from rest_framework.response import Response
 from rest_framework import status
+from django.http import HttpResponse
+
 
 
 @api_view(['POST'])
@@ -33,8 +38,6 @@ def auth(request):
         print e
 
 
-
-
 @api_view(['POST'])
 def create_client_admin(request):
     try:
@@ -44,6 +47,8 @@ def create_client_admin(request):
             new_username = request.data.get('username')
             new_email = request.data.get('email')
             new_password = request.data.get('password')
+            new_client_name = request.data.get('client_name')
+            new_telephone = request.data.get('telephone')
 
 
             #if CustomUser.objects.filter(email=new_email).count() != 0:
@@ -55,8 +60,8 @@ def create_client_admin(request):
                 random.choice(string.ascii_uppercase + string.digits + string.ascii_lowercase) for x in range(66))
 
             e = Clients.objects.create(first_name=new_name, last_name=new_last_name, username=new_username,
-                                       email=new_email, is_client_admin=True, is_active=True
-                                       )
+                                       email=new_email, is_client_admin=True, is_active=True, telephone=new_telephone,
+                                       client_name=new_client_name)
 
             e.set_password(new_password)
             e.save()
@@ -87,6 +92,104 @@ def create_client_admin(request):
     except Exception as e:
         print e
         return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+@api_view(['GET', 'POST'])
+def stores(request, client, id_local=None):
+    try:
+        if request.method == "GET":
+            if id_local:
+                serializer = StoresSerializer(Stores.objects.get(id=id_local))
+            else:
+                serializer = StoresSerializer(Stores.objects.filter(client_id=client), many=True)
+
+            return Response(serializer.data)
+
+        elif request.method == 'POST':
+            name = request.data.get('name')
+            country = request.data.get('country')
+            city = request.data.get('city')
+            region = request.data.get('region')
+            address = request.data.get('address')
+            latitude = request.data.get('latitude')
+            longitude = request.data.get('longitude')
+            distance_threshold = request.data.get('distance_threshold')
+            logo_url = request.data.get('logo_url')
+            background_color = request.data.get('background_color')
+            foreground_color = request.data.get('foreground_color')
+            ttf_font = request.data.get('ttf_font')
+
+            if id_local:
+                loc = Stores.objects.get(id=id_local)
+                loc.name = name
+                loc.country = country
+                loc.city = city
+                loc.address = address
+                loc.latitude = latitude
+                loc.longitude = longitude
+                loc.distance_threshold = distance_threshold
+                loc.region = region
+                loc.logo_url = logo_url
+                loc.background_color = background_color
+                loc.foreground_color = foreground_color
+                loc.ttf_font = ttf_font
+                loc.save()
+            else:
+                loc = Stores(
+                    client_id=client,
+                    store_name=name,
+                    country=country,
+                    city=city,
+                    address=address,
+                    latitude=latitude,
+                    longitude=longitude,
+                    distance_threshold=distance_threshold,
+                    logo_url=logo_url,
+                    region=region,
+                    background_color=background_color,
+                    foreground_color=foreground_color,
+                    ttf_font=ttf_font,
+                )
+                loc.save()
+            return Response(status=status.HTTP_200_OK)
+    except Exception as e:
+        return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+@api_view(['GET'])
+def get_employee_context(request, id):
+    try:
+        if request.method == 'GET':
+            client = Clients.objects.get(id=id)
+
+            language = client.language
+            customer = client.customer
+
+            if customer:
+                id_customer = customer.id
+                customer_name = customer.name
+                time_zone = customer.timezone
+            else:
+                id_customer = ""
+                customer_name = ""
+                time_zone = ""
+
+            data = {
+                "client": hh,
+                "full_name": full_name,
+                "id_customer": id_customer,
+                "customer_name": customer_name,
+                "language": language,
+                "timezone": time_zone,
+                "id_location": "",
+                "is_customer_admin": is_customer_admin,
+            }
+
+            return Response(data)
+    except Exception as e:
+        print e
+        return HttpResponse(status=404)
+
 
 
 # Countries,

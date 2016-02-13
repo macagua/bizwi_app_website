@@ -5,8 +5,8 @@ $(document).ready(function () {
         urlLang = "//cdn.datatables.net/plug-ins/1.10.6/i18n/Spanish.json";
     }
 
-    $('#stores_tb').DataTable({
-        "data": stotesData,
+    $('#store_tb').DataTable({
+        "data": storesData,
         "oLanguage": {
             "sUrl": urlLang
         },
@@ -14,40 +14,44 @@ $(document).ready(function () {
 
             {"aTargets": [0],
                 "mData": function (source, type, full) {
-                    return source.first_name
+                    return source.store_name
                 }
             },
 
             {"aTargets": [1],
                 "mData": function (source, type, full) {
-                    return source.last_name
+                    return source.country
                 }
             },
 
             {"aTargets": [2],
                 "mData": function (source, type, full) {
-                    return source.location['name']
+                    return source.city
                 }
             },
 
             {"aTargets": [3],
                 "mData": function (source, type, full) {
-                    return source.username
+                    return source.address
                 }
             },
-
             {"aTargets": [4],
                 "mData": function (source, type, full) {
-                    return source.email
+                    return source.categories
                 }
             },
+            {"aTargets": [5],
+                "mData": function (source, type, full) {
+                    return source.categories
+                }
+            }
 
         ],
 
         "fnRowCallback": function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
             $(nRow).click(function () {
                 var id = aData.id;
-                window.location.href = url_store + id;
+                window.location.href = url_local + id;
             });
         }
 

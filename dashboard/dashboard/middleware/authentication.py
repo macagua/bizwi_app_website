@@ -22,6 +22,7 @@ class CoreBackend(object):
                 return user
         return None
 
+
     def get_user(self, user_id):
         try:
             user_json = get_info(user_id)

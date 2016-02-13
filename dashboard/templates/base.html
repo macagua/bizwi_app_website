@@ -58,12 +58,13 @@ Version: 1.0
         </div>
     </nav>
 
-    <ul style="left: 0px;" id="nav-mobile" class="side-nav fixed">
+    <ul style="left: 0;" id="nav-mobile" class="side-nav fixed">
         <li class="logo"><a id="logo-container" class="brand-logo valign-wrapper" href="dashboard.html">
             <object id="front-page-logo" class="valign" data="images/Logo_Bizwi_head.png" type="image/png"></object>
         </a></li>
         <li class="bold no-padding"><a href="dashboard.html" class="waves-effect waves-teal collapsible-header"><i
                 class="material-icons">dashboard</i>Dashboard</a></li>
+
         <li class="bold no-padding">
             <ul class="collapsible collapsible-accordion">
                 <li class="bold active"><a class="collapsible-header active waves-effect waves-teal"><i
@@ -71,12 +72,31 @@ Version: 1.0
 
                     <div style="" class="collapsible-body" style="display: block;">
                         <ul>
+                            <li><a href="employees.html" class="collapsible-header"><i
+                                    class="material-icons">group</i>Employees</a></li>
                             <li><a href="brands.html" class="collapsible-header"><i
                                     class="material-icons">local_offer</i>Brands</a></li>
-                            <li><a href="stores.html" class="collapsible-header"><i class="material-icons">store</i>Stores</a>
+
+                            <li class="bold no-padding">
+                                <ul class="collapsible collapsible-accordion">
+                                    <li>
+                                        <a class="collapsible-header active waves-effect waves-teal"><i
+                                            class="material-icons">store</i>Store </a>
+
+                                        <div style="" class="collapsible-body" style="display: block;">
+                                            <ul>
+                                                <li><a href="{% url "stores" %}" class="collapsible-header"><i
+                                                        class="material-icons">store</i>Store</a></li>
+                                                <li><a href="employees.html" class="collapsible-header"><i
+                                                        class="material-icons">group</i>Customization</a></li>
+                                                <li><a href="brands.html" class="collapsible-header"><i
+                                                        class="material-icons">location_on</i>Geolocalization</a></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
                             </li>
-                            <li class="active blue-grey darken-4"><a href="employees.html" class="collapsible-header"><i
-                                    class="material-icons">group</i>Employees</a></li>
+
                         </ul>
                     </div>
                 </li>

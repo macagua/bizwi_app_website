@@ -26,6 +26,11 @@ urlpatterns = [
     url(r'^api/v1/employees/$', views.EmployeeList.as_view()),
     url(r'^api/v1/employee/(?P<pk>[0-9]+)$', views.EmployeeDetail.as_view()),
 
+    url(r'^api/v1/get_employee_context/(?P<id>[0-9]+)$', views.get_employee_context),
+
+    # Stores by client_id
+    url(r'^api/v1/stores_list/(?P<client>\d+)$', views.stores),
+
     url(r'^api/v1/stores/$', views.StoresList.as_view()),
     url(r'^api/v1/store/(?P<pk>[0-9]+)$', views.StoreDetail.as_view()),
 

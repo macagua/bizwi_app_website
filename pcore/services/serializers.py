@@ -70,8 +70,8 @@ class StoresSerializer(serializers.ModelSerializer):
     class Meta:
         model = Stores
         fields = ('store_id',
-                   'client',
-                   'store_name',
+                  'client_id',
+                  'store_name',
                    'register_date',
                    'region',
                    'country',

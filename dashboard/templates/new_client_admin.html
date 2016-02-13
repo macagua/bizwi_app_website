@@ -33,11 +33,31 @@
         <div class="col s12 m8 l8 center-align white">
             <div class="container">
                 <div class="row">
-                    <h5>Register</h5>
 
                     <form class="col s12" method="POST">
                         {% csrf_token %}
 
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">shop</i>
+                                <input id="inputClientName" name="client_name" type="text" class="validate"
+                                       value="{{ form.client_name.value|default_if_none:"" }}"
+                                       data-error="{% trans "Complete this field" %}"
+                                       required>
+                                <label for="inputClientName">Client Name</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix"> phone</i>
+                                <input id="inputTelephone" name="telephone" type="text" class="validate"
+                                       value="{{ form.telephone.value|default_if_none:"" }}"
+                                       data-error="{% trans "Complete this field" %}"
+                                       required>
+                                <label for="inputTelephone">Telephone</label>
+                            </div>
+                        </div>
+                        <h5>Contact User Information</h5>
                         <div class="row">
                             <div class="input-field col s6">
                                 <i class="material-icons prefix">account_circle</i>

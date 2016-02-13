@@ -341,8 +341,8 @@ def update_sensor_location(info):
     return result.status_code == 200
 
 
-def get_locals(id_customer, id_local=None):  # same as get_locations but with more attributes
-    url_path = 'locals/' + str(id_customer)
+def get_stores(client, id_local=None):  # same as get_locations but with more attributes
+    url_path = 'stores_list/' + str(client)
     if id_local:
         url_path += '/' + str(id_local)
     result = base_request(url_path)

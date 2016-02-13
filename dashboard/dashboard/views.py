@@ -65,9 +65,9 @@ def extra_info(the_func):
 
 @login_required
 def done(request):
-    is_customer_admin = request.session.get("is_customer_admin")
+    is_client_admin = request.session.get("is_client_admin")
 
-    if is_customer_admin:
+    if is_client_admin:
         customer = request.session.get("id_customer")
         if customer:
             # go to admin dashboard
@@ -78,6 +78,7 @@ def done(request):
     else:
         # go to dashboard
         return redirect("home")
+
 
 def logout(request):
     """Logs out user"""
@@ -122,6 +123,8 @@ def new_client_admin(request):
             username = form.cleaned_data['username']
             email = form.cleaned_data['email']
             password = form.cleaned_data['password1']
+            client_name = form.cleaned_data['client_name']
+            telephone = form.cleaned_data['telephone']
 
             info = {
                 'name': name,
@@ -129,6 +132,8 @@ def new_client_admin(request):
                 'username': username,
                 'email': email,
                 'password': password,
+                'client_name': client_name,
+                'telephone': telephone,
                 'is_active': True,
             }
 
@@ -148,8 +153,6 @@ def new_client_admin(request):
         else:
             info['error'] = True
             info['form'] = form
-
-
 
     return render(request, 'new_client_admin.html', info)
 
@@ -209,18 +212,22 @@ def new_client(request):
 
 
 def stores(request):
-    client = request.session.get("client")
-    stores_list = {'data': get_stores(client),
-                   'customer_name': request.session.get("client_name")}
+    client = request.user.id
+
+    stores_list = {'data': get_stores(client)}
     if type(stores_list['data']) is not list:
         stores_list['data'] = []
+
+    print stores_list
+
     return render(request, 'stores.html', stores_list)
 
 
 def store(request, id_local=None):
-    id_customer = request.session.get("client")
+    print request.session.get()
+
     form = StoreForm()
-    info = {'customer_name': request.session.get("customer_name")}
+    info = {'client_name': request.session.get("customuser_ptr_id")}
     if request.method == 'POST':
         form = StoreForm(request.POST)
 
