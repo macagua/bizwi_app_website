@@ -489,7 +489,10 @@ def user_profile(request):
 
         elif "changePasswordForm" in request.POST:
             form = SetPasswordForm(request.user, request.POST)
+
             if form.is_valid():
+                print form
+
                 try:
                     new_password = form.cleaned_data['new_password1']
                     result = change_password_user(user_id, new_password)

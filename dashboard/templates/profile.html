@@ -37,14 +37,6 @@
         <div class="row">
             <h4>Edit Profile</h4>
 
-            <div class="col s12">
-                <ul class="tabs">
-                    <li class="tab col s4"><a class="active" href="#information"> Information </a></li>
-                    <li class="tab col s4"><a href="#password"> Password </a></li>
-                </ul>
-            </div>
-            <div class="col s12">&nbsp; </div>
-
             <div id="information" class="col s12">
                 <form class="col s12" method="post">
                     {% csrf_token %}
@@ -105,8 +97,8 @@
 
                 </form>
             </div>
-
             <div id="password" class="col s12">
+            <h4> Change Password</h4>
                 <form class="col s12" method="POST">
                     {% csrf_token %}
                     <div {% if form.new_password1.errors %}class="form-group has-error"
