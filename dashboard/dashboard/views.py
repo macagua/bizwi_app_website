@@ -9,8 +9,7 @@ from django.contrib.auth import logout as auth_logout
 from .settings import APP_OWNER, APP_NAME
 from .forms import AdminForm, ClientForm, StoreForm, BrandForm, EmployeeForm, SettingsEmployeeForm, CustomUserForm
 import pytz
-import json
-import sys
+from django.contrib.auth.forms import SetPasswordForm
 
 # Parameter basics
 DEFAULT_APP_CONTEXT = {'title': APP_OWNER, 'name': APP_NAME, }
@@ -446,6 +445,7 @@ def settings_employee(request):
     return render(request, 'settings_employee.html', info)
 
 
+# Edit profile user
 def user_profile(request):
     user_id = request.user.id
     user_info = get_info_user(user_id)
@@ -463,14 +463,14 @@ def user_profile(request):
                     last_name = form.cleaned_data['last_name']
                     gender = form.cleaned_data['gender']
                     birthday = form.cleaned_data['birthday']
+                    lang = form.cleaned_data['lang']
 
                     user_info['email'] = email
                     user_info['first_name'] = first_name
                     user_info['last_name'] = last_name
                     user_info['gender'] = gender
                     user_info['birthday'] = birthday
-
-                    print user_info
+                    user_info['lang'] = lang
 
                     result = save_info_user(user_id, user_info)
                     if result:
@@ -478,8 +478,6 @@ def user_profile(request):
                     else:
                         info['save_error'] = True
                         info['form'] = form
-
-                    print info
 
                 except Exception as e:
                     print e
@@ -494,7 +492,7 @@ def user_profile(request):
             if form.is_valid():
                 try:
                     new_password = form.cleaned_data['new_password1']
-                    result = change_password(client_id, new_password)
+                    result = change_password_user(user_id, new_password)
                     if result:
                         info['change_success'] = True
                 except Exception as e:

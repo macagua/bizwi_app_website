@@ -25,11 +25,12 @@ class AdminForm(forms.Form):
 
 
 class CustomUserForm(forms.Form):
-    first_name = forms.CharField(max_length=255, required=True)
-    last_name = forms.CharField(max_length=255, required=True)
-    email = forms.EmailField(required=True)
-    gender = forms.CharField(max_length=255, required=True)
-    birthday = forms.DateField()
+    first_name = forms.CharField(max_length=255)
+    last_name = forms.CharField(max_length=255)
+    email = forms.EmailField()
+    gender = forms.CharField(max_length=255)
+    birthday = forms.CharField()
+    lang = forms.CharField(max_length=2)
 
 
 class EmployeeForm(forms.Form):

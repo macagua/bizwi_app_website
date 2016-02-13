@@ -100,6 +100,13 @@ def change_password(employee_id, new_password):
     return result.status_code == 202
 
 
+# New method to change password of user (custom User ) --> ( no clients, no employee )
+def change_password_user(user_id, new_password):
+    url_path = 'user/set_pass' + "/" + str(user_id)
+    result = base_post(url_path, {'pass': new_password})
+    return result.status_code == 202
+
+
 def get_context(employee_id):
     url_path = 'get_employee_context/' + str(employee_id)
     result = base_request(url_path)

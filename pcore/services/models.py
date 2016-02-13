@@ -9,7 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 # Users Models
 class UserManager(BaseUserManager):
     def _create_user(self, username, email, password, is_staff, is_superuser, is_admin, **extra_fields):
-        now = datetime.now()
+        now = datetime.datetime.now()
         if not username:
             raise ValueError(_('The given username must be set'))
         email = self.normalize_email(email)

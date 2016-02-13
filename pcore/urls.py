@@ -1,10 +1,10 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
 from services import views
 from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^admin/', include(admin.site.urls)),
 
     url(r'^api/v1/auth/$', views.auth),
 
@@ -21,13 +21,17 @@ urlpatterns = [
     url(r'^api/v1/client/(?P<pk>[0-9]+)$', views.ClientDetail.as_view()),
 
     url(r'^api/v1/clients/$', views.ClientsList.as_view()),
-    #url(r'^api/v1/client/(?P<pk>[0-9]+)$', views.ClientDetail.as_view()),
+    # url(r'^api/v1/client/(?P<pk>[0-9]+)$', views.ClientDetail.as_view()),
+
+
+    # Section User ( custom User )
 
     url(r'^api/v1/user/(?P<user_id>\d+)$', views.custom_user),
+    url(r'^api/v1/user/set_pass/(?P<id>\d+)$', views.set_password),
+
+
 
     url(r'^api/v1/client/(?P<client_id>\d+)$', views.client),
-
-
 
     # Create user admin of client
     url(r'^api/v1/create_client_admin/$', views.create_client_admin),

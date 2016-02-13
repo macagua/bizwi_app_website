@@ -51,7 +51,7 @@ def custom_user(request, user_id):
             email = request.data.get('email')
             first_name = request.data.get('first_name')
             last_name = request.data.get('last_name')
-            lang = request.data.get('language')
+            lang = request.data.get('lang')
             checkpass = bool(request.data.get('checkpass'))
             password = request.data.get('password')
 
@@ -70,6 +70,24 @@ def custom_user(request, user_id):
     except Exception as e:
         print e
         return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+""""
+    My zone
+"""""
+
+
+@api_view(['POST'])
+def set_password(request, id):
+    if request.method == 'POST':
+        try:
+            user = CustomUser.objects.get(id=id)
+            new_password = request.data.get('pass')
+            user.set_password(new_password)
+            user.save()
+            return Response(status=status.HTTP_202_ACCEPTED)
+        except CustomUser.DoesNotExist:
+            return HttpResponse(status=404)
 
 
 @api_view(['GET', 'POST'])
