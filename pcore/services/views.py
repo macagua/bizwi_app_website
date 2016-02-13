@@ -191,6 +191,28 @@ def get_employee_context(request, id):
         return HttpResponse(status=404)
 
 
+@api_view(['GET', 'POST'])
+def employee(request, id=None):
+    try:
+        employee = Employees.objects.get(id=id)
+    except Employees.DoesNotExist:
+        return HttpResponse(status=404)
+
+    if request.method == 'GET':
+        serializer = EmployeeSerializer(employee)
+        data = serializer.data
+        return Response(data)
+    elif request.method == 'POST':
+
+        email = request.DATA.get('email')
+
+        try:
+            employee.email = email
+            employee.save()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        except Exception as e:
+            print e
+            return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 # Countries,
 class CountriesList(generics.ListCreateAPIView):
