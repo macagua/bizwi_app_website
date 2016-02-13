@@ -1,0 +1,277 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html>
+<!--================================================================================
+Item Name: BiZWi Dashboard
+Version: 1.0
+(c)2016 BIZWI SISTEMAS INFORMATICOS SL, All rights reserved.
+================================================================================ -->
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <!--External -->
+    <link type="text/css" rel="stylesheet"
+          href="http://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css"
+          media="screen,projection"/>
+    <link type="text/css" rel="stylesheet"
+          href="http://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.10/css/perfect-scrollbar.min.css"
+          media="screen,projection">
+    <link type="text/css" rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/chartist/0.9.5/chartist.min.css"
+          media="screen,projection">
+
+    <!--Internal -->
+    <!-- <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/materialize.min.css"  media="screen,projection"/> -->
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/style.css" media="screen,projection"/>
+    <!--<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}js/plugins/perfect-scrollbar/perfect-scrollbar.min.css" media="screen,projection"> -->
+    <!--<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}js/plugins/chartist/chartist.min.css" media="screen,projection">-->
+    <!--Let browser know website is optimized for mobile-->
+    <!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
+    <!--[if IE]><link rel="shortcut icon" href="images/favicon.ico"><![endif]-->
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
+    <!--[if IE]><link rel="shortcut icon" href="images/favicon.ico"><![endif]-->
+    <!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. -->
+    <link rel="apple-touch-icon-precomposed" href="{{ STATIC_URL }}images/apple-touch-icon-precomposed.png">
+    <!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
+    <link rel="icon" href="{{ STATIC_URL }}images/favicon.ico">
+    <title>{{ COMMERCIAL_NAME }}</title>
+    {% block css %}{% endblock %}
+
+</head>
+
+<body class="">
+<header>
+    <!-- Dropdowns -->
+    <!-- Dropdown for Customer  -->
+    <ul id="dropdown1" class="dropdown-content">
+        <li><a href="#"><i
+                class="material-icons left">person_outline</i>{% trans "Edit profile" %}</a></li>
+        <li><a href="#"><i class="material-icons left">settings</i>{% trans "Settings" %}</a>
+        </li>
+        <li class="divider"></li>
+        <li><a href="{% url "logout" %}"><i class="material-icons left">exit_to_app</i>{% trans "Logout" %}</a></li>
+    </ul>
+    <!-- Dropdown for Messages  -->
+    <ul id="dropdown2" class="dropdown-content">
+        <li><a href="#">{% trans "Compose" %}</a></li>
+        <li><a href="#">{% trans "Inbox" %}</a></li>
+        <li><a href="#">{% trans "Sent" %}</a></li>
+    </ul>
+
+    <!-- Dropdown for Birthdays  -->
+    <ul id="dropdown3" class="dropdown-content">
+        {% for birthday in birthdays %}
+            <li>
+                <a href="#">
+                    <div>
+                        <img src="{{ birthday.photo_url }}" height="32" width="32">
+                        <span class="text-center"><strong>{{ birthday.first_name }} {{ birthday.last_name }}</strong></span>
+                    </div>
+                </a>
+            </li>
+            <li class="divider"></li>
+        {% empty %}
+            <li style="text-align: center; color: #AAA;">
+                <span>{% trans "No birthdays today" %}</span>
+            </li>
+            <li class="divider"></li>
+        {% endfor %}
+        <li>
+            <a class="text-center" href="#">
+                <strong>{% trans "See upcoming birthdays" %} ({{ next_birthdays_count }})</strong>
+                <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+    </ul>
+    <!-- Dropdown for Promotions  -->
+    <ul id="dropdown4" class="dropdown-content">
+        {% for promotion_location in promotion_requests %}
+            <li style="text-align: center;">
+                <div data-id="{{ promotion_location.id }}" data-name="{{ promotion_location.fullname }}"
+                     data-promo_id="{{ promotion_location.promotion }}" class="requestConfirmations">
+                    <span class="text-center">  {{ promotion_location.fullname }}</span>
+                    <br>
+                    <button type="button" class="btn btn-success btn-sm approval_button">
+                        {% csrf_token %}
+                        {% trans "Approve" %}
+                    </button>
+                    <button type="button" class="btn btn-danger btn-sm denial_button">
+                        {% trans "Deny" %}
+                    </button>
+                </div>
+            </li>
+            <li class="divider"></li>
+        {% empty %}
+            <li style="text-align: center; color: #AAA;">
+                <span>{% trans "No external promotion requests pending" %}</span>
+            </li>
+            <li class="divider"></li>
+        {% endfor %}
+        <!-- Hidden li for refresh method -->
+        <li style="text-align: center; color: #AAA; display:none;" id="refreshLi" hidden>
+            <span>{% trans "No external promotion requests pending" %}</span>
+        </li>
+        <li class="divider" id="refreshDivider" style="display:none;"></li>
+        <li style="text-align: center;">
+            <span class="text-center"><strong>{% trans "Pending requests list" %}</strong></span>
+        </li>
+    </ul>
+    <!-- /Dropdowns-->
+    <!-- Main Nav-->
+    <nav class="top-nav">
+        <div class="nav-wrapper blue-grey darken-4">
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a class="dropdown-button" data-activates="dropdown4" href="#"><i class="material-icons left">loyalty</i>Promotions<span
+                        class="badge">({{ promotion_requests|length }})</span></a></li>
+                <li><a class="dropdown-button" data-activates="dropdown3" href="#"><i
+                        class="material-icons left">cake</i>Birthdays<span class="badge">({{ birthdays|length }})</span></a>
+                </li>
+
+                <li><a class="dropdown-button" data-activates="dropdown2" href="#"><i class="material-icons left">message</i>Messages<span
+                        class="badge">({{ messages_count }})</span></a></li>
+
+                <li><a class="dropdown-button" data-activates="dropdown1" href="#"><i class="material-icons right">person</i>{{ client_name }}
+                </a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- /Main Nav-->
+
+    <ul style="left: 0px;" id="nav-mobile" class="side-nav fixed">
+        <li class="logo"><a id="logo-container" class="brand-logo valign-wrapper" href="{% url "home" %}">
+            <object id="front-page-logo" class="valign" data="{{ STATIC_URL }}images/biz_horiz_high.png"
+                    type="image/png"></object>
+        </a></li>
+
+                    <div style="" class="collapsible-body" style="display: block;">
+                        <ul>
+                            <li><a href="{% url "stores" %}" class="collapsible-header"><i class="material-icons">store</i>Stores</a>
+                            </li>
+                            <li><a href="{% url "brands" %}" class="collapsible-header"><i
+                                    class="material-icons">local_offer</i>Brands</a></li>
+                            <li><a href="{% url "employees_list" %}" class="collapsible-header"><i
+                                    class="active material-icons">group</i>Employees</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+    </ul>
+
+    <!-- Left Nav-->
+    <ul style="left: 0px;" id="nav-mobile" class="side-nav fixed">
+        <li class="logo"><a id="logo-container" class="brand-logo valign-wrapper" href="/">
+            <object id="front-page-logo" class="valign" data="{{ STATIC_URL }}images/Logo_Bizwi_head.png"
+                    type="image/png"></object>
+        </a></li>
+        <li class="bold no-padding active"><a href="/"
+                                              class="waves-effect waves-teal collapsible-header"><i
+                class="material-icons">dashboard</i>{% trans "Dashboard" %}</a></li>
+        <li class="bold no-padding">
+          <ul class="collapsible collapsible-accordion">
+            <li class="bold"><a class="collapsible-header waves-effect waves-teal"><i class="material-icons">work</i>{% trans "Management" %}</a>
+              <div style="" class="collapsible-body" style="display: block;">
+                <ul>
+                  <li><a href="{% url "stores" %}" class="collapsible-header"><i class="material-icons">store</i>{% trans "Stores" %}</a></li>
+                  <li><a href="#" class="collapsible-header"><i class="material-icons">group</i>{% trans "Employees" %}</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li class="bold no-padding"><a href="{% url "statistics" %}" class="waves-effect waves-teal collapsible-header"><i
+                class="material-icons">assessment</i>{% trans "Statistics" %}</a></li>
+        <li class="bold no-padding"><a href="{% url "sensors" %}" class="waves-effect waves-teal collapsible-header"><i
+                class="material-icons">settings_input_antenna</i>{% trans "Sensors" %}</a></li>
+        <li class="bold no-padding">
+            <ul class="collapsible collapsible-accordion">
+                <li class="bold"><a class="collapsible-header waves-effect waves-teal"><i
+                        class="material-icons">message</i>{% trans "Messages" %}</a>
+
+                    <div style="" class="collapsible-body">
+                        <ul>
+                            <li><a href="#" class="collapsible-header"><i
+                                    class="material-icons">create</i>{% trans "Compose" %}</a></li>
+                            <li><a href="#" class="collapsible-header"><i
+                                    class="material-icons">inbox</i>{% trans "Inbox" %}</a></li>
+                            <li><a href="#" class="collapsible-header"><i
+                                    class="material-icons">send</i>{% trans "Sent" %}</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </li>
+        <li class="bold no-padding"><a href="{% url "promotions" %}" class="waves-effect waves-teal collapsible-header"><i
+                class="material-icons">loyalty</i>{% trans "Promotions" %}</a></li>
+    </ul>
+    <!-- /Left Nav-->
+
+</header>
+<main>
+     {% block content %}{% endblock %}
+</main>
+
+<footer class="page-footer blue-grey darken-4">
+    <div class="footer-copyright blue-grey darken-3">
+        <div class="container">
+            &copy; 2016 BIZWI SISTEMAS INFORMATICOS SL, All rights reserved.
+        </div>
+    </div>
+</footer>
+<!--   <script type="text/javascript">
+       $(document).ready(function(){
+         $(".button-collapse").sideNav();
+         $('.collapsible').collapsible();
+         $(".dropdown-button").dropdown();
+       });
+   </script> -->
+
+<!-- ================================================
+Scripts
+================================================ -->
+<!--External -->
+<!--Import jQuery before materialize.js-->
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+<script type="text/javascript"
+        src="http://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+<script type="text/javascript"
+        src="http://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.10/js/min/perfect-scrollbar.min.js"></script>
+<!--ChartJS Script -->
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+<!--
+Chartist Script & Data
+<script type="text/javascript" src="js/plugins/chartist/chartist.min.js"></script>
+<script type="text/javascript" src="js/plugins/chartist/chartist-data.js"></script>
+-->
+<!--Sparkline Chart Script & Data-->
+<script type="text/javascript"
+        src="http://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
+
+
+<!--Internal -->
+<!--Import jQuery before materialize.js-->
+<!--<script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>-->
+<!--<script type="text/javascript" src="js/materialize.min.js"></script>-->
+<script type="text/javascript" src="{{ STATIC_URL }}js/scripts.js"></script>
+<!--<script type="text/javascript" src="js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>-->
+<!--ChartJS Script & Data-->
+<!--<script type="text/javascript" src="js/plugins/chartjs/Chart.min.js"></script>-->
+<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/chartjs/chartjs-data.js"></script>
+<!--Chartist Script & Data-->
+<!--<script type="text/javascript" src="js/plugins/chartist/chartist.min.js"></script>-->
+<!--<script type="text/javascript" src="js/plugins/chartist/chartist-data.js"></script>-->
+
+<!--Sparkline Chart Script & Data-->
+<!--<script type="text/javascript" src="js/plugins/sparkline/jquery.sparkline.min.js"></script>-->
+<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/sparkline/sparkline-data.js"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

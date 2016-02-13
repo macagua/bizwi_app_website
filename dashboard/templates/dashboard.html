@@ -1,0 +1,369 @@
+{% extends "base.html" %}
+{% load jsonify %}
+{% load i18n %}
+{% load tz %}
+
+{% block css %}
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+    <style>
+        .panel-purple {
+            border-color: #7A378B;
+            background-color: #7A378B;
+            color: #fff;
+        }
+        .panel-purple:hover {
+            background-color: #945EA2;
+            border-color: #945EA2;
+        }
+        .panel-orange {
+            border-color: #EE7621;
+            background-color: #EE7621;
+            color: #fff;
+        }
+        .panel-orange:hover {
+            border-color: #f1914d;
+            background-color: #f1914d;
+        }
+        .panel-blue {
+            border-color: #337ab7;
+            background-color: #337ab7;
+            color: #fff;
+        }
+        .panel-blue:hover {
+            border-color: #5b94c5;
+            background-color: #5b94c5;
+        }
+        .panel-brick {
+            border-color: #d9534f;
+            background-color: #d9534f;
+            color: #fff;
+        }
+        .panel-brick:hover {
+            border-color: #e07572;
+            background-color: #e07572;
+        }
+    </style>
+{% endblock %}
+
+
+{% block content %}
+
+        <div class="container" style="width: 98%; max-width: 1500px;">
+        <!--chart dashboard start-->
+        <div id="chart-dashboard">
+            <div class="row">
+                <div class="col s12 m8 l8">
+                    <div class="card" style="overflow: hidden;">
+                        <div class="card-content waves-effect waves-block waves-light cyan darken-2">
+                            <div class="">
+                                <div>
+                                    <span class="chart-title white-text">Pedestrians</span>
+
+                                    <div class="chart-revenue cyan darken-2 white-text">
+                                        <p class="chart-revenue-total">4,500.85</p>
+
+                                        <p class="chart-revenue-per"><i class="mdi-navigation-arrow-drop-up"></i> 21.80
+                                            %</p>
+                                    </div>
+                                    <div class="switch chart-revenue-switch right">
+                                        <label class="cyan-text text-lighten-5">
+                                            Monthly
+                                            <input type="checkbox">
+                                            <span class="lever"></span> Weekly
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="trending-line-chart-wrapper">
+                                    <canvas id="trending-line-chart" height="70"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <a class="btn-floating btn-move-up waves-effect waves-light darken-2 right"><i
+                                    class="mdi-content-add activator"></i></a>
+
+                            <div class="col s12 m3 l3">
+                                <div id="doughnut-chart-wrapper">
+                                    <canvas id="doughnut-chart" height="200"></canvas>
+                                    <div class="doughnut-chart-status">4500
+                                        <p class="ultra-small center-align">Visitors</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col s12 m2 l2">
+                                <ul class="doughnut-chart-legend">
+                                    <li class="android ultra-small"><span class="legend-color"></span>Android</li>
+                                    <li class="ios ultra-small"><span class="legend-color"></span> iOS</li>
+                                    <li class="windows ultra-small"><span class="legend-color"></span> Windows</li>
+                                    <li class="other ultra-small"><span class="legend-color"></span> Windows</li>
+                                </ul>
+                            </div>
+                            <div class="col s12 m5 l6">
+                                <div class="trending-bar-chart-wrapper">
+                                    <canvas id="trending-bar-chart" height="90"></canvas>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">Pedestrians per Month <i
+                                    class="mdi-navigation-close right"></i></span>
+                            <table class="responsive-table">
+                                <thead>
+                                <tr>
+                                    <th data-field="id">ID</th>
+                                    <th data-field="month">Month</th>
+                                    <th data-field="item-sold"># of Pedestrians</th>
+                                    <th data-field="item-price">% Change</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>January</td>
+                                    <td>122</td>
+                                    <td>+11</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>February</td>
+                                    <td>122</td>
+                                    <td>-3</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>March</td>
+                                    <td>122</td>
+                                    <td>+30</td>
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>April</td>
+                                    <td>122</td>
+                                    <td>-1</td>
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>May</td>
+                                    <td>122</td>
+                                    <td>+40</td>
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>June</td>
+                                    <td>122</td>
+                                    <td>-10</td>
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>July</td>
+                                    <td>122</td>
+                                    <td>+100</td>
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td>August</td>
+                                    <td>122</td>
+                                    <td>+100</td>
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td>Septmber</td>
+                                    <td>122</td>
+                                    <td>+100</td>
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td>Octomber</td>
+                                    <td>122</td>
+                                    <td>+100</td>
+                                </tr>
+                                <tr>
+                                    <td>11</td>
+                                    <td>November</td>
+                                    <td>122</td>
+                                    <td>+100</td>
+                                </tr>
+                                <tr>
+                                    <td>12</td>
+                                    <td>December</td>
+                                    <td>122</td>
+                                    <td>+100</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="col s12 m4 l4">
+                    <div class="card">
+                        <div class="card-content teal darken-2 waves-effect waves-block waves-light">
+                            <div class="">
+                                <p class="margin white-text">Social networks</p>
+                                <canvas id="trending-radar-chart" height="114"></canvas>
+                            </div>
+                        </div>
+                        <div class="card-content  teal darken-4">
+                            <a class="btn-floating btn-move-up waves-effect waves-light darken-2 right"><i
+                                    class="mdi-content-add activator"></i></a>
+
+                            <div class="line-chart-wrapper">
+                                <p class="margin white-text">Daily visits</p>
+                                <canvas id="line-chart" height="114"></canvas>
+                            </div>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">Last Week visits <i
+                                    class="mdi-navigation-close right"></i></span>
+                            <table class="responsive-table">
+                                <thead>
+                                <tr>
+                                    <th data-field="country-name">Day</th>
+                                    <th data-field="item-sold"># of Visits</th>
+                                    <th data-field="total-profit">% Change</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>Monday</td>
+                                    <td>65</td>
+                                    <td>+5</td>
+                                </tr>
+                                <tr>
+                                    <td>Tuesday</td>
+                                    <td>76</td>
+                                    <td>-5</td>
+                                </tr>
+                                <tr>
+                                    <td>Wednesday</td>
+                                    <td>65</td>
+                                    <td>+55</td>
+                                </tr>
+                                <tr>
+                                    <td>Thursday</td>
+                                    <td>76</td>
+                                    <td>-5</td>
+                                </tr>
+                                <tr>
+
+                                    <td>Friday</td>
+                                    <td>65</td>
+                                    <td>+5</td>
+                                </tr>
+                                <tr>
+                                    <td>Saturday</td>
+                                    <td>76</td>
+                                    <td>-5</td>
+                                </tr>
+                                <tr>
+                                    <td>Sunday</td>
+                                    <td>65</td>
+                                    <td>+5</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--chart dashboard end-->
+        <!--card stats start-->
+        <div id="card-stats">
+            <div class="row">
+                <div class="col s12 m6 l3">
+                    <div class="card">
+                        <div class="card-content green darken-1 white-text">
+                            <p class="card-title"><i class="material-icons">loyalty</i> Active Promotions</p>
+                            <h4 class="card-stats-number">16</h4>
+
+                            <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> 15% <span
+                                    class="green-text text-lighten-5">last month</span>
+                            </p>
+                        </div>
+                        <div class="card-action green darken-2">
+                            <div id="active-promotions"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m6 l3">
+                    <div class="card">
+                        <div class="card-content purple darken-1 white-text">
+                            <p class="card-title"><i class="material-icons">whatshot</i></i> Promotional Impact</p>
+                            <h4 class="card-stats-number">63</h4>
+
+                            <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> 70% <span
+                                    class="purple-text text-lighten-5">from yesterday</span>
+                            </p>
+                        </div>
+                        <div class="card-action purple darken-2">
+                            <div id="promotion-impact"></div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m6 l3">
+                    <div class="card">
+                        <div class="card-content blue-grey darken-1 white-text">
+                            <p class="card-title"><i class="material-icons">local_activity</i> Promotion Checkins</p>
+                            <h4 class="card-stats-number">42</h4>
+
+                            <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> 80% <span
+                                    class="blue-grey-text text-lighten-5">from yesterday</span>
+                            </p>
+                        </div>
+                        <div class="card-action blue-grey darken-2">
+                            <div id="promotion-checkins"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m6 l3">
+                    <div class="card">
+                        <div class="card-content pink lighten-1 white-text">
+                            <p class="card-title"><i class="material-icons">loyalty</i> Average Visitors</p>
+                            <h4 class="card-stats-number">1806</h4>
+
+                            <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-down"></i> 3% <span
+                                    class="deep-purple-text text-lighten-5">from last week</span>
+                            </p>
+                        </div>
+                        <div class="card-action  pink darken-2">
+                            <div id="average-visitors"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!--card stats end-->
+    </div>
+
+
+{% endblock %}
+
+{% block scripts %}
+    <script type='text/javascript'>
+        var totalusers = {{ unique_users }} + {{ recurring }};
+        var unique = ({{ unique_users }} * 100) / totalusers;
+        var recurring = ({{ recurring }} * 100) / totalusers;
+
+        var totalvisitors = {{ pedestrians }} + {{ visitors }};
+        var pedestrians = ({{ pedestrians }} * 100) / totalvisitors;
+        var visitorsdata = ({{ visitors }} * 100) / totalvisitors;
+
+        var users = [
+            {label: '{% trans "Unique users" %}', value: unique.toFixed(2)},
+            {label: '{% trans "Recurring users" %}', value:recurring.toFixed(2)}
+        ];
+        var visitors = [
+            {label: '{% trans "Pedestrians" %}', value:pedestrians.toFixed(2)},
+            {label: '{% trans "Visitors" %}', value:visitorsdata.toFixed(2)}
+        ];
+    </script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+{% endblock %}

@@ -1,0 +1,134 @@
+{% extends "base_register.html" %}
+{% load i18n %}
+{% load tz %}
+
+
+{% block css %}
+
+{% endblock %}
+
+
+{% block content %}
+
+    {% if form.non_field_errors %}
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            {{ form.non_field_errors }}
+        </div>
+    {% elif error %}
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            {% if error_string %}
+                {{ error_string }}
+            {% else %}
+                {% trans "Failed to save your data. Try again later." %}
+            {% endif %}
+        </div>
+    {% endif %}
+
+    <div class="row valign">
+        <div class="col s12 m2 l2 hide-on-small-only"><p>&nbsp;</p></div>
+        <div class="col s12 m8 l8 center-align white">
+            <div class="container">
+                <div class="row">
+
+                    <form class="col s12" method="POST">
+                        {% csrf_token %}
+
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">shop</i>
+                                <input id="inputClientName" name="client_name" type="text" class="validate"
+                                       value="{{ form.client_name.value|default_if_none:"" }}"
+                                       data-error="{% trans "Complete this field" %}"
+                                       required>
+                                <label for="inputClientName">Client Name</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix"> phone</i>
+                                <input id="inputTelephone" name="telephone" type="text" class="validate"
+                                       value="{{ form.telephone.value|default_if_none:"" }}"
+                                       data-error="{% trans "Complete this field" %}"
+                                       required>
+                                <label for="inputTelephone">Telephone</label>
+                            </div>
+                        </div>
+                        <h5>Contact User Information</h5>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <i class="material-icons prefix">account_circle</i>
+                                <input id="inputName" name="name" type="text" class="validate"
+                                       value="{{ form.name.value|default_if_none:"" }}"
+                                       data-error="{% trans "Complete this field" %}"
+                                       required>
+                                <label for="inputName">First Name</label>
+                            </div>
+
+                            <div class="input-field col s6">
+                                <input id="inputLastName" name="lastname" type="text" class="validate"
+                                       value="{{ form.lastname.value|default_if_none:"" }}"
+                                       data-error="{% trans "Complete this field" %}"
+                                       required>
+                                <label for="inputLastName">Last Name</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">email</i>
+                                <input id="inputEmail" name="email" type="email" class="validate"
+                                       value="{{ form.email.value|default_if_none:"" }}">
+                                <label for="inputEmail">Email</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">account_box</i>
+                                <input id="inputUserName" name="username" type="text" class="validate"
+                                       value="{{ form.username.value|default_if_none:"" }}"
+                                       data-error="{% trans "Complete this field" %}"
+                                       required>
+                                <label for="inputUserName">Username</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">vpn_key</i>
+                                <input id="inputPassword1" name="password1" type="password" class="validate">
+                                <label for="inputPassword1">Password</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <i class="material-icons prefix">vpn_key</i>
+                                <input id="inputPassword2" name="password2" type="password" class="form-control">
+                                <label for="inputPassword2">Verify password</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <button class="btn waves-effect waves-light" type="reset" onclick="history.back(-1)" name="action">Back
+                                        <i class="material-icons left">backspace</i>
+                                </button>
+                                <button class="btn waves-effect waves-light" type="submit">Submit
+                                       <i class="material-icons right">send</i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m2 l2 hide-on-small-only"><p>&nbsp;</p></div>
+    </div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+{% endblock %}
