@@ -1,0 +1,319 @@
+
+  <!DOCTYPE html>
+  <html lang="en">
+
+<!--================================================================================
+  Item Name: BiZWi Dashboard
+  Version: 1.0
+  (c)2016 BIZWI SISTEMAS INFORMATICOS SL, All rights reserved. 
+================================================================================ -->
+
+    <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="description" content="">
+      <meta name="keywords" content="">
+      <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="css/style.css"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="js/plugins/perfect-scrollbar/perfect-scrollbar.min.css" media="screen,projection">
+      <!-- CSS for plugins -->
+      <link type="text/css" rel="stylesheet" href="js/plugins/jquery-minicolors/jquery.minicolors.css" media="screen,projection">
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
+      <!--[if IE]><link rel="shortcut icon" href="images/favicon.ico"><![endif]-->
+
+      <!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. --> 
+      <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon-precomposed.png">
+
+      <!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
+      <link rel="icon" href="images/favicon.ico">
+      <title>BiZWi - Settings</title>
+    </head>
+
+    <body class="">
+  <!-- Start Page Loading -->
+
+  <!-- End Page Loading -->
+
+  <header>
+  <!-- Dropdowns -->
+  <!-- Dropdown for Customer  -->
+  <ul id="dropdown1" class="dropdown-content">
+    <li><a href="profile.html"><i class="material-icons left">person_outline</i>Edit Profile</a></li>
+    <li><a href="#!"><i class="material-icons left">settings</i>Settings</a></li>
+    <li class="divider"></li>
+    <li><a href="#!"><i class="material-icons left">exit_to_app</i>Logout</a></li>
+  </ul>
+  <!-- Dropdown for Messages  -->
+  <ul id="dropdown2" class="dropdown-content">
+    <li><a href="#!"><i class="material-icons left">create</i>Compose</a></li>
+    <li><a href="#!"><i class="material-icons left">inbox</i>Inbox</a></li>
+    <li><a href="#!"><i class="material-icons left">send</i>Sent</a></li>
+  </ul>
+  <!-- Dropdown for Birthdays  -->
+  <ul id="dropdown3" class="dropdown-content">
+    <li>
+      <div class="row valign-wrapper" style="padding: 14px 16px; margin-bottom: 0px;">
+        <div class="col s2">
+          <img src="images/yuna.jpg" alt="John Doe" class="circle responsive-img">
+        </div>
+        <div class="col s10">
+          <span class="black-text valign">Today is John Doe Birthday!</span>
+        </div>
+      </div>      
+    </li>
+    <li><a href="#!"><i class="material-icons left">cake</i>See upcoming birthdays</a></li>
+  </ul>
+  <!-- Dropdown for Promotions  -->
+  <ul id="dropdown4" class="dropdown-content">
+    <li><a href="#!">No external promotion requests pending</a></li>
+    <li><a href="#!">Pending request list</a></li>
+  </ul>
+  <!-- /Dropdowns -->
+  <nav class="top-nav">
+      <div class="nav-wrapper blue-grey darken-4">
+        <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+        <a href="#!" class="page-title">Settings</a>
+        <ul class="right hide-on-med-and-down">
+          <li><a class="dropdown-button" href="promotions.html" data-activates="dropdown4"><i class="material-icons left">loyalty</i>Promotions</a></li>
+          <li><a class="dropdown-button" href="birthdays.html" data-activates="dropdown3"><i class="material-icons left">cake</i>Birthdays</a></li>
+          <li><a class="dropdown-button" href="messages.html" data-activates="dropdown2"><i class="material-icons left">message</i>Messages <span class="new badge">4</span></a></li>
+          <li><a class="dropdown-button" href="profile.html" data-activates="dropdown1"><i class="material-icons right">person</i>MyUsername</a></li>
+        </ul>
+      </div>
+  </nav>
+      <ul style="left: 0px;" id="nav-mobile" class="side-nav fixed">
+        <li class="logo"><a id="logo-container" class="brand-logo valign-wrapper" href="dashboard.html">
+        <object id="front-page-logo" class="valign" data="images/Logo_Bizwi_head.png" type="image/png"></object></a></li>
+        <li class="bold no-padding"><a href="dashboard.html" class="waves-effect waves-teal collapsible-header"><i class="material-icons">dashboard</i>Dashboard</a></li>
+        <li class="bold no-padding">
+          <ul class="collapsible collapsible-accordion">
+            <li class="bold"><a class="collapsible-header waves-effect waves-teal"><i class="material-icons">work</i>Management</a>
+              <div style="" class="collapsible-body" style="display: block;">
+                <ul>
+                  <li><a href="brands.html" class="collapsible-header"><i class="material-icons">local_offer</i>Brands</a></li>
+                  <li><a href="stores.html" class="collapsible-header"><i class="material-icons">store</i>Stores</a></li>
+                  <li><a href="employees.html" class="collapsible-header"><i class="material-icons">group</i>Employees</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li class="bold no-padding"><a href="statistics.html" class="waves-effect waves-teal collapsible-header"><i class="material-icons">assessment</i>Statistics</a></li>
+        <li class="bold no-padding"><a href="sensors.html" class="waves-effect waves-teal collapsible-header"><i class="material-icons">settings_input_antenna</i>Sensors</a></li>
+        <li class="bold no-padding">
+          <ul class="collapsible collapsible-accordion">
+            <li class="bold"><a class="collapsible-header waves-effect waves-teal"><i class="material-icons">message</i>Messages</a>
+              <div style="" class="collapsible-body">
+                <ul>
+                  <li><a href="messages_compose.html" class="collapsible-header"><i class="material-icons">create</i>Compose</a></li>
+                  <li><a href="messages_inbox.html" class="collapsible-header"><i class="material-icons">inbox</i>Inbox</a></li>
+                  <li><a href="messages_sent.html" class="collapsible-header"><i class="material-icons">send</i>Sent</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li class="bold no-padding"><a href="promotions.html" class="waves-effect waves-teal collapsible-header"><i class="material-icons">loyalty</i>Promotions</a></li>
+      </ul>
+    </header>
+
+    <main>
+    <div class="container">
+      <div class="row">
+      <h3>Edit your settings</h3>
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="client_name" type="text" class="validate">
+              <label for="client_name">Client Name</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input disabled id="code_crm " type="text">
+              <label for="code_crm ">Client CRM Code</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="web_site" type="text" class="validate" value="http://">
+              <label for="web_site">Website address</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="telephone" type="text" class="validate">
+              <label for="telephone">Telephone</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <textarea id="description" class="materialize-textarea"></textarea>
+              <label for="description">Description</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="country" type="text" class="validate">
+              <label for="country">Country</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="city" type="text" class="validate">
+              <label for="city">City</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="address" type="text" class="validate">
+              <label for="address">Address</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+                  <select>
+                  <option value="" disabled selected>Select language</option>
+                  <option value="1">English</option>
+                  <option value="2">Spanish</option>
+                </select>
+                <label>Language</label>
+            </div>
+          </div>
+          <div id="timezone"><select></select></div>
+          <div class="row">
+            <h4>Customize with Your Brand&#39;s Identity</h4>
+            <div class="input-field col s12 center-align">
+              <img class="file-img" src="http://placehold.it/250x250&amp;text=no+image" style="max-height:100%; max-width:100%;">
+              <div class="file-field input-field">
+                <div class="btn">
+                  <span>Upload Logo</span>
+                  <input type="file">
+                </div>
+                <div class="btn" style="margin-left: 5px;">
+                  <span>Remove Logo</span>
+                  <input type="file">
+                </div>
+                <div class="file-path-wrapper">
+                  <input class="file-path validate" type="text">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s6">
+              <label for="background_color">Background color</label>
+              <input id="background_color" type="text" class="minicolors" data-control="wheel" value="#263238">  
+            </div>
+            <div class="col s6">
+              <label for="foreground_color">Foreground color</label>
+              <input id="foreground_color" type="text" class="minicolors" data-control="wheel" value="#000000">  
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12 center-align">
+              <img class="file-img" src="http://placehold.it/250x250&amp;text=no+image" style="max-height:100%; max-width:100%;">
+              <div class="file-field input-field">
+                <div class="btn">
+                  <span>Upload Background Image</span>
+                  <input type="file">
+                </div>
+                <div class="btn" style="margin-left: 5px;">
+                  <span>Remove Image</span>
+                  <input type="file">
+                </div>
+                <div class="file-path-wrapper">
+                  <input class="file-path validate" type="text">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <select id="fonts">
+                <option value="" selected >Default: Roboto</option>
+                <option value="Chelsea Market">Chelsea Market</option>
+                <option value="Droid Serif">Droid Serif</option>
+                <option value="Ruluko">Ruluko</option>
+                <option value="Ruda">Ruda</option>
+                <option value="Magra">Magra</option>
+                <option value="Esteban">Esteban</option>
+                <option value="Lora">Lora</option>
+                <option value="Jura">Jura</option>
+              </select>
+              <label>Homepage font</label>
+            </div>
+          </div>
+          <div class="row">
+          <h4>Setup Your Brand&#39;s Social Networks</h4>
+            <div class="input-field col s12">
+              <input id="facebook_fan_page" type="text" class="validate" placeholder="https://www.facebook.com/BizWi">
+              <label for="facebook_fan_page">Facebook Page address</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="twitter_account" type="text" class="validate" placeholder="@BizWi">
+              <label for="twitter_account">Twitter Username</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="gplus_id" type="text" class="validate" placeholder="https://plus.google.com/+BizWi">
+              <label for="gplus_id">Google Plus ID</label>
+            </div>
+          </div>
+        </form>
+      <div class="row">
+        <div class="input-field col s6 l6">
+          <button class="btn waves-effect waves-light" type="submit" name="action">Back
+            <i class="material-icons left">backspace</i>
+          </button>
+        </div>
+        <div class="input-field col s6 l6 right-align">
+          <button class="btn waves-effect waves-light" type="submit" name="action">Update
+            <i class="material-icons right">send</i>
+          </button>
+        </div>
+      </div>
+      </div>
+    </div>
+    </main>
+    
+    <footer class="page-footer blue-grey darken-4">
+      <div class="footer-copyright blue-grey darken-3">
+        <div class="container">
+        &copy; 2016 BIZWI SISTEMAS INFORMATICOS SL, All rights reserved. 
+        </div>
+      </div>
+    </footer>
+    
+    <!-- ================================================
+    Scripts
+    ================================================ -->
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+      <script type="text/javascript" src="js/materialize.min.js"></script>
+      <script type="text/javascript" src="js/scripts.js"></script>
+      <script type="text/javascript" src="js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+      <!-- Custom Scripts-->
+      <script type="text/javascript" src="js/plugins/jquery-minicolors/jquery.minicolors.min.js"></script>
+      <script type="text/javascript" src="js/plugins/timezones/timezones.full.min.js"></script>
+      <script type="text/javascript">
+        // Font Selector
+        $('.minicolors').minicolors({
+          control: $(this).attr('data-control') || 'wheel',
+          letterCase: 'uppercase',
+          opacity: false,
+          theme: 'bootstrap',          
+        });
+        //Timezone Selector
+        $('#timezone select').timezones();
+
+      </script>
+  </body>
+</html>
