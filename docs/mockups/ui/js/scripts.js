@@ -13,4 +13,5 @@ $(document).ready(function(){
       hiddenName: true
     });
   $('select').material_select();
+  
 });
