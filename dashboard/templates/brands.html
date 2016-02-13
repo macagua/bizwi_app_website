@@ -6,145 +6,138 @@
           href="{{ STATIC_URL }}js/plugins/materialize-datatables/css/dataTables.materialize.css">
 {% endblock %}
 {% block content %}
-    <div class="container">
-        <h4>Manage Brands</h4>
-        <div class="row">
-            <div class="col s12">
-                <a class="waves-effect waves-light btn modal-trigger" href="#create-brand"><i
-                        class="material-icons right">local_offer</i>Create new brand</a>
-                <!-- Modal Structure -->
-                <div id="create-brand" class="modal modal-fixed-footer">
-                    <div class="modal-content">
-                        <h4>Add Brand</h4>
-
-                        <div class="container">
-                            <form class="col s12">
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <input id="name" type="text" class="validate">
-                                        <label for="name">Brand Name</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <select multiple>
-                                            <option value="" disabled selected>Select categories</option>
-                                            <option value="1">Category 1</option>
-                                            <option value="2">Category 2</option>
-                                            <option value="3">Category 3</option>
-                                        </select>
-                                        <label>Your brand categories</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <textarea id="textarea1" class="materialize-textarea"></textarea>
-                                        <label for="textarea1">Description</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <img class="file-img" src="http://placehold.it/250x250&amp;text=no+image"
-                                             style="max-height:100%; max-width:100%;">
-
-                                        <div class="file-field input-field">
-                                            <div class="btn">
-                                                <span>Upload Logo</span>
-                                                <input type="file">
-                                            </div>
-                                            <div class="btn" style="margin-left: 5px;">
-                                                <span>Remove Logo</span>
-                                                <input type="file">
-                                            </div>
-                                            <div class="file-path-wrapper">
-                                                <input class="file-path validate" type="text">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                            <i class="material-icons right">send</i>
-                        </button>
-                    </div>
+  <div class="container">
+    <h4>Manage Brands</h4>
+    <div class="row">
+    <div class="col s12">
+        <a class="waves-effect waves-light btn modal-trigger" href="#create-brand"><i class="material-icons right">local_offer</i>Create new brand</a>
+        <!-- Modal Structure -->
+        <div id="create-brand" class="modal modal-fixed-footer">
+          <div class="modal-content">
+            <h4>Add Brand</h4>
+            <div class="container">
+              <form class="col s12">
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input id="name" type="text" class="validate">
+                    <label for="name">Brand Name</label>
+                  </div>
                 </div>
-                <!-- Modal Structure -->
-                <div id="edit-brand" class="modal modal-fixed-footer">
-                    <div class="modal-content">
-                        <h4>Edit Brand</h4>
-
-                        <div class="container">
-                            <form class="col s12">
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <input id="name" type="text" class="validate">
-                                        <label for="name">Brand Name</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <select multiple>
-                                            <option value="" disabled selected>Select categories</option>
-                                            <option value="1">Category 1</option>
-                                            <option value="2">Category 2</option>
-                                            <option value="3">Category 3</option>
-                                        </select>
-                                        <label>Your brand categories</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <textarea id="textarea1" class="materialize-textarea"></textarea>
-                                        <label for="textarea1">Description</label>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <img class="file-img" src="http://placehold.it/250x250&amp;text=no+image"
-                                             style="max-height:100%; max-width:100%;">
-
-                                        <div class="file-field input-field">
-                                            <div class="btn">
-                                                <span>Upload Logo</span>
-                                                <input type="file">
-                                            </div>
-                                            <div class="btn" style="margin-left: 5px;">
-                                                <span>Remove Logo</span>
-                                                <input type="file">
-                                            </div>
-                                            <div class="file-path-wrapper">
-                                                <input class="file-path validate" type="text">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <p>
-                                        <input type="checkbox" id="remove-brand"/>
-                                        <label for="remove-brand">Remove this brand</label>
-                                    </p>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                            <i class="material-icons right">send</i>
-                        </button>
-                    </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <select multiple>
+                      <option value="" disabled selected>Select categories</option>
+                      <option value="1">Category 1</option>
+                      <option value="2">Category 2</option>
+                      <option value="3">Category 3</option>
+                    </select>
+                    <label>Your brand categories</label>
+                  </div>
                 </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <textarea id="textarea1" class="materialize-textarea"></textarea>
+                    <label for="textarea1">Description</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <img class="file-img" src="http://placehold.it/250x250&amp;text=no+image" style="max-height:100%; max-width:100%;">
+                    <div class="file-field input-field">
+                      <div class="btn">
+                        <span>Upload Logo</span>
+                        <input type="file">
+                      </div>
+                      <div class="btn" style="margin-left: 5px;">
+                        <span>Remove Logo</span>
+                        <input type="file">
+                      </div>
+                      <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
             </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                      <i class="material-icons right">send</i>
+            </button>
+          </div>
         </div>
+        <!-- Modal Structure -->
+        <div id="edit-brand" class="modal modal-fixed-footer">
+          <div class="modal-content">
+            <h4>Edit Brand</h4>
+            <div class="container">
+              <form class="col s12">
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input id="name" type="text" class="validate">
+                    <label for="name">Brand Name</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <select multiple>
+                      <option value="" disabled selected>Select categories</option>
+                      <option value="1">Category 1</option>
+                      <option value="2">Category 2</option>
+                      <option value="3">Category 3</option>
+                    </select>
+                    <label>Your brand categories</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <textarea id="textarea1" class="materialize-textarea"></textarea>
+                    <label for="textarea1">Description</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <img class="file-img" src="http://placehold.it/250x250&amp;text=no+image" style="max-height:100%; max-width:100%;">
+                    <div class="file-field input-field">
+                      <div class="btn">
+                        <span>Upload Logo</span>
+                        <input type="file">
+                      </div>
+                      <div class="btn" style="margin-left: 5px;">
+                        <span>Remove Logo</span>
+                        <input type="file">
+                      </div>
+                      <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                  <div class="row">
+                    <p>
+                      <input type="checkbox" id="remove-brand"/>
+                      <label for="remove-brand">Remove this brand</label>
+                    </p>
+                  </div>
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                      <i class="material-icons right">send</i>
+            </button>
+          </div>
+        </div>
+    </div>
+    </div>
 
-        <!--DataTables example-->
-        <div id="table-datatables">
-            <div class="row">
+      <!--DataTables example-->
+            <div id="table-datatables">
+              <div class="row">
                 <div class="col s12">
-                    <table id="data-table-simple" class="responsive-table display" cellspacing="0">
-                        <thead>
+                  <table id="data-table-simple" class="responsive-table display" cellspacing="0">
+                    <thead>
                         <tr>
                             <th>Logo</th>
                             <th>Name</th>
@@ -152,9 +145,9 @@
                             <th>Categories</th>
                             <th>Edit/Remove</th>
                         </tr>
-                        </thead>
-
-                        <tfoot>
+                    </thead>
+                 
+                    <tfoot>
                         <tr>
                             <th>Logo</th>
                             <th>Name</th>
@@ -162,112 +155,99 @@
                             <th>Categories</th>
                             <th>Edit/Remove</th>
                         </tr>
-                        </tfoot>
-
-                        <tbody>
+                    </tfoot>
+                 
+                    <tbody>
                         <tr>
-                            <td><img src="images/brand-logo-placeholder.png" alt="username"
-                                     class="circle responsive-img" style="height: 60px;"></td>
+                            <td><img src="{{ STATIC_URL }}images/brand-logo-placeholder.png" alt="username" class="circle responsive-img" style="height: 60px;"></td>
                             <td>Tiger</td>
                             <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
                             <td>Category 1, Category 2, Category 3</td>
                             <td><a class="modal-trigger" href="#edit-brand">Edit</a></td>
                         </tr>
                         <tr>
-                            <td><img src="images/brand-logo-placeholder.png" alt="username"
-                                     class="circle responsive-img" style="height: 60px;"></td>
+                            <td><img src="{{ STATIC_URL }}images/brand-logo-placeholder.png" alt="username" class="circle responsive-img" style="height: 60px;"></td>
                             <td>Lion</td>
                             <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
                             <td>Category 1, Category 2, Category 3</td>
                             <td><a class="modal-trigger" href="#edit-brand">Edit</a></td>
                         </tr>
                         <tr>
-                            <td><img src="images/brand-logo-placeholder.png" alt="username"
-                                     class="circle responsive-img" style="height: 60px;"></td>
+                            <td><img src="{{ STATIC_URL }}images/brand-logo-placeholder.png" alt="username" class="circle responsive-img" style="height: 60px;"></td>
                             <td>Bear</td>
                             <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
                             <td>Category 1, Category 2, Category 3</td>
                             <td><a class="modal-trigger" href="#edit-brand">Edit</a></td>
                         </tr>
                         <tr>
-                            <td><img src="images/brand-logo-placeholder.png" alt="username"
-                                     class="circle responsive-img" style="height: 60px;"></td>
+                            <td><img src="{{ STATIC_URL }}images/brand-logo-placeholder.png" alt="username" class="circle responsive-img" style="height: 60px;"></td>
                             <td>Whale</td>
                             <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
                             <td>Category 1, Category 2, Category 3</td>
                             <td><a class="modal-trigger" href="#edit-brand">Edit</a></td>
                         </tr>
                         <tr>
-                            <td><img src="images/brand-logo-placeholder.png" alt="username"
-                                     class="circle responsive-img" style="height: 60px;"></td>
+                            <td><img src="{{ STATIC_URL }}images/brand-logo-placeholder.png" alt="username" class="circle responsive-img" style="height: 60px;"></td>
                             <td>Monkey</td>
                             <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
                             <td>Category 1, Category 2, Category 3</td>
                             <td><a class="modal-trigger" href="#edit-brand">Edit</a></td>
                         </tr>
                         <tr>
-                            <td><img src="images/brand-logo-placeholder.png" alt="username"
-                                     class="circle responsive-img" style="height: 60px;"></td>
+                            <td><img src="{{ STATIC_URL }}images/brand-logo-placeholder.png" alt="username" class="circle responsive-img" style="height: 60px;"></td>
                             <td>Fish</td>
                             <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
                             <td>Category 1, Category 2, Category 3</td>
                             <td><a class="modal-trigger" href="#edit-brand">Edit</a></td>
                         </tr>
                         <tr>
-                            <td><img src="images/brand-logo-placeholder.png" alt="username"
-                                     class="circle responsive-img" style="height: 60px;"></td>
+                            <td><img src="{{ STATIC_URL }}images/brand-logo-placeholder.png" alt="username" class="circle responsive-img" style="height: 60px;"></td>
                             <td>Panda</td>
                             <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
                             <td>Category 1, Category 2, Category 3</td>
                             <td><a class="modal-trigger" href="#edit-brand">Edit</a></td>
                         </tr>
                         <tr>
-                            <td><img src="images/brand-logo-placeholder.png" alt="username"
-                                     class="circle responsive-img" style="height: 60px;"></td>
+                            <td><img src="{{ STATIC_URL }}images/brand-logo-placeholder.png" alt="username" class="circle responsive-img" style="height: 60px;"></td>
                             <td>Rat</td>
                             <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
                             <td>Category 1, Category 2, Category 3</td>
                             <td><a class="modal-trigger" href="#edit-brand">Edit</a></td>
                         </tr>
                         <tr>
-                            <td><img src="images/brand-logo-placeholder.png" alt="username"
-                                     class="circle responsive-img" style="height: 60px;"></td>
+                            <td><img src="{{ STATIC_URL }}images/brand-logo-placeholder.png" alt="username" class="circle responsive-img" style="height: 60px;"></td>
                             <td>Horse</td>
                             <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
                             <td>Category 1, Category 2, Category 3</td>
                             <td><a class="modal-trigger" href="#edit-brand">Edit</a></td>
                         </tr>
                         <tr>
-                            <td><img src="images/brand-logo-placeholder.png" alt="username"
-                                     class="circle responsive-img" style="height: 60px;"></td>
+                            <td><img src="{{ STATIC_URL }}images/brand-logo-placeholder.png" alt="username" class="circle responsive-img" style="height: 60px;"></td>
                             <td>Donkey</td>
                             <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
                             <td>Category 1, Category 2, Category 3</td>
                             <td><a class="modal-trigger" href="#edit-brand">Edit</a></td>
                         </tr>
                         <tr>
-                            <td><img src="images/brand-logo-placeholder.png" alt="username"
-                                     class="circle responsive-img" style="height: 60px;"></td>
+                            <td><img src="{{ STATIC_URL }}images/brand-logo-placeholder.png" alt="username" class="circle responsive-img" style="height: 60px;"></td>
                             <td>Polar Bear</td>
                             <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
                             <td>Category 1, Category 2, Category 3</td>
                             <td><a class="modal-trigger" href="#edit-brand">Edit</a></td>
                         </tr>
                         <tr>
-                            <td><img src="images/brand-logo-placeholder.png" alt="username"
-                                     class="circle responsive-img" style="height: 60px;"></td>
+                            <td><img src="{{ STATIC_URL }}images/brand-logo-placeholder.png" alt="username" class="circle responsive-img" style="height: 60px;"></td>
                             <td>Penguin</td>
                             <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
                             <td>Category 1, Category 2, Category 3</td>
                             <td><a class="modal-trigger" href="#edit-brand">Edit</a></td>
                         </tr>
-                        </tbody>
-                    </table>
+                    </tbody>
+                  </table>
                 </div>
-            </div>
-        </div>
+              </div>
+            </div> 
     </div>
-
 {% endblock %}
 {% block scripts %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/data-tables/js/jquery.dataTables.min.js"></script>

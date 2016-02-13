@@ -38,7 +38,7 @@ urlpatterns = [
     url(r'^api/v1/stores_list/(?P<client>\d+)$', views.stores),
     url(r'^api/v1/stores/(?P<client>\d+)$', views.stores),
 
-    url(r'^api/v1/stores/$', views.StoresList.as_view()),
+    url(r'^api/v1/stores/$', views.stores),
     url(r'^api/v1/store/(?P<pk>[0-9]+)$', views.StoreDetail.as_view()),
 
     url(r'^api/v1/tags/$', views.TagsList.as_view()),
