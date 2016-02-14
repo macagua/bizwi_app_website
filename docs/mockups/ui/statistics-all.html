@@ -65,7 +65,7 @@
         <li class="bold no-padding">
           <ul class="collapsible collapsible-accordion">
             <li class="bold"><a class="collapsible-header waves-effect waves-teal"><i class="material-icons">work</i>Management</a>
-              <div style="" class="collapsible-body" style="display: block;">
+              <div class="collapsible-body" style="display: block;">
                 <ul>
                   <li><a href="brands.html" class="collapsible-header"><i class="material-icons">local_offer</i>Brands</a></li>
                   <li><a href="stores.html" class="collapsible-header"><i class="material-icons">store</i>Stores</a></li>
@@ -80,8 +80,8 @@
             <li class="bold active"><a class="collapsible-header active waves-effect waves-teal"><i class="material-icons">assessment</i>Statistics</a>
               <div class="collapsible-body" style="display: block;">
                 <ul>
-                  <li class="active blue-grey darken-4"><a href="statistics.html" class="collapsible-header"><i class="material-icons">home</i>In House</a></li>
-                  <li><a href="statistics-all.html" class="collapsible-header"><i class="material-icons">group</i>All</a></li>
+                  <li><a href="statistics.html" class="collapsible-header"><i class="material-icons">home</i>In House</a></li>
+                  <li class="active blue-grey darken-4"><a href="statistics-all.html" class="collapsible-header"><i class="material-icons">group</i>All</a></li>
                 </ul>
               </div>
             </li>
@@ -107,12 +107,12 @@
 
     <main>
     <div class="container">
-    <h4>In House Visitors</h4>
-      <!--DataTables in house-->
+    <h4>All Visitors</h4>
+      <!--DataTables All-->
             <div id="table-datatables">
               <div class="row">
                 <div class="col s12">
-                  <table id="datatable-house-visitors" class="responsive-table" cellspacing="0">
+                  <table id="datatable-all-visitors" class="responsive-table" cellspacing="0">
                     <thead>
                         <tr>
                             <th>Photo</th>
@@ -263,7 +263,7 @@
       <script type="text/javascript" src="js/plugins/data-tables/data-tables-script.js"></script>
       <script type="text/javascript" src="js/plugins/materialize-datatables/dataTables.materialize.js"></script>
       <script type="text/javascript">
-        $('#datatable-house-visitors').DataTable();
+        $('#datatable-all-visitors').DataTable();
       </script>
   </body>
 </html>
