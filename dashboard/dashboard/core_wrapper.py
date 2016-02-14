@@ -340,6 +340,25 @@ def get_locations(id_customer, external=None):
     return result
 
 
+# Find all categories
+def get_all_categories():
+    url_path = 'categories/'
+    result = base_request(url_path)
+    return result
+
+
+# Find all categories
+def get_all_countries():
+    url_path = 'countries/'
+    result = base_request(url_path)
+    return result
+
+
+
+
+
+
+
 def get_special_promotions(id_customer, id_sp_promotion=None):
     url_path = 'special_promotions/' + str(id_customer)
     if id_sp_promotion:
@@ -374,8 +393,8 @@ def update_sensor_location(info):
     return result.status_code == 200
 
 
-def get_stores(client, id_local=None):  # same as get_locations but with more attributes
-    url_path = 'stores_list/' + str(client)
+def get_stores(client_id, id_local=None):  # same as get_locations but with more attributes
+    url_path = 'stores_list/' + str(client_id)
     if id_local:
         url_path += '/' + str(id_local)
     result = base_request(url_path)

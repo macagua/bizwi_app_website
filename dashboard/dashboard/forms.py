@@ -77,20 +77,19 @@ class BrandForm(forms.Form):
 
 class StoreForm(forms.Form):
 
-    store_name = forms.CharField(max_length=100)
-    telephone = forms.CharField(max_length=100)
-    web_site = forms.CharField(max_length=100)
-    description = forms.CharField(max_length=250)
-    country = forms.CharField(max_length=100)
-    city = forms.CharField(max_length=100)
-    region = forms.CharField(max_length=100)
-    address = forms.CharField(max_length=200)
-    logo_url = forms.CharField(max_length=400)
-    background_color = forms.CharField(max_length=10)
-    foreground_color = forms.CharField(max_length=10)
-    background_img = forms.CharField(max_length=10)
-    ttf_font = forms.URLField()
-
+    store_name = forms.CharField(max_length=100, required=False)
+    telephone = forms.CharField(max_length=100, required=False)
+    web_site = forms.CharField(max_length=100, required=False)
+    description = forms.CharField(max_length=250, required=False)
+    country = forms.CharField(required=False)
+    city = forms.CharField(max_length=100, required=False)
+    region = forms.CharField(max_length=100, required=False)
+    address = forms.CharField(max_length=200, required=False)
+    logo_url = forms.CharField(max_length=400, required=False)
+    background_color = forms.CharField(max_length=10, required=False)
+    foreground_color = forms.CharField(max_length=10, required=False)
+    background_img = forms.CharField(max_length=10, required=False)
+    ttf_font = forms.CharField(max_length=10, required=False)
 
 
 class SettingsEmployeeForm(forms.Form):

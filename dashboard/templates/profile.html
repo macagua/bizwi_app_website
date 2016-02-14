@@ -63,7 +63,7 @@
                     <div class="row">
 
                         <div class="input-field col s12">
-                            <select name="gender">
+                            <select name="gender"  class="material-select">
                                 <option value="" disabled>Choose your sex</option>
                                 <option value="M" {% if gender == 'M' %} selected="selected" {% endif %} >Male</option>
                                 <option value="F" {% if gender == 'F' %} selected="selected" {% endif %} >Female</option>
@@ -79,7 +79,7 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <select name="lang" >
+                            <select name="lang" class="material-select">
                                 <option value="" disabled>Choose your Language</option>
                                 <option value="en" {% if lang == 'en' %} selected="selected" {% endif %}>English</option>
                                 <option value="es" {% if lang == 'es' %} selected="selected" {% endif %}>Spanish</option>

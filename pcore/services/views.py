@@ -209,14 +209,12 @@ def create_client_admin(request):
 
 
 @api_view(['GET', 'POST'])
-def stores(request, client, id_local=None):
+def stores(request, client_id, id_local=None):
     try:
         if request.method == "GET":
-            if id_local:
-                serializer = StoresSerializer(Stores.objects.get(id=id_local))
-            else:
-                serializer = StoresSerializer(Stores.objects.filter(client_id=client), many=True)
-
+            client = int(client_id)
+            #serializer = Stores.objects.filter(client_id=client_id)
+            serializer = StoresSerializer(Stores.objects.filter(client_id=client_id))
             return Response(serializer.data)
 
         elif request.method == 'POST':
@@ -224,7 +222,7 @@ def stores(request, client, id_local=None):
             telephone = request.data.get('telephone')
             web_site = request.data.get('web_site')
             description = request.data.get('name')
-            country = request.data.get('country')
+            country_id = request.data.get('country_id')
             city = request.data.get('city')
             region = request.data.get('region')
             address = request.data.get('address')
@@ -239,7 +237,7 @@ def stores(request, client, id_local=None):
             if id_local:
                 loc = Stores.objects.get(id=id_local)
                 loc.name = name
-                loc.country = country
+                loc.country_id = country_id
                 loc.city = city
                 loc.address = address
                 loc.region = region
@@ -250,12 +248,12 @@ def stores(request, client, id_local=None):
                 loc.save()
             else:
                 loc = Stores(
-                    client_id=client,
+                    client_id=client_id,
                     store_name=name,
                     telephone=telephone,
                     web_site=web_site,
                     description=description,
-                    country=country,
+                    country_id=country_id,
                     city=city,
                     region=region,
                     address=address,
@@ -268,6 +266,7 @@ def stores(request, client, id_local=None):
                 loc.save()
             return Response(status=status.HTTP_200_OK)
     except Exception as e:
+        print e
         return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 

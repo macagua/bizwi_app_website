@@ -250,11 +250,10 @@ def new_client(request):
     return render(request, 'new_client.html', info)
 
 
-
-
 def stores(request):
-    client = request.user.id
-    stores_list = {'data': get_stores(client)}
+    client_id = request.user.id
+    stores_list = {'data': get_stores(client_id)}
+
     if type(stores_list['data']) is not list:
         stores_list['data'] = []
 
@@ -269,18 +268,21 @@ def store(request, id_local=None):
     client_id = request.user.id
     info = {'client_id': request.user.id}
 
+    categories_list = get_all_categories()
+    countries_list = get_all_countries()
+
     if request.method == 'POST':
         form = StoreForm(request.POST)
 
         if form.is_valid():
-            local_info = {
+            store_info = {
                 'name': form.cleaned_data['store_name'],
                 'telephone': form.cleaned_data['telephone'],
                 'web_site': form.cleaned_data['web_site'],
                 'description': form.cleaned_data['description'],
-                'country': form.cleaned_data['country'],
-                'city': form.cleaned_data['city'],
-                'region': form.cleaned_data['region'],
+                'country_id': form.cleaned_data['country'],
+                #'city': form.cleaned_data['city'],
+                #'region': form.cleaned_data['region'],
                 'address': form.cleaned_data['address'],
                 'logo_url': form.cleaned_data['logo_url'],
                 'background_color': form.cleaned_data['background_color'],
@@ -289,18 +291,18 @@ def store(request, id_local=None):
                 'ttf_font': form.cleaned_data['ttf_font'],
             }
             if id_local:
-                result = save_store(client_id, local_info, id_local)
+                result = save_store(client_id, store_info, id_local)
                 info['page'] = "update"
-                info['local'] = local_info
+                info['local'] = store_info
             else:
-                result = save_store(client_id, local_info)
+                result = save_store(client_id, store_info)
                 info['page'] = "add"
 
             if result:
                 info['success'] = True
             else:
                 info['error'] = True
-                info['local'] = local_info
+                info['local'] = store_info
         else:
             info['error'] = True
             info['form'] = form
@@ -321,6 +323,8 @@ def store(request, id_local=None):
         else:
             info['page'] = "add"
 
+    info['categories'] = categories_list
+    info['countries'] = countries_list
     return render(request, 'store_basic.html', info)
 
 

@@ -80,7 +80,7 @@ class EmployeeSerializer(serializers.ModelSerializer):
                   'is_superuser')
 
 
-class StoresSerializer(serializers.ModelSerializer):
+class StoresSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Stores
         fields = ('store_id',

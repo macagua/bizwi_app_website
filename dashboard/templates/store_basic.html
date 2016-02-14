@@ -2,7 +2,7 @@
 {% load jsonify %}
 {% load i18n %}
 {% block css %}
-  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}js/plugins/jquery-minicolors/jquery.minicolors.css"
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}js/plugins/jquery-minicolors/jquery.minicolors.css"
           media="screen,projection">
 {% endblock %}
 {% block content %}
@@ -11,208 +11,48 @@
 
         <div class="row">
 
-
-            <form class="form-horizontal" method="POST" id="basic_style">
+            <form class="col s12" method="POST">
                 {% csrf_token %}
-
-                <div {% if form.store_name.errors %}class="form-group has-error"
-                     {% else %}class="form-group"{% endif %}>
-                    <label for="inputStoreName" class="col-sm-2 control-label">{% trans "Name" %}</label>
-
-                    <div class="col-sm-10">
-
-                        <input id="inputStoreName" name="store_name" type="text" class="form-control"
-                               value="{{ store.store_name }}" data-error="{% trans "Complete this field" %}"
-                                >
-                        {% for error in form.store_name.errors %}
-                            <label class="control-label" for="inputStoreName">{{ error|escape }}</label>
-                        {% endfor %}
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="inputStoreName" name="store_name" type="text" class="validate"
+                               value="{{ store_name }}">
+                        <label class="active" for="inputStoreName">Name</label>
                     </div>
                 </div>
-
-                <div {% if form.telephone.errors %}class="form-group has-error"
-                     {% else %}class="form-group"{% endif %}>
-                    <label for="inputTelephone" class="col-sm-2 control-label">{% trans "Telephone" %}</label>
-
-                    <div class="col-sm-10">
-
-                        <input id="inputTelephone" name="telephone" type="text" class="form-control"
-                               value="{{ store.city }}">
-                        {% for error in form.telephone.errors %}
-                            <label class="control-label" for="inputTelephone">{{ error|escape }}</label>
-                        {% endfor %}
-                    </div>
-                </div>
-
-
-                <div {% if form.web_site.errors %}class="form-group has-error"
-                     {% else %}class="form-group"{% endif %}>
-                    <label for="inputWebsite" class="col-sm-2 control-label">{% trans "Website" %}</label>
-
-                    <div class="col-sm-10">
-                        <input id="inputWebsite" name="web_site" type="text" class="form-control"
-                               value="{{ store.web_site }}">
-                        {% for error in form.web_site.errors %}
-                            <label class="control-label" for="inputWebsite">{{ error|escape }}</label>
-                        {% endfor %}
-                    </div>
-                </div>
-
-
-                <div {% if form.description.errors %}class="form-group has-error"
-                     {% else %}class="form-group"{% endif %}>
-                    <label for="inputDescription" class="col-sm-2 control-label">{% trans "Description" %}</label>
-
-                    <div class="col-sm-10">
-                        <input id="inputDescription" name="description" type="text" class="form-control"
-                               value="{{ store.description }}" data-error="{% trans "Complete this field" %}"
-                                >
-                        {% for error in form.description.errors %}
-                            <label class="control-label" for="inputDescription">{{ error|escape }}</label>
-                        {% endfor %}
-                    </div>
-                </div>
-
-
-            </form>
-
-
-            <form class="form-horizontal" method="POST" id="store_style">
-                {% csrf_token %}
-
-   <div class="input-field col s12 center-align">
-                        {% if logo_url %}
-                            <img class="file-img" src="{{ logo_url }}"
-                                 style="max-height:100%; max-width:100%;">
-                        {% else %}
-                            <img class="file-img" src="http://placehold.it/250x250&amp;text=no+image"
-                                 style="max-height:100%; max-width:100%;">
-                        {% endif %}
-                        <div class="file-field input-field">
-                            <div class="btn">
-                                <span>Upload Logo</span>
-                                <input type="file" value="{{ logo_url }}" name="logo_url">
-                            </div>
-                            <div class="btn" style="margin-left: 5px;">
-                                <span>Remove Logo</span>
-                                <input type="file">
-                            </div>
-                            <div class="file-path-wrapper">
-                                <input class="file-path validate" type="text">
-                            </div>
-                        </div>
-                    </div>
 
                 <div class="row">
-                    <div class="col s6">
-                        <label for="background_color">Background color</label>
-                        <input id="background_color"  name="background_color" type="text" class="minicolors" data-control="wheel"
-                               value="{{ background_color }}">
-                    </div>
-                    <div class="col s6">
-                        <label for="foreground_color">Foreground color</label>
-                        <input id="foreground_color" name="foreground_color" type="text" class="minicolors" data-control="wheel"
-                               value="{{ foreground_color }}">
+                    <div class="input-field col s12">
+                        <select id="selectCategories" class="material-select" name="categories" multiple>
+                            {% for cat in categories %}
+                                <option value="{{ cat.category }}">{{ cat.categories_name }}</option>
+                            {% endfor %}
+                        </select>
+                        <label for="selectCategories">Your store categories</label>
                     </div>
                 </div>
-
+                <div class="row">
+                    <div class="input-field col s12">
+                        <select class="material-select" name="categories">
+                            {% for count in countries %}
+                                <option value="{{ count.country_id }}"{% if count == country %}
+                                        selected="selected"{% endif %}>{{ count.country_name }}</option>
+                            {% endfor %}
+                        </select>
+                        <label>Country</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="inputAddress" name="address" type="text" class="validate"
+                               value="{{ address }}">
+                        <label class="active" for="inputAddress">{% trans "Address" %}</label>
+                    </div>
+                </div>
 
                 <div class="row">
-                    <div class="input-field col s12 center-align">
-                        {% if background_img %}
-                            <img class="file-img" src="{{ background_img }}"
-                                 style="max-height:100%; max-width:100%;">
-                        {% else %}
-                            <img class="file-img" src="http://placehold.it/250x250&amp;text=no+image"
-                                 style="max-height:100%; max-width:100%;">
-                        {% endif %}
-
-                        <div class="file-field input-field">
-                            <div class="btn">
-                                <span>Upload Background Image</span>
-                                <input type="file">
-                            </div>
-                            <div class="btn" style="margin-left: 5px;">
-                                <span>Remove Image</span>
-                                <input type="file">
-                            </div>
-                            <div class="file-path-wrapper">
-                                <input class="file-path validate" type="text">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div {% if form.font.errors %}class="form-group has-error"
-                     {% else %}class="form-group"{% endif %}>
-                    <label for="inputFont"
-                           class="col-sm-2 control-label">{% trans "Font" %}</label>
-
-                    <div class="col-sm-10">
-                        <input id="inputFont" name="font" type="text" class="form-control"
-                               value="{{ store.font }}">
-                        {% for error in form.font.errors %}
-                            <label class="control-label" for="inputFont">{{ error|escape }}</label>
-                        {% endfor %}
-                    </div>
-                </div>
-
-
-            </form>
-
-
-            <form class="form-horizontal" method="POST" id="store_location">
-                {% csrf_token %}
-
-                <div {% if form.country.errors %}class="form-group has-error"
-                     {% else %}class="form-group"{% endif %}>
-                    <label for="selectCountry" class="col-sm-2 control-label">{% trans "Country" %}</label>
-                    <select id="selectCountry" name="country" class="material-select">
-                        <option value="ES">España</option>
-                        <option value="IT">Italia</option>
-                    </select>
-                </div>
-
-                <div {% if form.city.errors %}class="form-group has-error"
-                     {% else %}class="form-group"{% endif %}>
-                    <label for="selectCity" class="col-sm-2 control-label">{% trans "City" %}</label>
-                    <select id="selectCity" name="city" class="material-select">
-                        <option value="BA">Barcelona</option>
-                        <option value="MA">Madrid</option>
-                    </select>
-                </div>
-
-                <div {% if form.region.errors %}class="form-group has-error"
-                     {% else %}class="form-group"{% endif %}>
-                    <label for="inputRegion" class="col-sm-2 control-label">{% trans "Region" %}</label>
-
-                    <div class="col-sm-10">
-                        <input id="inputRegion" name="region" type="text" class="form-control"
-                               value="{{ store.region }}">
-                        {% for error in form.region.errors %}
-                            <label class="control-label" for="inputRegion">{{ error|escape }}</label>
-                        {% endfor %}
-                    </div>
-                </div>
-
-                <div {% if form.address.errors %}class="form-group has-error"
-                     {% else %}class="form-group"{% endif %}>
-                    <label for="inputAddress" class="col-sm-2 control-label">{% trans "Address" %}</label>
-
-                    <div class="col-sm-10">
-                        <input id="inputAddress" name="address" type="text" class="form-control"
-                               value="{{ store.address }}">
-                        {% for error in form.address.errors %}
-                            <label class="control-label" for="inputAddress">{{ error|escape }}</label>
-                        {% endfor %}
-                    </div>
-                </div>
-
-
-                <div class="row">
-
-                    <div class="input-field col s6 l6 right-align">
-                        <button class="btn waves-effect waves-light" type="submit" name="action">Update
+                    <div class="input-field  col s12 center-align">
+                        <button class="btn waves-effect waves-light" type="submit" name="action">Create
                             <i class="material-icons right">send</i>
                         </button>
                     </div>
@@ -224,12 +64,18 @@
 
 {% endblock %}
 {% block scripts %}
- <!--Import jQuery before materialize.js-->
+    <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-2.1.4.min.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/materialize.min.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/scripts.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <!-- Custom Scripts-->
+    <script type="text/javascript"
+            src="{{ STATIC_URL }}js/plugins/country-selector/jquery.country-selector.js"></script>
+
+
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui.min.js"></script>
+
 
     <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/jquery-minicolors/jquery.minicolors.min.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/timezones/timezones.full.min.js"></script>
@@ -243,7 +89,7 @@
         });
         //Timezone Selector
         $('#timezone select').timezones();
-
+        $('#country-selector-div select').selectToAutocomplete();
     </script>
 
 {% endblock %}
