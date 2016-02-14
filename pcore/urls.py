@@ -32,6 +32,10 @@ urlpatterns = [
 
 
 
+    url(r'^api-dashboard/v1/employees_list/(?P<client_id>\d+)$', views.employees_list),
+
+
+
 
 
 

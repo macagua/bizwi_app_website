@@ -302,15 +302,15 @@ def store(request, id_local=None):
 
 
 def employees_list(request):
-    client = request.session.get("client")
+    client = request.user.id
     employees = {'data': get_employees(client),
                  'customer_name': request.session.get("client_name")}
     if type(employees['data']) is not list:
         employees['data'] = []
-    return render(request, 'employees_admin.html', employees)
+    return render(request, 'employees.html', employees)
 
 
-# Mientras
+
 
 def stats(request):
     return render(request, 'employees_admin.html', employees)

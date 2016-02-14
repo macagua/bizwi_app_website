@@ -328,6 +328,55 @@ def employee(request, id=None):
             print e
             return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+
+@api_view(['GET', 'POST'])
+def employees_list(request, client_id, id_employee=None):
+    try:
+        if request.method == "GET":
+                serializer = EmployeeSerializer(Employees.objects.filter(client_id=client_id))
+                return Response(serializer.data)
+
+        elif request.method == 'POST':
+            username = request.DATA.get('username')
+            email = request.DATA.get('email')
+            first_name = request.DATA.get('first_name')
+            phone = request.DATA.get('phone')
+            last_name = request.DATA.get('last_name')
+            language = request.DATA.get('language')
+            checkpass = bool(request.DATA.get('checkpass'))
+            password = request.DATA.get('password')
+            location = Location.objects.get(id=request.DATA.get('location'))
+
+            if id_employee:
+                emp = Employee.objects.get(id=id_employee)
+                emp.username = username
+                emp.email = email
+                emp.first_name = first_name
+                emp.last_name = last_name
+                emp.language = language
+                emp.location = location
+                emp.phone = phone
+                if checkpass:
+                    emp.set_password(password)
+                emp.save()
+            else:
+                emp = Employee(
+                    username=username,
+                    email=email,
+                    first_name=first_name,
+                    last_name=last_name,
+                    language=language,
+                    location=location,
+                    phone = phone
+                )
+                emp.set_password(password)
+                emp.save()
+            return Response(status=status.HTTP_200_OK)
+
+    except Exception as e:
+        return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
 # Countries,
 class CountriesList(generics.ListCreateAPIView):
     queryset = Countries.objects.all()
