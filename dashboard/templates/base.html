@@ -1,33 +1,23 @@
 {% load i18n %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <!--================================================================================
-Item Name: BiZWi Dashboard
-Version: 1.0
-(c)2016 BIZWI SISTEMAS INFORMATICOS SL, All rights reserved.
+  Item Name: BiZWi Dashboard
+  Version: 1.0
+  (c)2016 BIZWI SISTEMAS INFORMATICOS SL, All rights reserved. 
 ================================================================================ -->
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="description" content="">
     <meta name="keywords" content="">
-
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <!--External -->
-    <link type="text/css" rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css" media="screen,projection"/>
-    <link type="text/css" rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.10/css/perfect-scrollbar.min.css" media="screen,projection">
-
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.10/css/perfect-scrollbar.min.css" media="screen,projection">
     <!--Internal -->
-    <!-- <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/materialize.min.css"  media="screen,projection"/> -->
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/style.css" media="screen,projection"/>
-    <!--<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}js/plugins/perfect-scrollbar/perfect-scrollbar.min.css" media="screen,projection"> -->
-    <!--<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}js/plugins/chartist/chartist.min.css" media="screen,projection">-->
-    <!--Let browser know website is optimized for mobile-->
-    <!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
-    <!--[if IE]><link rel="shortcut icon" href="images/favicon.ico"><![endif]-->
-
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
@@ -38,10 +28,8 @@ Version: 1.0
     <link rel="icon" href="{{ STATIC_URL }}images/favicon.ico">
     <title>{{ COMMERCIAL_NAME }}</title>
     {% block css %}{% endblock %}
-
 </head>
-
-<body class="">
+<body>
 <header>
     <!-- Dropdowns -->
     <!-- Dropdown for Customer  -->
@@ -63,7 +51,7 @@ Version: 1.0
         <li>
           <div class="row valign-wrapper" style="padding: 14px 16px; margin-bottom: 0px;">
               <div class="col s2">
-                <img src="{{ birthday.photo_url }}" alt="John Doe" class="circle responsive-img">
+                <img src="{{ birthday.photo_url }}" alt="" class="circle responsive-img">
               </div>
               <div class="col s10">
                 <span class="black-text valign">Today is John Doe Birthday!</span>
@@ -139,14 +127,14 @@ Version: 1.0
     <ul style="left: 0px;" id="nav-mobile" class="side-nav fixed">
         <li class="logo valign-wrapper">
             <a id="logo-container" class="brand-logo valign" href="#"> <object id="front-page-logo" data="{{ STATIC_URL }}images/Logo_Bizwi_head.png" type="image/png"></object></a></li>
-        <li class="bold no-padding active">
+        <li class="bold no-padding">
             <a href="{% url "home" %}" class="waves-effect waves-teal collapsible-header"><i class="material-icons">dashboard</i>{% trans "Dashboard" %}</a>
         </li>
         <li class="bold no-padding">
             <ul class="collapsible collapsible-accordion">
                 <li class="bold">
                     <a class="collapsible-header waves-effect waves-teal"><i class="material-icons">work</i>{% trans "Management" %}</a>
-                    <div style="" class="collapsible-body" style="display: block;">
+                    <div class="collapsible-body" style="display: block;">
                         <ul>
                             <li><a href="{% url "stores" %}" class="collapsible-header"><i class="material-icons">store</i>Store</a></li>
                             <li><a href="{% url "brands" %}" class="collapsible-header"><i class="material-icons">local_offer</i>Brands</a></li>
@@ -166,7 +154,7 @@ Version: 1.0
             <ul class="collapsible collapsible-accordion">
                 <li class="bold">
                     <a class="collapsible-header waves-effect waves-teal"><i class="material-icons">message</i>{% trans "Messages" %}</a>
-                    <div style="" class="collapsible-body" style="display: block;">
+                    <div class="collapsible-body" style="display: block;">
                         <ul>
                             <li><a href="#" class="collapsible-header"><i class="material-icons">create</i>{% trans "Compose" %}</a></li>
                             <li><a href="#" class="collapsible-header"><i class="material-icons">inbox</i>{% trans "Inbox" %}</a></li>
@@ -184,7 +172,7 @@ Version: 1.0
 
 </header>
 <main>
-            {% block content %}{% endblock %}
+{% block content %}{% endblock %}
 </main>
 <footer class="page-footer blue-grey darken-4">
     <div class="footer-copyright blue-grey darken-3">
@@ -194,43 +182,17 @@ Version: 1.0
     </div>
 </footer>
 </body>
+
 <!-- 
 Scripts
 ================================================ -->
 <!--External -->
 <!--Import jQuery before materialize.js-->
-<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.10/js/min/perfect-scrollbar.min.js"></script>
-<!--ChartJS Script -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
-<!--
-Chartist Script & Data
-<script type="text/javascript" src="js/plugins/chartist/chartist.min.js"></script>
-<script type="text/javascript" src="js/plugins/chartist/chartist-data.js"></script>
--->
-<!--Sparkline Chart Script & Data-->
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
-
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.10/js/min/perfect-scrollbar.min.js"></script>
 
 <!--Internal -->
-<!--Import jQuery before materialize.js-->
-<!--<script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>-->
-<!--<script type="text/javascript" src="js/materialize.min.js"></script>-->
 <script type="text/javascript" src="{{ STATIC_URL }}js/scripts.js"></script>
-<!--<script type="text/javascript" src="js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>-->
-<!--ChartJS Script & Data-->
-<!--<script type="text/javascript" src="js/plugins/chartjs/Chart.min.js"></script>-->
-<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/chartjs/chartjs-data.js"></script>
-<!--Chartist Script & Data-->
-<!--<script type="text/javascript" src="js/plugins/chartist/chartist.min.js"></script>-->
-<!--<script type="text/javascript" src="js/plugins/chartist/chartist-data.js"></script>-->
-
-<!--Sparkline Chart Script & Data-->
-<!--<script type="text/javascript" src="js/plugins/sparkline/jquery.sparkline.min.js"></script>-->
-<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/sparkline/sparkline-data.js"></script>
 {% block scripts %}{% endblock %}
 </html>
