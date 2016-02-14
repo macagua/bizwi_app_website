@@ -134,15 +134,15 @@ def tags(request):
     return render(request, 'tags.html')
 
 def countries(request):
-    return None
+    return render(request, 'countries.html')
 
 
 def regions(request):
-    return None
+    return render(request, 'regions.html')
 
 
 def categories(request):
-    return None
+    return render(request, 'categories.html')
 
 # Registration new clients
 

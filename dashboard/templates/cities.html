@@ -42,7 +42,7 @@
     <script type='text/javascript'>
         var lang = '{{ request.session.lang }}';
         var localsData = {{ data|jsonify }};
-        var url_local = '{% url "city" %}';
+        var url_cities = '#';
     </script>
     <script src="{{ STATIC_URL }}js/cities.js"></script>
 {% endblock %}
