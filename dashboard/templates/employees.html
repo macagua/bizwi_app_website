@@ -2,16 +2,15 @@
 {% load jsonify %}
 {% load i18n %}
 {% block css %}
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}js/plugins/data-tables/css/jquery.dataTables.min.css" media="screen,projection">
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}js/plugins/materialize-datatables/css/dataTables.materialize.css">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}js/plugins/data-tables/css/jquery.dataTables.min.css" media="screen,projection">
 {% endblock %}
 {% block content %}
     <div class="container">
         <h4>Manage employees</h4>
         <div class="row">
             <div class="col s12">
-                <a class="waves-effect waves-light btn modal-trigger" href="{% url "new_employee" %}"><i
-                        class="material-icons right">group</i>Create new employee</a>
+                <a class="waves-effect waves-light btn modal-trigger" href="{% url "new_employee" %}"><i class="material-icons right">group</i>Create new employee</a>
                 <!-- Modal Structure -->
                 <div id="create-employee" class="modal modal-fixed-footer">
                     <div class="modal-content">
@@ -195,9 +194,9 @@
 
         <!--DataTables example-->
         <div id="table-datatables">
-                <div class="row">
+            <div class="row">
                 <div class="col s12">
-                    <table id="datatable-employees" class="datatable responsive-table">
+                    <table id="datatable-employees" class="datatable responsive-table" cellspacing="0">
                         <thead>
                         <tr>
                             <th>{% trans "First Name" %}</th>
@@ -217,14 +216,14 @@
 
 {% endblock %}
 {% block scripts %}
-    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/data-tables/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/data-tables/data-tables-script.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/materialize-datatables/js/dataTables.materialize.js"></script>
+<!-- data-tables -->
+<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/data-tables/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/materialize-datatables/dataTables.materialize.js"></script>
+<!-- Custom Scripts -->
+<script type='text/javascript'>
+    var lang = '{{ request.session.lang }}';
+    var employeesData = {{ data|jsonify }};
 
-    <script type='text/javascript'>
-        var lang = '{{ request.session.lang }}';
-        var employeesData = {{ data|jsonify }};
-
-    </script>
-    <script src="{{ STATIC_URL }}js/employees.js"></script>
+</script>
+<script src="{{ STATIC_URL }}js/employees.js"></script>
 {% endblock %}

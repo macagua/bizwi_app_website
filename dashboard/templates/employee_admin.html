@@ -3,21 +3,20 @@
 {% load i18n %}
 
 {% block css %}
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}js/plugins/data-tables/css/jquery.dataTables.min.css" media="screen,projection">
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}js/plugins/materialize-datatables/css/dataTables.materialize.css">
+
 {% endblock %}
 
 {% block content %}
-
+<div class="container">
     <div class="row">
-        <div class="col-md-12">
-            <h3 class="page-header">
+        <div class="col s12">
+            <h4 class="page-header">
                 {% if page == 'add' %}
                     {% trans "Add Employee" %}
                 {% else %}
                     {% trans "Update Employee" %}
                 {% endif %}
-            </h3>
+            </h4>
         </div>
     </div>
 
@@ -211,32 +210,29 @@
             </div>
         </div>
     </div>
-
+</div>
 
 {% endblock %}
 
 {% block scripts %}
-    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/data-tables/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/data-tables/data-tables-script.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/materialize-datatables/dataTables.materialize.js"></script>
-    
-    <script type='text/javascript'>
-        var lang = '{{ request.session.lang }}';
-        var page = '{{ page }}';
-        {% if page == 'update' %}
-            $('#inputCheckpass').click(function () {
-                var $this = $(this);
-                // $this will contain a reference to the checkbox
-                if ($this.is(':checked')) {
-                    $('#inputPassword').val('');
-                    $('#passworddiv').show();
-                    $('#inputPassword').prop('required', true);
-                } else {
-                    $('#passworddiv').hide();
-                    $('#inputPassword').val('null');
-                    $('#inputPassword').prop('required', false);
-                }
-            });
-        {% endif %}
-    </script>
+<!-- Custom Scripts -->
+<script type='text/javascript'>
+    var lang = '{{ request.session.lang }}';
+    var page = '{{ page }}';
+    {% if page == 'update' %}
+        $('#inputCheckpass').click(function () {
+            var $this = $(this);
+            // $this will contain a reference to the checkbox
+            if ($this.is(':checked')) {
+                $('#inputPassword').val('');
+                $('#passworddiv').show();
+                $('#inputPassword').prop('required', true);
+            } else {
+                $('#passworddiv').hide();
+                $('#inputPassword').val('null');
+                $('#inputPassword').prop('required', false);
+            }
+        });
+    {% endif %}
+</script>
 {% endblock %}
