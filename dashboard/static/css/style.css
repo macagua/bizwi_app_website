@@ -16,7 +16,37 @@ ul.side-nav.leftside-navigation li {line-height: 44px;}
 #card-stats .card-stats-number {font-size: 1.8rem; line-height: 2.0rem; margin: 0.2rem 0 0.2rem 0; font-weight: 500;}
 #card-stats .card-content {text-align: center;}
 .card {overflow: hidden;}
+/* ------------------*/
 
+/* Country Selector*/
+.ui-autocomplete {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  background-color: #fff;
+  z-index: 10003;
+  width: 100px;
+  max-width: 100%;
+  max-height: 650px;
+  overflow-y: auto;
+  overflow-x: auto;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+}
+.ui-autocomplete .ui-menu-item {
+  font-size: 16px;
+  line-height: 22px;
+  display: block;
+  padding: 14px 16px;
+  color: #26a69a;
+  cursor: pointer;
+}
+.ui-autocomplete .ui-menu-item:first-child {
+  border-top: none;
+}
+.ui-autocomplete .ui-menu-item.ui-state-focus {
+  background-color: #eee;
+  color: #26a69a;
+}
 /* ------------------*/
 
 /* Placeholder background fix */

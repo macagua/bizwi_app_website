@@ -2,9 +2,9 @@
 {% load jsonify %}
 {% load i18n %}
 {% block css %}
-    <link href="{{ STATIC_URL }}css/jquery.dataTables.min.css" rel="stylesheet">
-    <link href="{{ STATIC_URL }}css/jquery.dataTables_themeroller.css" rel="stylesheet">
-    <link href="{{ STATIC_URL }}css/cities.css" rel="stylesheet">
+    <link href="http://52.33.84.111/static/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="http://52.33.84.111/static/css/jquery.dataTables_themeroller.css" rel="stylesheet">
+    <link href="http://52.33.84.111/static/css/cities.css" rel="stylesheet">
 {% endblock %}
 {% block content %}
     <div class="row">
@@ -19,7 +19,7 @@
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <table class="datatable table table-striped table-bordered" id="locals_tb">
+                            <table class="datatable table table-striped table-bordered" id="cities_tb">
                                 <thead>
                                 <tr>
                                     <th>{% trans "city_name" %}</th>
@@ -37,12 +37,12 @@
     </div>
 {% endblock %}
 {% block scripts %}
-    <script src="{{ STATIC_URL }}js/jquery.dataTables.min.js"></script>
-    <script src="{{ STATIC_URL }}js/data-tables-script.js"></script>
+    <script src="http://52.33.84.111/static/js/jquery.dataTables.min.js"></script>
+    <script src="http://52.33.84.111/static/js/data-tables-script.js"></script>
     <script type='text/javascript'>
         var lang = '{{ request.session.lang }}';
         var localsData = {{ data|jsonify }};
         var url_cities = '#';
     </script>
-    <script src="{{ STATIC_URL }}js/cities.js"></script>
+    <script src="http://52.33.84.111/static/js/cities.js"></script>
 {% endblock %}
