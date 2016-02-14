@@ -1,12 +1,12 @@
-{% extends "base.html" %}
+{% extends "base_admin.html" %}
 {% load jsonify %}
 {% load i18n %}
 {% load tz %}
 
 {% block css %}
-    <style>
+<style>
 
-    </style>
+</style>
 {% endblock %}
 
 
@@ -291,7 +291,16 @@
 {% endblock %}
 
 {% block scripts %}
-    <script type='text/javascript'>
+<!-- Chart JS only loaded if Charts present -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
 
-    </script>
+<!--ChartJS Script Data-->
+<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/chartjs/chartjs-data.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/sparkline/sparkline-data.js"></script>
+
+<!-- Custom Scripts -->
+<script type='text/javascript'>
+
+</script>
 {% endblock %}
