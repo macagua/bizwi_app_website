@@ -1,7 +1,5 @@
 $(document).ready(function(){
-    $('table.datatable-simple').DataTable();
-    
-    var table = $('table.datatable-row-grouping').DataTable({
+    var table = $('#datatable-row-grouping').DataTable({
         "columnDefs": [
             { "visible": false, "targets": 2 }
         ],
@@ -25,7 +23,7 @@ $(document).ready(function(){
     });
  
     // Order by the grouping
-    $('table.datatable-row-grouping tbody').on( 'click', 'tr.group', function () {
+    $('#datatable-row-grouping tbody').on( 'click', 'tr.group', function () {
         var currentOrder = table.order()[0];
         if ( currentOrder[0] === 2 && currentOrder[1] === 'asc' ) {
             table.order( [ 2, 'desc' ] ).draw();

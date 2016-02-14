@@ -5,7 +5,7 @@ $(document).ready(function () {
         urlLang = "//cdn.datatables.net/plug-ins/1.10.6/i18n/Spanish.json";
     }
 
-    $('#data-table-simple').DataTable({
+    $('#datatable-employees').DataTable({
         "data": employeesData,
         "oLanguage": {
             "sUrl": urlLang
