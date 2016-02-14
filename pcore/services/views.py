@@ -102,7 +102,7 @@ def client(request, client_id):
             serializer = ClientsSerializer(Clients.objects.get(id=client_id))
             return Response(serializer.data)
 
-        elif request.method == 'POST':git stat
+        elif request.method == 'POST':
             client_name = request.data.get('client_name')
             web_site = request.data.get('web_site')
             telephone = request.data.get('telephone')
