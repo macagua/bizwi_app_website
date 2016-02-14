@@ -4,44 +4,8 @@
 {% load tz %}
 
 {% block css %}
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
     <style>
-        .panel-purple {
-            border-color: #7A378B;
-            background-color: #7A378B;
-            color: #fff;
-        }
-        .panel-purple:hover {
-            background-color: #945EA2;
-            border-color: #945EA2;
-        }
-        .panel-orange {
-            border-color: #EE7621;
-            background-color: #EE7621;
-            color: #fff;
-        }
-        .panel-orange:hover {
-            border-color: #f1914d;
-            background-color: #f1914d;
-        }
-        .panel-blue {
-            border-color: #337ab7;
-            background-color: #337ab7;
-            color: #fff;
-        }
-        .panel-blue:hover {
-            border-color: #5b94c5;
-            background-color: #5b94c5;
-        }
-        .panel-brick {
-            border-color: #d9534f;
-            background-color: #d9534f;
-            color: #fff;
-        }
-        .panel-brick:hover {
-            border-color: #e07572;
-            background-color: #e07572;
-        }
+
     </style>
 {% endblock %}
 
@@ -346,23 +310,6 @@
 
 {% block scripts %}
     <script type='text/javascript'>
-        var totalusers = {{ unique_users }} + {{ recurring }};
-        var unique = ({{ unique_users }} * 100) / totalusers;
-        var recurring = ({{ recurring }} * 100) / totalusers;
 
-        var totalvisitors = {{ pedestrians }} + {{ visitors }};
-        var pedestrians = ({{ pedestrians }} * 100) / totalvisitors;
-        var visitorsdata = ({{ visitors }} * 100) / totalvisitors;
-
-        var users = [
-            {label: '{% trans "Unique users" %}', value: unique.toFixed(2)},
-            {label: '{% trans "Recurring users" %}', value:recurring.toFixed(2)}
-        ];
-        var visitors = [
-            {label: '{% trans "Pedestrians" %}', value:pedestrians.toFixed(2)},
-            {label: '{% trans "Visitors" %}', value:visitorsdata.toFixed(2)}
-        ];
     </script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 {% endblock %}
