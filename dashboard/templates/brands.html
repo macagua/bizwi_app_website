@@ -114,19 +114,23 @@
                     </div>
                   </div>
                 </div>
-                  <div class="row">
-                    <p>
-                      <input type="checkbox" id="remove-brand"/>
-                      <label for="remove-brand">Remove this brand</label>
-                    </p>
+                <div class="row">
+                  <div class="input-field col s12">
+                    <label for="background_color">Background color</label>
+                    <input type="background_color" id="wheel-demo" class="" data-control="wheel" value="#ff99ee">  
                   </div>
+                </div>
+                <div class="row">
+                  <p>
+                    <input type="checkbox" id="remove-brand"/>
+                    <label for="remove-brand">Remove this brand</label>
+                  </p>
+                </div>
               </form>
             </div>
           </div>
           <div class="modal-footer">
-            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-                      <i class="material-icons right">send</i>
-            </button>
+            <button class="btn waves-effect waves-light" type="submit" name="action">Submit<i class="material-icons right">send</i></button>
           </div>
         </div>
     </div>
@@ -250,13 +254,13 @@
     </div>
 {% endblock %}
 {% block scripts %}
-    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/data-tables/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/data-tables/data-tables-script.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/materialize-datatables/dataTables.materialize.js"></script>
-    <script type='text/javascript'>
-        var lang = '{{ request.session.lang }}';
-        var employeesData = {{ data|jsonify }};
-
-    </script>
-    <script src="{{ STATIC_URL }}js/brands.js"></script>
+<!-- data-tables -->
+<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/data-tables/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/materialize-datatables/dataTables.materialize.js"></script>
+<!-- Custom Scripts -->
+<script type='text/javascript'>
+    var lang = '{{ request.session.lang }}';
+    var employeesData = {{ data|jsonify }};
+</script>
+<script src="{{ STATIC_URL }}js/brands.js"></script>
 {% endblock %}

@@ -2,9 +2,10 @@
 {% load jsonify %}
 {% load i18n %}
 {% block css %}
-    <link href="{{ STATIC_URL }}css/jquery.dataTables.min.css" rel="stylesheet">
-    <link href="{{ STATIC_URL }}css/jquery.dataTables_themeroller.css" rel="stylesheet">
-    <link href="{{ STATIC_URL }}css/employees_admin.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}js/plugins/materialize-datatables/css/dataTables.materialize.css">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}js/plugins/data-tables/css/jquery.dataTables.min.css" media="screen,projection">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/jquery.dataTables_themeroller.css" media="screen,projection">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/employees_admin.css" media="screen,projection">
 {% endblock %}
 {% block content %}
     <div class="row">
@@ -40,12 +41,14 @@
     </div>
 {% endblock %}
 {% block scripts %}
-    <script src="{{ STATIC_URL }}js/jquery.dataTables.min.js"></script>
-    <script src="{{ STATIC_URL }}js/data-tables-script.js"></script>
+<!-- data-tables -->
+<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/data-tables/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/materialize-datatables/dataTables.materialize.js"></script>
+<!-- Custom Scripts -->
     <script type='text/javascript'>
         var lang = '{{ request.session.lang }}';
         var employeesData = {{ data|jsonify }};
         var url_employee = '{% url "new_employee" %}';
     </script>
-    <script src="{{ STATIC_URL }}js/employees_admin.js"></script>
+<script src="{{ STATIC_URL }}js/employees_admin.js"></script>
 {% endblock %}

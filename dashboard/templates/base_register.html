@@ -1,27 +1,29 @@
 {% load i18n %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <!--================================================================================
-Item Name: BiZWi Dashboard
-Version: 1.0
-(c)2016 BIZWI SISTEMAS INFORMATICOS SL, All rights reserved.
+  Item Name: BiZWi Dashboard
+  Version: 1.0
+  (c)2016 BIZWI SISTEMAS INFORMATICOS SL, All rights reserved. 
 ================================================================================ -->
-
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/materialize.min.css" media="screen,projection"/>
+    <!--External -->
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.10/css/perfect-scrollbar.min.css" media="screen,projection">
+    <!--Internal -->
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/style.css" media="screen,projection"/>
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
-    <!--[if IE]><link rel="shortcut icon" href="{{ STATIC_URL }}images/favicon.ico"><![endif]-->
-
+    <!--[if IE]><link rel="shortcut icon" href="images/favicon.ico"><![endif]-->
     <!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. -->
     <link rel="apple-touch-icon-precomposed" href="{{ STATIC_URL }}images/apple-touch-icon-precomposed.png">
-
     <!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
     <link rel="icon" href="{{ STATIC_URL }}images/favicon.ico">
     <title>BiZWi - Registration</title>
@@ -33,13 +35,6 @@ Version: 1.0
 </head>
 
 <body class="" style="background-image: url({{ STATIC_URL }}images/index-background.jpg);">
-<script type="text/javascript">
-    $(document).ready(function () {
-        $(".button-collapse").sideNav();
-        $('.collapsible').collapsible();
-        $(".dropdown-button").dropdown();
-    });
-</script>
 
 <header>
 </header>
@@ -51,7 +46,6 @@ Version: 1.0
                 <div>
                     <div class="container hide-on-med-and-down">
                         <h2>BIZWI RETAIL ANALYTICS</h2>
-
                         <p><h5>Learn about your customers, increase sales and protect your profits</h5></p>
                     </div>
                     <div class="container hide-on-large-only">
@@ -61,6 +55,7 @@ Version: 1.0
                     </div>
                 </div>
             </div>
+            <div class="col s12 m2 l2 hide-on-small-only"><p>&nbsp;</p></div>
         </div>
 
         {% block content %}{% endblock %}
@@ -76,9 +71,15 @@ Version: 1.0
         </div>
     </div>
 </main>
+<!-- 
+Scripts
+================================================ -->
+<!--External -->
 <!--Import jQuery before materialize.js-->
-<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/materialize.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+
+<!--Internal -->
 <script type="text/javascript" src="{{ STATIC_URL }}js/scripts.js"></script>
 {% block scripts %}{% endblock %}
 </body>
