@@ -1,3 +1,4 @@
+from django.views.generic import ListView
 from .models import Countries, Cities, Regions, Employees, Clients, Stores, Tags, Categories, Departments, Sensors, \
     Brands, PromotionsTypes, PromotionsFilters, PromotionsLoyalties, PromotionsSpecials, Promotions, \
     PromotionsImpacts, CustomUser

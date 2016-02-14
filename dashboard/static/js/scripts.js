@@ -12,6 +12,5 @@ $(document).ready(function(){
       formatSubmit: 'yyyy-mm-dd',
       hiddenName: true
     });
-  $('select').material_select();
-  
+  $('.material-select').material_select(); //use <select class="material-select">
 });
