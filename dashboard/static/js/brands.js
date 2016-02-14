@@ -5,7 +5,7 @@ $(document).ready(function () {
         urlLang = "//cdn.datatables.net/plug-ins/1.10.6/i18n/Spanish.json";
     }
 
-    $('#brands_tb').DataTable({
+    $('#datatable-brands').DataTable({
         "data": bransData,
         "oLanguage": {
             "sUrl": urlLang
