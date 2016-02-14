@@ -4,7 +4,6 @@
 {% load tz %}
 
 {% block css %}
-<link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.9.5/chartist.min.css" media="screen,projection">
 <style>
 
 </style>
@@ -294,12 +293,10 @@
 {% block scripts %}
 <!-- Chart JS only loaded if Charts present -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.9.5/chartist.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
 
 <!--ChartJS Script Data-->
 <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/chartjs/chartjs-data.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/chartist/chartist-data.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/sparkline/sparkline-data.js"></script>
 
 <!-- Custom Scripts -->
