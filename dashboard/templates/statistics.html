@@ -336,47 +336,8 @@
     
           
 {% endblock %}
-
-<!--   <script type="text/javascript">
-       $(document).ready(function(){
-         $(".button-collapse").sideNav();
-         $('.collapsible').collapsible();
-         $(".dropdown-button").dropdown();
-       });
-   </script> -->
-
-<!-- ================================================
-Scripts
-================================================ -->
-<!--External -->
-<!--Chartist Script & Data-->
-<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/chartist/chartist.min.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/chartist/chartist-data.js"></script>
-<!--Sparkline Chart Script & Data-->
-<script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
-
-<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/chartjs/chartjs-data.js"></script>
-<!--Chartist Script & Data-->
-<!--<script type="text/javascript" src="js/plugins/chartist/chartist.min.js"></script>-->
-<!--<script type="text/javascript" src="js/plugins/chartist/chartist-data.js"></script>-->
-
-<!--Sparkline Chart Script & Data-->
-<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/sparkline/jquery.sparkline.min.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/sparkline/sparkline-data.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/data-tables/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/data-tables/data-tables-script.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/materialize-datatables/dataTables.materialize.js"></script>
-
-{% block scripts %}{% endblock %}
-
-     <script type="text/javascript" src="js/jquery-2.2.0.min.js"></script>
-      <script type="text/javascript" src="js/materialize.min.js"></script>
-      <script type="text/javascript" src="js/scripts.js"></script>
-      <script type="text/javascript" src="js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-      <script type="text/javascript" src="js/plugins/chartjs/Chart.min.js"></script>
-      <script type="text/javascript" src="js/plugins/chartist/chartist.min.js"></script>
-      <!-- data-tables -->
-      <script type="text/javascript" src="js/plugins/data-tables/js/jquery.dataTables.min.js"></script>
-      <script type="text/javascript" src="js/plugins/data-tables/data-tables-script.js"></script>
-      <script type="text/javascript" src="js/plugins/materialize-datatables/dataTables.materialize.js"></script>
+{% block scripts %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/data-tables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/data-tables/data-tables-script.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/materialize-datatables/dataTables.materialize.js"></script>
+{% endblock %}
