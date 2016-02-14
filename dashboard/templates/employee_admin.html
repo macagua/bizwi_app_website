@@ -3,8 +3,8 @@
 {% load i18n %}
 
 {% block css %}
-    <link href="{{ STATIC_URL }}startbootstrap-sb-admin-2-1.0.2/css/plugins/dataTables.bootstrap.css"
-          rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}js/plugins/data-tables/css/jquery.dataTables.min.css" media="screen,projection">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}js/plugins/materialize-datatables/css/dataTables.materialize.css">
 {% endblock %}
 
 {% block content %}
@@ -216,6 +216,10 @@
 {% endblock %}
 
 {% block scripts %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/data-tables/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/data-tables/data-tables-script.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/materialize-datatables/dataTables.materialize.js"></script>
+    
     <script type='text/javascript'>
         var lang = '{{ request.session.lang }}';
         var page = '{{ page }}';

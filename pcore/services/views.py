@@ -52,6 +52,8 @@ def custom_user(request, user_id):
             email = request.data.get('email')
             first_name = request.data.get('first_name')
             last_name = request.data.get('last_name')
+            gender = request.data.get('gender')
+            birthday = request.data.get('birthday')
             lang = request.data.get('lang')
             checkpass = bool(request.data.get('checkpass'))
             password = request.data.get('password')
@@ -61,6 +63,8 @@ def custom_user(request, user_id):
             usr.email = email
             usr.first_name = first_name
             usr.last_name = last_name
+            usr.gender = gender
+            usr.birthday = birthday
             usr.lang = lang
             if checkpass:
                 usr.set_password(password)
@@ -92,29 +96,51 @@ def set_password(request, id):
 
 
 @api_view(['GET', 'POST'])
-def client(request, user_id):
+def client(request, client_id):
     try:
         if request.method == "GET":
-            serializer = ClientsSerializer(Clients.objects.get(id=user_id))
+            serializer = ClientsSerializer(Clients.objects.get(id=client_id))
             return Response(serializer.data)
 
         elif request.method == 'POST':
             client_name = request.data.get('client_name')
-            code_crm = request.data.get('code_crm')
-            telephone = request.data.get('telephone')
             web_site = request.data.get('web_site')
+            telephone = request.data.get('telephone')
             description = request.data.get('description')
+            logo_url = request.data.get('logo_url')
+            background_color = request.data.get('background_color')
+            foreground_color = request.data.get('foreground_color')
+            background_img = request.data.get('background_img')
+            ttf_font = request.data.get('ttf_font')
             country = request.data.get('country')
             city = request.data.get('city')
+            facebook_fan_page = request.data.get('facebook_fan_page')
+            twitter_account = request.data.get('twitter_account')
+            gplus_id = request.data.get('gplus_id')
+            language = request.data.get('language')
+            timezone = request.data.get('timezone')
 
-            cli = Clients.objects.get(id=user_id)
-            cli.username = username
-            cli.email = email
-            cli.first_name = first_name
-            cli.last_name = last_name
-            cli.lang = lang
+
+            cli = Clients.objects.get(id=client_id)
+            cli.client_name = client_name
+            cli.web_site = web_site
+            cli.telephone = telephone
+            cli.description = description
+            cli.logo_url = logo_url
+            cli.background_color = background_color
+            cli.foreground_color = foreground_color
+            cli.background_img = background_img
+            cli.background_img = background_img
+            cli.ttf_font = ttf_font
+            cli.country = country
+            cli.city = city
+            cli.facebook_fan_page = facebook_fan_page
+            cli.twitter_account = twitter_account
+            cli.gplus_id = gplus_id
+            cli.twitter_account = twitter_account
+            cli.language = language
+            cli.timezone = timezone
             cli.save()
-
             return Response(status=status.HTTP_200_OK)
 
     except Exception as e:

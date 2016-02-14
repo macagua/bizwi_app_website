@@ -143,7 +143,7 @@ MEDIA_URL = ''
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-STATIC_URL = 'http://52.33.84.111/static/'
+STATIC_URL = '/static/'
 
 # to local_settings ( in the future)
 

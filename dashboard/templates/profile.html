@@ -37,14 +37,6 @@
         <div class="row">
             <h4>Edit Profile</h4>
 
-            <div class="col s12">
-                <ul class="tabs">
-                    <li class="tab col s4"><a class="active" href="#information"> Information </a></li>
-                    <li class="tab col s4"><a href="#password"> Password </a></li>
-                </ul>
-            </div>
-            <div class="col s12">&nbsp; </div>
-
             <div id="information" class="col s12">
                 <form class="col s12" method="post">
                     {% csrf_token %}
@@ -72,11 +64,11 @@
 
                         <div class="input-field col s12">
                             <select name="gender">
-                                <option value="" disabled selected>Choose your sex</option>
-                                <option value="m">Male</option>
-                                <option value="f">Female</option>
+                                <option value="" disabled>Choose your sex</option>
+                                <option value="M" {% if gender == 'M' %} selected="selected" {% endif %} >Male</option>
+                                <option value="F" {% if gender == 'F' %} selected="selected" {% endif %} >Female</option>
                             </select>
-                            <label>Biological sex</label>
+                            <label class="active" >Biological sex</label>
                         </div>
                     </div>
                     <div class="row">
@@ -87,10 +79,10 @@
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <select name="lang">
-                                <option value="" disabled selected>Choose your Language</option>
-                                <option value="es">English</option>
-                                <option value="en">Spanish</option>
+                            <select name="lang" >
+                                <option value="" disabled>Choose your Language</option>
+                                <option value="en" {% if lang == 'en' %} selected="selected" {% endif %}>English</option>
+                                <option value="es" {% if lang == 'es' %} selected="selected" {% endif %}>Spanish</option>
                             </select>
                             <label>Language</label>
                         </div>
@@ -105,8 +97,8 @@
 
                 </form>
             </div>
-
             <div id="password" class="col s12">
+            <h4> Change Password</h4>
                 <form class="col s12" method="POST">
                     {% csrf_token %}
                     <div {% if form.new_password1.errors %}class="form-group has-error"

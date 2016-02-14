@@ -94,6 +94,13 @@ def save_info(employee_id, content):
     return result.status_code == 204
 
 
+# info about client
+def save_info_client(client_id, content):
+    url_path = 'client/' + str(client_id)
+    result = base_post(url_path, content)
+    return result.status_code == 204
+
+
 def change_password(employee_id, new_password):
     url_path = 'employee/set_pass' + "/" + str(employee_id)
     result = base_post(url_path, {'pass': new_password})
