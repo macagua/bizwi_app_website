@@ -102,7 +102,7 @@ def client(request, client_id):
             serializer = ClientsSerializer(Clients.objects.get(id=client_id))
             return Response(serializer.data)
 
-        elif request.method == 'POST':
+        elif request.method == 'POST':git stat
             client_name = request.data.get('client_name')
             web_site = request.data.get('web_site')
             telephone = request.data.get('telephone')
@@ -146,10 +146,6 @@ def client(request, client_id):
     except Exception as e:
         print e
         return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-
-
-
 
 
 @api_view(['POST'])
@@ -213,7 +209,7 @@ def stores(request, client_id, id_local=None):
     try:
         if request.method == "GET":
             client = int(client_id)
-            serializer = StoresSerializer(Stores.objects.filter(client_id=client_id))
+            serializer = StoresSerializer(Stores.objects.all().filter(client_id=client_id))
             return Response(serializer.data)
 
         elif request.method == 'POST':

@@ -546,7 +546,6 @@ def settings(request):
     client_info = get_info_client(user_id)
     countries_list = get_all_countries()
 
-
     info = {}
     if request.method == 'POST':
         form = ClientForm(request.POST)
