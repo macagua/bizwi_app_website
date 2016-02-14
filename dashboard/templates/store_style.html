@@ -2,8 +2,7 @@
 {% load jsonify %}
 {% load i18n %}
 {% block css %}
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}js/plugins/data-tables/css/jquery.dataTables.min.css" media="screen,projection">
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}js/plugins/materialize-datatables/css/dataTables.materialize.css">
+
 {% endblock %}
 {% block content %}
     <div class="container">
@@ -88,9 +87,6 @@
 
 {% endblock %}
 {% block scripts %}
-    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/data-tables/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/data-tables/data-tables-script.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/materialize-datatables/dataTables.materialize.js"></script>
     
     <script type='text/javascript'>
         $('.sample-selector').colorpicker({ });
