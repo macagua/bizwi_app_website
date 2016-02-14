@@ -48,6 +48,10 @@ urlpatterns = [
     url(r'^sensors/$', views.sensors, name='sensors'),
     url(r'^promotions/$', views.promotions, name='promotions'),
     url(r'^brands/$', views.brands, name='brands'),
-
+    url(r'^cities/$', views.cities, name='cities'),
+    url(r'^countries/$', views.countries, name='countries'),
+    url(r'^regions/$', views.regions, name='regions'),
+    url(r'^tags/$', views.tags, name='tags'),
+    url(r'^categories/$', views.categories, name='categories'),
 
 ]

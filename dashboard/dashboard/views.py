@@ -127,6 +127,23 @@ def promotions(request):
     return render(request, 'promotions.html')
 
 
+def cities(request):
+    return render(request, 'cities.html')
+
+def tags(request):
+    return render(request, 'tags.html')
+
+def countries(request):
+    return None
+
+
+def regions(request):
+    return None
+
+
+def categories(request):
+    return None
+
 # Registration new clients
 
 def new_client_admin(request):
