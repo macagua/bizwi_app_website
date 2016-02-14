@@ -130,20 +130,6 @@
             <a href="{% url "home" %}" class="waves-effect waves-teal collapsible-header"><i class="material-icons">dashboard</i>{% trans "Dashboard" %}</a>
         </li>
         <li class="bold no-padding">
-            <ul class="collapsible collapsible-accordion">
-                <li class="bold">
-                    <a class="collapsible-header waves-effect waves-teal"><i class="material-icons">work</i>{% trans "Management" %}</a>
-                    <div class="collapsible-body" style="display: block;">
-                        <ul>
-                            <li><a href="{% url "stores" %}" class="collapsible-header"><i class="material-icons">store</i>Store</a></li>
-                            <li><a href="{% url "brands" %}" class="collapsible-header"><i class="material-icons">local_offer</i>Brands</a></li>
-                            <li><a href="{% url "employees_list" %}" class="collapsible-header"><i class="material-icons">group</i>Employees</a></li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
-        </li>
-        <li class="bold no-padding">
           <ul class="collapsible collapsible-accordion">
             <li class="bold"><a class="collapsible-header waves-effect waves-teal"><i class="material-icons">assessment</i>{% trans "Statistics" %}</a>
               <div class="collapsible-body" style="display: block;">
@@ -156,27 +142,6 @@
               </div>
             </li>
           </ul>
-        </li>
-
-        <li class="bold no-padding">
-            <a href="{% url "sensors" %}" class="waves-effect waves-teal collapsible-header"><i class="material-icons">settings_input_antenna</i>{% trans "Sensors" %}</a>
-        </li>
-        <li class="bold no-padding">
-            <ul class="collapsible collapsible-accordion">
-                <li class="bold">
-                    <a class="collapsible-header waves-effect waves-teal"><i class="material-icons">message</i>{% trans "Messages" %}</a>
-                    <div class="collapsible-body" style="display: block;">
-                        <ul>
-                            <li><a href="#" class="collapsible-header"><i class="material-icons">create</i>{% trans "Compose" %}</a></li>
-                            <li><a href="#" class="collapsible-header"><i class="material-icons">inbox</i>{% trans "Inbox" %}</a></li>
-                            <li><a href="#" class="collapsible-header"><i class="material-icons">send</i>{% trans "Sent" %}</a></li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
-        </li>
-        <li class="bold no-padding">
-            <a href="{% url "promotions" %}" class="waves-effect waves-teal collapsible-header"><i class="material-icons">loyalty</i>{% trans "Promotions" %}</a>
         </li>
     </ul>
     <!-- /Left Nav-->

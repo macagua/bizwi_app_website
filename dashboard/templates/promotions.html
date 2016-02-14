@@ -2,417 +2,29 @@
 {% load jsonify %}
 {% load i18n %}
 {% block css %}
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}js/plugins/data-tables/css/jquery.dataTables.min.css" media="screen,projection">
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}js/plugins/materialize-datatables/css/dataTables.materialize.css">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}js/plugins/data-tables/css/jquery.dataTables.min.css" media="screen,projection">
 {% endblock %}
 {% block content %}
-    <div class="container" style="width: 98%; max-width: 1500px;">
+     <div class="container" style="width: 98%; max-width: 1500px;">
     <h4>Manage promotions</h4>
     <!--New Promotions Buttons-->
     <div class="row">
     <!--New Promo-->
-    <div class="col s12 m4 l2">
-        <a class="waves-effect waves-light btn" href="new-promotion.html"><i class="material-icons right">loyalty</i>New Promotion</a>
-    </div>
-    <!--New Promo End-->
-    <!--New Loyal Promo-->
-    <div class="col s12 m4 l2">
-        <a class="waves-effect waves-light btn" href="new-loyalty-promotion.html"><i class="material-icons right">loyalty</i>New Loyalty Promotion</a>
-    </div>
-    <!--New Loyal Promo End-->
-    <!--New Ext Promo-->
-    <div class="col s12 m4 l2">
-        <a class="waves-effect waves-light btn" href="new-ext-promotion.html"><i class="material-icons right">loyalty</i>New External Promotion</a>
-    </div>
-    <!--New Ext Promo End-->
+      <div class="col s12 m4 l2">
+          <a class="waves-effect waves-light btn" href="new-promotion.html"><i class="material-icons right">loyalty</i>New Promotion</a>
+      </div>
     </div>
     <!--New Promotion Buttons End-->
     <div class="row">
     <div class="col s12">
-      <ul class="tabs">
-              <li class="tab col s3"><a class="active black-text" href="#promos">Promotions</a></li>
-              <li class="tab col s3"><a class="black-text" href="#loyal-promos">Loyalty Promotions</a></li>
-              <li class="tab col s3"><a class="black-text" href="#ext-promos">External Promotions</a></li>
-              <li class="tab col s3 disabled"></li>
-      </ul>
       <div>
         <div id="promos" class="col s12 white section" style="padding-bottom: 2rem;">
       <!--DataTables in house-->
             <div id="table-datatables">
               <div class="row">
                 <div class="col s12">
-                  <table id="data-table-simple" class="responsive-table display" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>Promo ID</th>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Impacts</th>
-                            <th>Unique Check-ins</th>
-                            <th>All Check-ins</th>
-                            <th>Active</th>
-                            <th>Details</th>
-                            <th>Edit</th>
-                            <th>Preview</th>
-                            <th>Email</th>
-                        </tr>
-                    </thead>
-                 
-                    <tbody>
-                        <tr>
-                            <td>01</td>
-                            <td>Free Beer</td>
-                            <td>We will give beer for free</td>
-                            <td>1000</td>
-                            <td>10000</td>
-                            <td>1000000</td>
-                            <td>Yes</td>
-                            <td>Details</td>
-                            <td>Edit</td>
-                            <td>Preview</td>
-                            <td>Email</td>
-                        </tr>
-                        <tr>
-                            <td>02</td>
-                            <td>Free Beer</td>
-                            <td>We will give beer for free</td>
-                            <td>1000</td>
-                            <td>10000</td>
-                            <td>1000000</td>
-                            <td>Yes</td>
-                            <td>Details</td>
-                            <td>Edit</td>
-                            <td>Preview</td>
-                            <td>Email</td>
-                        </tr>
-                        <tr>
-                            <td>03</td>
-                            <td>Free Beer</td>
-                            <td>We will give beer for free</td>
-                            <td>1000</td>
-                            <td>10000</td>
-                            <td>1000000</td>
-                            <td>Yes</td>
-                            <td>Details</td>
-                            <td>Edit</td>
-                            <td>Preview</td>
-                            <td>Email</td>
-                        </tr>
-                        <tr>
-                            <td>04</td>
-                            <td>Free Beer</td>
-                            <td>We will give beer for free</td>
-                            <td>1000</td>
-                            <td>10000</td>
-                            <td>1000000</td>
-                            <td>Yes</td>
-                            <td>Details</td>
-                            <td>Edit</td>
-                            <td>Preview</td>
-                            <td>Email</td>
-                        </tr>
-                        <tr>
-                            <td>05</td>
-                            <td>Free Beer</td>
-                            <td>We will give beer for free</td>
-                            <td>1000</td>
-                            <td>10000</td>
-                            <td>1000000</td>
-                            <td>Yes</td>
-                            <td>Details</td>
-                            <td>Edit</td>
-                            <td>Preview</td>
-                            <td>Email</td>
-                        </tr>
-                        <tr>
-                            <td>06</td>
-                            <td>Free Beer</td>
-                            <td>We will give beer for free</td>
-                            <td>1000</td>
-                            <td>10000</td>
-                            <td>1000000</td>
-                            <td>Yes</td>
-                            <td>Details</td>
-                            <td>Edit</td>
-                            <td>Preview</td>
-                            <td>Email</td>
-                        </tr>
-                        <tr>
-                            <td>07</td>
-                            <td>Free Beer</td>
-                            <td>We will give beer for free</td>
-                            <td>1000</td>
-                            <td>10000</td>
-                            <td>1000000</td>
-                            <td>Yes</td>
-                            <td>Details</td>
-                            <td>Edit</td>
-                            <td>Preview</td>
-                            <td>Email</td>
-                        </tr>
-                        <tr>
-                            <td>08</td>
-                            <td>Free Beer</td>
-                            <td>We will give beer for free</td>
-                            <td>1000</td>
-                            <td>10000</td>
-                            <td>1000000</td>
-                            <td>Yes</td>
-                            <td>Details</td>
-                            <td>Edit</td>
-                            <td>Preview</td>
-                            <td>Email</td>
-                        </tr>
-                        <tr>
-                            <td>09</td>
-                            <td>Free Beer</td>
-                            <td>We will give beer for free</td>
-                            <td>1000</td>
-                            <td>10000</td>
-                            <td>1000000</td>
-                            <td>Yes</td>
-                            <td>Details</td>
-                            <td>Edit</td>
-                            <td>Preview</td>
-                            <td>Email</td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>Free Beer</td>
-                            <td>We will give beer for free</td>
-                            <td>1000</td>
-                            <td>10000</td>
-                            <td>1000000</td>
-                            <td>Yes</td>
-                            <td>Details</td>
-                            <td>Edit</td>
-                            <td>Preview</td>
-                            <td>Email</td>
-                        </tr>
-                        <tr>
-                            <td>11</td>
-                            <td>Free Beer</td>
-                            <td>We will give beer for free</td>
-                            <td>1000</td>
-                            <td>10000</td>
-                            <td>1000000</td>
-                            <td>Yes</td>
-                            <td>Details</td>
-                            <td>Edit</td>
-                            <td>Preview</td>
-                            <td>Email</td>
-                        </tr>
-                        <tr>
-                            <td>12</td>
-                            <td>Free Beer</td>
-                            <td>We will give beer for free</td>
-                            <td>1000</td>
-                            <td>10000</td>
-                            <td>1000000</td>
-                            <td>Yes</td>
-                            <td>Details</td>
-                            <td>Edit</td>
-                            <td>Preview</td>
-                            <td>Email</td>
-                        </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div> 
-        </div>
-        <div id="loyal-promos" class="col s12 white section" style="padding-bottom: 2rem;">
-      <!--DataTables All-->
-            <div id="table-datatables">
-              <div class="row">
-                <div class="col s12">
-                  <table id="data-table-simple" class="responsive-table display" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>Promo ID</th>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Impacts</th>
-                            <th>Unique Check-ins</th>
-                            <th>All Check-ins</th>
-                            <th>Active</th>
-                            <th>Details</th>
-                            <th>Edit</th>
-                            <th>Preview</th>
-                            <th>Email</th>
-                        </tr>
-                    </thead>
-                 
-                    <tbody>
-                        <tr>
-                            <td>01</td>
-                            <td>Free Beer</td>
-                            <td>We will give beer for free</td>
-                            <td>1000</td>
-                            <td>10000</td>
-                            <td>1000000</td>
-                            <td>Yes</td>
-                            <td>Details</td>
-                            <td>Edit</td>
-                            <td>Preview</td>
-                            <td>Email</td>
-                        </tr>
-                        <tr>
-                            <td>02</td>
-                            <td>Free Beer</td>
-                            <td>We will give beer for free</td>
-                            <td>1000</td>
-                            <td>10000</td>
-                            <td>1000000</td>
-                            <td>Yes</td>
-                            <td>Details</td>
-                            <td>Edit</td>
-                            <td>Preview</td>
-                            <td>Email</td>
-                        </tr>
-                        <tr>
-                            <td>03</td>
-                            <td>Free Beer</td>
-                            <td>We will give beer for free</td>
-                            <td>1000</td>
-                            <td>10000</td>
-                            <td>1000000</td>
-                            <td>Yes</td>
-                            <td>Details</td>
-                            <td>Edit</td>
-                            <td>Preview</td>
-                            <td>Email</td>
-                        </tr>
-                        <tr>
-                            <td>04</td>
-                            <td>Free Beer</td>
-                            <td>We will give beer for free</td>
-                            <td>1000</td>
-                            <td>10000</td>
-                            <td>1000000</td>
-                            <td>Yes</td>
-                            <td>Details</td>
-                            <td>Edit</td>
-                            <td>Preview</td>
-                            <td>Email</td>
-                        </tr>
-                        <tr>
-                            <td>05</td>
-                            <td>Free Beer</td>
-                            <td>We will give beer for free</td>
-                            <td>1000</td>
-                            <td>10000</td>
-                            <td>1000000</td>
-                            <td>Yes</td>
-                            <td>Details</td>
-                            <td>Edit</td>
-                            <td>Preview</td>
-                            <td>Email</td>
-                        </tr>
-                        <tr>
-                            <td>06</td>
-                            <td>Free Beer</td>
-                            <td>We will give beer for free</td>
-                            <td>1000</td>
-                            <td>10000</td>
-                            <td>1000000</td>
-                            <td>Yes</td>
-                            <td>Details</td>
-                            <td>Edit</td>
-                            <td>Preview</td>
-                            <td>Email</td>
-                        </tr>
-                        <tr>
-                            <td>07</td>
-                            <td>Free Beer</td>
-                            <td>We will give beer for free</td>
-                            <td>1000</td>
-                            <td>10000</td>
-                            <td>1000000</td>
-                            <td>Yes</td>
-                            <td>Details</td>
-                            <td>Edit</td>
-                            <td>Preview</td>
-                            <td>Email</td>
-                        </tr>
-                        <tr>
-                            <td>08</td>
-                            <td>Free Beer</td>
-                            <td>We will give beer for free</td>
-                            <td>1000</td>
-                            <td>10000</td>
-                            <td>1000000</td>
-                            <td>Yes</td>
-                            <td>Details</td>
-                            <td>Edit</td>
-                            <td>Preview</td>
-                            <td>Email</td>
-                        </tr>
-                        <tr>
-                            <td>09</td>
-                            <td>Free Beer</td>
-                            <td>We will give beer for free</td>
-                            <td>1000</td>
-                            <td>10000</td>
-                            <td>1000000</td>
-                            <td>Yes</td>
-                            <td>Details</td>
-                            <td>Edit</td>
-                            <td>Preview</td>
-                            <td>Email</td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>Free Beer</td>
-                            <td>We will give beer for free</td>
-                            <td>1000</td>
-                            <td>10000</td>
-                            <td>1000000</td>
-                            <td>Yes</td>
-                            <td>Details</td>
-                            <td>Edit</td>
-                            <td>Preview</td>
-                            <td>Email</td>
-                        </tr>
-                        <tr>
-                            <td>11</td>
-                            <td>Free Beer</td>
-                            <td>We will give beer for free</td>
-                            <td>1000</td>
-                            <td>10000</td>
-                            <td>1000000</td>
-                            <td>Yes</td>
-                            <td>Details</td>
-                            <td>Edit</td>
-                            <td>Preview</td>
-                            <td>Email</td>
-                        </tr>
-                        <tr>
-                            <td>12</td>
-                            <td>Free Beer</td>
-                            <td>We will give beer for free</td>
-                            <td>1000</td>
-                            <td>10000</td>
-                            <td>1000000</td>
-                            <td>Yes</td>
-                            <td>Details</td>
-                            <td>Edit</td>
-                            <td>Preview</td>
-                            <td>Email</td>
-                        </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div> 
-        </div>
-
-        <div id="ext-promos" class="col s12 white section" style="padding-bottom: 2rem;">
-      <!--DataTables All-->
-            <div id="table-datatables">
-              <div class="row">
-                <div class="col s12">
-                  <table id="data-table-simple" class="responsive-table display" cellspacing="0">
+                  <table id="datatable-promotions" class="responsive-table" cellspacing="0">
                     <thead>
                         <tr>
                             <th>Promo ID</th>
@@ -599,12 +211,15 @@
 
 
     </div>
-    </div>
           
 {% endblock %}
 
 {% block scripts %}
-    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/data-tables/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/data-tables/data-tables-script.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/materialize-datatables/dataTables.materialize.js"></script>
+<!-- data-tables -->
+<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/data-tables/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/materialize-datatables/js/dataTables.materialize.js"></script>
+<!-- Custom Scripts -->
+<script type='text/javascript'>
+    $('#datatable-promotions').DataTable();
+</script>
 {% endblock %}

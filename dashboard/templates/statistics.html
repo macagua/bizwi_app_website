@@ -2,68 +2,17 @@
 {% load jsonify %}
 {% load i18n %}
 {% block css %}
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}js/plugins/data-tables/css/jquery.dataTables.min.css" media="screen,projection">
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}js/plugins/materialize-datatables/css/dataTables.materialize.css">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}js/plugins/data-tables/css/jquery.dataTables.min.css" media="screen,projection">
 {% endblock %}
 {% block content %}
     <div class="container">
-    <h4>Visitors</h4>
-    <div class="row">
-    <div class="col s12">
-      <ul class="tabs">
-              <li class="tab col s3"><a class="active black-text" href="#in-house">In House</a></li>
-              <li class="tab col s3"><a class="black-text" href="#all">All</a></li>
-              <li class="tab col s6 disabled"></li>
-      </ul>
-      <div>
-        <div id="in-house" class="col s12 white section" style="padding-bottom: 2rem;">
-          <div class="col s6 m10 l10"><p>&nbsp;</p></div>
-          <div class="col s2 m2 l2">
-            <a class="waves-effect waves-light btn modal-trigger" href="#show-filters"><i class="material-icons right">filter_list</i>Filter</a>
-            <!-- Modal Structure -->
-            <div id="show-filters" class="modal modal-fixed-footer">
-              <div class="modal-content">
-                <h4>Click the categories for filtering</h4>
-                    <button class="btn waves-effect waves-light" style="margin: 3px;" onclick="Materialize.showStaggeredList('#div-sn')">Social network</button>
-                    <button class="btn waves-effect waves-light" style="margin: 3px;" >Operating system</button>
-                    <button class="btn waves-effect waves-light" style="margin: 3px;">Birthday</button>
-                    <button class="btn waves-effect waves-light" style="margin: 3px;">Gender</button>
-                    <button class="btn waves-effect waves-light" style="margin: 3px;"># of Visits</button>
-                    <button class="btn waves-effect waves-light" style="margin: 3px;">Time connected</button>
-                    <button class="btn waves-effect waves-light" style="margin: 3px;">Date of connection</button>
-                    <button class="btn waves-effect waves-light" style="margin: 3px;">Country/City</button>
-                    <button class="btn waves-effect waves-light" style="margin: 3px;">Keyword</button>
-                    <button class="btn waves-effect waves-light" style="margin: 3px;">Language</button>
-              <div class="divider"></div>
-              <ul id="div-sn">
-                <li style="opacity: 0;">
-                  <div class="input-field col s12">
-                    <select>
-                      <option value="1">Facebook</option>
-                      <option value="2">Google+</option>
-                    </select>
-                    <label>Social network</label>
-                  </div>
-                </li>
-              </ul>
-              </div>
-
-            <div class="modal-footer">
-              <button class="btn-flat modal-action modal-close waves-effect waves-light" type="submit" name="action">Ok
-                        <i class="material-icons right">check_circle</i>
-              </button>
-              <button class="btn-flat modal-action modal-close waves-effect waves-light" type="submit" name="action">Close
-                        <i class="material-icons left">cancel</i>
-              </button>
-
-            </div>
-            </div>
-          </div>
+    <h4>In House Visitors</h4>
       <!--DataTables in house-->
             <div id="table-datatables">
               <div class="row">
                 <div class="col s12">
-                  <table id="" class="responsive-table datatable-simple" cellspacing="0">
+                  <table id="datatable-house-visitors" class="responsive-table" cellspacing="0">
                     <thead>
                         <tr>
                             <th>Photo</th>
@@ -191,156 +140,16 @@
               </div>
             </div> 
         </div>
-        <div id="all" class="col s12 white section" style="padding-bottom: 2rem;">
-      <!--DataTables All-->
-            <div id="table-datatables">
-              <div class="row">
-                <div class="col s12">
-                  <table id="" class="responsive-table datatable-simple2" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>Photo</th>
-                            <th>Name</th>
-                            <th>Device OS</th>
-                            <th>Social network</th>
-                            <th>Visits</th>
-                            <th>Last connection</th>
-                            <th>Is connected</th>
-                        </tr>
-                    </thead>
-                 
-                    <tbody>
-                        <tr>
-                            <td><img src="{{ STATIC_URL }}images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
-                            <td>John Doe</td>
-                            <td>Windows</td>
-                            <td>Google</td>
-                            <td>1</td>
-                            <td>12/21/2015 21:22</td>
-                            <td>No</td>
-                        </tr>
-                        <tr>
-                            <td><img src="{{ STATIC_URL }}images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
-                            <td>John Doe</td>
-                            <td>Windows</td>
-                            <td>Google</td>
-                            <td>1</td>
-                            <td>12/21/2015 21:22</td>
-                            <td>No</td>
-                        </tr>
-                        <tr>
-                            <td><img src="{{ STATIC_URL }}images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
-                            <td>John Doe</td>
-                            <td>Windows</td>
-                            <td>Google</td>
-                            <td>1</td>
-                            <td>12/21/2015 21:22</td>
-                            <td>No</td>
-                        </tr>
-                        <tr>
-                            <td><img src="{{ STATIC_URL }}images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
-                            <td>John Doe</td>
-                            <td>Windows</td>
-                            <td>Google</td>
-                            <td>1</td>
-                            <td>12/21/2015 21:22</td>
-                            <td>No</td>
-                        </tr>
-                        <tr>
-                            <td><img src="{{ STATIC_URL }}images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
-                            <td>John Doe</td>
-                            <td>Windows</td>
-                            <td>Google</td>
-                            <td>1</td>
-                            <td>12/21/2015 21:22</td>
-                            <td>No</td>
-                        </tr>
-                        <tr>
-                            <td><img src="{{ STATIC_URL }}images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
-                            <td>John Doe</td>
-                            <td>Windows</td>
-                            <td>Google</td>
-                            <td>1</td>
-                            <td>12/21/2015 21:22</td>
-                            <td>No</td>
-                        </tr>
-                        <tr>
-                            <td><img src="{{ STATIC_URL }}images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
-                            <td>John Doe</td>
-                            <td>Windows</td>
-                            <td>Google</td>
-                            <td>1</td>
-                            <td>12/21/2015 21:22</td>
-                            <td>No</td>
-                        </tr>
-                        <tr>
-                            <td><img src="{{ STATIC_URL }}images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
-                            <td>John Doe</td>
-                            <td>Windows</td>
-                            <td>Google</td>
-                            <td>1</td>
-                            <td>12/21/2015 21:22</td>
-                            <td>No</td>
-                        </tr>
-                        <tr>
-                            <td><img src="{{ STATIC_URL }}images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
-                            <td>John Doe</td>
-                            <td>Windows</td>
-                            <td>Google</td>
-                            <td>1</td>
-                            <td>12/21/2015 21:22</td>
-                            <td>No</td>
-                        </tr>
-                        <tr>
-                            <td><img src="{{ STATIC_URL }}images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
-                            <td>John Doe</td>
-                            <td>Windows</td>
-                            <td>Google</td>
-                            <td>1</td>
-                            <td>12/21/2015 21:22</td>
-                            <td>No</td>
-                        </tr>
-                        <tr>
-                            <td><img src="{{ STATIC_URL }}images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
-                            <td>John Doe</td>
-                            <td>Windows</td>
-                            <td>Google</td>
-                            <td>1</td>
-                            <td>12/21/2015 21:22</td>
-                            <td>No</td>
-                        </tr>
-                        <tr>
-                            <td><img src="{{ STATIC_URL }}images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
-                            <td>John Doe</td>
-                            <td>Windows</td>
-                            <td>Google</td>
-                            <td>1</td>
-                            <td>12/21/2015 21:22</td>
-                            <td>No</td>
-                        </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div> 
-        </div>
-      </div>
-
-    </div>
-    </div>
-
-
-    </div>
-    </div>
     </main>
     
           
 {% endblock %}
 {% block scripts %}
-    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/data-tables/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/data-tables/data-tables-script.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/materialize-datatables/dataTables.materialize.js"></script>
-      <script type="text/javascript">
-        $('table.datatable-simple2').DataTable();
-      </script>
+<!-- data-tables -->
+<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/data-tables/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/materialize-datatables/js/dataTables.materialize.js"></script>
+<!-- Custom Scripts -->
+<script type='text/javascript'>
+    $('#datatable-house-visitors').DataTable();
+</script>
 {% endblock %}

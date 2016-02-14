@@ -12,5 +12,5 @@ $(document).ready(function(){
       formatSubmit: 'yyyy-mm-dd',
       hiddenName: true
     });
-  $('.material-select').material_select(); //use <select class="material-select">
+  $('select').not('#country-selector').material_select(); //use all <select> but the country-selector 
 });

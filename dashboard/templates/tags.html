@@ -250,13 +250,14 @@
     </div>
 {% endblock %}
 {% block scripts %}
-    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/data-tables/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/data-tables/data-tables-script.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/materialize-datatables/dataTables.materialize.js"></script>
-    <script type='text/javascript'>
-        var lang = '{{ request.session.lang }}';
-        var employeesData = {{ data|jsonify }};
+<!-- data-tables -->
+<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/data-tables/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/materialize-datatables/js/dataTables.materialize.js"></script>
+<!-- Custom Scripts -->
+<script type='text/javascript'>
+    var lang = '{{ request.session.lang }}';
+    var employeesData = {{ data|jsonify }};
 
-    </script>
-    <script src="{{ STATIC_URL }}js/brands.js"></script>
+</script>
+<script src="{{ STATIC_URL }}js/brands.js"></script>
 {% endblock %}

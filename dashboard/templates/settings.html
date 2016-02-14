@@ -2,8 +2,7 @@
 {% load i18n %}
 
 {% block css %}
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}js/plugins/jquery-minicolors/jquery.minicolors.css"
-          media="screen,projection">
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}js/plugins/jquery-minicolors/jquery.minicolors.css" media="screen,projection">
 {% endblock %}
 
 {% block content %}
@@ -74,7 +73,7 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <select class="material-select" name="categories">
+                        <select name="categories">
                             {% for count in countries %}
                                 <option value="{{ count.country_id }}"{% if count == country %}
                                         selected="selected"{% endif %}>{{ count.country_name }}</option>
@@ -171,7 +170,7 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <select class="material-select" id="fonts" name="ttf_font" value="{{ ttf_font }}">
+                        <select id="fonts" name="ttf_font" value="{{ ttf_font }}">
                             <option value="" selected>Default: Roboto</option>
                             <option value="Chelsea Market">Chelsea Market</option>
                             <option value="Droid Serif">Droid Serif</option>
@@ -226,21 +225,25 @@
 {% endblock %}
 
 {% block scripts %}
-    <!-- Custom Scripts-->
-    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/jquery-minicolors/jquery.minicolors.min.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/timezones/timezones.full.min.js"></script>
-    <script type="text/javascript">
-        // Font Selector
-        $('.minicolors').minicolors({
-            control: $(this).attr('data-control') || 'wheel',
-            letterCase: 'uppercase',
-            opacity: false,
-            theme: 'bootstrap',
-        });
-        //Timezone Selector
-        $('#timezone select').timezones();
-
-    </script>
+<!-- Internal Scripts-->
+<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/jquery-minicolors/jquery.minicolors.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/timezones/timezones.full.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/country-selector/jquery.country-selector.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui.min.js"></script>
+<!-- Custom Scripts-->
+<script type="text/javascript">
+    // Font Selector
+    $('.minicolors').minicolors({
+      control: $(this).attr('data-control') || 'wheel',
+      letterCase: 'uppercase',
+      opacity: false,
+      theme: 'bootstrap',
+    });
+    //Timezone Selector
+    $('#timezone select').timezones();
+    //Country Selector
+    $('#country-selector-div select').selectToAutocomplete();
+</script>
 
 {% endblock %}
 

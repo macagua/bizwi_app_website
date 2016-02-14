@@ -2,7 +2,7 @@
 {% load jsonify %}
 {% load i18n %}
 {% block css %}
-      <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}js/plugins/chartist/chartist.min.css" media="screen,projection">
+      <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.9.5/chartist.min.css" media="screen,projection">
       <!--Let browser know website is optimized for mobile-->
 {% endblock %}
 {% block content %}
@@ -90,10 +90,10 @@
     </div>
 {% endblock %}
 {% block scripts %}
-    <!-- ================================================
-    Scripts
-    ================================================ --> 
-      <!-- hartist Script & Data -->
-      <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/chartist/chartist.min.js"></script>
-      <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/chartist/chartist-data.js"></script>
+<!-- ================================================
+Scripts
+================================================ --> 
+<!-- Chartist Script & Data -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/chartist/0.9.5/chartist.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/chartist/chartist-data.js"></script>
 {% endblock %}
