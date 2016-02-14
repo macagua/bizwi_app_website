@@ -9,7 +9,7 @@ urlpatterns = [
     url(r'^api/v1/auth/$', views.auth),
 
     url(r'^api/v1/clients/$', views.ClientsList.as_view()),
-    url(r'^api/v1/client/(?P<pk>[0-9]+)$', views.ClientDetail.as_view()),
+    #url(r'^api/v1/client/(?P<pk>[0-9]+)$', views.ClientDetail.as_view()),
 
     # Section User ( custom User )
 
@@ -17,6 +17,16 @@ urlpatterns = [
     url(r'^api/v1/user/set_pass/(?P<id>\d+)$', views.set_password),
 
     url(r'^api/v1/client/(?P<client_id>\d+)$', views.client),
+
+
+
+    url(r'^api-dashboard/v1/employees_list/(?P<client_id>\d+)$', views.employees_list),
+
+
+
+
+
+
 
     # Create user admin of client
     url(r'^api/v1/create_client_admin/$', views.create_client_admin),

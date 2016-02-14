@@ -398,6 +398,14 @@ def get_employees(id_customer, id_employee=None):
     return result
 
 
+def get_employees_client(client_id, id_employee=None):
+    url_path = 'employees_list/' + str(client_id)
+    if id_employee:
+        url_path += '/' + str(id_employee)
+    result = base_request(url_path)
+    return result
+
+
 def save_employee(id_customer, employee_info, id_employee=None):
     url_path = 'employee_admin/' + str(id_customer)
     if id_employee:

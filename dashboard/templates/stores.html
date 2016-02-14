@@ -152,7 +152,7 @@
         <div id="table-datatables">
             <div class="row">
                 <div class="col s12">
-                    <table id="data-table-simple" class="responsive-table display" cellspacing="0">
+                    <table id="" class="responsive-table datatable-simple" cellspacing="0">
                         <thead>
                         <tr>
                             <th>Name</th>
@@ -189,7 +189,7 @@
 {% block scripts %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/data-tables/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/data-tables/data-tables-script.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/materialize-datatables/dataTables.materialize.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/materialize-datatables/js/dataTables.materialize.js"></script>
 
     <script type='text/javascript'>
         var lang = '{{ request.session.lang }}';

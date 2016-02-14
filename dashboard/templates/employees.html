@@ -10,7 +10,7 @@
         <h4>Manage employees</h4>
         <div class="row">
             <div class="col s12">
-                <a class="waves-effect waves-light btn modal-trigger" href="#create-employee"><i
+                <a class="waves-effect waves-light btn modal-trigger" href="{% url "new_employee" %}"><i
                         class="material-icons right">group</i>Create new employee</a>
                 <!-- Modal Structure -->
                 <div id="create-employee" class="modal modal-fixed-footer">
@@ -197,7 +197,7 @@
         <div id="table-datatables">
                 <div class="row">
                 <div class="col s12">
-                    <table class="datatable responsive-table display" id="data-table-simple">
+                    <table id="" class="datatable responsive-table datatable-simple">
                         <thead>
                         <tr>
                             <th>{% trans "First Name" %}</th>
@@ -219,7 +219,7 @@
 {% block scripts %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/data-tables/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/data-tables/data-tables-script.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/materialize-datatables/dataTables.materialize.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/materialize-datatables/js/dataTables.materialize.js"></script>
 
     <script type='text/javascript'>
         var lang = '{{ request.session.lang }}';

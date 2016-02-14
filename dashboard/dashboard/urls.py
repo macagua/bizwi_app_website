@@ -37,8 +37,14 @@ urlpatterns = [
     url(r'^store/(?P<id_local>\d+)/$', views.store, name='store'),
     url(r'^dashboard/$', views.dashboard, name='home'),
 
+
+
     url(r'^employees/$', views.employees_list, name='employees_list'),
     url(r'^employee/$', views.employee, name='new_employee'),
+
+
+
+
     url(r'^employee/(?P<id_employee>\d+)/$', views.employee, name='employee'),
     url(r'^settings_employee/', views.settings_employee, name='settings_employee'),
 
