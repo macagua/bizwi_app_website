@@ -2,7 +2,8 @@
 {% load jsonify %}
 {% load i18n %}
 {% block css %}
-
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}js/plugins/jquery-minicolors/jquery.minicolors.css"
+          media="screen,projection">
 {% endblock %}
 {% block content %}
     <div class="container">
@@ -79,64 +80,68 @@
             <form class="form-horizontal" method="POST" id="store_style">
                 {% csrf_token %}
 
-                <div {% if form.logo_url.errors %}class="form-group has-error"
-                     {% else %}class="form-group"{% endif %}>
-                    <label for="inputLogo" class="col-sm-2 control-label">{% trans "Logo" %}</label>
-
-                    <div class="col-sm-10">
-                        <input id="inputLogo" name="logo_url" type="text" class="form-control"
-                               value="{{ store.logo_url }}">
-                        {% for error in form.logo_url.errors %}
-                            <label class="control-label" for="inputLogo">{{ error|escape }}</label>
-                        {% endfor %}
+   <div class="input-field col s12 center-align">
+                        {% if logo_url %}
+                            <img class="file-img" src="{{ logo_url }}"
+                                 style="max-height:100%; max-width:100%;">
+                        {% else %}
+                            <img class="file-img" src="http://placehold.it/250x250&amp;text=no+image"
+                                 style="max-height:100%; max-width:100%;">
+                        {% endif %}
+                        <div class="file-field input-field">
+                            <div class="btn">
+                                <span>Upload Logo</span>
+                                <input type="file" value="{{ logo_url }}" name="logo_url">
+                            </div>
+                            <div class="btn" style="margin-left: 5px;">
+                                <span>Remove Logo</span>
+                                <input type="file">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-                <div {% if form.background_color.errors %}class="form-group has-error"
-                     {% else %}class="form-group"{% endif %}>
-                    <label for="inputBackgrounColor"
-                           class="col-sm-2 control-label">{% trans "Background Color" %}</label>
-
-                    <div class="col-sm-10">
-                        <input id="inputBackgrounColor" name="background_color" type="text" class="form-control"
-                               value="{{ store.background_color }}" data-error="{% trans "Complete this field" %}"
-                                >
-                        {% for error in form.background_color.errors %}
-                            <label class="control-label" for="inputBackgrounColor">{{ error|escape }}</label>
-                        {% endfor %}
+                <div class="row">
+                    <div class="col s6">
+                        <label for="background_color">Background color</label>
+                        <input id="background_color"  name="background_color" type="text" class="minicolors" data-control="wheel"
+                               value="{{ background_color }}">
                     </div>
-                </div>
-
-
-                <div {% if form.foreground_color.errors %}class="form-group has-error"
-                     {% else %}class="form-group"{% endif %}>
-                    <label for="inputForegroundColor"
-                           class="col-sm-2 control-label">{% trans "Foreground Color" %}</label>
-
-                    <div class="col-sm-10">
-                        <input id="inputForegroundColor" name="foreground_color" type="text" class="form-control"
-                               value="{{ store.foreground_color }}">
-                        {% for error in form.foreground_color.errors %}
-                            <label class="control-label" for="inputForegroundColor">{{ error|escape }}</label>
-                        {% endfor %}
+                    <div class="col s6">
+                        <label for="foreground_color">Foreground color</label>
+                        <input id="foreground_color" name="foreground_color" type="text" class="minicolors" data-control="wheel"
+                               value="{{ foreground_color }}">
                     </div>
                 </div>
 
 
-                <div {% if form.background_img.errors %}class="form-group has-error"
-                     {% else %}class="form-group"{% endif %}>
-                    <label for="inputBackgroundImg"
-                           class="col-sm-2 control-label">{% trans "Background image" %}</label>
+                <div class="row">
+                    <div class="input-field col s12 center-align">
+                        {% if background_img %}
+                            <img class="file-img" src="{{ background_img }}"
+                                 style="max-height:100%; max-width:100%;">
+                        {% else %}
+                            <img class="file-img" src="http://placehold.it/250x250&amp;text=no+image"
+                                 style="max-height:100%; max-width:100%;">
+                        {% endif %}
 
-                    <div class="col-sm-10">
-                        <input id="inputBackgroundImg" name="background_img" type="text" class="form-control"
-                               value="{{ store.background_img }}">
-                        {% for error in form.background_img.errors %}
-                            <label class="control-label" for="inputBackgroundImg">{{ error|escape }}</label>
-                        {% endfor %}
+                        <div class="file-field input-field">
+                            <div class="btn">
+                                <span>Upload Background Image</span>
+                                <input type="file">
+                            </div>
+                            <div class="btn" style="margin-left: 5px;">
+                                <span>Remove Image</span>
+                                <input type="file">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
+                        </div>
                     </div>
                 </div>
-
 
                 <div {% if form.font.errors %}class="form-group has-error"
                      {% else %}class="form-group"{% endif %}>
@@ -163,8 +168,8 @@
                      {% else %}class="form-group"{% endif %}>
                     <label for="selectCountry" class="col-sm-2 control-label">{% trans "Country" %}</label>
                     <select id="selectCountry" name="country" class="material-select">
-                        <option value="AF">Barcelona</option>
-                        <option value="AL">Madrid</option>
+                        <option value="ES">España</option>
+                        <option value="IT">Italia</option>
                     </select>
                 </div>
 
@@ -172,8 +177,8 @@
                      {% else %}class="form-group"{% endif %}>
                     <label for="selectCity" class="col-sm-2 control-label">{% trans "City" %}</label>
                     <select id="selectCity" name="city" class="material-select">
-                        <option value="AF">Barcelona</option>
-                        <option value="AL">Madrid</option>
+                        <option value="BA">Barcelona</option>
+                        <option value="MA">Madrid</option>
                     </select>
                 </div>
 
@@ -219,5 +224,26 @@
 
 {% endblock %}
 {% block scripts %}
+ <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/materialize.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/scripts.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <!-- Custom Scripts-->
+
+    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/jquery-minicolors/jquery.minicolors.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/timezones/timezones.full.min.js"></script>
+    <script type="text/javascript">
+        // Font Selector
+        $('.minicolors').minicolors({
+            control: $(this).attr('data-control') || 'wheel',
+            letterCase: 'uppercase',
+            opacity: false,
+            theme: 'bootstrap',
+        });
+        //Timezone Selector
+        $('#timezone select').timezones();
+
+    </script>
 
 {% endblock %}

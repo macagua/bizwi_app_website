@@ -92,7 +92,11 @@ def logout(request):
 @only_employee(LOGIN_URL)
 # @extra_info
 # def dashboard(request, extra_info):
-def dashboard(request):
+def dashboard(request, *args, **kwargs):
+
+    customer_name = request.session.get("client_name"),
+
+
     #    id_location = request.session.get("id_location")
     #    stats = get_stats(id_location)
     #
@@ -244,6 +248,8 @@ def new_client(request):
     info['form'] = form
 
     return render(request, 'new_client.html', info)
+
+
 
 
 def stores(request):

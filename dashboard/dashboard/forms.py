@@ -76,7 +76,8 @@ class BrandForm(forms.Form):
 
 
 class StoreForm(forms.Form):
-    name = forms.CharField(max_length=100)
+
+    store_name = forms.CharField(max_length=100)
     telephone = forms.CharField(max_length=100)
     web_site = forms.CharField(max_length=100)
     description = forms.CharField(max_length=250)
@@ -89,6 +90,7 @@ class StoreForm(forms.Form):
     foreground_color = forms.CharField(max_length=10)
     background_img = forms.CharField(max_length=10)
     ttf_font = forms.URLField()
+
 
 
 class SettingsEmployeeForm(forms.Form):

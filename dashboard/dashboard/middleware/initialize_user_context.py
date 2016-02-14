@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.http.response import Http404
 from django.utils.translation import LANGUAGE_SESSION_KEY
 from dashboard.rest_gateway import get_context
-from Bizwi_dashboard.settings import DATE_FORMATS
+from dashboard.settings import DATE_FORMATS
 
 
 class Initialize(object):
@@ -27,6 +27,7 @@ class Initialize(object):
                     name = context['full_name']
                     id_location = context['id_location']
                     id_customer = context['id_customer']
+                    first_name = context['first_name']
                     customer_name = context['customer_name']
                     time_zone = context['timezone']
                     language = context['language']
