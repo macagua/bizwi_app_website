@@ -17,6 +17,9 @@ urlpatterns = [
     url(r'^api/v1/regions/$', views.RegionsList.as_view()),
     url(r'^api/v1/region/(?P<pk>[0-9]+)$', views.RegionDetail.as_view()),
 
+    url(r'^api/v1/tags/$', views.TagsList.as_view()),
+    url(r'^api/v1/tag/(?P<pk>[0-9]+)$', views.TagDetail.as_view()),
+    
     url(r'^api/v1/clients/$', views.ClientsList.as_view()),
     url(r'^api/v1/client/(?P<pk>[0-9]+)$', views.ClientDetail.as_view()),
 

@@ -14,6 +14,7 @@ from django.contrib.auth import authenticate
 from rest_framework.response import Response
 from rest_framework import status
 from django.http import HttpResponse
+from django.views.generic import View 
 
 
 @api_view(['POST'])
