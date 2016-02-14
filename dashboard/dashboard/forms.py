@@ -47,10 +47,25 @@ class EmployeeForm(forms.Form):
 
 
 class ClientForm(forms.Form):
-    name = forms.CharField(max_length=255, required=True)
-    description = forms.CharField()
-    url = forms.URLField(max_length=255)
-    time_zone = forms.CharField(max_length=255)
+    client_name = forms.CharField(max_length=255, required=False)
+    telephone = forms.CharField(max_length=255, required=False)
+    web_site = forms.CharField(max_length=255, required=False)
+    logo_url = forms.CharField(max_length=255, required=False)
+    background_color = forms.CharField(max_length=255, required=False)
+    foreground_color = forms.CharField(max_length=255, required=False)
+    background_img = forms.CharField(max_length=255, required=False)
+    ttf_font = forms.CharField(max_length=255, required=False)
+    city = forms.CharField(max_length=255, required=False)
+    country = forms.CharField(max_length=255, required=False)
+    photo_url = forms.CharField(max_length=255, required=False)
+    facebook_fan_page = forms.CharField(max_length=255, required=False)
+    twitter_account = forms.CharField(max_length=255, required=False)
+    language = forms.CharField(max_length=255, required=False)
+    gplus_id = forms.CharField(max_length=255, required=False)
+    timezone = forms.CharField(max_length=255, required=False)
+    description = forms.CharField(max_length=255, required=False)
+    url = forms.URLField(max_length=255, required=False)
+    timezone = forms.CharField(max_length=255, required=False)
 
 
 class BrandForm(forms.Form):

@@ -36,7 +36,9 @@ def only_employee(login_url):
                 return HttpResponseRedirect(LOGIN_URL + '?next=' + request.path + params)
             else:
                 return HttpResponseRedirect(LOGIN_URL + '?next=' + request.path)
+
         return _wrapped_view
+
     return decorator
 
 
@@ -59,6 +61,7 @@ def extra_info(the_func):
                      }
         kwargs['extra_info'] = extrainfo
         return the_func(request, *args, **kwargs)
+
     return _decorated
 
 
@@ -87,44 +90,42 @@ def logout(request):
 
 
 @only_employee(LOGIN_URL)
-#@extra_info
-#def dashboard(request, extra_info):
+# @extra_info
+# def dashboard(request, extra_info):
 def dashboard(request):
-#    id_location = request.session.get("id_location")
-#    stats = get_stats(id_location)
-#
-#    # create context
-#    info = {
-#        'unique_users': stats["unique_users"],
-#        'recurring': stats["recurring"],
-#        'pedestrians': stats["pedestrians"],
-#        'visitors': stats["visitors"],
-#        'impacts': stats["impacts"],
-#        'check_ins': stats["check_ins"],
-#    }
-#
-#    info.update(extra_info)
-#    return render(request, 'dashboard.html', info)
+    #    id_location = request.session.get("id_location")
+    #    stats = get_stats(id_location)
+    #
+    #    # create context
+    #    info = {
+    #        'unique_users': stats["unique_users"],
+    #        'recurring': stats["recurring"],
+    #        'pedestrians': stats["pedestrians"],
+    #        'visitors': stats["visitors"],
+    #        'impacts': stats["impacts"],
+    #        'check_ins': stats["check_ins"],
+    #    }
+    #
+    #    info.update(extra_info)
+    #    return render(request, 'dashboard.html', info)
     return render(request, 'dashboard.html')
 
-def statistics(request):
 
+def statistics(request):
     return render(request, 'statistics.html')
 
 
 def brands(request):
-
     return render(request, 'brands.html')
 
 
 def sensors(request):
-
     return render(request, 'sensors.html')
 
 
 def promotions(request):
-
     return render(request, 'promotions.html')
+
 
 # Registration new clients
 
@@ -308,11 +309,11 @@ def employees_list(request):
         employees['data'] = []
     return render(request, 'employees_admin.html', employees)
 
+
 # Mientras
 
 def stats(request):
     return render(request, 'employees_admin.html', employees)
-
 
 
 def employee(request, id_employee=None):
@@ -408,7 +409,7 @@ def settings_employee(request):
                     'username': user,
                     'uppercolor': uppercolor,
                     'lowercolor': lowercolor,
-            }
+                    }
 
             result = save_workplace_info(info)
 
@@ -449,7 +450,6 @@ def settings_employee(request):
 def user_profile(request):
     user_id = request.user.id
     user_info = get_info_user(user_id)
-    email = user_info['email']
 
     info = {}
 
@@ -491,8 +491,6 @@ def user_profile(request):
             form = SetPasswordForm(request.user, request.POST)
 
             if form.is_valid():
-                print form
-
                 try:
                     new_password = form.cleaned_data['new_password1']
                     result = change_password_user(user_id, new_password)
@@ -506,37 +504,92 @@ def user_profile(request):
                 info['change_error'] = True
                 info['form'] = form
 
-    info['email'] = email
-    return render(request, 'profile.html', user_info)
+    info['email'] = user_info['email']
+    info['first_name'] = user_info['first_name']
+    info['last_name'] = user_info['last_name']
+    info['lang'] = user_info['lang']
+    info['gender'] = user_info['gender']
+
+    return render(request, 'profile.html', info)
 
 
 def settings(request):
     user_id = request.user.id
     client_info = get_info_client(user_id)
-    email = client_info['email']
 
     info = {}
     if request.method == 'POST':
-        if "profileForm" in request.POST:
-            form = ClientForm(request.POST)
+        form = ClientForm(request.POST)
 
-            if form.is_valid():
-                try:
-                    email = form.cleaned_data['email']
-                    employee_info['email'] = email
-                    result = save_info(client_id, employee_info)
-                    if result:
-                        info['save_success'] = True
-                    else:
-                        info['save_error'] = True
-                        info['form'] = form
+        if form.is_valid():
 
-                except Exception as e:
-                    print e
+            try:
+                client_name = form.cleaned_data['client_name']
+                web_site = form.cleaned_data['web_site']
+                telephone = form.cleaned_data['telephone']
+                description = form.cleaned_data['description']
+                logo_url = form.cleaned_data['logo_url']
+                background_color = form.cleaned_data['background_color']
+                foreground_color = form.cleaned_data['foreground_color']
+                background_img = form.cleaned_data['background_img']
+                ttf_font = form.cleaned_data['ttf_font']
+                country = form.cleaned_data['country']
+                city = form.cleaned_data['city']
+                #address = form.cleaned_data['address']
+                facebook_fan_page = form.cleaned_data['facebook_fan_page']
+                twitter_account = form.cleaned_data['twitter_account']
+                gplus_id = form.cleaned_data['gplus_id']
+                language = form.cleaned_data['language']
+                timezone = form.cleaned_data['timezone']
+
+                client_info['client_name'] = client_name
+                client_info['web_site'] = web_site
+                client_info['telephone'] = telephone
+                client_info['description'] = description
+                client_info['logo_url'] = logo_url
+                client_info['background_color'] = background_color
+                client_info['foreground_color'] = foreground_color
+                client_info['background_img'] = background_img
+                client_info['ttf_font'] = ttf_font
+                client_info['country_id'] = country
+                client_info['city_id'] = city
+                client_info['facebook_fan_page'] = facebook_fan_page
+                client_info['twitter_account'] = twitter_account
+                client_info['gplus_id'] = gplus_id
+                client_info['language'] = language
+                client_info['timezone'] = timezone
+
+                result = save_info_client(user_id, client_info)
+                if result:
+                    info['save_success'] = True
+                else:
                     info['save_error'] = True
                     info['form'] = form
-            else:
+
+            except Exception as e:
+                print e
                 info['save_error'] = True
                 info['form'] = form
+        else:
+            info['save_error'] = True
+            info['form'] = form
 
-    return render(request, 'setting.html', client_info)
+    info['client_name'] = client_info['client_name']
+    info['code_crm'] = client_info['code_crm']
+    info['web_site'] = client_info['web_site']
+    info['telephone'] = client_info['telephone']
+    info['description'] = client_info['description']
+    info['country'] = client_info['country']
+    info['city'] = client_info['city']
+    info['language'] = client_info['language']
+    info['logo_url'] = client_info['logo_url']
+    info['background_color'] = client_info['background_color']
+    info['background_img'] = client_info['background_img']
+    info['foreground_color'] = client_info['foreground_color']
+    info['ttf_font'] = client_info['ttf_font']
+    info['facebook_fan_page'] = client_info['facebook_fan_page']
+    info['twitter_account'] = client_info['twitter_account']
+    info['gplus_id'] = client_info['gplus_id']
+    info['timezone'] = client_info['timezone']
+
+    return render(request, 'settings.html', info)

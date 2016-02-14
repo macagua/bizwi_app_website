@@ -1,0 +1,251 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block css %}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}js/plugins/jquery-minicolors/jquery.minicolors.css"
+          media="screen,projection">
+{% endblock %}
+
+{% block content %}
+
+    {% if save_success %}
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            {% trans "Data has been saved successfully." %}
+        </div>
+    {% elif change_success %}
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            {% trans "Password changed succsessfully" %}
+        </div>
+    {% elif form.non_field_errors %}
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            {{ form.non_field_errors }}
+        </div>
+    {% elif save_error %}
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            {% trans "Failed to save your data. Try again later." %}
+        </div>
+    {% endif %}
+
+    <div class="container">
+        <div class="row">
+            <h3>Edit your settings</h3>
+
+            <form class="col s12" method="POST">
+            {% csrf_token %}
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="client_name" type="text" value="{{ client_name }}" name="client_name"
+                               class="validate">
+                        <label for="client_name">Client Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input disabled id="code_crm" value="{{ code_crm }}" name="code_crm" type="text">
+                        <label for="code_crm ">Client CRM Code</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="web_site" type="text" class="validate" value="{{ web_site }}" name="web_site">
+                        <label for="web_site">Website address</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="telephone" type="text" class="validate" value="{{ telephone }}" name="telephone">
+                        <label for="telephone">Telephone</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <textarea id="description" name="description"
+                                  class="materialize-textarea">{{ description }}</textarea>
+                        <label for="description">Description</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="country" type="text" class="validate">
+                        <label for="country">Country</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="city" type="text" class="validate">
+                        <label for="city">City</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="address" type="text" class="validate">
+                        <label for="address">Address</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <select name="language">
+                            <option value="" disabled selected>Select language</option>
+                            <option value="en">English</option>
+                            <option value="es">Spanish</option>
+                        </select>
+                        <label>Language</label>
+                    </div>
+                </div>
+                <div id="timezone"><select name="timezone"></select></div>
+                <div class="row">
+                    <h4>Customize with Your Brand&#39;s Identity</h4>
+
+                    <div class="input-field col s12 center-align">
+                        {% if logo_url %}
+                            <img class="file-img" src="{{ logo_url }}"
+                                 style="max-height:100%; max-width:100%;">
+                        {% else %}
+                            <img class="file-img" src="http://placehold.it/250x250&amp;text=no+image"
+                                 style="max-height:100%; max-width:100%;">
+                        {% endif %}
+                        <div class="file-field input-field">
+                            <div class="btn">
+                                <span>Upload Logo</span>
+                                <input type="file" value="{{ logo_url }}" name="logo_url">
+                            </div>
+                            <div class="btn" style="margin-left: 5px;">
+                                <span>Remove Logo</span>
+                                <input type="file">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s6">
+                        <label for="background_color">Background color</label>
+                        <input id="background_color" type="text" class="minicolors" data-control="wheel"
+                               value="{{ background_color }}">
+                    </div>
+                    <div class="col s6">
+                        <label for="foreground_color">Foreground color</label>
+                        <input id="foreground_color" type="text" class="minicolors" data-control="wheel"
+                               value="{{ foreground_color }}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12 center-align">
+                        {% if background_img %}
+                            <img class="file-img" src="{{ background_img }}"
+                                 style="max-height:100%; max-width:100%;">
+                        {% else %}
+                            <img class="file-img" src="http://placehold.it/250x250&amp;text=no+image"
+                                 style="max-height:100%; max-width:100%;">
+                        {% endif %}
+
+                        <div class="file-field input-field">
+                            <div class="btn">
+                                <span>Upload Background Image</span>
+                                <input type="file">
+                            </div>
+                            <div class="btn" style="margin-left: 5px;">
+                                <span>Remove Image</span>
+                                <input type="file">
+                            </div>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <select id="fonts" name="ttf_font" value="{{ ttf_font }}">
+                            <option value="" selected>Default: Roboto</option>
+                            <option value="Chelsea Market">Chelsea Market</option>
+                            <option value="Droid Serif">Droid Serif</option>
+                            <option value="Ruluko">Ruluko</option>
+                            <option value="Ruda">Ruda</option>
+                            <option value="Magra">Magra</option>
+                            <option value="Esteban">Esteban</option>
+                            <option value="Lora">Lora</option>
+                            <option value="Jura">Jura</option>
+                        </select>
+                        <label>Homepage font</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <h4>Setup Your Brand&#39;s Social Networks</h4>
+
+                    <div class="input-field col s12">
+                        <input id="facebook_fan_page" type="text" class="validate" name="facebook_fan_page"
+                               value="{{ facebook_fan_page }}"
+                               placeholder="https://www.facebook.com/BizWi">
+                        <label for="facebook_fan_page">Facebook Page address</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="twitter_account" type="text" class="validate" placeholder="@BizWi"
+                               name="twitter_account" value="{{ twitter_account }}">
+                        <label for="twitter_account">Twitter Username</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="gplus_id" type="text" class="validate" placeholder="https://plus.google.com/+BizWi"
+                               name="gplus_id" value="{{ gplus_id }}">
+                        <label for="gplus_id">Google Plus ID</label>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s6 l6">
+                        <button class="btn waves-effect waves-light" type="submit" name="action">Back
+                            <i class="material-icons left">backspace</i>
+                        </button>
+                    </div>
+                    <div class="input-field col s6 l6 right-align">
+                        <button class="btn waves-effect waves-light" type="submit" name="action">Update
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+    <!--Import jQuery before materialize.js-->
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/materialize.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/scripts.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <!-- Custom Scripts-->
+
+    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/jquery-minicolors/jquery.minicolors.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/timezones/timezones.full.min.js"></script>
+    <script type="text/javascript">
+        // Font Selector
+        $('.minicolors').minicolors({
+            control: $(this).attr('data-control') || 'wheel',
+            letterCase: 'uppercase',
+            opacity: false,
+            theme: 'bootstrap',
+        });
+        //Timezone Selector
+        $('#timezone select').timezones();
+
+    </script>
+
+{% endblock %}
+

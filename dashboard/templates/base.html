@@ -47,7 +47,7 @@ Version: 1.0
     <!-- Dropdown for Customer  -->
     <ul id="dropdown1" class="dropdown-content">
         <li><a href="{% url "user_profile" %}"><i class="material-icons left">person_outline</i>{% trans "User profile" %}</a></li>
-        <li><a href="#"><i class="material-icons left">settings</i>{% trans "Settings" %}</a></li>
+        <li><a href="{% url "settings" %}"><i class="material-icons left">settings</i>{% trans "Settings" %}</a></li>
         <li class="divider"></li>
         <li><a href="{% url "logout" %}"><i class="material-icons left">exit_to_app</i>{% trans "Logout" %}</a></li>
     </ul>
@@ -224,7 +224,7 @@ Chartist Script & Data
 <!--<script type="text/javascript" src="js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>-->
 <!--ChartJS Script & Data-->
 <!--<script type="text/javascript" src="js/plugins/chartjs/Chart.min.js"></script>-->
-<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/chartjs/chartjs-data.js"></script>
+<!--<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/chartjs/chartjs-data.js"></script>-->
 <!--Chartist Script & Data-->
 <!--<script type="text/javascript" src="js/plugins/chartist/chartist.min.js"></script>-->
 <!--<script type="text/javascript" src="js/plugins/chartist/chartist-data.js"></script>-->

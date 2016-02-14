@@ -18,10 +18,7 @@ urlpatterns = [
     url(r'^api/v1/region/(?P<pk>[0-9]+)$', views.RegionDetail.as_view()),
 
     url(r'^api/v1/clients/$', views.ClientsList.as_view()),
-    url(r'^api/v1/client/(?P<pk>[0-9]+)$', views.ClientDetail.as_view()),
-
-    url(r'^api/v1/clients/$', views.ClientsList.as_view()),
-    # url(r'^api/v1/client/(?P<pk>[0-9]+)$', views.ClientDetail.as_view()),
+    #url(r'^api/v1/client/(?P<pk>[0-9]+)$', views.ClientDetail.as_view()),
 
 
     # Section User ( custom User )
@@ -32,6 +29,12 @@ urlpatterns = [
 
 
     url(r'^api/v1/client/(?P<client_id>\d+)$', views.client),
+
+
+
+
+
+
 
     # Create user admin of client
     url(r'^api/v1/create_client_admin/$', views.create_client_admin),
