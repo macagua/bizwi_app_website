@@ -65,7 +65,7 @@
         <li class="bold no-padding">
           <ul class="collapsible collapsible-accordion">
             <li class="bold"><a class="collapsible-header waves-effect waves-teal"><i class="material-icons">work</i>Management</a>
-              <div class="collapsible-body" style="display: block;">
+              <div style="" class="collapsible-body" style="display: block;">
                 <ul>
                   <li><a href="brands.html" class="collapsible-header"><i class="material-icons">local_offer</i>Brands</a></li>
                   <li><a href="stores.html" class="collapsible-header"><i class="material-icons">store</i>Stores</a></li>
@@ -80,7 +80,7 @@
         <li class="bold no-padding">
           <ul class="collapsible collapsible-accordion">
             <li class="bold"><a class="collapsible-header waves-effect waves-teal"><i class="material-icons">message</i>Messages</a>
-              <div class="collapsible-body" style="display: block;">
+              <div style="" class="collapsible-body">
                 <ul>
                   <li><a href="messages_compose.html" class="collapsible-header"><i class="material-icons">create</i>Compose</a></li>
                   <li><a href="messages_inbox.html" class="collapsible-header"><i class="material-icons">inbox</i>Inbox</a></li>
@@ -93,10 +93,10 @@
         <li class="bold no-padding">
           <ul class="collapsible collapsible-accordion">
             <li class="bold active"><a class="collapsible-header active waves-effect waves-teal"><i class="material-icons">loyalty</i>Promotions</a>
-              <div class="collapsible-body" style="display: block;">
+              <div style="" class="collapsible-body">
                 <ul>
-                  <li class="active blue-grey darken-4"><a href="promotions.html" class="collapsible-header"><i class="material-icons">loyalty</i>Promotions</a></li>
-                  <li><a href="loyalty-promotion.html" class="collapsible-header"><i class="material-icons">loyalty</i>Loyalty</a></li>
+                  <li><a href="promotions.html" class="collapsible-header"><i class="material-icons">loyalty</i>Promotions</a></li>
+                  <li class="active blue-grey darken-4"><a href="loyalty-promotion.html" class="collapsible-header"><i class="material-icons">loyalty</i>Loyalty</a></li>
                   <li><a href="ext-promotion.html" class="collapsible-header"><i class="material-icons">loyalty</i>External</a></li>
                 </ul>
               </div>
@@ -108,24 +108,25 @@
 
     <main>
     <div class="container" style="width: 98%; max-width: 1500px;">
-    <h4>Manage promotions</h4>
+    <h4>Manage loyalty promotions</h4>
     <!--New Promotions Buttons-->
     <div class="row">
-    <!--New Promo-->
-      <div class="col s12 m4 l2">
-          <a class="waves-effect waves-light btn" href="new-promotion.html"><i class="material-icons right">loyalty</i>New Promotion</a>
-      </div>
+    <!--New Loyal Promo-->
+    <div class="col s12 m4 l2">
+        <a class="waves-effect waves-light btn" href="new-loyalty-promotion.html"><i class="material-icons right">loyalty</i>New Loyalty Promotion</a>
+    </div>
+    <!--New Loyal Promo End-->
     </div>
     <!--New Promotion Buttons End-->
     <div class="row">
     <div class="col s12">
       <div>
-        <div id="promos" class="col s12 white section" style="padding-bottom: 2rem;">
-      <!--DataTables in house-->
+        <div id="loyal-promos" class="col s12 white section" style="padding-bottom: 2rem;">
+      <!--DataTables All-->
             <div id="table-datatables">
               <div class="row">
                 <div class="col s12">
-                  <table id="datatable-promotions" class="responsive-table" cellspacing="0">
+                  <table id="datatable-loyalty-promotions" class="responsive-table" cellspacing="0">
                     <thead>
                         <tr>
                             <th>Promo ID</th>
@@ -312,6 +313,7 @@
 
 
     </div>
+
     </main>
     
         <footer class="page-footer blue-grey darken-4">
@@ -336,7 +338,7 @@
       <script type="text/javascript" src="js/plugins/materialize-datatables/dataTables.materialize.js"></script>
       <!-- Initialize-->
       <script type="text/javascript">
-        $('#datatable-promotions').DataTable();
+        $('#datatable-loyalty-promotions').DataTable();
       </script>
   </body>
 </html>

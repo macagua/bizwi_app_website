@@ -152,7 +152,7 @@
             <div id="table-datatables">
               <div class="row">
                 <div class="col s12">
-                  <table id="" class="responsive-table display" cellspacing="0">
+                  <table id="" class="responsive-table datatable-simple" cellspacing="0">
                     <thead>
                         <tr>
                             <th>Photo</th>
@@ -285,7 +285,7 @@
             <div id="table-datatables">
               <div class="row">
                 <div class="col s12">
-                  <table id="" class="responsive-table display" cellspacing="0">
+                  <table id="" class="responsive-table datatable-simple2" cellspacing="0">
                     <thead>
                         <tr>
                             <th>Photo</th>
@@ -420,7 +420,6 @@
 
 
     </div>
-    </div>
     </main>
     
         <footer class="page-footer blue-grey darken-4">
@@ -443,5 +442,8 @@
       <script type="text/javascript" src="js/plugins/data-tables/js/jquery.dataTables.min.js"></script>
       <script type="text/javascript" src="js/plugins/data-tables/data-tables-script.js"></script>
       <script type="text/javascript" src="js/plugins/materialize-datatables/dataTables.materialize.js"></script>
+      <script type="text/javascript">
+        $('table.datatable-simple2').DataTable();
+      </script>
   </body>
 </html>
