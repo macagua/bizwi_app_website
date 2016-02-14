@@ -252,12 +252,13 @@ def new_client(request):
 
 def stores(request):
     client_id = request.user.id
-    stores_list = {'data': get_stores(client_id)}
+    stores_list = get_stores_by_client(client_id)
+    #stores_list = {'data': get_stores(client_id)}
 
-    if type(stores_list['data']) is not list:
-        stores_list['data'] = []
+    #if type(stores_list['data']) is not list:
+    #    stores_list['data'] = []
 
-    print stores_list
+    #print stores_list
 
     return render(request, 'stores.html', stores_list)
 
@@ -543,6 +544,8 @@ def user_profile(request):
 def settings(request):
     user_id = request.user.id
     client_info = get_info_client(user_id)
+    countries_list = get_all_countries()
+
 
     info = {}
     if request.method == 'POST':
@@ -618,5 +621,6 @@ def settings(request):
     info['twitter_account'] = client_info['twitter_account']
     info['gplus_id'] = client_info['gplus_id']
     info['timezone'] = client_info['timezone']
+    info['countries'] = countries_list
 
     return render(request, 'settings.html', info)

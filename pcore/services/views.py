@@ -213,7 +213,6 @@ def stores(request, client_id, id_local=None):
     try:
         if request.method == "GET":
             client = int(client_id)
-            #serializer = Stores.objects.filter(client_id=client_id)
             serializer = StoresSerializer(Stores.objects.filter(client_id=client_id))
             return Response(serializer.data)
 

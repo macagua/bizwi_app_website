@@ -401,6 +401,15 @@ def get_stores(client_id, id_local=None):  # same as get_locations but with more
     return result
 
 
+def get_stores_by_client(client_id, id_local=None):  # same as get_locations but with more attributes
+    url_path = 'stores_list/' + str(client_id)
+    if id_local:
+        url_path += '/' + str(id_local)
+    result = base_request(url_path)
+    return result
+
+
+
 def save_store(client_id, local_info, id_local=None):
     url_path = 'stores/' + str(client_id)
     if id_local:

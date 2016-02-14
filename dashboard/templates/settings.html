@@ -36,7 +36,7 @@
 
     <div class="container">
         <div class="row">
-            <h3>Edit your settings</h3>
+            <h3>Client Information</h3>
 
             <form class="col s12" method="POST">
             {% csrf_token %}
@@ -74,8 +74,13 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <input id="country" type="text" class="validate">
-                        <label for="country">Country</label>
+                        <select class="material-select" name="categories">
+                            {% for count in countries %}
+                                <option value="{{ count.country_id }}"{% if count == country %}
+                                        selected="selected"{% endif %}>{{ count.country_name }}</option>
+                            {% endfor %}
+                        </select>
+                        <label>Country</label>
                     </div>
                 </div>
                 <div class="row">
@@ -92,7 +97,7 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <select name="language">
+                        <select class="material-select" name="language">
                             <option value="" disabled selected>Select language</option>
                             <option value="en">English</option>
                             <option value="es">Spanish</option>
@@ -225,13 +230,7 @@
 {% endblock %}
 
 {% block scripts %}
-    <!--Import jQuery before materialize.js-->
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-2.1.4.min.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/materialize.min.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/scripts.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <!-- Custom Scripts-->
-
     <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/jquery-minicolors/jquery.minicolors.min.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/timezones/timezones.full.min.js"></script>
     <script type="text/javascript">

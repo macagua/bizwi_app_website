@@ -64,19 +64,8 @@
 
 {% endblock %}
 {% block scripts %}
-    <!--Import jQuery before materialize.js-->
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-2.1.4.min.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/materialize.min.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/scripts.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <!-- Custom Scripts-->
-    <script type="text/javascript"
-            src="{{ STATIC_URL }}js/plugins/country-selector/jquery.country-selector.js"></script>
-
-
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui.min.js"></script>
-
-
     <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/jquery-minicolors/jquery.minicolors.min.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/timezones/timezones.full.min.js"></script>
     <script type="text/javascript">
@@ -89,7 +78,6 @@
         });
         //Timezone Selector
         $('#timezone select').timezones();
-        $('#country-selector-div select').selectToAutocomplete();
     </script>
 
 {% endblock %}
