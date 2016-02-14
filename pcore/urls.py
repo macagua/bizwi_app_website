@@ -8,31 +8,13 @@ urlpatterns = [
 
     url(r'^api/v1/auth/$', views.auth),
 
-    url(r'^api/v1/countries/$', views.CountriesList.as_view()),
-    url(r'^api/v1/country/(?P<pk>[0-9]+)$', views.CountryDetail.as_view()),
-
-    url(r'^api/v1/cities/$', views.CitiesList.as_view()),
-    url(r'^api/v1/city/(?P<pk>[0-9]+)$', views.CityDetail.as_view()),
-
-    url(r'^api/v1/regions/$', views.RegionsList.as_view()),
-    url(r'^api/v1/region/(?P<pk>[0-9]+)$', views.RegionDetail.as_view()),
-
-    url(r'^api/v1/tags/$', views.TagsList.as_view()),
-    url(r'^api/v1/tag/(?P<pk>[0-9]+)$', views.TagDetail.as_view()),
-    
     url(r'^api/v1/clients/$', views.ClientsList.as_view()),
     url(r'^api/v1/client/(?P<pk>[0-9]+)$', views.ClientDetail.as_view()),
-
-    url(r'^api/v1/clients/$', views.ClientsList.as_view()),
-    # url(r'^api/v1/client/(?P<pk>[0-9]+)$', views.ClientDetail.as_view()),
-
 
     # Section User ( custom User )
 
     url(r'^api/v1/user/(?P<user_id>\d+)$', views.custom_user),
     url(r'^api/v1/user/set_pass/(?P<id>\d+)$', views.set_password),
-
-
 
     url(r'^api/v1/client/(?P<client_id>\d+)$', views.client),
 
@@ -50,6 +32,15 @@ urlpatterns = [
 
     url(r'^api/v1/stores/$', views.stores),
     url(r'^api/v1/store/(?P<pk>[0-9]+)$', views.StoreDetail.as_view()),
+
+    url(r'^api/v1/countries/$', views.CountriesList.as_view()),
+    url(r'^api/v1/country/(?P<pk>[0-9]+)$', views.CountryDetail.as_view()),
+
+    url(r'^api/v1/cities/$', views.CitiesList.as_view()),
+    url(r'^api/v1/city/(?P<pk>[0-9]+)$', views.CityDetail.as_view()),
+
+    url(r'^api/v1/regions/$', views.RegionsList.as_view()),
+    url(r'^api/v1/region/(?P<pk>[0-9]+)$', views.RegionDetail.as_view()),
 
     url(r'^api/v1/tags/$', views.TagsList.as_view()),
     url(r'^api/v1/tag/(?P<pk>[0-9]+)$', views.TagDetail.as_view()),
