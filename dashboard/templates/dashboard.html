@@ -4,44 +4,8 @@
 {% load tz %}
 
 {% block css %}
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
     <style>
-        .panel-purple {
-            border-color: #7A378B;
-            background-color: #7A378B;
-            color: #fff;
-        }
-        .panel-purple:hover {
-            background-color: #945EA2;
-            border-color: #945EA2;
-        }
-        .panel-orange {
-            border-color: #EE7621;
-            background-color: #EE7621;
-            color: #fff;
-        }
-        .panel-orange:hover {
-            border-color: #f1914d;
-            background-color: #f1914d;
-        }
-        .panel-blue {
-            border-color: #337ab7;
-            background-color: #337ab7;
-            color: #fff;
-        }
-        .panel-blue:hover {
-            border-color: #5b94c5;
-            background-color: #5b94c5;
-        }
-        .panel-brick {
-            border-color: #d9534f;
-            background-color: #d9534f;
-            color: #fff;
-        }
-        .panel-brick:hover {
-            border-color: #e07572;
-            background-color: #e07572;
-        }
+
     </style>
 {% endblock %}
 
@@ -58,12 +22,9 @@
                             <div class="">
                                 <div>
                                     <span class="chart-title white-text">Pedestrians</span>
-
                                     <div class="chart-revenue cyan darken-2 white-text">
                                         <p class="chart-revenue-total">4,500.85</p>
-
-                                        <p class="chart-revenue-per"><i class="mdi-navigation-arrow-drop-up"></i> 21.80
-                                            %</p>
+                                        <p class="chart-revenue-per"><i class="mdi-navigation-arrow-drop-up"></i> 21.80 %</p>
                                     </div>
                                     <div class="switch chart-revenue-switch right">
                                         <label class="cyan-text text-lighten-5">
@@ -79,9 +40,7 @@
                             </div>
                         </div>
                         <div class="card-content">
-                            <a class="btn-floating btn-move-up waves-effect waves-light darken-2 right"><i
-                                    class="mdi-content-add activator"></i></a>
-
+                            <a class="btn-floating btn-move-up waves-effect waves-light darken-2 right"><i class="mdi-content-add activator"></i></a>
                             <div class="col s12 m3 l3">
                                 <div id="doughnut-chart-wrapper">
                                     <canvas id="doughnut-chart" height="200"></canvas>
@@ -90,12 +49,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col s12 m2 l2">
+                            <div class="col s12 m2 l3">
                                 <ul class="doughnut-chart-legend">
                                     <li class="android ultra-small"><span class="legend-color"></span>Android</li>
                                     <li class="ios ultra-small"><span class="legend-color"></span> iOS</li>
                                     <li class="windows ultra-small"><span class="legend-color"></span> Windows</li>
-                                    <li class="other ultra-small"><span class="legend-color"></span> Windows</li>
+                                    <li class="other ultra-small"><span class="legend-color"></span> Other</li>
                                 </ul>
                             </div>
                             <div class="col s12 m5 l6">
@@ -106,8 +65,7 @@
                         </div>
 
                         <div class="card-reveal">
-                            <span class="card-title grey-text text-darken-4">Pedestrians per Month <i
-                                    class="mdi-navigation-close right"></i></span>
+                            <span class="card-title grey-text text-darken-4">Pedestrians per Month <i class="mdi-navigation-close right"></i></span>
                             <table class="responsive-table">
                                 <thead>
                                 <tr>
@@ -206,24 +164,21 @@
                                 <canvas id="trending-radar-chart" height="114"></canvas>
                             </div>
                         </div>
-                        <div class="card-content  teal darken-4">
-                            <a class="btn-floating btn-move-up waves-effect waves-light darken-2 right"><i
-                                    class="mdi-content-add activator"></i></a>
-
+                        <div class="card-content teal darken-4">
+                            <a class="btn-floating btn-move-up waves-effect waves-light darken-2 right"><i class="mdi-content-add activator"></i></a>
                             <div class="line-chart-wrapper">
                                 <p class="margin white-text">Daily visits</p>
                                 <canvas id="line-chart" height="114"></canvas>
                             </div>
                         </div>
                         <div class="card-reveal">
-                            <span class="card-title grey-text text-darken-4">Last Week visits <i
-                                    class="mdi-navigation-close right"></i></span>
+                            <span class="card-title grey-text text-darken-4">Last Week visits <i class="mdi-navigation-close right"></i></span>
                             <table class="responsive-table">
                                 <thead>
                                 <tr>
-                                    <th data-field="country-name">Day</th>
-                                    <th data-field="item-sold"># of Visits</th>
-                                    <th data-field="total-profit">% Change</th>
+                                    <th data-field="day">Day</th>
+                                    <th data-field="number-visits"># of Visits</th>
+                                    <th data-field="variation-change">% Change</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -277,61 +232,52 @@
                 <div class="col s12 m6 l3">
                     <div class="card">
                         <div class="card-content green darken-1 white-text">
-                            <p class="card-title"><i class="material-icons">loyalty</i> Active Promotions</p>
+                            <p class="card-title stats-title"><i class="material-icons">loyalty</i> Active Promotions</p>
                             <h4 class="card-stats-number">16</h4>
-
-                            <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> 15% <span
-                                    class="green-text text-lighten-5">last month</span>
+                            <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> 15% <span class="green-text text-lighten-5">last month</span>
                             </p>
                         </div>
                         <div class="card-action green darken-2">
-                            <div id="active-promotions"></div>
+                            <div id="active-promotions" class="center-align"></div>
                         </div>
                     </div>
                 </div>
                 <div class="col s12 m6 l3">
                     <div class="card">
                         <div class="card-content purple darken-1 white-text">
-                            <p class="card-title"><i class="material-icons">whatshot</i></i> Promotional Impact</p>
+                            <p class="card-title stats-title"><i class="material-icons">whatshot</i> Promotional Impact</p>
                             <h4 class="card-stats-number">63</h4>
-
-                            <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> 70% <span
-                                    class="purple-text text-lighten-5">from yesterday</span>
+                            <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> 70% <span class="purple-text text-lighten-5">from yesterday</span>
                             </p>
                         </div>
                         <div class="card-action purple darken-2">
-                            <div id="promotion-impact"></div>
-
+                            <div id="promotion-impact" class="center-align"></div>
                         </div>
                     </div>
                 </div>
                 <div class="col s12 m6 l3">
                     <div class="card">
                         <div class="card-content blue-grey darken-1 white-text">
-                            <p class="card-title"><i class="material-icons">local_activity</i> Promotion Checkins</p>
+                            <p class="card-title stats-title"><i class="material-icons">local_activity</i> Promotion Checkins</p>
                             <h4 class="card-stats-number">42</h4>
-
-                            <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> 80% <span
-                                    class="blue-grey-text text-lighten-5">from yesterday</span>
+                            <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> 80% <span class="blue-grey-text text-lighten-5">from yesterday</span>
                             </p>
                         </div>
                         <div class="card-action blue-grey darken-2">
-                            <div id="promotion-checkins"></div>
+                            <div id="promotion-checkins" class="center-align"></div>
                         </div>
                     </div>
                 </div>
                 <div class="col s12 m6 l3">
                     <div class="card">
                         <div class="card-content pink lighten-1 white-text">
-                            <p class="card-title"><i class="material-icons">loyalty</i> Average Visitors</p>
+                            <p class="card-title stats-title"><i class="material-icons">loyalty</i> Average Visitors</p>
                             <h4 class="card-stats-number">1806</h4>
-
-                            <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-down"></i> 3% <span
-                                    class="deep-purple-text text-lighten-5">from last week</span>
+                            <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-down"></i> 3% <span class="deep-purple-text text-lighten-5">from last week</span>
                             </p>
                         </div>
                         <div class="card-action  pink darken-2">
-                            <div id="average-visitors"></div>
+                            <div id="average-visitors" class="center-align"></div>
                         </div>
                     </div>
                 </div>
@@ -346,24 +292,6 @@
 
 {% block scripts %}
     <script type='text/javascript'>
-        var totalusers = {{ unique_users }} + {{ recurring }};
-        var unique = ({{ unique_users }} * 100) / totalusers;
-        var recurring = ({{ recurring }} * 100) / totalusers;
 
-        var totalvisitors = {{ pedestrians }} + {{ visitors }};
-        var pedestrians = ({{ pedestrians }} * 100) / totalvisitors;
-        var visitorsdata = ({{ visitors }} * 100) / totalvisitors;
-
-        var users = [
-            {label: '{% trans "Unique users" %}', value: unique.toFixed(2)},
-            {label: '{% trans "Recurring users" %}', value:recurring.toFixed(2)}
-        ];
-        var visitors = [
-            {label: '{% trans "Pedestrians" %}', value:pedestrians.toFixed(2)},
-            {label: '{% trans "Visitors" %}', value:visitorsdata.toFixed(2)}
-        ];
     </script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
 {% endblock %}

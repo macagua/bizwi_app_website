@@ -16,14 +16,8 @@ Version: 1.0
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <!--External -->
-    <link type="text/css" rel="stylesheet"
-          href="http://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css"
-          media="screen,projection"/>
-    <link type="text/css" rel="stylesheet"
-          href="http://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.10/css/perfect-scrollbar.min.css"
-          media="screen,projection">
-    <link type="text/css" rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/chartist/0.9.5/chartist.min.css"
-          media="screen,projection">
+    <link type="text/css" rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.10/css/perfect-scrollbar.min.css" media="screen,projection">
 
     <!--Internal -->
     <!-- <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/materialize.min.css"  media="screen,projection"/> -->
@@ -52,42 +46,38 @@ Version: 1.0
     <!-- Dropdowns -->
     <!-- Dropdown for Customer  -->
     <ul id="dropdown1" class="dropdown-content">
-        <li><a href="{% url "user_profile" %}"><i
-                class="material-icons left">person_outline</i>{% trans "User profile" %}</a></li>
-        <li><a href="#"><i class="material-icons left">settings</i>{% trans "Settings" %}</a>
-        </li>
+        <li><a href="{% url "user_profile" %}"><i class="material-icons left">person_outline</i>{% trans "User profile" %}</a></li>
+        <li><a href="#"><i class="material-icons left">settings</i>{% trans "Settings" %}</a></li>
         <li class="divider"></li>
         <li><a href="{% url "logout" %}"><i class="material-icons left">exit_to_app</i>{% trans "Logout" %}</a></li>
     </ul>
     <!-- Dropdown for Messages  -->
     <ul id="dropdown2" class="dropdown-content">
-        <li><a href="#">{% trans "Compose" %}</a></li>
-        <li><a href="#">{% trans "Inbox" %}</a></li>
-        <li><a href="#">{% trans "Sent" %}</a></li>
+        <li><a href="#!"><i class="material-icons left">create</i>{% trans "Compose" %}</a></li>
+        <li><a href="#!"><i class="material-icons left">inbox</i>{% trans "Inbox" %}</a></li>
+        <li><a href="#!"><i class="material-icons left">send</i>{% trans "Sent" %}</a></li>
     </ul>
 
     <!-- Dropdown for Birthdays  -->
     <ul id="dropdown3" class="dropdown-content">
-        
-            <li>
-                <a href="#">
-                    <div>
-                        <img src="{{ birthday.photo_url }}" height="32" width="32">
-                        <span class="text-center"><strong></strong></span>
-                    </div>
-                </a>
-            </li>
-            <li class="divider"></li>
-        
-            <li style="text-align: center; color: #AAA;">
-                <span>{% trans "No birthdays today" %}</span>
-            </li>
-            <li class="divider"></li>
-        
         <li>
-            <a class="text-center" href="#">
+          <div class="row valign-wrapper" style="padding: 14px 16px; margin-bottom: 0px;">
+              <div class="col s2">
+                <img src="{{ birthday.photo_url }}" alt="John Doe" class="circle responsive-img">
+              </div>
+              <div class="col s10">
+                <span class="black-text valign">Today is John Doe Birthday!</span>
+              </div>
+          </div>    
+        </li>
+        <li class="divider"></li>
+        <li style="text-align: center; color: #AAA;">
+            <span>{% trans "No birthdays today" %}</span>
+        </li>
+        <li class="divider"></li>
+        <li>
+            <a class="text-center" href="#"><i class="material-icons left">cake</i>
                 <strong>{% trans "See upcoming birthdays" %} ({{ next_birthdays_count }})</strong>
-                <i class="fa fa-angle-right"></i>
             </a>
         </li>
     </ul>
@@ -129,6 +119,7 @@ Version: 1.0
     <nav class="top-nav">
         <div class="nav-wrapper blue-grey darken-4">
             <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+            <a href="#!" class="page-title"></a>
             <ul class="right hide-on-med-and-down">
                 <li><a class="dropdown-button" data-activates="dropdown4" href="{% url "promotions" %}"><i class="material-icons left">loyalty</i>Promotions<span
                         class="badge">({{ promotion_requests|length }})</span></a></li>
@@ -139,17 +130,15 @@ Version: 1.0
                 <li><a class="dropdown-button" data-activates="dropdown2" href="#"><i class="material-icons left">message</i>Messages<span
                         class="badge">({{ messages_count }})</span></a></li>
 
-                <li><a class="dropdown-button" data-activates="dropdown1" href="#"><i class="material-icons right">person</i>{{ customer_name }}
-                </a></li>
+                <li><a class="dropdown-button" data-activates="dropdown1" href="#"><i class="material-icons right">person</i>{{ customer_name }}</a></li>
             </ul>
         </div>
     </nav>
     <!-- /Main Nav--> 
     <!-- Left Nav-->
     <ul style="left: 0px;" id="nav-mobile" class="side-nav fixed">
-        <li class="logo">
-            <a id="logo-container" class="brand-logo valign-wrapper" href="#"> <object id="front-page-logo" class="valign" data="{{ STATIC_URL }}images/Logo_Bizwi_head.png" type="image/png"></object></a>
-        </li>
+        <li class="logo valign-wrapper">
+            <a id="logo-container" class="brand-logo valign" href="#"> <object id="front-page-logo" data="{{ STATIC_URL }}images/Logo_Bizwi_head.png" type="image/png"></object></a></li>
         <li class="bold no-padding active">
             <a href="{% url "home" %}" class="waves-effect waves-teal collapsible-header"><i class="material-icons">dashboard</i>{% trans "Dashboard" %}</a>
         </li>
@@ -159,15 +148,9 @@ Version: 1.0
                     <a class="collapsible-header waves-effect waves-teal"><i class="material-icons">work</i>{% trans "Management" %}</a>
                     <div style="" class="collapsible-body" style="display: block;">
                         <ul>
-                            <li>
-                                <a href="{% url "stores" %}" class="collapsible-header"><i class="material-icons">store</i>Store</a>
-                            </li>
-                            <li>
-                                <a href="{% url "brands" %}" class="collapsible-header"><i class="material-icons">local_offer</i>Brands</a>
-                            </li>
-                            <li>
-                                <a href="{% url "employees_list" %}" class="collapsible-header"><i class="material-icons">group</i>Employees</a>
-                            </li>
+                            <li><a href="{% url "stores" %}" class="collapsible-header"><i class="material-icons">store</i>Store</a></li>
+                            <li><a href="{% url "brands" %}" class="collapsible-header"><i class="material-icons">local_offer</i>Brands</a></li>
+                            <li><a href="{% url "employees_list" %}" class="collapsible-header"><i class="material-icons">group</i>Employees</a></li>
                         </ul>
                     </div>
                 </li>
@@ -182,18 +165,14 @@ Version: 1.0
         <li class="bold no-padding">
             <ul class="collapsible collapsible-accordion">
                 <li class="bold">
-                    <a class="collapsible-header waves-effect waves-teal"><i class="material-icons">message</i>{% trans "Messages" %}
-                    </a>
-                        <div style="" class="collapsible-body">
-                            <ul>
-                                <li><a href="#" class="collapsible-header"><i
-                                        class="material-icons">create</i>{% trans "Compose" %}</a></li>
-                                <li><a href="#" class="collapsible-header"><i
-                                        class="material-icons">inbox</i>{% trans "Inbox" %}</a></li>
-                                <li><a href="#" class="collapsible-header"><i
-                                        class="material-icons">send</i>{% trans "Sent" %}</a></li>
-                            </ul>
-                        </div>
+                    <a class="collapsible-header waves-effect waves-teal"><i class="material-icons">message</i>{% trans "Messages" %}</a>
+                    <div style="" class="collapsible-body" style="display: block;">
+                        <ul>
+                            <li><a href="#" class="collapsible-header"><i class="material-icons">create</i>{% trans "Compose" %}</a></li>
+                            <li><a href="#" class="collapsible-header"><i class="material-icons">inbox</i>{% trans "Inbox" %}</a></li>
+                            <li><a href="#" class="collapsible-header"><i class="material-icons">send</i>{% trans "Sent" %}</a></li>
+                        </ul>
+                    </div>
                 </li>
             </ul>
         </li>
@@ -215,9 +194,7 @@ Version: 1.0
     </div>
 </footer>
 </body>
-<!--   <script type="text/javascript">
-       $(document).ready(function(){
-         $(".button-collapse").sideNav();
+<!-- 
 Scripts
 ================================================ -->
 <!--External -->
