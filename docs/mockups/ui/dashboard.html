@@ -85,8 +85,8 @@
       </div>
   </nav>
       <ul style="left: 0px;" id="nav-mobile" class="side-nav fixed">
-        <li class="logo"><a id="logo-container" class="brand-logo valign-wrapper" href="dashboard.html">
-        <object id="front-page-logo" class="valign" data="images/Logo_Bizwi_head.png" type="image/png"></object></a></li>
+        <li class="logo valign-wrapper"><a id="logo-container" class="brand-logo valign" href="dashboard.html">
+        <object id="front-page-logo" data="images/Logo_Bizwi_head.png" type="image/png"></object></a></li>
         <li class="bold no-padding active"><a href="dashboard.html" class="waves-effect waves-teal collapsible-header"><i class="material-icons">dashboard</i>Dashboard</a></li>
         <li class="bold no-padding">
           <ul class="collapsible collapsible-accordion">
@@ -106,7 +106,7 @@
         <li class="bold no-padding">
           <ul class="collapsible collapsible-accordion">
             <li class="bold"><a class="collapsible-header waves-effect waves-teal"><i class="material-icons">message</i>Messages</a>
-              <div style="" class="collapsible-body">
+              <div style="" class="collapsible-body" style="display: block;">
                 <ul>
                   <li><a href="messages_compose.html" class="collapsible-header"><i class="material-icons">create</i>Compose</a></li>
                   <li><a href="messages_inbox.html" class="collapsible-header"><i class="material-icons">inbox</i>Inbox</a></li>
@@ -273,7 +273,7 @@
                               <canvas id="trending-radar-chart" height="114"></canvas>
                           </div>
                       </div>
-                      <div class="card-content  teal darken-4">
+                      <div class="card-content teal darken-4">
                           <a class="btn-floating btn-move-up waves-effect waves-light darken-2 right"><i class="mdi-content-add activator"></i></a>
                           <div class="line-chart-wrapper">
                               <p class="margin white-text">Daily visits</p>
@@ -285,9 +285,9 @@
                           <table class="responsive-table">
                               <thead>
                                   <tr>
-                                      <th data-field="country-name">Day</th>
-                                      <th data-field="item-sold"># of Visits</th>
-                                      <th data-field="total-profit">% Change</th>
+                                      <th data-field="day">Day</th>
+                                      <th data-field="number-visits"># of Visits</th>
+                                      <th data-field="variation-change">% Change</th>
                                   </tr>
                               </thead>
                               <tbody>
@@ -354,14 +354,13 @@
               <div class="col s12 m6 l3">
                   <div class="card">
                       <div class="card-content purple darken-1 white-text">
-                          <p class="card-title stats-title"><i class="material-icons">whatshot</i></i> Promotional Impact</p>
+                          <p class="card-title stats-title"><i class="material-icons">whatshot</i> Promotional Impact</p>
                           <h4 class="card-stats-number">63</h4>
                           <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> 70% <span class="purple-text text-lighten-5">from yesterday</span>
                           </p>
                       </div>
                       <div class="card-action purple darken-2">
                           <div id="promotion-impact" class="center-align"></div>
-
                       </div>
                   </div>
               </div>                            
