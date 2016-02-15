@@ -268,29 +268,16 @@ def stores(request, client_id, id_local=None):
 def get_employee_context(request, id):
     try:
         if request.method == 'GET':
-            client = Clients.objects.get(id=id)
+            custom_user = CustomUser.objects.get(id=id)
 
-            language = client.language
-            customer = client.customer
-
-            if customer:
-                id_customer = customer.id
-                customer_name = customer.name
-                time_zone = customer.timezone
-            else:
-                id_customer = ""
-                customer_name = ""
-                time_zone = ""
+            first_name = custom_user.first_name
+            last_name = custom_user.last_name
+            is_client_admin = custom_user.is_client_admin
 
             data = {
-                "client": hh,
-                "full_name": full_name,
-                "id_customer": id_customer,
-                "customer_name": customer_name,
-                "language": language,
-                "timezone": time_zone,
-                "id_location": "",
-                "is_customer_admin": is_customer_admin,
+                "first_name": first_name,
+                "last_name": last_name,
+                "is_client_admin": is_client_admin,
             }
 
             return Response(data)

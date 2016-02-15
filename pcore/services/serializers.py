@@ -77,14 +77,15 @@ class EmployeeSerializer(serializers.ModelSerializer):
                   'is_store_manager',
                   'is_marketing',
                   'is_active',
-                  'is_superuser')
+                  'is_superuser',
+                  'client')
 
 
 class StoresSerializer(serializers.ModelSerializer):
     class Meta:
         model = Stores
         fields = ('store_id',
-                  'client_id',
+                  'client',
                   'store_name',
                    'register_date',
                    'region',

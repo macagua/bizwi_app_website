@@ -14,8 +14,12 @@
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <!--External -->
-    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css" media="screen,projection"/>
-    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.10/css/perfect-scrollbar.min.css" media="screen,projection">
+    <link type="text/css" rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css"
+          media="screen,projection"/>
+    <link type="text/css" rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.10/css/perfect-scrollbar.min.css"
+          media="screen,projection">
     <!--Internal -->
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/style.css" media="screen,projection"/>
     <!--Let browser know website is optimized for mobile-->
@@ -34,7 +38,8 @@
     <!-- Dropdowns -->
     <!-- Dropdown for Customer  -->
     <ul id="dropdown1" class="dropdown-content">
-        <li><a href="{% url "user_profile" %}"><i class="material-icons left">person_outline</i>{% trans "Profile" %}</a></li>
+        <li><a href="{% url "user_profile" %}"><i class="material-icons left">person_outline</i>{% trans "Profile" %}
+        </a></li>
         <li><a href="{% url "settings" %}"><i class="material-icons left">settings</i>{% trans "Settings" %}</a></li>
         <li class="divider"></li>
         <li><a href="{% url "logout" %}"><i class="material-icons left">exit_to_app</i>{% trans "Logout" %}</a></li>
@@ -48,14 +53,14 @@
     <!-- Dropdown for Birthdays  -->
     <ul id="dropdown3" class="dropdown-content">
         <li>
-          <div class="row valign-wrapper" style="padding: 14px 16px; margin-bottom: 0px;">
-              <div class="col s2">
-                <img src="{{ birthday.photo_url }}" alt="" class="circle responsive-img">
-              </div>
-              <div class="col s10">
-                <span class="black-text valign">Today is John Doe Birthday!</span>
-              </div>
-          </div>    
+            <div class="row valign-wrapper" style="padding: 14px 16px; margin-bottom: 0px;">
+                <div class="col s2">
+                    <img src="{{ birthday.photo_url }}" alt="" class="circle responsive-img">
+                </div>
+                <div class="col s10">
+                    <span class="black-text valign">Today is John Doe Birthday!</span>
+                </div>
+            </div>
         </li>
         <li class="divider"></li>
         <li style="text-align: center; color: #AAA;">
@@ -108,7 +113,8 @@
             <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
             <a href="#!" class="page-title"></a>
             <ul class="right hide-on-med-and-down">
-                <li><a class="dropdown-button" data-activates="dropdown4" href="{% url "promotions" %}"><i class="material-icons left">loyalty</i>Promotions<span
+                <li><a class="dropdown-button" data-activates="dropdown4" href="{% url "promotions" %}"><i
+                        class="material-icons left">loyalty</i>Promotions<span
                         class="badge">({{ promotion_requests|length }})</span></a></li>
                 <li><a class="dropdown-button" data-activates="dropdown3" href="#"><i
                         class="material-icons left">cake</i>Birthdays<span class="badge">({{ birthdays|length }})</span></a>
@@ -117,38 +123,49 @@
                 <li><a class="dropdown-button" data-activates="dropdown2" href="#"><i class="material-icons left">message</i>Messages<span
                         class="badge">({{ messages_count }})</span></a></li>
 
-                <li><a class="dropdown-button" data-activates="dropdown1" href="#"><i class="material-icons right">person</i>{{ user }}</a></li>
+                <li><a class="dropdown-button" data-activates="dropdown1" href="#"><i class="material-icons right">person</i>{{ user }}
+                </a></li>
             </ul>
         </div>
     </nav>
-    <!-- /Main Nav--> 
+    <!-- /Main Nav-->
     <!-- Left Nav-->
     <ul style="left: 0px;" id="nav-mobile" class="side-nav fixed">
         <li class="logo valign-wrapper">
-            <a id="logo-container" class="brand-logo valign" href="#"> <object id="front-page-logo" data="{{ STATIC_URL }}images/Logo_Bizwi_head.png" type="image/png"></object></a></li>
+            <a id="logo-container" class="brand-logo valign" href="#">
+                <object id="front-page-logo" data="{{ STATIC_URL }}images/Logo_Bizwi_head.png"
+                        type="image/png"></object>
+            </a></li>
         <li class="bold no-padding">
-            <a href="{% url "home" %}" class="waves-effect waves-teal collapsible-header"><i class="material-icons">dashboard</i>{% trans "Dashboard" %}</a>
+            <a href="{% url "dashboard_employee" %}" class="waves-effect waves-teal collapsible-header"><i
+                    class="material-icons">dashboard</i>{% trans "Dashboard" %}</a>
         </li>
         <li class="bold no-padding">
-          <ul class="collapsible collapsible-accordion">
-            <li class="bold"><a class="collapsible-header waves-effect waves-teal"><i class="material-icons">assessment</i>{% trans "Statistics" %}</a>
-              <div class="collapsible-body" style="display: block;">
-                <ul>
-                  <li><a href="{% url "statistics" %}" class="collapsible-header"><i class="material-icons">group</i>{% trans "Main" %}</a></li>
-                  <li><a href="{% url "statistics_pedestrians" %}" class="collapsible-header"><i class="material-icons">streetview</i>{% trans "Pedestrians" %}</a></li>
-                  <li><a href="{% url "statistics_visitors" %}" class="collapsible-header"><i class="material-icons">home</i>{% trans "Visitors" %}</a></li>
-                  <li><a href="{% url "statistics_advanced" %}" class="collapsible-header"><i class="material-icons">assignment</i>{% trans "Advanced" %}</a></li>
-                </ul>
-              </div>
-            </li>
-          </ul>
+            <ul class="collapsible collapsible-accordion">
+                <li class="bold"><a class="collapsible-header waves-effect waves-teal"><i class="material-icons">assessment</i>{% trans "Statistics" %}
+                </a>
+
+                    <div class="collapsible-body" style="display: block;">
+                        <ul>
+                            <li><a href="{% url "statistics" %}" class="collapsible-header"><i class="material-icons">group</i>{% trans "Main" %}
+                            </a></li>
+                            <li><a href="{% url "statistics_pedestrians" %}" class="collapsible-header"><i
+                                    class="material-icons">streetview</i>{% trans "Pedestrians" %}</a></li>
+                            <li><a href="{% url "statistics_visitors" %}" class="collapsible-header"><i
+                                    class="material-icons">home</i>{% trans "Visitors" %}</a></li>
+                            <li><a href="{% url "statistics_advanced" %}" class="collapsible-header"><i
+                                    class="material-icons">assignment</i>{% trans "Advanced" %}</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
         </li>
     </ul>
     <!-- /Left Nav-->
 
 </header>
 <main>
-{% block content %}{% endblock %}
+    {% block content %}{% endblock %}
 </main>
 <footer class="page-footer blue-grey darken-4">
     <div class="footer-copyright blue-grey darken-3">
@@ -164,8 +181,10 @@ Scripts
 <!--External -->
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.10/js/min/perfect-scrollbar.min.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.10/js/min/perfect-scrollbar.min.js"></script>
 
 <!--Internal -->
 <script type="text/javascript" src="{{ STATIC_URL }}js/scripts.js"></script>
