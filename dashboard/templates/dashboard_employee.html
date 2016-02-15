@@ -7,12 +7,18 @@
 <style>
 
 </style>
+    <link rel="stylesheet" href="https://rawgit.com/pbauerochse/searchable-option-list/master/sol.css">
+    <script type="text/javascript" src="https://rawgit.com/pbauerochse/searchable-option-list/master/sol.js"></script>
 {% endblock %}
 
 
 {% block content %}
 
-        <div class="container" style="width: 98%; max-width: 1500px;">
+               <div class="container" style="width: 98%; max-width: 1500px;">
+               <select disabled id="my-select" name="character" multiple="multiple">
+            <option value="All">All Stores</option>
+            <option value="1">Paseo de la Finca</option>
+        </select>
         <!--chart dashboard start-->
         <div id="chart-dashboard">
             <div class="row">
@@ -21,7 +27,7 @@
                         <div class="card-content waves-effect waves-block waves-light cyan darken-2">
                             <div class="">
                                 <div>
-                                    <span class="chart-title white-text">Pedestrians</span>
+                                    <span class="chart-title white-text"></span>
                                     <div class="chart-revenue cyan darken-2 white-text">
                                         <p class="chart-revenue-total">4,500.85</p>
                                         <p class="chart-revenue-per"><i class="mdi-navigation-arrow-drop-up"></i> 21.80 %</p>
@@ -160,14 +166,14 @@
                     <div class="card">
                         <div class="card-content teal darken-2 waves-effect waves-block waves-light">
                             <div class="">
-                                <p class="margin white-text">Social networks</p>
+                                <p class="margin white-text">Logins</p>
                                 <canvas id="trending-radar-chart" height="114"></canvas>
                             </div>
                         </div>
                         <div class="card-content teal darken-4">
                             <a class="btn-floating btn-move-up waves-effect waves-light darken-2 right"><i class="mdi-content-add activator"></i></a>
                             <div class="line-chart-wrapper">
-                                <p class="margin white-text">Daily visits</p>
+                                <p class="margin white-text">Daily logins</p>
                                 <canvas id="line-chart" height="114"></canvas>
                             </div>
                         </div>
@@ -233,8 +239,8 @@
                     <div class="card">
                         <div class="card-content green darken-1 white-text">
                             <p class="card-title stats-title"><i class="material-icons">loyalty</i> Active Promotions</p>
-                            <h4 class="card-stats-number">16</h4>
-                            <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> 15% <span class="green-text text-lighten-5">last month</span>
+                            <h4 class="card-stats-number">0</h4>
+                            <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> 0% <span class="green-text text-lighten-5">last month</span>
                             </p>
                         </div>
                         <div class="card-action green darken-2">
@@ -246,7 +252,7 @@
                     <div class="card">
                         <div class="card-content purple darken-1 white-text">
                             <p class="card-title stats-title"><i class="material-icons">whatshot</i> Promotional Impact</p>
-                            <h4 class="card-stats-number">63</h4>
+                            <h4 class="card-stats-number">0</h4>
                             <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> 70% <span class="purple-text text-lighten-5">from yesterday</span>
                             </p>
                         </div>
@@ -259,8 +265,8 @@
                     <div class="card">
                         <div class="card-content blue-grey darken-1 white-text">
                             <p class="card-title stats-title"><i class="material-icons">local_activity</i> Promotion Checkins</p>
-                            <h4 class="card-stats-number">42</h4>
-                            <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> 80% <span class="blue-grey-text text-lighten-5">from yesterday</span>
+                            <h4 class="card-stats-number">0</h4>
+                            <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-up"></i> 0% <span class="blue-grey-text text-lighten-5">from yesterday</span>
                             </p>
                         </div>
                         <div class="card-action blue-grey darken-2">
@@ -272,7 +278,7 @@
                     <div class="card">
                         <div class="card-content pink lighten-1 white-text">
                             <p class="card-title stats-title"><i class="material-icons">loyalty</i> Average Visitors</p>
-                            <h4 class="card-stats-number">1806</h4>
+                            <h4 class="card-stats-number">5617</h4>
                             <p class="card-stats-compare"><i class="mdi-hardware-keyboard-arrow-down"></i> 3% <span class="deep-purple-text text-lighten-5">from last week</span>
                             </p>
                         </div>
@@ -286,7 +292,6 @@
         </div>
         <!--card stats end-->
     </div>
-
 
 {% endblock %}
 
@@ -302,5 +307,11 @@
 <!-- Custom Scripts -->
 <script type='text/javascript'>
 
+</script>
+<script type="text/javascript">
+    $(function() {
+        // initialize sol
+        $('#my-select').searchableOptionList();
+    });
 </script>
 {% endblock %}

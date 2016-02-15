@@ -65,7 +65,7 @@ Polor Chart Widget
  
 var doughnutData = [
   {
-    value: 3000,
+    value: 3007,
     color:"#F7464A",
     highlight: "#FF5A5E",
     label: "Android"
@@ -77,7 +77,7 @@ var doughnutData = [
     label: "Windows"
   },
   {
-    value: 1000,
+    value: 2010,
     color: "#FDB45C",
     highlight: "#FFC870",
     label: "iOS"
