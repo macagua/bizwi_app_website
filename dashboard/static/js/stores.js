@@ -1,15 +1,7 @@
 $(document).ready(function () {
 
-    var urlLang = "//cdn.datatables.net/plug-ins/1.10.6/i18n/English.json";
-    if (lang == 'es') {
-        urlLang = "//cdn.datatables.net/plug-ins/1.10.6/i18n/Spanish.json";
-    }
-
-    $('#data-table-simple').DataTable({
+    $('#datatable-stores').DataTable({
         "data": storesData,
-        "oLanguage": {
-            "sUrl": urlLang
-        },
         "aoColumnDefs": [
 
             {"aTargets": [0],

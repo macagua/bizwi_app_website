@@ -690,6 +690,9 @@
                             <th>Edit/Remove</th>
                         </tr>
                         </thead>
+                        <tbody>
+
+                        </tbody>
 
                         <tfoot>
                         <tr>
@@ -719,7 +722,6 @@
 <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/materialize-datatables/js/dataTables.materialize.js"></script>
 <!-- Custom Scripts -->
 <script type='text/javascript'>
-        var lang = '{{ request.session.lang }}';
         var storesData = {{ data|jsonify }};
 
 </script>

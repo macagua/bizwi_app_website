@@ -309,13 +309,11 @@ def new_client(request):
 
 def stores(request):
     client_id = request.user.id
-    stores_list = get_stores_by_client(client_id)
-    #stores_list = {'data': get_stores(client_id)}
-
-    #if type(stores_list['data']) is not list:
-    #    stores_list['data'] = []
-
-    #print stores_list
+    print client_id
+    #stores_list = get_stores_by_client(client_id)
+    stores_list = {'data': get_stores_by_client(client_id)}
+    if type(stores_list['data']) is not list:
+        stores_list['data'] = []
 
     return render(request, 'stores.html', stores_list)
 

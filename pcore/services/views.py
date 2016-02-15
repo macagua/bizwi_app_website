@@ -262,7 +262,7 @@ def create_client_admin(request):
 def stores(request, client_id, id_local=None):
     try:
         if request.method == "GET":
-            serializer = StoresSerializer(Stores.objects.filter(client_id=client_id))
+            serializer = StoresSerializer(Stores.objects.filter(client=client_id), many=True)
             return Response(serializer.data)
 
         elif request.method == 'POST':
