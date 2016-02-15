@@ -125,7 +125,7 @@ def statistics(request):
 """
 
 def statistics_advanced(request):
-    return render(request, 'statistics_advance.html')
+    return render(request, 'statistics_advanced.html')
 
 
 
