@@ -38,6 +38,7 @@ urlpatterns = [
     url(r'^api/v1/store/(?P<pk>[0-9]+)$', views.StoreDetail.as_view()),
 
 
+    url(r'^api/v1/employee_admin/(?P<client_id>\d+)$', views.employee_admin),
 
 
     url(r'^api/v1/countries/$', views.CountriesList.as_view()),

@@ -40,7 +40,9 @@
     <ul id="dropdown1" class="dropdown-content">
         <li><a href="{% url "user_profile" %}"><i class="material-icons left">person_outline</i>{% trans "Profile" %}
         </a></li>
+        {%  if not employee %}
         <li><a href="{% url "settings" %}"><i class="material-icons left">settings</i>{% trans "Settings" %}</a></li>
+        {% endif %}
         <li class="divider"></li>
         <li><a href="{% url "logout" %}"><i class="material-icons left">exit_to_app</i>{% trans "Logout" %}</a></li>
     </ul>

@@ -387,9 +387,9 @@ def store(request, id_local=None):
 
 
 def employees_list(request):
-    client = request.user.id
-    employees = {'data': get_employees(client),
-                 'customer_name': request.session.get("client_name")}
+    client_id = request.user.id
+    employees = {'data': get_employees(client_id),
+                 'customer_name': request.session.get("name")}
     if type(employees['data']) is not list:
         employees['data'] = []
     return render(request, 'employees.html', employees)
