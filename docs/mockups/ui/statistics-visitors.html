@@ -18,8 +18,9 @@
       <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
       <link type="text/css" rel="stylesheet" href="css/style.css"  media="screen,projection"/>
       <link type="text/css" rel="stylesheet" href="js/plugins/perfect-scrollbar/perfect-scrollbar.min.css" media="screen,projection">
-      <link type="text/css" rel="stylesheet" href="js/plugins/data-tables/css/jquery.dataTables.min.css" media="screen,projection">
       <link rel="stylesheet" type="text/css" href="js/plugins/materialize-datatables/css/dataTables.materialize.css">
+      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css"/>
+      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.1.2/css/buttons.dataTables.min.css">
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
       <!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
@@ -48,7 +49,7 @@
   <nav class="top-nav">
       <div class="nav-wrapper blue-grey darken-4">
         <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-        <a href="#!" class="page-title">Visitors Statistics</a>
+        <a href="#!" class="page-title">Statistics</a>
         <ul class="right hide-on-med-and-down">
           <li><a href="promotions.html"><i class="material-icons left">loyalty</i>Promotions</a></li>
           <li><a href="birthdays.html"><i class="material-icons left">cake</i>Birthdays</a></li>
@@ -108,13 +109,13 @@
     </header>
 
     <main>
-    <div class="container">
-    <h4>All Visitors</h4>
-      <!--DataTables All-->
-            <div id="table-datatables">
-              <div class="row">
-                <div class="col s12">
-                  <table id="datatable-all-visitors" class="responsive-table" cellspacing="0">
+    <div class="container" style="width: 80%; max-width: 1500px;">
+    <h4>Visitors Statistics</h4>
+      <!--DataTables in house-->
+        <div class="row">
+          <div class="col s12">
+            <div class="material-table">
+                  <table id="datatable-main-stats" class="responsive-table bordered" cellspacing="0">
                     <thead>
                         <tr>
                             <th>Photo</th>
@@ -126,7 +127,17 @@
                             <th>Is connected</th>
                         </tr>
                     </thead>
-                 
+                    <tfoot>
+                        <tr>
+                            <th>Photo</th>
+                            <th>Name</th>
+                            <th>Device OS</th>
+                            <th>Social network</th>
+                            <th>Visits</th>
+                            <th>Last connection</th>
+                            <th>Is connected</th>
+                        </tr>
+                    </tfoot>
                     <tbody>
                         <tr>
                             <td><img src="images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
@@ -142,7 +153,7 @@
                             <td>John Doe</td>
                             <td>Windows</td>
                             <td>Google</td>
-                            <td>1</td>
+                            <td>2</td>
                             <td>12/21/2015 21:22</td>
                             <td>No</td>
                         </tr>
@@ -151,7 +162,7 @@
                             <td>John Doe</td>
                             <td>Windows</td>
                             <td>Google</td>
-                            <td>1</td>
+                            <td>3</td>
                             <td>12/21/2015 21:22</td>
                             <td>No</td>
                         </tr>
@@ -160,7 +171,7 @@
                             <td>John Doe</td>
                             <td>Windows</td>
                             <td>Google</td>
-                            <td>1</td>
+                            <td>4</td>
                             <td>12/21/2015 21:22</td>
                             <td>No</td>
                         </tr>
@@ -169,7 +180,7 @@
                             <td>John Doe</td>
                             <td>Windows</td>
                             <td>Google</td>
-                            <td>1</td>
+                            <td>5</td>
                             <td>12/21/2015 21:22</td>
                             <td>No</td>
                         </tr>
@@ -178,7 +189,7 @@
                             <td>John Doe</td>
                             <td>Windows</td>
                             <td>Google</td>
-                            <td>1</td>
+                            <td>6</td>
                             <td>12/21/2015 21:22</td>
                             <td>No</td>
                         </tr>
@@ -187,7 +198,7 @@
                             <td>John Doe</td>
                             <td>Windows</td>
                             <td>Google</td>
-                            <td>1</td>
+                            <td>7</td>
                             <td>12/21/2015 21:22</td>
                             <td>No</td>
                         </tr>
@@ -196,7 +207,7 @@
                             <td>John Doe</td>
                             <td>Windows</td>
                             <td>Google</td>
-                            <td>1</td>
+                            <td>8</td>
                             <td>12/21/2015 21:22</td>
                             <td>No</td>
                         </tr>
@@ -205,7 +216,7 @@
                             <td>John Doe</td>
                             <td>Windows</td>
                             <td>Google</td>
-                            <td>1</td>
+                            <td>9</td>
                             <td>12/21/2015 21:22</td>
                             <td>No</td>
                         </tr>
@@ -214,7 +225,7 @@
                             <td>John Doe</td>
                             <td>Windows</td>
                             <td>Google</td>
-                            <td>1</td>
+                            <td>10</td>
                             <td>12/21/2015 21:22</td>
                             <td>No</td>
                         </tr>
@@ -223,7 +234,7 @@
                             <td>John Doe</td>
                             <td>Windows</td>
                             <td>Google</td>
-                            <td>1</td>
+                            <td>11</td>
                             <td>12/21/2015 21:22</td>
                             <td>No</td>
                         </tr>
@@ -232,7 +243,7 @@
                             <td>John Doe</td>
                             <td>Windows</td>
                             <td>Google</td>
-                            <td>1</td>
+                            <td>12</td>
                             <td>12/21/2015 21:22</td>
                             <td>No</td>
                         </tr>
@@ -252,20 +263,50 @@
           </div>
         </footer>
     
-    <!-- ================================================
-    Scripts
-    ================================================ -->
-      <!--Import jQuery before materialize.js-->
-      <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
-      <script type="text/javascript" src="js/materialize.min.js"></script>
-      <script type="text/javascript" src="js/scripts.js"></script>
-      <script type="text/javascript" src="js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-      <!-- data-tables -->
-      <script type="text/javascript" src="js/plugins/data-tables/js/jquery.dataTables.min.js"></script>
-      <script type="text/javascript" src="js/plugins/data-tables/data-tables-script.js"></script>
-      <script type="text/javascript" src="js/plugins/materialize-datatables/dataTables.materialize.js"></script>
-      <script type="text/javascript">
-        $('#datatable-all-visitors').DataTable();
-      </script>
-  </body>
+<!-- ================================================
+Scripts
+================================================ -->
+<!--Import jQuery before materialize.js-->
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<script type="text/javascript" src="js/scripts.js"></script>
+<script type="text/javascript" src="js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<!-- data-tables -->
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+<!-- data table export buttons -->
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.1.2/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.1.2/js/buttons.flash.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.18/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.18/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.1.2/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.1.2/js/buttons.print.min.js"></script>
+<!-- Custom Scripts -->
+<script type="text/javascript">
+$(document).ready(function(){
+    // Setup - add a text input to each footer cell
+    $('#datatable-main-stats tfoot th').each(function(){
+        var title = $(this).text();
+        $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+    });
+    // DataTable Init
+    var table = $('#datatable-main-stats').DataTable({
+        dom: 'Bfrtip',
+        buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+    });
+    // Apply the search
+    table.columns().every(function(){
+        var that = this;
+ 
+    $( 'input', this.footer() ).on( 'keyup change', function () {
+        if ( that.search() !== this.value ) {
+            that
+                .search( this.value )
+                .draw();
+            }
+        });
+    });
+});
+</script>
+</body>
 </html>
