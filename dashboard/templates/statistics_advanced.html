@@ -5,15 +5,30 @@
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}js/plugins/materialize-datatables/css/dataTables.materialize.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.1.2/css/buttons.dataTables.min.css">
-    
+<style type="text/css">
+.iframe-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 35px;
+    height: 0;
+    overflow: hidden;
+}
+.iframe-container iframe {
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+</style>
 {% endblock %}
 {% block content %}
-<div class="container" style="width: 80%; max-width: 1500px;">
+<div class="container" style="width: 95%; max-width: 1500px;">
     <h4>Advanced Statistics</h4>
       <!--DataTables in house-->
         <div class="row">
-          <div class="col s12">
-            <iframe width="1255px" height="663px" src="http://statistiche.unisi.it:8080/pentaho/Login" frameborder="0" allowfullscreen></iframe>
+          <div class="col s12 iframe-container">
+            <iframe width="1255px" height="800px" src="http://statistiche.unisi.it:8080/pentaho/Login" frameborder="0" allowfullscreen></iframe>
           </div>
             </div> 
         </div>
