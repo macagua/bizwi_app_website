@@ -1,5 +1,6 @@
 $(document).ready(function () {
-
+    $('#datatable-stores').DataTable();
+/*
     $('#datatable-stores').DataTable({
         "data": storesData,
         "aoColumnDefs": [
@@ -48,5 +49,5 @@ $(document).ready(function () {
         }
 
     });
-
+*/
 });
