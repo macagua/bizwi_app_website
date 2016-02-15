@@ -538,8 +538,13 @@ def settings_employee(request):
 def user_profile(request):
     user_id = request.user.id
     user_info = get_info_user(user_id)
-
     info = {}
+
+    employee = request.session.get("is_client_admin")
+    if employee:
+        info['employee'] = 'True'
+
+
 
     if request.method == 'POST':
         if "profileForm" in request.POST:

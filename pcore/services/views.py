@@ -170,7 +170,7 @@ def create_client_admin(request):
                 random.choice(string.ascii_uppercase + string.digits + string.ascii_lowercase) for x in range(66))
 
             e = Clients.objects.create(first_name=new_name, last_name=new_last_name, username=new_username,
-                                       email=new_email, is_client_admin=True, is_active=True, telephone=new_telephone,
+                                       email=new_email, is_client_admin=False, is_active=True, telephone=new_telephone,
                                        client_name=new_client_name)
 
             e.set_password(new_password)
