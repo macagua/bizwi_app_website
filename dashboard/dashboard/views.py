@@ -119,6 +119,29 @@ def statistics(request):
     return render(request, 'statistics.html')
 
 
+"""
+
+ Render mientras
+"""
+
+def statistics_advanced(request):
+    return render(request, 'statistics_advance.html')
+
+
+
+def statistics_pedestrians(request):
+    return render(request, 'statistics_pedestrians.html')
+
+
+def statistics_visitors(request):
+    return render(request, 'statistics_visitors.html')
+
+
+
+
+
+
+
 def brands(request):
     return render(request, 'brands.html')
 
@@ -346,7 +369,10 @@ def stats(request):
 
 def employee(request, id_employee=None):
     id_customer = request.session.get("id_customer")
-    locations_list = get_stores(id_customer)
+
+    client_id = request.user.id
+
+
     info = {'customer_name': request.session.get("customer_name"),
             'languages': LANGUAGE_LIST,
             'stores': stores}
@@ -367,11 +393,11 @@ def employee(request, id_employee=None):
                 'password': str(form.cleaned_data['password']),
             }
             if id_employee:
-                result = save_employee(id_customer, employee_info, id_employee)
+                result = save_employee(client_id, employee_info, id_employee)
                 info['page'] = "update"
                 info['employee'] = employee_info
             else:
-                result = save_employee(id_customer, employee_info)
+                result = save_employee(client_id, employee_info)
                 info['page'] = "add"
 
             if result:
@@ -391,7 +417,7 @@ def employee(request, id_employee=None):
     if request.method == 'GET':
         if id_employee:
             info['page'] = "update"
-            employee = get_employees(id_customer, id_employee)
+            employee = get_employees(client_id, id_employee)
             if employee:
                 info['employee'] = employee
             else:

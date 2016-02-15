@@ -44,12 +44,18 @@ urlpatterns = [
 
 
 
-
     url(r'^employee/(?P<id_employee>\d+)/$', views.employee, name='employee'),
     url(r'^settings_employee/', views.settings_employee, name='settings_employee'),
 
     # Temporal URL
     url(r'^statistics/$', views.statistics, name='statistics'),
+    url(r'^statistics_advanced/$', views.statistics_advanced, name='statistics_advanced'),
+    url(r'^statistics_pedestrians/$', views.statistics_pedestrians, name='statistics_pedestrians'),
+    url(r'^statistics_visitors/$', views.statistics_visitors, name='statistics_visitors'),
+
+
+
+
     url(r'^employee/$', views.brands, name='brands'),
     url(r'^sensors/$', views.sensors, name='sensors'),
     url(r'^promotions/$', views.promotions, name='promotions'),
