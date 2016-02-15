@@ -11,7 +11,8 @@
 {% block content %}
     <div class="container" style="width: 80%; max-width: 1500px;">
     <h4>Main Statistics</h4>
-    <select  id="my-select" name="character" multiple="multiple">
+            <label class="active">Select current data view</label>
+<select {%  if employee %}disabled{% endif %} id="my-select" name="character" multiple="multiple">
     <option value="All">All Stores</option>
     <option value="1">Paseo de la Finca</option>
 </select>

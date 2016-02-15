@@ -6,9 +6,16 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.1.2/css/buttons.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://rawgit.com/pbauerochse/searchable-option-list/master/sol.css">
+    <script type="text/javascript" src="https://rawgit.com/pbauerochse/searchable-option-list/master/sol.js"></script>
 {% endblock %}
 {% block content %}
     <div class="container" style="width: 95%; max-width: 1500px;">
+            <label class="active">Select current data view</label>
+    <select {%  if employee %}disabled{% endif %} id="my-select" name="character" multiple="multiple">
+    <option value="All">All Stores</option>
+    <option value="1">Paseo de la Finca</option>
+</select>
     <h4>Visitors Statistics</h4>
       <!--DataTables in house-->
         <div class="row" style="margin-bottom: 10px;">
@@ -413,5 +420,11 @@ $(document).ready(function(){
         });
     });
 });
+</script>
+<script type="text/javascript">
+    $(function() {
+        // initialize sol
+        $('#my-select').searchableOptionList();
+    });
 </script>
 {% endblock %}
