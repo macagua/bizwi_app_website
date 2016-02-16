@@ -3,16 +3,243 @@
 {% load i18n %}
 {% block css %}
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}js/plugins/materialize-datatables/css/dataTables.materialize.css">
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}js/plugins/data-tables/css/jquery.dataTables.min.css" media="screen,projection">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.1.2/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://rawgit.com/pbauerochse/searchable-option-list/master/sol.css">
+    <script type="text/javascript" src="https://rawgit.com/pbauerochse/searchable-option-list/master/sol.js"></script>
 {% endblock %}
 {% block content %}
-    <div class="container">
+    <div class="container" style="width: 95%; max-width: 1500px;">
+            <label class="active">Select current data view</label>
+    <select {%  if employee %}disabled{% endif %} id="my-select" name="character" multiple="multiple">
+    <option value="All">All Stores</option>
+    <option value="1">Paseo de la Finca</option>
+</select>
     <h4>Visitors Statistics</h4>
       <!--DataTables in house-->
-            <div id="table-datatables">
-              <div class="row">
-                <div class="col s12">
-                  <table id="datatable-main-stat" class="responsive-table" cellspacing="0">
+        <div class="row" style="margin-bottom: 10px;">
+            <div class="col s12 m6 l3">
+                <div id="visitor-stats-card" class="card">
+                    <div class="card-header red accent-1">
+                      <div class="card-title">
+                        <h5 class="visitor-stats-card-title">Visits this month</h5>
+                      </div>
+                    </div>
+                    <div class="">
+                      <div class="card-content">
+                        <div class="row visitor-stats-state-wrapper valign-wrapper" style="margin-bottom: 0px;">
+                          <div class="col s6 m6 l6 center-align valign">
+                            <div class="visitor-stats-state social-icons icon-circle">
+                              <i class="fa fa-users"></i>
+                            </div>
+                          </div>
+                          <div class="col s6 m6 l6 center-align valign">
+                            <div class="visitor-stats-state">
+                              <h4 class="margin">50,000</h4>
+                              <p class="ultra-small">visits this month</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6 l3">
+                <div id="visitor-stats-card" class="card">
+                    <div class="card-header light-blue accent-1">
+                      <div class="card-title">
+                        <h5 class="visitor-stats-card-title">Visitors Check-ins</h5>
+                      </div>
+                    </div>
+                    <div class="">
+                      <div class="card-content">
+                        <div class="row visitor-stats-state-wrapper valign-wrapper" style="margin-bottom: 0px;">
+                          <div class="col s6 m6 l6 center-align valign">
+                            <div class="visitor-stats-state social-icons icon-circle">
+                              <i class="fa fa-tags"></i>
+                            </div>
+                          </div>
+                          <div class="col s6 m6 l6 center-align valign">
+                            <div class="visitor-stats-state">
+                              <h4 class="margin">50,000</h4>
+                              <p class="ultra-small">check-ins this month</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6 l3">
+                <div id="visitor-stats-card" class="card">
+                    <div class="card-header amber accent-1">
+                      <div class="card-title">
+                        <h5 class="visitor-stats-card-title">New Visitors</h5>
+                      </div>
+                    </div>
+                    <div class="">
+                      <div class="card-content">
+                        <div class="row visitor-stats-state-wrapper valign-wrapper" style="margin-bottom: 0px;">
+                          <div class="col s6 m6 l6 center-align valign">
+                            <div class="visitor-stats-state social-icons icon-circle">
+                              <i class="fa fa-user"></i>
+                            </div>
+                          </div>
+                          <div class="col s6 m6 l6 center-align valign">
+                            <div class="visitor-stats-state">
+                              <h4 class="margin">50,000</h4>
+                              <p class="ultra-small">new visits this month</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6 l3">
+                <div id="visitor-stats-card" class="card">
+                    <div class="card-header green accent-1">
+                      <div class="card-title">
+                        <h5 class="visitor-stats-card-title">Promotion Check-ins</h5>
+                      </div>
+                    </div>
+                    <div class="">
+                      <div class="card-content">
+                        <div class="row visitor-stats-state-wrapper valign-wrapper" style="margin-bottom: 0px;">
+                          <div class="col s6 m6 l6 center-align valign">
+                            <div class="visitor-stats-state social-icons icon-circle">
+                              <i class="fa fa-money"></i>
+                            </div>
+                          </div>
+                          <div class="col s6 m6 l6 center-align valign">
+                            <div class="visitor-stats-state">
+                              <h4 class="margin">50,000</h4>
+                              <p class="ultra-small">check-ins this month</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <div class="row">
+            <div class="col s12 m6 l2">
+                <div class="card-panel no-padding">
+                    <div class="row valign-wrapper" style="margin-bottom: 0px;">
+                      <div class="col s6 m6 l6 center-align valign" style="padding-right: 0px;">
+                        <div class="visitor-stats-state social-icons icon-flat">
+                          <i class="fa fa-twitter"></i>
+                        </div>
+                      </div>
+                      <div class="col s6 m6 l6 center-align valign" style="padding-left: 0px;">
+                        <div class="visitor-stats-state">
+                          <h5 class="margin">50,000</h5>
+                          <p class="ultra-small">global accounts</p>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6 l2">
+                <div class="card-panel no-padding">
+                    <div class="row valign-wrapper" style="margin-bottom: 0px;">
+                      <div class="col s6 m6 l6 center-align valign" style="padding-right: 0px;">
+                        <div class="visitor-stats-state social-icons icon-flat">
+                          <i class="fa fa-twitter"></i>
+                        </div>
+                      </div>
+                      <div class="col s6 m6 l6 center-align valign" style="padding-left: 0px;">
+                        <div class="visitor-stats-state">
+                          <h5 class="margin">50,000</h5>
+                          <p class="ultra-small">accounts logins</p>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6 l2">
+                <div class="card-panel no-padding">
+                    <div class="row valign-wrapper" style="margin-bottom: 0px;">
+                      <div class="col s6 m6 l6 center-align valign" style="padding-right: 0px;">
+                        <div class="visitor-stats-state social-icons icon-flat">
+                          <i class="fa fa-facebook"></i>
+                        </div>
+                      </div>
+                      <div class="col s6 m6 l6 center-align valign" style="padding-left: 0px;">
+                        <div class="visitor-stats-state">
+                          <h5 class="margin">50,000</h5>
+                          <p class="ultra-small">global accounts</p>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6 l2">
+                <div class="card-panel no-padding">
+                    <div class="row valign-wrapper" style="margin-bottom: 0px;">
+                      <div class="col s6 m6 l6 center-align valign" style="padding-right: 0px;">
+                        <div class="visitor-stats-state social-icons icon-flat">
+                          <i class="fa fa-facebook"></i>
+                        </div>
+                      </div>
+                      <div class="col s6 m6 l6 center-align valign" style="padding-left: 0px;">
+                        <div class="visitor-stats-state">
+                          <h5 class="margin">50,000</h5>
+                          <p class="ultra-small">accounts logins</p>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6 l2">
+                <div class="card-panel no-padding">
+                    <div class="row valign-wrapper" style="margin-bottom: 0px;">
+                      <div class="col s6 m6 l6 center-align valign" style="padding-right: 0px;">
+                        <div class="visitor-stats-state social-icons icon-flat">
+                          <i class="fa fa-google-plus-square"></i>
+                        </div>
+                      </div>
+                      <div class="col s6 m6 l6 center-align valign" style="padding-left: 0px;">
+                        <div class="visitor-stats-state">
+                          <h5 class="margin">50,000</h5>
+                          <p class="ultra-small">global accounts</p>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s12 m6 l2">
+                <div class="card-panel no-padding">
+                    <div class="row valign-wrapper" style="margin-bottom: 0px;">
+                      <div class="col s6 m6 l6 center-align valign" style="padding-right: 0px;">
+                        <div class="visitor-stats-state social-icons icon-flat">
+                          <i class="fa fa-google-plus-square"></i>
+                        </div>
+                      </div>
+                      <div class="col s6 m6 l6 center-align valign" style="padding-left: 0px;">
+                        <div class="visitor-stats-state">
+                          <h5 class="margin">50,000</h5>
+                          <p class="ultra-small">accounts logins</p>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title">Montly Visits vs Trends</span>
+                    <canvas id="chartjs-visitors" height="70"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col s12">
+            <div class="material-table">
+                  <table id="datatable-main-stats" class="responsive-table bordered" cellspacing="0">
                     <thead>
                         <tr>
                             <th>Photo</th>
@@ -24,10 +251,110 @@
                             <th>Is connected</th>
                         </tr>
                     </thead>
-                 
+                    <tfoot>
+                        <tr>
+                            <th>Photo</th>
+                            <th>Name</th>
+                            <th>Device OS</th>
+                            <th>Social network</th>
+                            <th>Visits</th>
+                            <th>Last connection</th>
+                            <th>Is connected</th>
+                        </tr>
+                    </tfoot>
                     <tbody>
                         <tr>
-                            <td><img src="{{ STATIC_URL }}images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
+                            <td><img src="images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
+                            <td>Alicia Fernández</td>
+                            <td>Android</td>
+                            <td>Google</td>
+                            <td>1</td>
+                            <td>15/12/2015 08:10</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td><img src="images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
+                            <td>Andres Mendez</td>
+                            <td>Android</td>
+                            <td>Facebook</td>
+                            <td>1</td>
+                            <td>29/10/2015 08:46</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td><img src="images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
+                            <td>Fernando Cortiñas</td>
+                            <td>Windows</td>
+                            <td>Facebook</td>
+                            <td>1</td>
+                            <td>26/10/2015 11:19</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td><img src="images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
+                            <td>Ivanuk Telesuk</td>
+                            <td>Android</td>
+                            <td>Google</td>
+                            <td>1</td>
+                            <td>21/10/2015 14:19</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td><img src="images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
+                            <td>Jesus Lara</td>
+                            <td>Android</td>
+                            <td>Google</td>
+                            <td>1</td>
+                            <td>07/10/2015 13:28</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td><img src="images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
+                            <td>Jesus Lara</td>
+                            <td>Android</td>
+                            <td>Google</td>
+                            <td>1</td>
+                            <td>26/10/2015 11:36</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td><img src="images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
+                            <td>Juan Manuel RT</td>
+                            <td>Windows</td>
+                            <td>Facebook</td>
+                            <td>1</td>
+                            <td>12/21/2015 21:22</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td><img src="images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
+                            <td>Lydia María Pérez García</td>
+                            <td>Android</td>
+                            <td>Google</td>
+                            <td>1</td>
+                            <td>11/01/2016 11:36</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td><img src="images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
+                            <td>Marcos Juane</td>
+                            <td>Apple</td>
+                            <td>Google</td>
+                            <td>1</td>
+                            <td>26/10/2015 11:06</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td><img src="images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
+                            <td>raul lopez</td>
+                            <td>Apple</td>
+                            <td>Google</td>
+                            <td>1</td>
+                            <td>26/10/2015 13:33</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td><img src="images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
                             <td>John Doe</td>
                             <td>Windows</td>
                             <td>Google</td>
@@ -36,97 +363,7 @@
                             <td>No</td>
                         </tr>
                         <tr>
-                            <td><img src="{{ STATIC_URL }}images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
-                            <td>John Doe</td>
-                            <td>Windows</td>
-                            <td>Google</td>
-                            <td>1</td>
-                            <td>12/21/2015 21:22</td>
-                            <td>No</td>
-                        </tr>
-                        <tr>
-                            <td><img src="{{ STATIC_URL }}images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
-                            <td>John Doe</td>
-                            <td>Windows</td>
-                            <td>Google</td>
-                            <td>1</td>
-                            <td>12/21/2015 21:22</td>
-                            <td>No</td>
-                        </tr>
-                        <tr>
-                            <td><img src="{{ STATIC_URL }}images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
-                            <td>John Doe</td>
-                            <td>Windows</td>
-                            <td>Google</td>
-                            <td>1</td>
-                            <td>12/21/2015 21:22</td>
-                            <td>No</td>
-                        </tr>
-                        <tr>
-                            <td><img src="{{ STATIC_URL }}images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
-                            <td>John Doe</td>
-                            <td>Windows</td>
-                            <td>Google</td>
-                            <td>1</td>
-                            <td>12/21/2015 21:22</td>
-                            <td>No</td>
-                        </tr>
-                        <tr>
-                            <td><img src="{{ STATIC_URL }}images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
-                            <td>John Doe</td>
-                            <td>Windows</td>
-                            <td>Google</td>
-                            <td>1</td>
-                            <td>12/21/2015 21:22</td>
-                            <td>No</td>
-                        </tr>
-                        <tr>
-                            <td><img src="{{ STATIC_URL }}images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
-                            <td>John Doe</td>
-                            <td>Windows</td>
-                            <td>Google</td>
-                            <td>1</td>
-                            <td>12/21/2015 21:22</td>
-                            <td>No</td>
-                        </tr>
-                        <tr>
-                            <td><img src="{{ STATIC_URL }}images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
-                            <td>John Doe</td>
-                            <td>Windows</td>
-                            <td>Google</td>
-                            <td>1</td>
-                            <td>12/21/2015 21:22</td>
-                            <td>No</td>
-                        </tr>
-                        <tr>
-                            <td><img src="{{ STATIC_URL }}images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
-                            <td>John Doe</td>
-                            <td>Windows</td>
-                            <td>Google</td>
-                            <td>1</td>
-                            <td>12/21/2015 21:22</td>
-                            <td>No</td>
-                        </tr>
-                        <tr>
-                            <td><img src="{{ STATIC_URL }}images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
-                            <td>John Doe</td>
-                            <td>Windows</td>
-                            <td>Google</td>
-                            <td>1</td>
-                            <td>12/21/2015 21:22</td>
-                            <td>No</td>
-                        </tr>
-                        <tr>
-                            <td><img src="{{ STATIC_URL }}images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
-                            <td>John Doe</td>
-                            <td>Windows</td>
-                            <td>Google</td>
-                            <td>1</td>
-                            <td>12/21/2015 21:22</td>
-                            <td>No</td>
-                        </tr>
-                        <tr>
-                            <td><img src="{{ STATIC_URL }}images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
+                            <td><img src="images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
                             <td>John Doe</td>
                             <td>Windows</td>
                             <td>Google</td>
@@ -144,11 +381,50 @@
           
 {% endblock %}
 {% block scripts %}
+<!-- ChartJS -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.0.0-beta2/Chart.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/chartjs/chartjs-data-visitors.js"></script>
 <!-- data-tables -->
-<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/data-tables/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/materialize-datatables/js/dataTables.materialize.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+<!-- data table export buttons -->
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.1.2/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.1.2/js/buttons.flash.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.18/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.18/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.1.2/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.1.2/js/buttons.print.min.js"></script>
 <!-- Custom Scripts -->
-<script type='text/javascript'>
-    $('#datatable-main-stat').DataTable();
+<script type="text/javascript">
+$(document).ready(function(){
+    // Setup - add a text input to each footer cell
+    $('#datatable-main-stats tfoot th').each(function(){
+        var title = $(this).text();
+        $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+    });
+    // DataTable Init
+    var table = $('#datatable-main-stats').DataTable({
+        dom: 'Bfrtip',
+        buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+    });
+    // Apply the search
+    table.columns().every(function(){
+        var that = this;
+ 
+    $( 'input', this.footer() ).on( 'keyup change', function () {
+        if ( that.search() !== this.value ) {
+            that
+                .search( this.value )
+                .draw();
+            }
+        });
+    });
+});
+</script>
+<script type="text/javascript">
+    $(function() {
+        // initialize sol
+        $('#my-select').searchableOptionList();
+    });
 </script>
 {% endblock %}

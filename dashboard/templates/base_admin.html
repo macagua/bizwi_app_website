@@ -35,7 +35,9 @@
     <!-- Dropdown for Customer  -->
     <ul id="dropdown1" class="dropdown-content">
         <li><a href="{% url "user_profile" %}"><i class="material-icons left">person_outline</i>{% trans "Profile" %}</a></li>
+        {%  if not employee %}
         <li><a href="{% url "settings" %}"><i class="material-icons left">settings</i>{% trans "Settings" %}</a></li>
+        {% endif %}
         <li class="divider"></li>
         <li><a href="{% url "logout" %}"><i class="material-icons left">exit_to_app</i>{% trans "Logout" %}</a></li>
     </ul>
@@ -107,7 +109,7 @@
         <div class="nav-wrapper blue-grey darken-4">
             <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
             <a href="#!" class="page-title"></a>
-            <ul class="right hide-on-med-and-down">
+            <ul class="right hide-on-med-and-down" style="padding-right: 5px;">
                 <li><a class="dropdown-button" data-activates="dropdown4" href="{% url "promotions" %}"><i class="material-icons left">loyalty</i>Promotions<span
                         class="badge">({{ promotion_requests|length }})</span></a></li>
                 <li><a class="dropdown-button" data-activates="dropdown3" href="#"><i
@@ -126,9 +128,17 @@
     <ul style="left: 0px;" id="nav-mobile" class="side-nav fixed">
         <li class="logo valign-wrapper">
             <a id="logo-container" class="brand-logo valign" href="#"> <object id="front-page-logo" data="{{ STATIC_URL }}images/Logo_Bizwi_head.png" type="image/png"></object></a></li>
-        <li class="bold no-padding">
+        {%  if not employee %}
+            <li class="bold no-padding">
             <a href="{% url "home" %}" class="waves-effect waves-teal collapsible-header"><i class="material-icons">dashboard</i>{% trans "Dashboard" %}</a>
         </li>
+
+        {% else %}
+            <li class="bold no-padding">
+            <a href="{% url "dashboard_employee" %}" class="waves-effect waves-teal collapsible-header"><i class="material-icons">dashboard</i>{% trans "Dashboard" %}</a>
+        </li>
+        {% endif %}
+        {%  if not employee %}
         <li class="bold no-padding">
             <ul class="collapsible collapsible-accordion">
                 <li class="bold">
@@ -143,6 +153,8 @@
                 </li>
             </ul>
         </li>
+        {% endif %}
+        <!-- statistic --->
         <li class="bold no-padding">
           <ul class="collapsible collapsible-accordion">
             <li class="bold"><a class="collapsible-header waves-effect waves-teal"><i class="material-icons">assessment</i>{% trans "Statistics" %}</a>
@@ -158,6 +170,7 @@
           </ul>
         </li>
 
+         {%  if not employee %}
         <li class="bold no-padding">
             <a href="{% url "sensors" %}" class="waves-effect waves-teal collapsible-header"><i class="material-icons">settings_input_antenna</i>{% trans "Sensors" %}</a>
         </li>
@@ -178,6 +191,7 @@
         <li class="bold no-padding">
             <a href="{% url "promotions" %}" class="waves-effect waves-teal collapsible-header"><i class="material-icons">loyalty</i>{% trans "Promotions" %}</a>
         </li>
+        {% endif %}
     </ul>
     <!-- /Left Nav-->
 

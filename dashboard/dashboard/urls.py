@@ -38,6 +38,12 @@ urlpatterns = [
     url(r'^dashboard/$', views.dashboard, name='home'),
 
 
+    url(r'^dashboard_employee/$', views.dashboard_employee, name='dashboard_employee'),
+
+
+
+
+
 
     url(r'^employees/$', views.employees_list, name='employees_list'),
     url(r'^employee/$', views.employee, name='new_employee'),

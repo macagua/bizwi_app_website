@@ -7,7 +7,7 @@ var data = {
   datasets : [
     {
       label: "First dataset",
-      fillColor : "rgba(128, 222, 234, 0.6)",
+      fillColor : "rgba(128, 122, 234, 0.6)",
       strokeColor : "#ffffff",
       pointColor : "#00bcd4",
       pointStrokeColor : "#ffffff",
@@ -23,8 +23,19 @@ var data = {
       pointStrokeColor : "#80deea",
       pointHighlightFill : "#80deea",
       pointHighlightStroke : "#80deea",
+      data: [300, 200, 400, 200, 500, 300, 400]
+    },
+    {
+      label: "third dataset",
+      fillColor : "rgba(128, 122, 134, 0.3)",
+      strokeColor : "#80deea",
+      pointColor : "#00bcd4",
+      pointStrokeColor : "#80deea",
+      pointHighlightFill : "#80deea",
+      pointHighlightStroke : "#80deea",
       data: [600, 200, 900, 200, 500, 1000, 400]
     }
+
   ]
 };
 /*
@@ -54,7 +65,7 @@ Polor Chart Widget
  
 var doughnutData = [
   {
-    value: 3000,
+    value: 3007,
     color:"#F7464A",
     highlight: "#FF5A5E",
     label: "Android"
@@ -66,7 +77,7 @@ var doughnutData = [
     label: "Windows"
   },
   {
-    value: 1000,
+    value: 2010,
     color: "#FDB45C",
     highlight: "#FFC870",
     label: "iOS"
@@ -118,7 +129,7 @@ setInterval(updateBarChart, 3000);
 Trending Bar Chart
 */
 var radarChartData = {
-  labels: ["Instagram", "Google+", "Facebook", "Pinterest", "Twitter"],
+  labels: ["Token", "Google+", "Facebook", "Email", "Twitter"],
   datasets: [
     {
       label: "First dataset",
@@ -128,7 +139,7 @@ var radarChartData = {
       pointStrokeColor: "#fff",
       pointHighlightFill: "#fff",
       pointHighlightStroke: "#fff",
-      data: [500,600,700,800,600]
+      data: [000,600,700,000,600]
     }
   ],
 };

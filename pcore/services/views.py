@@ -40,6 +40,60 @@ def auth(request):
         print e
 
 
+
+@api_view(['GET', 'POST'])
+def employee_admin(request, client_id, id_employee=None):
+    try:
+        if request.method == "GET":
+            if id_employee:
+                serializer = EmployeeSerializer(Employees.objects.get(id=id_employee))
+            else:
+                serializer = EmployeeSerializer(Employees.objects.filter(client=client_id), many=True)
+            return Response(serializer.data)
+
+        elif request.method == 'POST':
+            username = request.DATA.get('username')
+            email = request.DATA.get('email')
+            first_name = request.DATA.get('first_name')
+            phone = request.DATA.get('phone')
+            last_name = request.DATA.get('last_name')
+            language = request.DATA.get('language')
+            checkpass = bool(request.DATA.get('checkpass'))
+            password = request.DATA.get('password')
+            location = Location.objects.get(id=request.DATA.get('location'))
+
+            if id_employee:
+                emp = Employee.objects.get(id=id_employee)
+                emp.username = username
+                emp.email = email
+                emp.first_name = first_name
+                emp.last_name = last_name
+                emp.language = language
+                emp.location = location
+                emp.phone = phone
+                if checkpass:
+                    emp.set_password(password)
+                emp.save()
+            else:
+                emp = Employee(
+                    username=username,
+                    email=email,
+                    first_name=first_name,
+                    last_name=last_name,
+                    language=language,
+                    location=location,
+                    phone = phone
+                )
+                emp.set_password(password)
+                emp.save()
+            return Response(status=status.HTTP_200_OK)
+
+    except Exception as e:
+        return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+
+
 @api_view(['GET', 'POST'])
 def custom_user(request, user_id):
     try:
@@ -170,7 +224,7 @@ def create_client_admin(request):
                 random.choice(string.ascii_uppercase + string.digits + string.ascii_lowercase) for x in range(66))
 
             e = Clients.objects.create(first_name=new_name, last_name=new_last_name, username=new_username,
-                                       email=new_email, is_client_admin=True, is_active=True, telephone=new_telephone,
+                                       email=new_email, is_client_admin=False, is_active=True, telephone=new_telephone,
                                        client_name=new_client_name)
 
             e.set_password(new_password)
@@ -208,7 +262,7 @@ def create_client_admin(request):
 def stores(request, client_id, id_local=None):
     try:
         if request.method == "GET":
-            serializer = StoresSerializer(Stores.objects.filter(client_id=client_id))
+            serializer = StoresSerializer(Stores.objects.filter(client=client_id), many=True)
             return Response(serializer.data)
 
         elif request.method == 'POST':
@@ -268,29 +322,16 @@ def stores(request, client_id, id_local=None):
 def get_employee_context(request, id):
     try:
         if request.method == 'GET':
-            client = Clients.objects.get(id=id)
+            custom_user = CustomUser.objects.get(id=id)
 
-            language = client.language
-            customer = client.customer
-
-            if customer:
-                id_customer = customer.id
-                customer_name = customer.name
-                time_zone = customer.timezone
-            else:
-                id_customer = ""
-                customer_name = ""
-                time_zone = ""
+            first_name = custom_user.first_name
+            last_name = custom_user.last_name
+            is_client_admin = custom_user.is_client_admin
 
             data = {
-                "client": hh,
-                "full_name": full_name,
-                "id_customer": id_customer,
-                "customer_name": customer_name,
-                "language": language,
-                "timezone": time_zone,
-                "id_location": "",
-                "is_customer_admin": is_customer_admin,
+                "first_name": first_name,
+                "last_name": last_name,
+                "is_client_admin": is_client_admin,
             }
 
             return Response(data)

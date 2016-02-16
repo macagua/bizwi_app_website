@@ -77,19 +77,16 @@ class EmployeeSerializer(serializers.ModelSerializer):
                   'is_store_manager',
                   'is_marketing',
                   'is_active',
-                  'is_superuser')
+                  'is_superuser',
+                  'client')
 
 
 class StoresSerializer(serializers.ModelSerializer):
     class Meta:
         model = Stores
         fields = ('store_id',
-                  'client_id',
                   'store_name',
                    'register_date',
-                   'region',
-                   'country',
-                   'city',
                    'address',
                    'geoloc_point',
                    'distance_threshold',
@@ -103,8 +100,7 @@ class StoresSerializer(serializers.ModelSerializer):
                    'background_img',
                    'ttf_font',
                    'is_active',
-                   'promotion_enable',
-                   'employee')
+                   'promotion_enable')
 
 
 class TagsSerializer(serializers.ModelSerializer):

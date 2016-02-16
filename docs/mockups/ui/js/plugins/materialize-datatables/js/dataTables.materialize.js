@@ -1,226 +1,201 @@
-/*! DataTables Bootstrap 3 integration
- * ©2011-2015 SpryMedia Ltd - datatables.net/license
- */
+(function(window, document, undefined) {
 
-/**
- * DataTables integration for Bootstrap 3. This requires Bootstrap 3 and
- * DataTables 1.10 or newer.
- *
- * This file sets the defaults and adds options to DataTables to style its
- * controls using Bootstrap. See http://datatables.net/manual/styling/bootstrap
- * for further information.
- */
-(function( factory ){
-	if ( typeof define === 'function' && define.amd ) {
-		// AMD
-		define( ['jquery', 'datatables.net'], function ( $ ) {
-			return factory( $, window, document );
-		} );
-	}
-	else if ( typeof exports === 'object' ) {
-		// CommonJS
-		module.exports = function (root, $) {
-			if ( ! root ) {
-				root = window;
-			}
+  var factory = function($, DataTable) {
+    "use strict";
 
-			if ( ! $ || ! $.fn.dataTable ) {
-				// Require DataTables, which attaches to jQuery, including
-				// jQuery if needed and have a $ property so we can access the
-				// jQuery object that is used
-				$ = require('datatables.net')(root, $).$;
-			}
+    $('.search-toggle').click(function() {
+      if ($('.hiddensearch').css('display') == 'none')
+        $('.hiddensearch').slideDown();
+      else
+        $('.hiddensearch').slideUp();
+    });
 
-			return factory( $, root, root.document );
-		};
-	}
-	else {
-		// Browser
-		factory( jQuery, window, document );
-	}
-}(function( $, window, document, undefined ) {
-'use strict';
-var DataTable = $.fn.dataTable;
+    /* Set the defaults for DataTables initialisation */
+    $.extend(true, DataTable.defaults, {
+      dom: "<'hiddensearch'f'>" +
+        "tr" +
+        "<'table-footer'lip'>",
+      renderer: 'material'
+    });
 
+    /* Default class modification */
+    $.extend(DataTable.ext.classes, {
+      sWrapper: "dataTables_wrapper",
+      sFilterInput: "form-control input-sm",
+      sLengthSelect: "form-control input-sm"
+    });
 
-/* Set the defaults for DataTables initialisation */
-$.extend( true, DataTable.defaults, {
-	dom:
-		"<'row'<'col s6 offset-s6'f>>" +
-		"<'row'<'col s12'tr>>" +
-		"<'row'<'col s12 bottom-row'lip>>",
-	renderer: 'bootstrap',
-	oLanguage: {
-		oPaginate: {
-			sNext: '<i class="material-icons text-black">chevron_right</i>',
-			sPrevious: '<i class="material-icons text-black">chevron_left</i>'
-		}
-	}
-} );
+    /* Bootstrap paging button renderer */
+    DataTable.ext.renderer.pageButton.material = function(settings, host, idx, buttons, page, pages) {
+      var api = new DataTable.Api(settings);
+      var classes = settings.oClasses;
+      var lang = settings.oLanguage.oPaginate;
+      var btnDisplay, btnClass, counter = 0;
 
+      var attach = function(container, buttons) {
+        var i, ien, node, button;
+        var clickHandler = function(e) {
+          e.preventDefault();
+          if (!$(e.currentTarget).hasClass('disabled')) {
+            api.page(e.data.action).draw(false);
+          }
+        };
 
-/* Default class modification */
-$.extend( DataTable.ext.classes, {
-	sWrapper:      "dataTables_wrapper form-inline dt-bootstrap",
-	sFilterInput:  "form-control input-sm",
-	sLengthSelect: "form-control input-sm",
-	sProcessing:   "dataTables_processing panel panel-default"
-} );
+        for (i = 0, ien = buttons.length; i < ien; i++) {
+          button = buttons[i];
 
+          if ($.isArray(button)) {
+            attach(container, button);
+          } else {
+            btnDisplay = '';
+            btnClass = '';
 
-/* Bootstrap paging button renderer */
-DataTable.ext.renderer.pageButton.bootstrap = function ( settings, host, idx, buttons, page, pages ) {
-	var api     = new DataTable.Api( settings );
-	var classes = settings.oClasses;
-	var lang    = settings.oLanguage.oPaginate;
-	var aria = settings.oLanguage.oAria.paginate || {};
-	var btnDisplay, btnClass, counter=0;
+            switch (button) {
 
-	var attach = function( container, buttons ) {
-		var i, ien, node, button;
-		var clickHandler = function ( e ) {
-			e.preventDefault();
-			if ( !$(e.currentTarget).hasClass('disabled') && api.page() != e.data.action ) {
-				api.page( e.data.action ).draw( 'page' );
-			}
-		};
+              case 'first':
+                btnDisplay = lang.sFirst;
+                btnClass = button + (page > 0 ?
+                  '' : ' disabled');
+                break;
 
-		for ( i=0, ien=buttons.length ; i<ien ; i++ ) {
-			button = buttons[i];
+              case 'previous':
+                btnDisplay = '<i class="material-icons">chevron_left</i>';
+                btnClass = button + (page > 0 ?
+                  '' : ' disabled');
+                break;
 
-			if ( $.isArray( button ) ) {
-				attach( container, button );
-			}
-			else {
-				btnDisplay = '';
-				btnClass = '';
+              case 'next':
+                btnDisplay = '<i class="material-icons">chevron_right</i>';
+                btnClass = button + (page < pages - 1 ?
+                  '' : ' disabled');
+                break;
 
-				switch ( button ) {
-					case 'ellipsis':
-						btnDisplay = '&#x2026;';
-						btnClass = 'disabled';
-						break;
+              case 'last':
+                btnDisplay = lang.sLast;
+                btnClass = button + (page < pages - 1 ?
+                  '' : ' disabled');
+                break;
 
-					case 'first':
-						btnDisplay = lang.sFirst;
-						btnClass = button + (page > 0 ?
-							'' : ' disabled');
-						break;
+            }
 
-					case 'previous':
-						btnDisplay = lang.sPrevious;
-						btnClass = button + (page > 0 ?
-							'' : ' disabled');
-						break;
+            if (btnDisplay) {
+              node = $('<li>', {
+                  'class': classes.sPageButton + ' ' + btnClass,
+                  'id': idx === 0 && typeof button === 'string' ?
+                    settings.sTableId + '_' + button : null
+                })
+                .append($('<a>', {
+                    'href': '#',
+                    'aria-controls': settings.sTableId,
+                    'data-dt-idx': counter,
+                    'tabindex': settings.iTabIndex
+                  })
+                  .html(btnDisplay)
+                )
+                .appendTo(container);
 
-					case 'next':
-						btnDisplay = lang.sNext;
-						btnClass = button + (page < pages-1 ?
-							'' : ' disabled');
-						break;
+              settings.oApi._fnBindAction(
+                node, {
+                  action: button
+                }, clickHandler
+              );
 
-					case 'last':
-						btnDisplay = lang.sLast;
-						btnClass = button + (page < pages-1 ?
-							'' : ' disabled');
-						break;
+              counter++;
+            }
+          }
+        }
+      };
 
-					default:
-						btnDisplay = button + 1;
-						btnClass = page === button ?
-							'active' : '';
-						break;
-				}
+      // IE9 throws an 'unknown error' if document.activeElement is used
+      // inside an iframe or frame. 
+      var activeEl;
 
-				if ( btnDisplay ) {
-					node = $('<li>', {
-							'class': classes.sPageButton+' '+btnClass,
-							'id': idx === 0 && typeof button === 'string' ?
-								settings.sTableId +'_'+ button :
-								null
-						} )
-						.append( $('<a>', {
-								'href': '#',
-								'aria-controls': settings.sTableId,
-								'aria-label': aria[ button ],
-								'data-dt-idx': counter,
-								'tabindex': settings.iTabIndex
-							} )
-							.html( btnDisplay )
-						)
-						.appendTo( container );
+      try {
+        // Because this approach is destroying and recreating the paging
+        // elements, focus is lost on the select button which is bad for
+        // accessibility. So we want to restore focus once the draw has
+        // completed
+        activeEl = $(document.activeElement).data('dt-idx');
+      } catch (e) {}
 
-					settings.oApi._fnBindAction(
-						node, {action: button}, clickHandler
-					);
+      attach(
+        $(host).empty().html('<ul class="material-pagination"/>').children('ul'),
+        buttons
+      );
 
-					counter++;
-				}
-			}
-		}
-	};
+      if (activeEl) {
+        $(host).find('[data-dt-idx=' + activeEl + ']').focus();
+      }
+    };
 
-	// IE9 throws an 'unknown error' if document.activeElement is used
-	// inside an iframe or frame. 
-	var activeEl;
+    /*
+     * TableTools Bootstrap compatibility
+     * Required TableTools 2.1+
+     */
+    if (DataTable.TableTools) {
+      // Set the classes that TableTools uses to something suitable for Bootstrap
+      $.extend(true, DataTable.TableTools.classes, {
+        "container": "DTTT btn-group",
+        "buttons": {
+          "normal": "btn btn-default",
+          "disabled": "disabled"
+        },
+        "collection": {
+          "container": "DTTT_dropdown dropdown-menu",
+          "buttons": {
+            "normal": "",
+            "disabled": "disabled"
+          }
+        },
+        "print": {
+          "info": "DTTT_print_info"
+        },
+        "select": {
+          "row": "active"
+        }
+      });
 
-	try {
-		// Because this approach is destroying and recreating the paging
-		// elements, focus is lost on the select button which is bad for
-		// accessibility. So we want to restore focus once the draw has
-		// completed
-		activeEl = $(host).find(document.activeElement).data('dt-idx');
-	}
-	catch (e) {}
+      // Have the collection use a material compatible drop down
+      $.extend(true, DataTable.TableTools.DEFAULTS.oTags, {
+        "collection": {
+          "container": "ul",
+          "button": "li",
+          "liner": "a"
+        }
+      });
+    }
 
-	attach(
-		$(host).empty().html('<ul class="pagination"/>').children('ul'),
-		buttons
-	);
+  }; // /factory
 
-	if ( activeEl ) {
-		$(host).find( '[data-dt-idx='+activeEl+']' ).focus();
-	}
-};
+  // Define as an AMD module if possible
+  if (typeof define === 'function' && define.amd) {
+    define(['jquery', 'datatables'], factory);
+  } else if (typeof exports === 'object') {
+    // Node/CommonJS
+    factory(require('jquery'), require('datatables'));
+  } else if (jQuery) {
+    // Otherwise simply initialise as normal, stopping multiple evaluation
+    factory(jQuery, jQuery.fn.dataTable);
+  }
 
+})(window, document);
 
-/*
- * TableTools Bootstrap compatibility
- * Required TableTools 2.1+
- */
-if ( DataTable.TableTools ) {
-	// Set the classes that TableTools uses to something suitable for Bootstrap
-	$.extend( true, DataTable.TableTools.classes, {
-		"container": "DTTT btn-group",
-		"buttons": {
-			"normal": "btn btn-default",
-			"disabled": "disabled"
-		},
-		"collection": {
-			"container": "DTTT_dropdown dropdown-menu",
-			"buttons": {
-				"normal": "",
-				"disabled": "disabled"
-			}
-		},
-		"print": {
-			"info": "DTTT_print_info"
-		},
-		"select": {
-			"row": "active"
-		}
-	} );
-
-	// Have the collection use a bootstrap compatible drop down
-	$.extend( true, DataTable.TableTools.DEFAULTS.oTags, {
-		"collection": {
-			"container": "ul",
-			"button": "li",
-			"liner": "a"
-		}
-	} );
-}
-
-
-return DataTable;
-}));
+$(document).ready(function() {
+  $('#datatable').dataTable({
+    "oLanguage": {
+      "sStripClasses": "",
+      "sSearch": "",
+      "sSearchPlaceholder": "Enter Keywords Here",
+      "sInfo": "_START_ -_END_ of _TOTAL_",
+      "sLengthMenu": '<span>Rows per page:</span><select class="browser-default">' +
+        '<option value="10">10</option>' +
+        '<option value="20">20</option>' +
+        '<option value="30">30</option>' +
+        '<option value="40">40</option>' +
+        '<option value="50">50</option>' +
+        '<option value="-1">All</option>' +
+        '</select></div>'
+    },
+    bAutoWidth: false
+  });
+});

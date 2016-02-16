@@ -70,13 +70,8 @@ def done(request):
     is_client_admin = request.session.get("is_client_admin")
 
     if is_client_admin:
-        customer = request.session.get("id_customer")
-        if customer:
-            # go to admin dashboard
-            return redirect("locals_admin")
-        else:
-            # go to customer creation
-            return redirect("new_customer")
+        # go to customer creation
+        return redirect("dashboard_employee")
     else:
         # go to dashboard
         return redirect("home")
@@ -115,8 +110,40 @@ def dashboard(request, *args, **kwargs):
     return render(request, 'dashboard.html')
 
 
+
+@only_employee(LOGIN_URL)
+# @extra_info
+# def dashboard(request, extra_info):
+def dashboard_employee(request, *args, **kwargs):
+
+    employee_name = request.session.get("name"),
+
+
+    #    id_location = request.session.get("id_location")
+    #    stats = get_stats(id_location)
+    #
+    #    # create context
+    #    info = {
+    #        'unique_users': stats["unique_users"],
+    #        'recurring': stats["recurring"],
+    #        'pedestrians': stats["pedestrians"],
+    #        'visitors': stats["visitors"],
+    #        'impacts': stats["impacts"],
+    #        'check_ins': stats["check_ins"],
+    #    }
+    #
+    #    info.update(extra_info)
+    #    return render(request, 'dashboard.html', info)
+    return render(request, 'dashboard_employee.html')
+
+
 def statistics(request):
-    return render(request, 'statistics.html')
+    employee = request.session.get("is_client_admin")
+    info ={}
+    if employee:
+        info['employee'] = 'True'
+
+    return render(request, 'statistics.html', info)
 
 
 """
@@ -125,21 +152,28 @@ def statistics(request):
 """
 
 def statistics_advanced(request):
-    return render(request, 'statistics_advance.html')
+    employee = request.session.get("is_client_admin")
+    info ={}
+    if employee:
+        info['employee'] = 'True'
+    return render(request, 'statistics_advanced.html', info)
 
 
 
 def statistics_pedestrians(request):
-    return render(request, 'statistics_pedestrians.html')
+    employee = request.session.get("is_client_admin")
+    info ={}
+    if employee:
+        info['employee'] = 'True'
+    return render(request, 'statistics_pedestrians.html', info)
 
 
 def statistics_visitors(request):
-    return render(request, 'statistics_visitors.html')
-
-
-
-
-
+    employee = request.session.get("is_client_admin")
+    info ={}
+    if employee:
+        info['employee'] = 'True'
+    return render(request, 'statistics_visitors.html', info)
 
 
 def brands(request):
@@ -275,13 +309,11 @@ def new_client(request):
 
 def stores(request):
     client_id = request.user.id
-    stores_list = get_stores_by_client(client_id)
-    #stores_list = {'data': get_stores(client_id)}
-
-    #if type(stores_list['data']) is not list:
-    #    stores_list['data'] = []
-
-    #print stores_list
+    print client_id
+    #stores_list = get_stores_by_client(client_id)
+    stores_list = {'data': get_stores_by_client(client_id)}
+    if type(stores_list['data']) is not list:
+        stores_list['data'] = []
 
     return render(request, 'stores.html', stores_list)
 
@@ -353,9 +385,9 @@ def store(request, id_local=None):
 
 
 def employees_list(request):
-    client = request.user.id
-    employees = {'data': get_employees(client),
-                 'customer_name': request.session.get("client_name")}
+    client_id = request.user.id
+    employees = {'data': get_employees(client_id),
+                 'customer_name': request.session.get("name")}
     if type(employees['data']) is not list:
         employees['data'] = []
     return render(request, 'employees.html', employees)
@@ -504,8 +536,13 @@ def settings_employee(request):
 def user_profile(request):
     user_id = request.user.id
     user_info = get_info_user(user_id)
-
     info = {}
+
+    employee = request.session.get("is_client_admin")
+    if employee:
+        info['employee'] = 'True'
+
+
 
     if request.method == 'POST':
         if "profileForm" in request.POST:

@@ -42,6 +42,8 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #temp
+    'dashboard.middleware.initialize_user_context.Initialize',
 ]
 
 ROOT_URLCONF = 'dashboard.urls'

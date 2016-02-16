@@ -1,5 +1,6 @@
 $(document).ready(function () {
-
+    $('#datatable-brands').DataTable();
+/*
     var urlLang = "//cdn.datatables.net/plug-ins/1.10.6/i18n/English.json";
     if (lang == 'es') {
         urlLang = "//cdn.datatables.net/plug-ins/1.10.6/i18n/Spanish.json";
@@ -52,5 +53,5 @@ $(document).ready(function () {
         }
 
     });
-
+*/
 });

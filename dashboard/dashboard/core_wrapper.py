@@ -418,8 +418,8 @@ def save_store(client_id, local_info, id_local=None):
     return result.status_code == 200
 
 
-def get_employees(id_customer, id_employee=None):
-    url_path = 'employee_admin/' + str(id_customer)
+def get_employees(client_id, id_employee=None):
+    url_path = 'employee_admin/' + str(client_id)
     if id_employee:
         url_path += '/' + str(id_employee)
     result = base_request(url_path)

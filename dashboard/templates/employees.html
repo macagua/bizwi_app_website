@@ -221,9 +221,7 @@
 <script type="text/javascript" src="{{ STATIC_URL }}js/plugins/materialize-datatables/js/dataTables.materialize.js"></script>
 <!-- Custom Scripts -->
 <script type='text/javascript'>
-    var lang = '{{ request.session.lang }}';
-    var employeesData = {{ data|jsonify }};
-
+    var employeesData = {{ data | jsonify }};
 </script>
 <script src="{{ STATIC_URL }}js/employees.js"></script>
 {% endblock %}

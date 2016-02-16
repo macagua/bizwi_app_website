@@ -3,134 +3,136 @@
 {% load i18n %}
 {% block css %}
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}js/plugins/materialize-datatables/css/dataTables.materialize.css">
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}js/plugins/data-tables/css/jquery.dataTables.min.css" media="screen,projection">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.1.2/css/buttons.dataTables.min.css">
+        <link rel="stylesheet" href="https://rawgit.com/pbauerochse/searchable-option-list/master/sol.css">
+    <script type="text/javascript" src="https://rawgit.com/pbauerochse/searchable-option-list/master/sol.js"></script>
 {% endblock %}
 {% block content %}
-    <div class="container">
+<div class="container" style="width: 80%; max-width: 1500px;">
+        <label class="active">Select current data view</label>
+<select {%  if employee %}disabled{% endif %} id="my-select" name="character" multiple="multiple">
+    <option value="All">All Stores</option>
+    <option value="1">Paseo de la Finca</option>
+</select>
     <h4>Pedestrians Statistics</h4>
       <!--DataTables in house-->
-            <div id="table-datatables">
-              <div class="row">
-                <div class="col s12">
-                  <table id="datatable-main-stat" class="responsive-table" cellspacing="0">
+        <div class="row">
+          <div class="col s12">
+            <div class="material-table">
+                  <table id="datatable-main-stats" class="responsive-table bordered" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Photo</th>
-                            <th>Name</th>
                             <th>Device OS</th>
-                            <th>Social network</th>
+                            <th>Mac Address</th>
                             <th>Visits</th>
                             <th>Last connection</th>
                             <th>Is connected</th>
                         </tr>
                     </thead>
-                 
+                    <!-- Do not remove table footer -->
+                    <tfoot>
+                        <tr>
+                            <th>Device OS</th>
+                            <th>Mac Address</th>
+                            <th>Visits</th>
+                            <th>Last connection</th>
+                            <th>Is connected</th>
+                        </tr>
+                    </tfoot>
                     <tbody>
                         <tr>
-                            <td><img src="{{ STATIC_URL }}images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
-                            <td>John Doe</td>
                             <td>Windows</td>
-                            <td>Google</td>
+                            <td>35-94-24-D6-8F-00</td>
                             <td>1</td>
                             <td>12/21/2015 21:22</td>
                             <td>No</td>
                         </tr>
                         <tr>
-                            <td><img src="{{ STATIC_URL }}images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
-                            <td>John Doe</td>
+                            
                             <td>Windows</td>
-                            <td>Google</td>
-                            <td>1</td>
+                            <td>35-94-24-D6-8F-00</td>
+                            <td>2</td>
                             <td>12/21/2015 21:22</td>
                             <td>No</td>
                         </tr>
                         <tr>
-                            <td><img src="{{ STATIC_URL }}images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
-                            <td>John Doe</td>
-                            <td>Windows</td>
-                            <td>Google</td>
-                            <td>1</td>
+                            
+                            <td>Android</td>
+                            <td>35-94-24-D6-8F-00</td>
+                            <td>3</td>
                             <td>12/21/2015 21:22</td>
                             <td>No</td>
                         </tr>
                         <tr>
-                            <td><img src="{{ STATIC_URL }}images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
-                            <td>John Doe</td>
-                            <td>Windows</td>
-                            <td>Google</td>
-                            <td>1</td>
+                            
+                            <td>Android</td>
+                            <td>35-94-24-D6-8F-00</td>
+                            <td>4</td>
                             <td>12/21/2015 21:22</td>
                             <td>No</td>
                         </tr>
                         <tr>
-                            <td><img src="{{ STATIC_URL }}images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
-                            <td>John Doe</td>
-                            <td>Windows</td>
-                            <td>Google</td>
-                            <td>1</td>
+                            
+                            <td>Android</td>
+                            <td>35-94-24-D6-8F-00</td>
+                            <td>5</td>
                             <td>12/21/2015 21:22</td>
                             <td>No</td>
                         </tr>
                         <tr>
-                            <td><img src="{{ STATIC_URL }}images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
-                            <td>John Doe</td>
-                            <td>Windows</td>
-                            <td>Google</td>
-                            <td>1</td>
+                            
+                            <td>Android</td>
+                            <td>35-94-24-D6-8F-00</td>
+                            <td>6</td>
                             <td>12/21/2015 21:22</td>
                             <td>No</td>
                         </tr>
                         <tr>
-                            <td><img src="{{ STATIC_URL }}images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
-                            <td>John Doe</td>
+                            
                             <td>Windows</td>
-                            <td>Google</td>
-                            <td>1</td>
+                            <td>35-94-24-D6-8F-00</td>
+                            <td>7</td>
                             <td>12/21/2015 21:22</td>
                             <td>No</td>
                         </tr>
                         <tr>
-                            <td><img src="{{ STATIC_URL }}images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
-                            <td>John Doe</td>
-                            <td>Windows</td>
-                            <td>Google</td>
-                            <td>1</td>
+                            
+                            <td>IOS</td>
+                            <td>35-94-24-D6-8F-00</td>
+                            <td>8</td>
                             <td>12/21/2015 21:22</td>
                             <td>No</td>
                         </tr>
                         <tr>
-                            <td><img src="{{ STATIC_URL }}images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
-                            <td>John Doe</td>
+                            
                             <td>Windows</td>
-                            <td>Google</td>
-                            <td>1</td>
+                            <td>35-94-24-D6-8F-00</td>
+                            <td>9</td>
                             <td>12/21/2015 21:22</td>
                             <td>No</td>
                         </tr>
                         <tr>
-                            <td><img src="{{ STATIC_URL }}images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
-                            <td>John Doe</td>
+                            
                             <td>Windows</td>
-                            <td>Google</td>
-                            <td>1</td>
+                            <td>34-44-24-D6-8F-00</td>
+                            <td>10</td>
                             <td>12/21/2015 21:22</td>
                             <td>No</td>
                         </tr>
                         <tr>
-                            <td><img src="{{ STATIC_URL }}images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
-                            <td>John Doe</td>
+                            
                             <td>Windows</td>
-                            <td>Google</td>
-                            <td>1</td>
+                            <td>21-94-25-DF-8F-00</td>
+                            <td>11</td>
                             <td>12/21/2015 21:22</td>
                             <td>No</td>
                         </tr>
                         <tr>
-                            <td><img src="{{ STATIC_URL }}images/yuna.jpg" alt="username" class="circle responsive-img" style="height: 30px;"></td>
-                            <td>John Doe</td>
+                            
                             <td>Windows</td>
-                            <td>Google</td>
-                            <td>1</td>
+                            <td>75-98-24-DF-8F-07</td>
+                            <td>12</td>
                             <td>12/21/2015 21:22</td>
                             <td>No</td>
                         </tr>
@@ -145,10 +147,46 @@
 {% endblock %}
 {% block scripts %}
 <!-- data-tables -->
-<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/data-tables/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="{{ STATIC_URL }}js/plugins/materialize-datatables/js/dataTables.materialize.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+<!-- data table export buttons -->
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.1.2/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.1.2/js/buttons.flash.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.18/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.18/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.1.2/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.1.2/js/buttons.print.min.js"></script>
 <!-- Custom Scripts -->
-<script type='text/javascript'>
-    $('#datatable-main-stat').DataTable();
+<script type="text/javascript">
+$(document).ready(function(){
+    // Setup - add a text input to each footer cell
+    $('#datatable-main-stats tfoot th').each(function(){
+        var title = $(this).text();
+        $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+    });
+    // DataTable Init
+    var table = $('#datatable-main-stats').DataTable({
+        dom: 'Bfrtip',
+        buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+    });
+    // Apply the search
+    table.columns().every(function(){
+        var that = this;
+ 
+    $( 'input', this.footer() ).on( 'keyup change', function () {
+        if ( that.search() !== this.value ) {
+            that
+                .search( this.value )
+                .draw();
+            }
+        });
+    });
+});
+</script>
+<script type="text/javascript">
+    $(function() {
+        // initialize sol
+        $('#my-select').searchableOptionList();
+    });
 </script>
 {% endblock %}
