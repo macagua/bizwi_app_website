@@ -1,0 +1,9 @@
+# requirements/test.txt
+
+-r common.txt
+
+# Linting
+pylint==1.5.4
+
+# Coverage
+coverage==4.1b2
