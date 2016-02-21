@@ -7,9 +7,9 @@ var data = {
   datasets : [
     {
       label: "First dataset",
-      fillColor : "rgba(128, 222, 234, 0.6)",
+      fillColor : "rgba(22, 160, 133, 0.7)",
       strokeColor : "#ffffff",
-      pointColor : "#00bcd4",
+      pointColor : "#16a085",
       pointStrokeColor : "#ffffff",
       pointHighlightFill : "#ffffff",
       pointHighlightStroke : "#ffffff",
@@ -17,14 +17,25 @@ var data = {
     },
     {
       label: "Second dataset",
-      fillColor : "rgba(128, 222, 234, 0.3)",
-      strokeColor : "#80deea",
-      pointColor : "#00bcd4",
-      pointStrokeColor : "#80deea",
-      pointHighlightFill : "#80deea",
-      pointHighlightStroke : "#80deea",
+      fillColor : "rgba(230, 126, 34, 0.7)",
+      strokeColor : "#ffffff",
+      pointColor : "#e67e22",
+      pointStrokeColor : "#ffffff",
+      pointHighlightFill : "#ffffff",
+      pointHighlightStroke : "#ffffff",
+      data: [300, 200, 400, 200, 500, 300, 400]
+    },
+    {
+      label: "Third dataset",
+      fillColor : "rgba(155, 89, 182, 0.5)",
+      strokeColor : "#ffffff",
+      pointColor : "#5c6bc0",
+      pointStrokeColor : "#ffffff",
+      pointHighlightFill : "#ffffff",
+      pointHighlightStroke : "#ffffff",
       data: [600, 200, 900, 200, 500, 1000, 400]
     }
+
   ]
 };
 /*
@@ -269,7 +280,7 @@ var polarData = [
 
 window.onload = function(){
   var trendingLineChart = document.getElementById("trending-line-chart").getContext("2d");
-  window.trendingLineChart = new Chart(trendingLineChart).Line(data, {    
+  var NewtrendingLineChart = new Chart(trendingLineChart).Line(data, {    
     scaleShowGridLines : true,///Boolean - Whether grid lines are shown across the chart    
     scaleGridLineColor : "rgba(255,255,255,0.4)",//String - Colour of the grid lines    
     scaleGridLineWidth : 1,//Number - Width of the grid lines   
@@ -304,8 +315,10 @@ window.onload = function(){
     tooltipCaretSize: 10,// Number - Size of the caret on the tooltip   
     tooltipCornerRadius: 6,// Number - Pixel radius of the tooltip border   
     tooltipXOffset: 10,// Number - Pixel offset from point x to tooltip edge
+    legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-ul-legend\"><% for (var i=0; i<datasets.length; i++){%><li class=\"<%=name.toLowerCase()%>-li-legend\"><span style=\"background-color:<%=datasets[i].pointColor%>\" class=\"<%=name.toLowerCase()%>-element-legend\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
     responsive: true
     });
+    document.getElementById("trending-line-chart-legend").innerHTML = NewtrendingLineChart.generateLegend();
 
     var doughnutChart = document.getElementById("doughnut-chart").getContext("2d");
     window.myDoughnut = new Chart(doughnutChart).Doughnut(doughnutData, {
@@ -337,7 +350,7 @@ window.onload = function(){
         animationSteps:15,
         pointDotStrokeWidth : 2,
         pointLabelFontSize : 12,
-      responsive: true
+        responsive: true
     });
 
     // var pieChartArea = document.getElementById("pie-chart-area").getContext("2d");
@@ -354,11 +367,11 @@ window.onload = function(){
       scaleFontColor: "#fff",
       responsive: true,     
     });
-
+    /*
     var polarChartCountry = document.getElementById("polar-chart-country").getContext("2d");
     window.polarChartCountry = new Chart(polarChartCountry).PolarArea(polarData, {
       segmentStrokeWidth : 1,     
       responsive:true
     });
-
+    */
 };

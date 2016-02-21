@@ -137,6 +137,23 @@ nav.top-nav a.page-title {
   text-align: right;
 }
 
+/* line chart legend */
+#trending-line-chart-legend {
+  float: left;
+  padding: 8px;
+  border-radius: 3px;
+}
+.line-ul-legend {padding: 0; margin: 0;}
+.line-li-legend {display: inline; margin-right: 10px; font-size: 0.9rem;}
+.line-element-legend {
+  content: "";
+  margin-top: 6px;
+  margin-right: 4px;
+  padding: 0px 10px;
+  border-radius: 5px;
+  border: 1px solid #DDD;
+}
+
 /* doughnut chart */
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {.doughnut-chart-status {display:none;}}
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {.doughnut-chart-status {display:none} #card-stats .card-stats-compare {font-size:0.8rem;}}
