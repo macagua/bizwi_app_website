@@ -72,8 +72,8 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s12">
-                        <select name="categories">
+                    <div id="country-selector-div" class="input-field col s12">
+                        <select name="categories" id="country-selector" autocorrect="off" autocomplete="off">
                             {% for count in countries %}
                                 <option value="{{ count.country_id }}"{% if count == country %}
                                         selected="selected"{% endif %}>{{ count.country_name }}</option>
