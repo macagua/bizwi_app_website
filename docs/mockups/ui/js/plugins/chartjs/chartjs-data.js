@@ -6,7 +6,7 @@ var data = {
   labels : ["JAN","FEB","MAR","APR","MAY","JUNE","JULY"],
   datasets : [
     {
-      label: "First dataset",
+      label: "Pedestrians",
       fillColor : "rgba(22, 160, 133, 0.7)",
       strokeColor : "#ffffff",
       pointColor : "#16a085",
@@ -16,7 +16,7 @@ var data = {
       data: [100, 500, 200, 400, 800, 500, 800]
     },
     {
-      label: "Second dataset",
+      label: "Members",
       fillColor : "rgba(230, 126, 34, 0.7)",
       strokeColor : "#ffffff",
       pointColor : "#e67e22",
@@ -26,7 +26,7 @@ var data = {
       data: [300, 200, 400, 200, 500, 300, 400]
     },
     {
-      label: "Third dataset",
+      label: "Logins",
       fillColor : "rgba(155, 89, 182, 0.5)",
       strokeColor : "#ffffff",
       pointColor : "#5c6bc0",
