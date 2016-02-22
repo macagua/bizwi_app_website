@@ -19,6 +19,14 @@ ul.side-nav.leftside-navigation li {line-height: 44px;}
 .card {overflow: hidden;}
 /* ------------------*/
 
+/* Captive Portal */
+@media only screen and (min-device-width: 320px) and (max-device-width: 360px) {#captive-btn .btn {min-width: 200px !important;}}
+@media only screen and (min-device-width: 320px) and (max-device-width: 360px) {#social-auth .btn {min-width: 250px !important;} #social-auth a {font-size: 0.8rem !important;}}
+#social-auth .btn {min-width: 300px;}
+#brand-logo {width:75%; padding-top: 2rem;}
+/* ------------------*/
+
+
 /* Country Selector*/
 .ui-autocomplete {
   padding: 0;
@@ -127,6 +135,23 @@ nav.top-nav a.page-title {
   padding-right: 10px;
   color: #fff;
   text-align: right;
+}
+
+/* line chart legend */
+#trending-line-chart-legend {
+  float: left;
+  padding: 8px;
+  border-radius: 3px;
+}
+.line-ul-legend {padding: 0; margin: 0;}
+.line-li-legend {display: inline; margin-right: 10px; font-size: 0.9rem; font-weight: 400; color: white;}
+.line-element-legend {
+  content: "";
+  margin-top: 6px;
+  margin-right: 4px;
+  padding: 0px 10px;
+  border-radius: 5px;
+  border: 1px solid #DDD;
 }
 
 /* doughnut chart */

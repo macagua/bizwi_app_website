@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--================================================================================
+  Item Name: BiZWi
+  Version: 1.0
+  (c)2016 BIZWI SISTEMAS INFORMATICOS SL, All rights reserved. 
+================================================================================ -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <!--Import Google Icon Font-->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <!--External -->
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.10/css/perfect-scrollbar.min.css" media="screen,projection">
+    <!--Internal -->
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/style.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/custom-style.css" media="screen,projection"/>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- For IE 9 and below. ICO should be 32x32 pixels in size -->
+    <!--[if IE]><link rel="shortcut icon" href="images/favicon.ico"><![endif]-->
+    <!-- Touch Icons - iOS and Android 2.1+ 180x180 pixels in size. -->
+    <link rel="apple-touch-icon-precomposed" href="{{ STATIC_URL }}images/apple-touch-icon-precomposed.png">
+    <!-- Firefox, Chrome, Safari, IE 11+ and Opera. 196x196 pixels in size. -->
+    <link rel="icon" href="{{ STATIC_URL }}images/favicon.ico">
+    <title>BiZWi - Login</title>
+    <style type="text/css">
+        /* Captive portal CSS Fix  */
+        header, main, footer {
+            padding-left: 0px
+        }
+    </style>
+    </head>
+
+  <body>
+
+  <header>
+  </header>
+  <main>
+      <div class="container" style="padding-top: 5%;">
+        <div class="row" style="margin-bottom: 0px;">
+          <div class="col s12 m2 l2"><p>&nbsp;</p></div>
+          <div class="col s12 m8 l8 center-align">
+            <div class="white z-depth-3" style="display: inline-block; width: 100%;">
+            <div class="container">
+              <object id="brand-logo" data="{{ STATIC_URL }}images/logo-captive-portal.png" type="image/png"></object>
+            </div>
+            </div>
+          </div>
+          <div class="col s12 m2 l2 hide-on-small-only"><p>&nbsp;</p></div>
+        </div>
+    <div class="row">
+    <div class="col s12 m2 l2 hide-on-small-only"><p>&nbsp;</p></div>
+    <div class="col s12 m8 l8 center-align">
+      <ul class="tabs" style="display:none;">
+          <li class="tab col s3"><a class="black-text" href="#welcome">Welcome!</a></li>
+          <li class="tab col s3"><a class="black-text" href="#social-auth">Use Social</a></li>
+          <li class="tab col s3"><a class="black-text" href="#email-auth">Use Token</a></li>
+          <li class="tab col s3"><a class="black-text" href="#token-auth">Use Token</a></li>
+      </ul>
+      <div>
+        <div id="welcome" class="col s12 white section z-depth-3" style="padding-bottom: 2rem;">
+            <h3>Welcome!</h3>
+            <div class="divider"></div>
+            <p>Press connect button to connect to the Internet.</p>
+            <p><input type="checkbox" id="user-agreement" /><label for="user-agreement"><a href="terms.html">Agree to Terms and Conditions.</a></label></p>
+            <a id="social-btn" class="waves-effect waves-light btn" href="#social-auth"><i class="material-icons left">wifi</i>Connect</a>
+        </div>
+        <div id="social-auth" class="col s12 white section" style="padding-bottom: 2rem;">
+            <h3>Welcome!</h3>
+            <div class="divider"></div>
+            <p>Please login using your preferred social network and complete the the authorization process to get access to the Internet.</p>
+            <a id="facebook-btn" class="waves-effect waves-light indigo btn" href="#"><i class="fa fa-facebook left"></i>Connect with Facebook</a><br /><br />
+            <a id="twitter-btn" class="waves-effect waves-light light-blue btn" href="#"><i class="fa fa-twitter left"></i>Connect with Twitter</a><br /><br />
+            <a id="googleplus-btn" class="waves-effect waves-light red btn" href="#"><i class="fa fa-google-plus left"></i>Connect with Google+</a><br /><br />
+            <a id="googleacc-btn" class="waves-effect waves-light red btn" href="#"><i class="fa fa-google left"></i>Connect with Google</a><br /><br />
+            <a id="instagram-btn" class="waves-effect waves-light brown lighten-1 btn" href="#"><i class="fa fa-instagram left"></i>Connect with Instagram</a><br /><br />
+            <a id="email-btn" class="waves-effect waves-light orange darken-4 btn" href="#email-auth"><i class="fa fa-envelope left"></i>Connect with your email</a><br /><br />
+            <a id="token-btn" class="waves-effect waves-light btn" href="#token-auth"><i class="fa fa-key left"></i>Use Connection Token</a>
+        </div>
+        <div id="email-auth" class="col s12 white section" style="padding-bottom: 2rem;">
+            <h3>Welcome!</h3>
+            <div class="divider"></div>
+            <p>Please use your email to get access to the Internet.</p>
+            <form class="col s12">
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="fa fa-envelope prefix"></i>
+                  <input id="email" type="email" class="validate">
+                  <label for="email">Your Email</label>
+                </div>
+              </div>
+              <div class="row">
+                <div id="captive-btn" class="input-field col s12 l6">
+                  <button class="btn waves-effect waves-light" type="submit" name="action"><i class="material-icons left">wifi</i>Connect</button>
+                </div>
+                <div id="captive-btn" class="input-field col s12 l6">
+                  <a id="cancel-btn" class="btn waves-effect waves-light" href="captive-portal.html"><i class="material-icons left">backspace</i>Cancel</a>
+                </div>
+              </div>
+            </form>
+        </div>
+        <div id="token-auth" class="col s12 white section" style="padding-bottom: 2rem;">
+            <h3>Token Code</h3>
+            <div class="divider"></div>
+            <p>Please insert your provided Token Code and press connect button to connect to the Internet.</p>
+            <form class="col s12">
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="fa fa-key prefix"></i>
+                  <input id="auth-token" type="text" class="validate">
+                  <label for="auth-token">Inser your Token Code</label>
+                </div>
+              </div>
+              <div class="row">
+                <div id="captive-btn" class="input-field col s12 l6">
+                  <button class="btn waves-effect waves-light" type="submit" name="action"><i class="material-icons left">wifi</i>Connect</button>
+                </div>
+                <div id="captive-btn" class="input-field col s12 l6">
+                  <a id="cancel-btn" class="btn waves-effect waves-light" href="captive-portal.html"><i class="material-icons left">backspace</i>Cancel</a>
+                </div>
+              </div>
+            </form>
+        </div>
+      </div>
+    </div>
+    <div class="col s12 m2 l2 hide-on-small-only"><p>&nbsp;</p></div>
+    </div>
+    <div class="row">
+        <footer class="page-footer transparent">
+          <div class="footer-copyright transparent">
+            <div class="container center-align black-text">
+            &copy; 2016 BIZWI SISTEMAS INFORMATICOS SL, All rights reserved. 
+            </div>
+          </div>
+        </footer>
+    </div>
+      </div>  
+  </main>
+<!-- 
+Scripts
+================================================ -->
+<!--External -->
+<!--Import jQuery before materialize.js-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.6.10/js/min/perfect-scrollbar.min.js"></script>
+<!--Internal -->
+<script type="text/javascript" src="{{ STATIC_URL }}js/scripts.js"></script>
+<!-- Custom -->
+<script type="text/javascript">
+$('#social-btn').click(function(){
+    var $input = $('#user-agreement').prop('checked')
+    if ($input) {
+        $('ul.tabs').tabs('select_tab', 'social-auth')
+    } else {
+        alert('You have not accepted the Terms and Conditions.')
+    }
+});
+$('#token-btn').click(function(){
+    var $input = $('#user-agreement').prop('checked')
+    if ($input) {
+        $('ul.tabs').tabs('select_tab', 'token-auth')
+    } else {
+        alert('You have not accepted the Terms and Conditions.')
+    }
+});
+$('#email-btn').click(function(){
+    var $input = $('#user-agreement').prop('checked')
+    if ($input) {
+        $('ul.tabs').tabs('select_tab', 'email-auth')
+    } else {
+        alert('You have not accepted the Terms and Conditions.')
+    }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+/* Customer brand identity */
+body {
+  background: url({{ STATIC_URL }}images/index-background.jpg) no-repeat center center fixed !important; /* Customer Background IMG */
+  background-color: #000000 !important; /* Customer Background Color */
+  background-size: cover !important;
+}
+html {
+  color: #000000 !important; /* Customer Foreground Color */
+  font-family: "Roboto", "Roboto", sans-serif !important; /* Customer Font */
+}
+/* ------------------------*/

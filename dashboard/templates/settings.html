@@ -73,7 +73,7 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
-                        <select name="categories">
+                        <select name="categories" id="autocomplete-selector" autocorrect="off" autocomplete="off">
                             {% for count in countries %}
                                 <option value="{{ count.country_id }}"{% if count == country %}
                                         selected="selected"{% endif %}>{{ count.country_name }}</option>
@@ -242,7 +242,7 @@
     //Timezone Selector
     $('#timezone select').timezones();
     //Country Selector
-    $('#country-selector-div select').selectToAutocomplete();
+    $('#autocomplete-selector').selectToAutocomplete();
 </script>
 
 {% endblock %}

@@ -1,3 +1,9 @@
+/*================================================================================
+  Item Name: BiZWi
+  Version: 1.0
+  (c)2016 BIZWI SISTEMAS INFORMATICOS SL, All rights reserved. 
+================================================================================*/
+
 $(document).ready(function(){
   $('.button-collapse').sideNav();
   $('.collapsible').collapsible();
@@ -12,5 +18,5 @@ $(document).ready(function(){
       formatSubmit: 'yyyy-mm-dd',
       hiddenName: true
     });
-  $('select').not('#country-selector').material_select(); //use all <select> but the country-selector 
+  $('select').not('#autocomplete-selector').material_select(); //use all <select> but the country-selector 
 });

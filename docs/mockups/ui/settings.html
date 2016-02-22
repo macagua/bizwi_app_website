@@ -154,8 +154,8 @@
             </div>
           </div>
           <div class="row">
-            <div id="country-selector-div" class="input-field col s12">
-              <select name="Country" id="country-selector" autocorrect="off" autocomplete="off">
+            <div class="input-field col s12">
+              <select name="Country" id="autocomplete-selector" autocorrect="off" autocomplete="off">
                 <option value="" selected="selected">Select Country</option>
                 <option value="Afghanistan" data-alternative-spellings="AF افغانستان">Afghanistan</option>
                 <option value="Åland Islands" data-alternative-spellings="AX Aaland Aland" data-relevancy-booster="0.5">Åland Islands</option>
@@ -564,7 +564,7 @@
         //Timezone Selector
         $('#timezone select').timezones();
         //Country Selector
-        $('#country-selector-div select').selectToAutocomplete();
+        $('#autocomplete-selector').selectToAutocomplete();
       </script>
   </body>
 </html>
