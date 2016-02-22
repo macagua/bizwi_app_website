@@ -22,6 +22,7 @@ ua-parser==0.6.1 #Python port of Browserscope's user agent parser
 user-agents==1.0.1 #A library to identify devices (phones, tablets) and their capabilities by parsing (browser/HTTP) user agent strings
 djangorestframework==3.3.2
 django-filter==0.12
+django-countries==3.4.1
 
 #django-oauth-plus==2.2.4 # Support of OAuth 1.0a in Django using python-oauth2.
 #django-oauth2-provider==0.2.6.1 # django-oauth2-provider is a Django application that provides customizable OAuth2-authentication for your Django projects.
