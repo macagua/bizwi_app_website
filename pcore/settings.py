@@ -63,7 +63,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'wsgi.application'
 
-AUTH_USER_MODEL = 'services.CustomUser'
+# Our custom User Authentication Model
+# https://docs.djangoproject.com/en/1.9/topics/auth/
+# AUTH_USER_MODEL = 'services.CustomUser'
 
 
 # Database
@@ -72,7 +74,7 @@ AUTH_USER_MODEL = 'services.CustomUser'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'bizwi',                      # Or path to database file if using sqlite3.
+        'NAME': 'bizwier',                      # Or path to database file if using sqlite3.
         'USER': 'bizwi',                      # Not used with sqlite3.
         'PASSWORD': 'bizwi',                  # Not used with sqlite3.
         'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.

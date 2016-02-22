@@ -1,12 +1,17 @@
 from django.views.generic import ListView
-from .models import Countries, Cities, Regions, Employees, Clients, Stores, Tags, Categories, Departments, Sensors, \
-    Brands, PromotionsTypes, PromotionsFilters, PromotionsLoyalties, PromotionsSpecials, Promotions, \
-    PromotionsImpacts, CustomUser
-from .serializers import CountriesSerializer, CitiesSerializer, RegionsSerializer, EmployeeSerializer, \
-    ClientsSerializer, StoresSerializer, TagsSerializer, CategoriesSerializer, DepartmentsSerializer, \
-    SensorsSerializer, BrandsSerializer, PromotionsTypesSerializer, PromotionsFiltersSerializer, \
-    PromotionsLoyaltiesSerializer, PromotionsSpecialsSerializer, PromotionsSerializer, \
-    PromotionsImpactsSerializer, CustomUserSerializer
+# from .models import Countries, Cities, Regions, Employees, Customers, Stores, Tags, Categories, Departments, Sensor, \
+#    Brands, PromotionsTypes, PromotionsFilters, PromotionsLoyalties, PromotionsSpecials, Promotions, \
+#    PromotionsImpacts, CustomUser
+from .models import Countries, Cities, Customers, Stores, Categories, Departments, Sensor, \
+    Brands
+# from .serializers import CountriesSerializer, CitiesSerializer, RegionsSerializer, EmployeeSerializer, \
+#     CustomersSerializer, StoresSerializer, TagsSerializer, CategoriesSerializer, DepartmentsSerializer, \
+#     SensorSerializer, BrandsSerializer, PromotionsTypesSerializer, PromotionsFiltersSerializer, \
+#     PromotionsLoyaltiesSerializer, PromotionsSpecialsSerializer, PromotionsSerializer, \
+#     PromotionsImpactsSerializer, CustomUserSerializer
+from .serializers import CountriesSerializer, CitiesSerializer, \
+    CustomersSerializer, StoresSerializer, CategoriesSerializer, DepartmentsSerializer, \
+    SensorSerializer, BrandsSerializer
 from rest_framework import generics
 from rest_framework.decorators import api_view
 import random
@@ -41,94 +46,92 @@ def auth(request):
 
 
 
-@api_view(['GET', 'POST'])
-def employee_admin(request, client_id, id_employee=None):
-    try:
-        if request.method == "GET":
-            if id_employee:
-                serializer = EmployeeSerializer(Employees.objects.get(id=id_employee))
-            else:
-                serializer = EmployeeSerializer(Employees.objects.filter(client=client_id), many=True)
-            return Response(serializer.data)
+# @api_view(['GET', 'POST'])
+# def employee_admin(request, client_id, id_employee=None):
+#     try:
+#         if request.method == "GET":
+#             if id_employee:
+#                 serializer = EmployeeSerializer(Employees.objects.get(id=id_employee))
+#             else:
+#                 serializer = EmployeeSerializer(Employees.objects.filter(client=client_id), many=True)
+#             return Response(serializer.data)
 
-        elif request.method == 'POST':
-            username = request.DATA.get('username')
-            email = request.DATA.get('email')
-            first_name = request.DATA.get('first_name')
-            phone = request.DATA.get('phone')
-            last_name = request.DATA.get('last_name')
-            language = request.DATA.get('language')
-            checkpass = bool(request.DATA.get('checkpass'))
-            password = request.DATA.get('password')
-            location = Location.objects.get(id=request.DATA.get('location'))
+#         elif request.method == 'POST':
+#             username = request.DATA.get('username')
+#             email = request.DATA.get('email')
+#             first_name = request.DATA.get('first_name')
+#             phone = request.DATA.get('phone')
+#             last_name = request.DATA.get('last_name')
+#             language = request.DATA.get('language')
+#             checkpass = bool(request.DATA.get('checkpass'))
+#             password = request.DATA.get('password')
+#             location = Location.objects.get(id=request.DATA.get('location'))
 
-            if id_employee:
-                emp = Employee.objects.get(id=id_employee)
-                emp.username = username
-                emp.email = email
-                emp.first_name = first_name
-                emp.last_name = last_name
-                emp.language = language
-                emp.location = location
-                emp.phone = phone
-                if checkpass:
-                    emp.set_password(password)
-                emp.save()
-            else:
-                emp = Employee(
-                    username=username,
-                    email=email,
-                    first_name=first_name,
-                    last_name=last_name,
-                    language=language,
-                    location=location,
-                    phone = phone
-                )
-                emp.set_password(password)
-                emp.save()
-            return Response(status=status.HTTP_200_OK)
+#             if id_employee:
+#                 emp = Employee.objects.get(id=id_employee)
+#                 emp.username = username
+#                 emp.email = email
+#                 emp.first_name = first_name
+#                 emp.last_name = last_name
+#                 emp.language = language
+#                 emp.location = location
+#                 emp.phone = phone
+#                 if checkpass:
+#                     emp.set_password(password)
+#                 emp.save()
+#             else:
+#                 emp = Employee(
+#                     username=username,
+#                     email=email,
+#                     first_name=first_name,
+#                     last_name=last_name,
+#                     language=language,
+#                     location=location,
+#                     phone = phone
+#                 )
+#                 emp.set_password(password)
+#                 emp.save()
+#             return Response(status=status.HTTP_200_OK)
 
-    except Exception as e:
-        return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-
+#     except Exception as e:
+#         return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
-@api_view(['GET', 'POST'])
-def custom_user(request, user_id):
-    try:
-        if request.method == "GET":
-            serializer = CustomUserSerializer(CustomUser.objects.get(id=user_id))
-            return Response(serializer.data)
+# @api_view(['GET', 'POST'])
+# def custom_user(request, user_id):
+#     try:
+#         if request.method == "GET":
+#             serializer = CustomUserSerializer(CustomUser.objects.get(id=user_id))
+#             return Response(serializer.data)
 
-        elif request.method == 'POST':
-            username = request.data.get('username')
-            email = request.data.get('email')
-            first_name = request.data.get('first_name')
-            last_name = request.data.get('last_name')
-            gender = request.data.get('gender')
-            birthday = request.data.get('birthday')
-            lang = request.data.get('lang')
-            checkpass = bool(request.data.get('checkpass'))
-            password = request.data.get('password')
+#         elif request.method == 'POST':
+#             username = request.data.get('username')
+#             email = request.data.get('email')
+#             first_name = request.data.get('first_name')
+#             last_name = request.data.get('last_name')
+#             gender = request.data.get('gender')
+#             birthday = request.data.get('birthday')
+#             lang = request.data.get('lang')
+#             checkpass = bool(request.data.get('checkpass'))
+#             password = request.data.get('password')
 
-            usr = CustomUser.objects.get(id=user_id)
-            usr.username = username
-            usr.email = email
-            usr.first_name = first_name
-            usr.last_name = last_name
-            usr.gender = gender
-            usr.birthday = birthday
-            usr.lang = lang
-            if checkpass:
-                usr.set_password(password)
-            usr.save()
+#             usr = CustomUser.objects.get(id=user_id)
+#             usr.username = username
+#             usr.email = email
+#             usr.first_name = first_name
+#             usr.last_name = last_name
+#             usr.gender = gender
+#             usr.birthday = birthday
+#             usr.lang = lang
+#             if checkpass:
+#                 usr.set_password(password)
+#             usr.save()
 
-            return Response(status=status.HTTP_200_OK)
+#             return Response(status=status.HTTP_200_OK)
 
-    except Exception as e:
-        print e
-        return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+#     except Exception as e:
+#         print e
+#         return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 """"
@@ -150,10 +153,10 @@ def set_password(request, id):
 
 
 @api_view(['GET', 'POST'])
-def client(request, client_id):
+def customer(request, client_id):
     try:
         if request.method == "GET":
-            serializer = ClientsSerializer(Clients.objects.get(id=client_id))
+            serializer = CustomersSerializer(Customers.objects.get(id=client_id))
             return Response(serializer.data)
 
         elif request.method == 'POST':
@@ -175,7 +178,7 @@ def client(request, client_id):
             timezone = request.data.get('timezone')
 
 
-            cli = Clients.objects.get(id=client_id)
+            cli = Customers.objects.get(id=client_id)
             cli.client_name = client_name
             cli.web_site = web_site
             cli.telephone = telephone
@@ -223,7 +226,7 @@ def create_client_admin(request):
             confirmation_code = ''.join(
                 random.choice(string.ascii_uppercase + string.digits + string.ascii_lowercase) for x in range(66))
 
-            e = Clients.objects.create(first_name=new_name, last_name=new_last_name, username=new_username,
+            e = Customers.objects.create(first_name=new_name, last_name=new_last_name, username=new_username,
                                        email=new_email, is_client_admin=False, is_active=True, telephone=new_telephone,
                                        client_name=new_client_name)
 
@@ -318,98 +321,98 @@ def stores(request, client_id, id_local=None):
         return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
-@api_view(['GET'])
-def get_employee_context(request, id):
-    try:
-        if request.method == 'GET':
-            custom_user = CustomUser.objects.get(id=id)
+# @api_view(['GET'])
+# def get_employee_context(request, id):
+#     try:
+#         if request.method == 'GET':
+#             custom_user = CustomUser.objects.get(id=id)
 
-            first_name = custom_user.first_name
-            last_name = custom_user.last_name
-            is_client_admin = custom_user.is_client_admin
+#             first_name = custom_user.first_name
+#             last_name = custom_user.last_name
+#             is_client_admin = custom_user.is_client_admin
 
-            data = {
-                "first_name": first_name,
-                "last_name": last_name,
-                "is_client_admin": is_client_admin,
-            }
+#             data = {
+#                 "first_name": first_name,
+#                 "last_name": last_name,
+#                 "is_client_admin": is_client_admin,
+#             }
 
-            return Response(data)
-    except Exception as e:
-        print e
-        return HttpResponse(status=404)
-
-
-@api_view(['GET', 'POST'])
-def employee(request, id=None):
-    try:
-        employee = Employees.objects.get(id=id)
-    except Employees.DoesNotExist:
-        return HttpResponse(status=404)
-
-    if request.method == 'GET':
-        serializer = EmployeeSerializer(employee)
-        data = serializer.data
-        return Response(data)
-    elif request.method == 'POST':
-
-        email = request.DATA.get('email')
-
-        try:
-            employee.email = email
-            employee.save()
-            return Response(status=status.HTTP_204_NO_CONTENT)
-        except Exception as e:
-            print e
-            return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+#             return Response(data)
+#     except Exception as e:
+#         print e
+#         return HttpResponse(status=404)
 
 
-@api_view(['GET', 'POST'])
-def employees_list(request, client_id, id_employee=None):
-    try:
-        if request.method == "GET":
-                serializer = EmployeeSerializer(Employees.objects.filter(client_id=client_id))
-                return Response(serializer.data)
+# @api_view(['GET', 'POST'])
+# def employee(request, id=None):
+#     try:
+#         employee = Employees.objects.get(id=id)
+#     except Employees.DoesNotExist:
+#         return HttpResponse(status=404)
 
-        elif request.method == 'POST':
-            username = request.DATA.get('username')
-            email = request.DATA.get('email')
-            first_name = request.DATA.get('first_name')
-            phone = request.DATA.get('phone')
-            last_name = request.DATA.get('last_name')
-            language = request.DATA.get('language')
-            checkpass = bool(request.DATA.get('checkpass'))
-            password = request.DATA.get('password')
-            location = Location.objects.get(id=request.DATA.get('location'))
+#     if request.method == 'GET':
+#         serializer = EmployeeSerializer(employee)
+#         data = serializer.data
+#         return Response(data)
+#     elif request.method == 'POST':
 
-            if id_employee:
-                emp = Employee.objects.get(id=id_employee)
-                emp.username = username
-                emp.email = email
-                emp.first_name = first_name
-                emp.last_name = last_name
-                emp.language = language
-                emp.location = location
-                emp.phone = phone
-                if checkpass:
-                    emp.set_password(password)
-                emp.save()
-            else:
-                emp = Employee(
-                    username=username,
-                    email=email,
-                    first_name=first_name,
-                    last_name=last_name,
-                    language=language,
-                    location=location,
-                    phone = phone
-                )
-                emp.set_password(password)
-                emp.save()
-            return Response(status=status.HTTP_200_OK)
+#         email = request.DATA.get('email')
 
-    except Exception as e:
-        return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+#         try:
+#             employee.email = email
+#             employee.save()
+#             return Response(status=status.HTTP_204_NO_CONTENT)
+#         except Exception as e:
+#             print e
+#             return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+# @api_view(['GET', 'POST'])
+# def employees_list(request, client_id, id_employee=None):
+#     try:
+#         if request.method == "GET":
+#                 serializer = EmployeeSerializer(Employees.objects.filter(client_id=client_id))
+#                 return Response(serializer.data)
+
+#         elif request.method == 'POST':
+#             username = request.DATA.get('username')
+#             email = request.DATA.get('email')
+#             first_name = request.DATA.get('first_name')
+#             phone = request.DATA.get('phone')
+#             last_name = request.DATA.get('last_name')
+#             language = request.DATA.get('language')
+#             checkpass = bool(request.DATA.get('checkpass'))
+#             password = request.DATA.get('password')
+#             location = Location.objects.get(id=request.DATA.get('location'))
+
+#             if id_employee:
+#                 emp = Employee.objects.get(id=id_employee)
+#                 emp.username = username
+#                 emp.email = email
+#                 emp.first_name = first_name
+#                 emp.last_name = last_name
+#                 emp.language = language
+#                 emp.location = location
+#                 emp.phone = phone
+#                 if checkpass:
+#                     emp.set_password(password)
+#                 emp.save()
+#             else:
+#                 emp = Employee(
+#                     username=username,
+#                     email=email,
+#                     first_name=first_name,
+#                     last_name=last_name,
+#                     language=language,
+#                     location=location,
+#                     phone = phone
+#                 )
+#                 emp.set_password(password)
+#                 emp.save()
+#             return Response(status=status.HTTP_200_OK)
+
+#     except Exception as e:
+#         return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 # Countries,
@@ -435,36 +438,36 @@ class CityDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 # Regions,
-class RegionsList(generics.ListCreateAPIView):
-    queryset = Regions.objects.all()
-    serializer_class = RegionsSerializer
+# class RegionsList(generics.ListCreateAPIView):
+#     queryset = Regions.objects.all()
+#     serializer_class = RegionsSerializer
 
 
-class RegionDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Regions.objects.all()
-    serializer_class = RegionsSerializer
+# class RegionDetail(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Regions.objects.all()
+#     serializer_class = RegionsSerializer
 
 
 # Employees,
-class EmployeeList(generics.ListCreateAPIView):
-    queryset = Employees.objects.all()
-    serializer_class = EmployeeSerializer
+# class EmployeeList(generics.ListCreateAPIView):
+#     queryset = Employees.objects.all()
+#     serializer_class = EmployeeSerializer
 
 
-class EmployeeDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Employees.objects.all()
-    serializer_class = EmployeeSerializer
+# class EmployeeDetail(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Employees.objects.all()
+#     serializer_class = EmployeeSerializer
 
 
-# Clients,
-class ClientsList(generics.ListCreateAPIView):
-    queryset = Clients.objects.all()
-    serializer_class = ClientsSerializer
+# Customers,
+class CustomersList(generics.ListCreateAPIView):
+    queryset = Customers.objects.all()
+    serializer_class = CustomersSerializer
 
 
-class ClientDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Clients.objects.all()
-    serializer_class = ClientsSerializer
+class CustomerDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Customers.objects.all()
+    serializer_class = CustomersSerializer
 
 
 # Stores,
@@ -479,14 +482,14 @@ class StoreDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 # Tags,
-class TagsList(generics.ListCreateAPIView):
-    queryset = Tags.objects.all()
-    serializer_class = TagsSerializer
+# class TagsList(generics.ListCreateAPIView):
+#     queryset = Tags.objects.all()
+#     serializer_class = TagsSerializer
 
 
-class TagDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Tags.objects.all()
-    serializer_class = TagsSerializer
+# class TagDetail(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Tags.objects.all()
+#     serializer_class = TagsSerializer
 
 
 # Categories,
@@ -511,15 +514,15 @@ class DepartmentDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = DepartmentsSerializer
 
 
-# Sensors,
-class SensorsList(generics.ListCreateAPIView):
-    queryset = Sensors.objects.all()
-    serializer_class = SensorsSerializer
+# Sensor,
+class SensorList(generics.ListCreateAPIView):
+    queryset = Sensor.objects.all()
+    serializer_class = SensorSerializer
 
 
 class SensorDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Sensors.objects.all()
-    serializer_class = SensorsSerializer
+    queryset = Sensor.objects.all()
+    serializer_class = SensorSerializer
 
 
 # Brands,
@@ -534,66 +537,66 @@ class BrandDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 # PromotionsTypes,
-class PromotionsTypesList(generics.ListCreateAPIView):
-    queryset = PromotionsTypes.objects.all()
-    serializer_class = PromotionsTypesSerializer
+# class PromotionsTypesList(generics.ListCreateAPIView):
+#     queryset = PromotionsTypes.objects.all()
+#     serializer_class = PromotionsTypesSerializer
 
 
-class PromotionTypeDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = PromotionsTypes.objects.all()
-    serializer_class = PromotionsTypesSerializer
+# class PromotionTypeDetail(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = PromotionsTypes.objects.all()
+#     serializer_class = PromotionsTypesSerializer
 
 
 # PromotionsFilters,
-class PromotionsFiltersList(generics.ListCreateAPIView):
-    queryset = PromotionsFilters.objects.all()
-    serializer_class = PromotionsFiltersSerializer
+# class PromotionsFiltersList(generics.ListCreateAPIView):
+#     queryset = PromotionsFilters.objects.all()
+#     serializer_class = PromotionsFiltersSerializer
 
 
-class PromotionFilterDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = PromotionsFilters.objects.all()
-    serializer_class = PromotionsFiltersSerializer
+# class PromotionFilterDetail(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = PromotionsFilters.objects.all()
+#     serializer_class = PromotionsFiltersSerializer
 
 
 # PromotionsLoyalties,
-class PromotionsLoyaltiesList(generics.ListCreateAPIView):
-    queryset = PromotionsLoyalties.objects.all()
-    serializer_class = PromotionsLoyaltiesSerializer
+# class PromotionsLoyaltiesList(generics.ListCreateAPIView):
+#     queryset = PromotionsLoyalties.objects.all()
+#     serializer_class = PromotionsLoyaltiesSerializer
 
 
-class PromotionLoyaltyDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = PromotionsLoyalties.objects.all()
-    serializer_class = PromotionsLoyaltiesSerializer
+# class PromotionLoyaltyDetail(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = PromotionsLoyalties.objects.all()
+#     serializer_class = PromotionsLoyaltiesSerializer
 
 
 # PromotionsSpecials,
-class PromotionsSpecialsList(generics.ListCreateAPIView):
-    queryset = PromotionsSpecials.objects.all()
-    serializer_class = PromotionsSpecialsSerializer
+# class PromotionsSpecialsList(generics.ListCreateAPIView):
+#     queryset = PromotionsSpecials.objects.all()
+#     serializer_class = PromotionsSpecialsSerializer
 
 
-class PromotionSpecialDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = PromotionsSpecials.objects.all()
-    serializer_class = PromotionsSpecialsSerializer
+# class PromotionSpecialDetail(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = PromotionsSpecials.objects.all()
+#     serializer_class = PromotionsSpecialsSerializer
 
 
 # Promotions,
-class PromotionsList(generics.ListCreateAPIView):
-    queryset = Promotions.objects.all()
-    serializer_class = PromotionsSerializer
+# class PromotionsList(generics.ListCreateAPIView):
+#     queryset = Promotions.objects.all()
+#     serializer_class = PromotionsSerializer
 
 
-class PromotionDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Promotions.objects.all()
-    serializer_class = PromotionsSerializer
+# class PromotionDetail(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Promotions.objects.all()
+#     serializer_class = PromotionsSerializer
 
 
 # PromotionsImpacts
-class PromotionsImpactsList(generics.ListCreateAPIView):
-    queryset = PromotionsImpacts.objects.all()
-    serializer_class = PromotionsImpactsSerializer
+# class PromotionsImpactsList(generics.ListCreateAPIView):
+#     queryset = PromotionsImpacts.objects.all()
+#     serializer_class = PromotionsImpactsSerializer
 
 
-class PromotionImpactDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = PromotionsImpacts.objects.all()
-    serializer_class = PromotionsImpactsSerializer
+# class PromotionImpactDetail(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = PromotionsImpacts.objects.all()
+#     serializer_class = PromotionsImpactsSerializer

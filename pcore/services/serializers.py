@@ -1,18 +1,20 @@
 from rest_framework import serializers
-from .models import CustomUser, Countries, Cities, Regions, Employees, Clients, Stores, Tags, Categories, Departments, Sensors, Brands, PromotionsTypes, PromotionsFilters, PromotionsLoyalties, PromotionsSpecials, Promotions, PromotionsImpacts
+# from .models import CustomUser, Countries, Cities, Regions, Employees, Customers, Stores, Tags, Categories, Departments, Sensor, Brands, PromotionsTypes, PromotionsFilters, PromotionsLoyalties, PromotionsSpecials, Promotions, PromotionsImpacts
+from .models import Countries, Cities, Customers, \
+    Stores, Categories, Departments, Sensor, Brands
 
 
-class CustomUserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = CustomUser
-        fields = ('username',
-                  'email',
-                  'first_name',
-                  'last_name',
-                  'birthday',
-                  'lang',
-                  'gender',
-                  'last_login')
+# class CustomUserSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = CustomUser
+#         fields = ('username',
+#                   'email',
+#                   'first_name',
+#                   'last_name',
+#                   'birthday',
+#                   'lang',
+#                   'gender',
+#                   'last_login')
 
 
 class CountriesSerializer(serializers.ModelSerializer):
@@ -30,16 +32,16 @@ class CitiesSerializer(serializers.ModelSerializer):
                    'country')
 
 
-class RegionsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Regions
-        fields =  ('region_id',
-                   'region_name')
+# class RegionsSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Regions
+#         fields =  ('region_id',
+#                    'region_name')
 
 
-class ClientsSerializer(serializers.ModelSerializer):
+class CustomersSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Clients
+        model = Customers
         fields = ('client_name',
                   'code_crm',
                   'telephone',
@@ -65,20 +67,20 @@ class ClientsSerializer(serializers.ModelSerializer):
                   'timezone')
 
 
-class EmployeeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Employees
-        fields = ('id',
-                  'username',
-                  'first_name',
-                  'last_name',
-                  'email',
-                  'is_client_admin',
-                  'is_store_manager',
-                  'is_marketing',
-                  'is_active',
-                  'is_superuser',
-                  'client')
+# class EmployeeSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Employees
+#         fields = ('id',
+#                   'username',
+#                   'first_name',
+#                   'last_name',
+#                   'email',
+#                   'is_client_admin',
+#                   'is_store_manager',
+#                   'is_marketing',
+#                   'is_active',
+#                   'is_superuser',
+#                   'client')
 
 
 class StoresSerializer(serializers.ModelSerializer):
@@ -103,12 +105,12 @@ class StoresSerializer(serializers.ModelSerializer):
                    'promotion_enable')
 
 
-class TagsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Tags
-        fields = ('tag',
-                  'tag_name',
-                  'store')
+# class TagsSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Tags
+#         fields = ('tag',
+#                   'tag_name',
+#                   'store')
 
 
 class CategoriesSerializer(serializers.ModelSerializer):
@@ -131,9 +133,9 @@ class DepartmentsSerializer(serializers.ModelSerializer):
                   'geoloc_poly')
 
 
-class SensorsSerializer(serializers.ModelSerializer):
+class SensorSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Sensors
+        model = Sensor
         fields = ('sensor_id',
                   'sid',
                   'model',
@@ -167,78 +169,78 @@ class BrandsSerializer(serializers.ModelSerializer):
                    'promotion_enable')
 
 
-class PromotionsTypesSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PromotionsTypes
-        fields = ('promotion_type_id',
-                  'promotion_type_name',
-                  'description')
+# class PromotionsTypesSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = PromotionsTypes
+#         fields = ('promotion_type_id',
+#                   'promotion_type_name',
+#                   'description')
 
 
-class PromotionsFiltersSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PromotionsFilters
-        fields =  ('promotion_filter_id',
-                   'promotion_filter_name',
-                   'description')
+# class PromotionsFiltersSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = PromotionsFilters
+#         fields =  ('promotion_filter_id',
+#                    'promotion_filter_name',
+#                    'description')
 
 
-class PromotionsLoyaltiesSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PromotionsLoyalties
-        fields =  ('promotion_loyalty_id',
-                   'promotion_loyalty_name',
-                   'check_in_number',
-                   'description')
+# class PromotionsLoyaltiesSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = PromotionsLoyalties
+#         fields =  ('promotion_loyalty_id',
+#                    'promotion_loyalty_name',
+#                    'check_in_number',
+#                    'description')
 
 
-class PromotionsSpecialsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PromotionsSpecials
-        fields =  ('promotion_special_id',
-                   'promotion_special_name',
-                   'description')
+# class PromotionsSpecialsSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = PromotionsSpecials
+#         fields =  ('promotion_special_id',
+#                    'promotion_special_name',
+#                    'description')
 
 
-class PromotionsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Promotions
-        fields =  ('promotion_id',
-                   'client',
-                   'promotion_name',
-                   'register_date',
-                   'description',
-                   'short_description',
-                   'long_description',
-                   'url',
-                   'status',
-                   'active',
-                   'start_date',
-                   'end_date',
-                   'start_time',
-                   'end_time',
-                   'monday',
-                   'tuesday',
-                   'wednesday',
-                   'thursday',
-                   'friday',
-                   'saturday',
-                   'sunday',
-                   'img_url',
-                   'email_send',
-                   'expiration_time_range',
-                   'promotion_type',
-                   'promotion_filter')
+# class PromotionsSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Promotions
+#         fields =  ('promotion_id',
+#                    'client',
+#                    'promotion_name',
+#                    'register_date',
+#                    'description',
+#                    'short_description',
+#                    'long_description',
+#                    'url',
+#                    'status',
+#                    'active',
+#                    'start_date',
+#                    'end_date',
+#                    'start_time',
+#                    'end_time',
+#                    'monday',
+#                    'tuesday',
+#                    'wednesday',
+#                    'thursday',
+#                    'friday',
+#                    'saturday',
+#                    'sunday',
+#                    'img_url',
+#                    'email_send',
+#                    'expiration_time_range',
+#                    'promotion_type',
+#                    'promotion_filter')
 
 
-class PromotionsImpactsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = PromotionsImpacts
-        fields =  ('promotion',
-                   'client',
-                   'store ',
-                   'impact_time',
-                   'promo_code',
-                   'check_in',
-                   'check_in_number',
-                   'check_in_time')
+# class PromotionsImpactsSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = PromotionsImpacts
+#         fields =  ('promotion',
+#                    'client',
+#                    'store ',
+#                    'impact_time',
+#                    'promo_code',
+#                    'check_in',
+#                    'check_in_number',
+#                    'check_in_time')
