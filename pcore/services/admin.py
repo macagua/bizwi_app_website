@@ -69,8 +69,8 @@ class StoresAdmin(admin.ModelAdmin):
         ('Basic information', {'fields': ['customer', 'store_name', 'description', 'phone', 'address', 'url', 'is_active']}),
         ('More details', {'fields': ['timezone', 'lang', 'creation_date', 'last_access', 'mod_date']}),
     ]
-    list_display = ('customer', 'store_name', 'phone', 'url', 'is_active')
-    list_filter = ['customer', 'store_name', 'is_active']
+    list_display = ('store_name', 'phone', 'url', 'customer', 'is_active')
+    list_filter = ['store_name', 'customer', 'is_active']
 
 admin.site.register(BrandStyle, BrandStyleAdmin)
 admin.site.register(BrandTags)

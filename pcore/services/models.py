@@ -396,13 +396,12 @@ class StoreStyle(models.Model):
         verbose_name_plural = 'store styles'
 
 
-@python_2_unicode_compatible  # only if you need to support Python 2
 class Stores(models.Model):
     store_id = models.AutoField(primary_key=True, default='1')
     customer = models.ForeignKey('Customers', default='', blank=False, null=False)
     store_name = models.CharField(verbose_name=_('Store name'), max_length=100, null=True)
     description = models.TextField(verbose_name=_('Description'), blank=True, null=True)
-    url = models.URLField(verbose_name=_('Url'), max_length=400, null=True, blank=True)
+    url = models.URLField(verbose_name=_('Website Url'), max_length=400, null=True, blank=True)
     address = models.CharField(verbose_name=_('Address'), max_length=512, null=True)
     phone = models.CharField(verbose_name=_('Phone'), max_length=20, null=True)
     timezone = models.CharField(verbose_name=_('Timezone'), max_length=255, null=True, choices=[(x, x) for x in pytz.common_timezones], default='Europe/Madrid')
@@ -412,14 +411,13 @@ class Stores(models.Model):
     last_access = models.DateTimeField(verbose_name=_('Last date'), blank=True, null=True)
     mod_date = models.DateTimeField(verbose_name=_('Modification date'), blank=True, null=True)
     
-    def __str__(self):
-        return "%s: %s" % self.store_name
-
     def fullname(self):
         return "%s: %s" % self.store_name
 
+    def __unicode__(self):
+        return self.store_name
+
     class Meta:
-        # managed = False
         db_table = 'stores'
         verbose_name = 'store'
         verbose_name_plural = 'stores'
