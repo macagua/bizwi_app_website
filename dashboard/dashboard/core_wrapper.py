@@ -1,5 +1,5 @@
 import requests
-from settings import URL_API_V1
+from settings.settings import URL_API_V1
 import json
 
 
