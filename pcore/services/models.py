@@ -17,9 +17,10 @@ from django.contrib.postgres.fields import JSONField
 from django_countries.fields import CountryField
 from django_languages import LanguageField
 from django_languages.languages import LANGUAGES
+from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
-
+@python_2_unicode_compatible  # only if you need to support Python 2
 class BrandStyle(models.Model):
     bstyle_id = models.AutoField(primary_key=True)
     brand = models.ForeignKey('Brands', verbose_name=_('Brand'), on_delete=models.DO_NOTHING)
@@ -36,9 +37,13 @@ class BrandStyle(models.Model):
         verbose_name_plural = 'brand styles'
 
 
+@python_2_unicode_compatible  # only if you need to support Python 2
 class BrandTags(models.Model):
     brand = models.OneToOneField('Brands', verbose_name=_('Brand'), on_delete=models.DO_NOTHING, primary_key=True)
     tag = JSONField()
+
+    def __str__(self):
+        return self.tag
 
     class Meta:
         db_table = 'brand_tags'
@@ -46,6 +51,7 @@ class BrandTags(models.Model):
         verbose_name_plural = 'brand tags'
 
 
+@python_2_unicode_compatible  # only if you need to support Python 2
 class Brands(models.Model):
     brand_id = models.AutoField(primary_key=True, default='1')
     customer = models.ForeignKey('Customers', default='', blank=False, null=False, on_delete=models.DO_NOTHING)
@@ -67,7 +73,7 @@ class Brands(models.Model):
     mod_date = models.DateTimeField(verbose_name=_('Modification date'), blank=True, null=True)
 
     def __str__(self):
-        return "%s: %s" % self.brand_name
+        return self.brand_name
 
     def fullname(self):
         return "%s: %s" % self.brand_name
@@ -78,9 +84,13 @@ class Brands(models.Model):
         verbose_name_plural = 'brands'
 
 
+@python_2_unicode_compatible  # only if you need to support Python 2
 class Categories(models.Model):
     category_id = models.AutoField(primary_key=True, default='1')
     category = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.category
 
     class Meta:
         db_table = 'categories'
@@ -91,10 +101,14 @@ class Categories(models.Model):
         return "%s" % self.categories_name
 
 
+@python_2_unicode_compatible  # only if you need to support Python 2
 class Cities(models.Model):
     city_id = models.AutoField(primary_key=True, default='1')
     city = models.CharField(verbose_name=_('City'), max_length=100, default='')
     country = models.ForeignKey('Countries', verbose_name=_('Country'), on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.city
 
     class Meta:
         db_table = 'cities'
@@ -105,10 +119,14 @@ class Cities(models.Model):
         return "%s" % self.city_name
 
 
+@python_2_unicode_compatible  # only if you need to support Python 2
 class Countries(models.Model):
     country_id = models.AutoField(primary_key=True, default='1')
     # country = models.CharField(max_length=200)
     country = CountryField(blank_label='Select a country')
+
+    def __str__(self):
+        return self.country
 
     class Meta:
         db_table = 'countries'
@@ -130,6 +148,7 @@ class CustomerCategories(models.Model):
         unique_together = (('category', 'customer'),)
 
 
+@python_2_unicode_compatible  # only if you need to support Python 2
 class CustomerStyles(models.Model):
     style_id = models.AutoField(primary_key=True)
     customer = models.ForeignKey('Customers', on_delete=models.DO_NOTHING)
@@ -140,15 +159,22 @@ class CustomerStyles(models.Model):
     background_img = models.CharField(verbose_name=_('Background image'), max_length=512, blank=True, null=True)
     font = models.CharField(verbose_name=_('Font'), max_length=100, blank=True, null=True)
 
+    def __str__(self):
+        return self.style_id
+
     class Meta:
         db_table = 'customer_styles'
         verbose_name = 'customer style'
         verbose_name_plural = 'customer styles'
 
 
+@python_2_unicode_compatible  # only if you need to support Python 2
 class CustomerTags(models.Model):
     customer = models.OneToOneField('Customers', on_delete=models.DO_NOTHING, primary_key=True)
     tag = JSONField()
+
+    def __str__(self):
+        return self.tag
 
     class Meta:
         db_table = 'customer_tags'
@@ -156,6 +182,7 @@ class CustomerTags(models.Model):
         verbose_name_plural = 'customer tags'
 
 
+@python_2_unicode_compatible  # only if you need to support Python 2
 class Customers(models.Model):
     customer_id = models.AutoField(primary_key=True)
     customer_name = models.CharField(verbose_name=_('Customer name'), max_length=60)
@@ -175,16 +202,16 @@ class Customers(models.Model):
     gplus_id = models.CharField(verbose_name=_('Google++ account'), max_length=512, blank=True, null=True)
     lang = LanguageField(verbose_name=_('Language'), choices=LANGUAGES, max_length=3, default='es')
     locale = models.CharField(max_length=10, null=True, blank=True)
-    timezone = models.CharField(max_length=255, choices=[(x, x) for x in pytz.common_timezones], null=True)
+    timezone = models.CharField(verbose_name=_('Timezone'), max_length=255, null=True, choices=[(x, x) for x in pytz.common_timezones], default='Europe/Madrid')
     brand_enabled = models.BooleanField(verbose_name=_('Brand enabled?'), default=False)
     age_range = models.CharField(verbose_name=_('Age range'), max_length=2, default='')
     is_active = models.BooleanField(verbose_name=_('Is active?'), default=False)
     creation_date = models.DateTimeField(verbose_name=_('Creation date'), default=django.utils.timezone.now)
     last_access = models.DateTimeField(verbose_name=_('Last date'), blank=True, null=True)
     mod_date = models.DateTimeField(verbose_name=_('Modification date'), blank=True, null=True)
-    def __str__(self):
 
-        return "%s: %s" % self.customer_name
+    def __str__(self):
+        return self.customer_name
 
     class Meta:
         db_table = 'customers'
@@ -192,6 +219,7 @@ class Customers(models.Model):
         verbose_name_plural = 'customers'
 
 
+@python_2_unicode_compatible  # only if you need to support Python 2
 class Departments(models.Model):
     department_id = models.IntegerField(primary_key=True, default='1')
     stores = models.ForeignKey('Stores', verbose_name=_('Stores'), default='', blank=False, null=False, on_delete=models.DO_NOTHING)
@@ -209,11 +237,15 @@ class Departments(models.Model):
         verbose_name_plural = 'departments'
 
 
+@python_2_unicode_compatible  # only if you need to support Python 2
 class Districts(models.Model):
     district_id = models.AutoField(primary_key=True)
     country = models.ForeignKey('Countries', verbose_name=_('Country'), on_delete=models.CASCADE)
     district = models.CharField(verbose_name=_('District'), max_length=80)
     localname = models.CharField(verbose_name=_('Local name'), max_length=80)
+
+    def __str__(self):
+        return self.district
 
     class Meta:
         db_table = 'districts'
@@ -221,9 +253,13 @@ class Districts(models.Model):
         verbose_name_plural = 'districts'
 
 
+@python_2_unicode_compatible  # only if you need to support Python 2
 class LocationTags(models.Model):
     store = models.OneToOneField('Locations', on_delete=models.DO_NOTHING, primary_key=True)
     tags = JSONField()
+
+    def __str__(self):
+        return self.tags
 
     class Meta:
         db_table = 'location_tags'
@@ -255,6 +291,8 @@ MODELS = (
     ('Model 05', 'MR-05'),
 )
 
+
+@python_2_unicode_compatible  # only if you need to support Python 2
 class Sensor(models.Model):
     sensor_id = models.AutoField(primary_key=True, default='1')
     department = models.ForeignKey('Departments', verbose_name=_('Department'), null=True, on_delete=models.DO_NOTHING)
@@ -278,6 +316,7 @@ class Sensor(models.Model):
         verbose_name_plural = 'sensors'
 
 
+@python_2_unicode_compatible  # only if you need to support Python 2
 class StoreStyle(models.Model):
     sstyle_id = models.AutoField(primary_key=True)
     store = models.ForeignKey('Stores', on_delete=models.CASCADE)
@@ -288,6 +327,9 @@ class StoreStyle(models.Model):
     background_img = models.CharField(verbose_name=_('Background image'), max_length=512, blank=True, null=True)
     font = models.CharField(verbose_name=_('Font'), max_length=70, blank=True, null=True)
 
+    def __str__(self):
+        return self.sstyle_id
+
     class Meta:
         # managed = False
         db_table = 'store_style'
@@ -295,6 +337,7 @@ class StoreStyle(models.Model):
         verbose_name_plural = 'store styles'
 
 
+@python_2_unicode_compatible  # only if you need to support Python 2
 class Stores(models.Model):
     store_id = models.AutoField(primary_key=True, default='1')
     customer = models.ForeignKey('Customers', default='', blank=False, null=False)
