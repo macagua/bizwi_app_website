@@ -1,6 +1,6 @@
 # requirements/common.txt
 
-Django==1.9 # A high-level Python Web framework that encourages rapid development and clean, pragmatic design.
+Django==1.9.2 # A high-level Python Web framework that encourages rapid development and clean, pragmatic design.
 #cassandra-driver==3.0.0 # Python driver for Cassandra
 psycopg2==2.6.1 # psycopg2 - Python-PostgreSQL Database Adapter
 boto==2.39.0 # Amazon Web Services Library
