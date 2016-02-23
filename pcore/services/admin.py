@@ -4,9 +4,18 @@ from .models import BrandStyle, BrandTags, Brands, Categories, Cities, Countries
     CustomerCategories, CustomerStyles, CustomerTags, Customers, Departments, Districts, \
     LocationTags, Locations, Sensor, StoreStyle, Stores
 
+class BrandsAdmin(admin.ModelAdmin):
+    fieldsets = [
+        ('Basic information', {'fields': ['customer', 'brand_name', 'description', 'url', 'age_range', 'is_active']}),
+        ('Social networks', {'fields': ['fb_fanpage', 'fb_merchant_id', 'google_id', 'instagram_id', 'twitter_id', 'gplus_id']}),
+        ('More details', {'fields': ['gtin', 'creation_date', 'last_access', 'mod_date']}),
+    ]
+    list_display = ('customer', 'brand_name', 'is_active')
+    list_filter = ['customer', 'brand_name', 'is_active']
+
 admin.site.register(BrandStyle)
 admin.site.register(BrandTags)
-admin.site.register(Brands)
+admin.site.register(Brands, BrandsAdmin)
 admin.site.register(Categories)
 admin.site.register(Cities)
 admin.site.register(Countries)
