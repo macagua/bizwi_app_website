@@ -73,14 +73,11 @@ WSGI_APPLICATION = 'wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'bizwier',                      # Or path to database file if using sqlite3.
-        'USER': 'bizwi',                      # Not used with sqlite3.
-        'PASSWORD': 'bizwi',                  # Not used with sqlite3.
-        'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
@@ -123,3 +120,5 @@ STATIC_URL = '/static/'
 # response after create client_admin
 SITE_URL = "127.0.0.1:8000"
 PRODUCTION = False
+
+from local_settings import *

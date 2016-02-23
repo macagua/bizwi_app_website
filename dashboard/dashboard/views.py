@@ -3,10 +3,9 @@ from django.http import JsonResponse, HttpResponse, Http404, HttpResponseRedirec
 from django.shortcuts import render, redirect, render_to_response
 from django.template import RequestContext
 from core_wrapper import *
-from .settings import APP_OWNER, APP_NAME, LANGUAGE_LIST, DATE_FORMATS, LOGIN_URL
+from settings.settings import APP_OWNER, APP_NAME, LANGUAGE_LIST, DATE_FORMATS, LOGIN_URL, APP_OWNER, APP_NAME
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout as auth_logout
-from .settings import APP_OWNER, APP_NAME
 from .forms import AdminForm, ClientForm, StoreForm, BrandForm, EmployeeForm, SettingsEmployeeForm, CustomUserForm
 import pytz
 from django.contrib.auth.forms import SetPasswordForm
