@@ -10,6 +10,7 @@
 import pytz
 # from __future__ import unicode_literals
 
+from colorful.fields import RGBColorField
 import django.utils.timezone
 from django.db import models
 # from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
@@ -20,16 +21,38 @@ from django_languages.languages import LANGUAGES
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
-@python_2_unicode_compatible  # only if you need to support Python 2
+
 class BrandStyle(models.Model):
     bstyle_id = models.AutoField(primary_key=True)
     brand = models.ForeignKey('Brands', verbose_name=_('Brand'), on_delete=models.DO_NOTHING)
     logo_url = models.URLField(verbose_name=_('Logo Url'), max_length=512, null=True, blank=True)
     favicon_url = models.URLField(verbose_name=_('Favicon Url'), max_length=512)
-    bgcolor = models.CharField(verbose_name=_('Background color'), max_length=6)
-    fgcolor = models.CharField(verbose_name=_('Foreground color'), max_length=6)
+    bgcolor = RGBColorField(verbose_name=_('Background color'), max_length=7)
+    fgcolor = RGBColorField(verbose_name=_('Foreground color'), max_length=7)
     background_img = models.CharField(verbose_name=_('Background image'), max_length=512, blank=True, null=True)
     font = models.CharField(verbose_name=_('Font'), max_length=70, blank=True, null=True)
+
+    # http://stackoverflow.com/questions/2443752/django-display-image-in-admin-interface
+    def image_tag(self):
+        return u'<img src="%s" />' % (self.logo_url)
+    image_tag.short_description = 'Logo URL'
+    image_tag.allow_tags = True
+
+    def favicon_tag(self):
+        return u'<img src="%s" />' % (self.favicon_url)
+    favicon_tag.short_description = 'Favicon Url'
+    favicon_tag.allow_tags = True
+
+    # http://stackoverflow.com/questions/3442881/change-font-color-for-a-field-in-django-admin-interface-if-expression-is-true
+    def bgfgcolor_brand(self):
+        return '<span style="background-color: %s; color: %s;">The Background & Foreground Colors</span>' % (
+                             self.bgcolor, self.fgcolor)
+    bgfgcolor_brand.short_description = 'Background / Foreground Colors'
+    bgfgcolor_brand.allow_tags = True
+    # bgcolor_brand.admin_order_field = 'brand'
+
+    def __unicode__(self):
+        return "Brand Styles of '%s'" % (self.brand)
 
     class Meta:
         db_table = 'brand_style'

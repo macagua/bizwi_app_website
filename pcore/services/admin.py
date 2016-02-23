@@ -4,6 +4,18 @@ from .models import BrandStyle, BrandTags, Brands, Categories, Cities, Countries
     CustomerCategories, CustomerStyles, CustomerTags, Customers, Departments, Districts, \
     LocationTags, Locations, Sensor, StoreStyle, Stores
 
+
+class BrandStyleAdmin(admin.ModelAdmin):
+    fieldsets = [
+        (None, {'fields': ['brand']}),
+        ('Basic information', {'fields': ['logo_url', 'favicon_url', 'background_img']}),
+        ('Brand Styles', {'fields': ['bgcolor', 'fgcolor', 'font']}),
+    ]
+    readonly_fields = ('image_tag', 'favicon_tag', 'bgfgcolor_brand')
+    list_display = ('brand', 'image_tag', 'favicon_tag', 'bgfgcolor_brand')
+    list_filter = ['brand']
+
+
 class BrandsAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Basic information', {'fields': ['customer', 'brand_name', 'description', 'url', 'age_range', 'is_active']}),
@@ -40,7 +52,7 @@ class StoresAdmin(admin.ModelAdmin):
     list_display = ('customer', 'store_name', 'phone', 'url', 'is_active')
     list_filter = ['customer', 'store_name', 'is_active']
 
-admin.site.register(BrandStyle)
+admin.site.register(BrandStyle, BrandStyleAdmin)
 admin.site.register(BrandTags)
 admin.site.register(Brands, BrandsAdmin)
 admin.site.register(Categories)
