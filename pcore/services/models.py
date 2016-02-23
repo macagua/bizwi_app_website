@@ -60,7 +60,7 @@ class Brands(models.Model):
     gtin = models.CharField(verbose_name=_('Global Trade Item Number'), max_length=70, default='')
     email = models.EmailField(verbose_name=_('Email'), max_length=75, blank=True, null=True)
     fb_fanpage = models.URLField(verbose_name=_('Facebook Fan Page'), max_length=512, blank=True, null=True)
-    url = models.URLField(max_length=512, blank=True, null=True)
+    url = models.URLField(verbose_name=_('Website Url'), max_length=512, blank=True, null=True)
     google_id = models.CharField(verbose_name=_('Google account'), max_length=100, blank=True, null=True)
     fb_merchant_id = models.CharField(verbose_name=_('Facebook Merchant Id'), max_length=100, blank=True, null=True)
     instagram_id = models.CharField(verbose_name=_('Instagram account'), max_length=100, blank=True, null=True)
@@ -140,6 +140,9 @@ class Countries(models.Model):
 class CustomerCategories(models.Model):
     category = models.ForeignKey('Categories', on_delete=models.DO_NOTHING)
     customer = models.ForeignKey('Customers', on_delete=models.DO_NOTHING)
+
+    def __str__(self):
+        return "%s has a category '%s'" % (self.customer, self.category)
 
     class Meta:
         db_table = 'customer_categories'

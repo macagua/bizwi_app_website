@@ -21,14 +21,14 @@ class CountriesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Countries
         fields =  ('country_id',
-                   'country_name')
+                   'country')
 
 
 class CitiesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cities
         fields =  ('city_id',
-                   'city_name',
+                   'city',
                    'country')
 
 
@@ -42,11 +42,15 @@ class CitiesSerializer(serializers.ModelSerializer):
 class CustomersSerializer(serializers.ModelSerializer):
     class Meta:
         model = Customers
-        fields = ('client_name',
+        fields = ('customer_name',
+                  'business_name',
                   'code_crm',
-                  'telephone',
-                  'web_site',
+                  'prefix',
                   'description',
+                  'telephone',
+                  'email',
+                  'gtin',
+                  'url',
                   'logo_url',
                   'background_color',
                   'foreground_color',
@@ -58,13 +62,21 @@ class CustomersSerializer(serializers.ModelSerializer):
                   'photo_url',
                   'facebook_id',
                   'facebook_link',
-                  'facebook_fan_page',
-                  'facebook_merchant_id',
-                  'twitter_account',
+                  'fb_fanpage',
+                  'fb_merchant_id',
+                  'twitter_id',
+                  'instagram_id',
+                  'google_id',
                   'gplus_id',
-                  'language',
+                  'lang',
                   'locale',
-                  'timezone')
+                  'timezone',
+                  'brand_enabled',
+                  'age_range',
+                  'is_active',
+                  'creation_date',
+                  'last_access',
+                  'mod_date')
 
 
 # class EmployeeSerializer(serializers.ModelSerializer):
