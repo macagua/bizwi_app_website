@@ -33,6 +33,15 @@ class CustomerCategoriesAdmin(admin.ModelAdmin):
     list_display = ('customer', 'category')
     list_filter = ['customer']
 
+class CustomerStylesAdmin(admin.ModelAdmin):
+    fieldsets = [
+        (None, {'fields': ['customer']}),
+        ('Basic information', {'fields': ['logo_url', 'favicon_url', 'background_img']}),
+        ('Brand Styles', {'fields': ['bgcolor', 'fgcolor', 'font']}),
+    ]
+    readonly_fields = ('image_tag', 'favicon_tag', 'bgfgcolor_brand')
+    list_display = ('customer', 'image_tag', 'favicon_tag', 'bgfgcolor_brand')
+    list_filter = ['customer']
 
 class CustomersAdmin(admin.ModelAdmin):
     fieldsets = [
@@ -59,7 +68,7 @@ admin.site.register(Categories)
 admin.site.register(Cities)
 admin.site.register(Countries)
 admin.site.register(CustomerCategories, CustomerCategoriesAdmin)
-admin.site.register(CustomerStyles)
+admin.site.register(CustomerStyles, CustomerStylesAdmin)
 admin.site.register(CustomerTags)
 admin.site.register(Customers, CustomersAdmin)
 admin.site.register(Departments)
