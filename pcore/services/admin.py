@@ -53,6 +53,17 @@ class CustomersAdmin(admin.ModelAdmin):
     list_filter = ['customer_name', 'business_name', 'is_active']
 
 
+class StoreStyleAdmin(admin.ModelAdmin):
+    fieldsets = [
+        (None, {'fields': ['store']}),
+        ('Basic information', {'fields': ['logo_url', 'favicon_url', 'background_img']}),
+        ('Brand Styles', {'fields': ['bgcolor', 'fgcolor', 'font']}),
+    ]
+    readonly_fields = ('image_tag', 'favicon_tag', 'bgfgcolor_brand')
+    list_display = ('store', 'image_tag', 'favicon_tag', 'bgfgcolor_brand')
+    list_filter = ['store']
+
+
 class StoresAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Basic information', {'fields': ['customer', 'store_name', 'description', 'phone', 'address', 'url', 'is_active']}),
@@ -76,7 +87,7 @@ admin.site.register(Districts)
 admin.site.register(LocationTags)
 admin.site.register(Locations)
 admin.site.register(Sensor)
-admin.site.register(StoreStyle)
+admin.site.register(StoreStyle, StoreStyleAdmin)
 admin.site.register(Stores, StoresAdmin)
 #admin.site.register(Regions)
 #admin.site.register(Employees)
