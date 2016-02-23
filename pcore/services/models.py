@@ -27,8 +27,8 @@ class BrandStyle(models.Model):
     brand = models.ForeignKey('Brands', verbose_name=_('Brand'), on_delete=models.DO_NOTHING)
     logo_url = models.URLField(verbose_name=_('Logo Url'), max_length=512, null=True, blank=True)
     favicon_url = models.URLField(verbose_name=_('Favicon Url'), max_length=512)
-    bgcolor = RGBColorField(verbose_name=_('Background color'), max_length=7)
-    fgcolor = RGBColorField(verbose_name=_('Foreground color'), max_length=7)
+    bgcolor = RGBColorField(verbose_name=_('Background color'), max_length=7, default='#ffffff')
+    fgcolor = RGBColorField(verbose_name=_('Foreground color'), max_length=7, default='#000000')
     background_img = models.CharField(verbose_name=_('Background image'), max_length=512, blank=True, null=True)
     font = models.CharField(verbose_name=_('Font'), max_length=70, blank=True, null=True)
 
