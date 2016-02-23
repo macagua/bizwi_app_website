@@ -14,6 +14,14 @@ class BrandsAdmin(admin.ModelAdmin):
     list_filter = ['customer', 'brand_name', 'is_active']
 
 
+class CustomerCategoriesAdmin(admin.ModelAdmin):
+    fieldsets = [
+        (None,               {'fields': ['customer', 'category']}),
+    ]
+    list_display = ('customer', 'category')
+    list_filter = ['customer']
+
+
 class CustomersAdmin(admin.ModelAdmin):
     fieldsets = [
         ('Basic information', {'fields': ['customer_name', 'business_name', 'code_crm', 'prefix', 'description', 'telephone', 'email', 'url', 'age_range', 'is_active']}),
@@ -38,7 +46,7 @@ admin.site.register(Brands, BrandsAdmin)
 admin.site.register(Categories)
 admin.site.register(Cities)
 admin.site.register(Countries)
-admin.site.register(CustomerCategories)
+admin.site.register(CustomerCategories, CustomerCategoriesAdmin)
 admin.site.register(CustomerStyles)
 admin.site.register(CustomerTags)
 admin.site.register(Customers, CustomersAdmin)

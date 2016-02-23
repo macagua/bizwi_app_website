@@ -141,6 +141,9 @@ class CustomerCategories(models.Model):
     category = models.ForeignKey('Categories', on_delete=models.DO_NOTHING)
     customer = models.ForeignKey('Customers', on_delete=models.DO_NOTHING)
 
+    def __str__(self):
+        return "%s has a category '%s'" % (self.customer, self.category)
+
     class Meta:
         db_table = 'customer_categories'
         verbose_name = 'customer category'
