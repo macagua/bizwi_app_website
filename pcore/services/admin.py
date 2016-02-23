@@ -23,6 +23,15 @@ class CustomersAdmin(admin.ModelAdmin):
     list_display = ('code_crm', 'customer_name', 'business_name', 'telephone', 'email', 'url')
     list_filter = ['customer_name', 'business_name', 'is_active']
 
+
+class StoresAdmin(admin.ModelAdmin):
+    fieldsets = [
+        ('Basic information', {'fields': ['customer', 'store_name', 'description', 'phone', 'address', 'url', 'is_active']}),
+        ('More details', {'fields': ['timezone', 'lang', 'creation_date', 'last_access', 'mod_date']}),
+    ]
+    list_display = ('customer', 'store_name', 'phone', 'url', 'is_active')
+    list_filter = ['customer', 'store_name', 'is_active']
+
 admin.site.register(BrandStyle)
 admin.site.register(BrandTags)
 admin.site.register(Brands, BrandsAdmin)
@@ -39,7 +48,7 @@ admin.site.register(LocationTags)
 admin.site.register(Locations)
 admin.site.register(Sensor)
 admin.site.register(StoreStyle)
-admin.site.register(Stores)
+admin.site.register(Stores, StoresAdmin)
 #admin.site.register(Regions)
 #admin.site.register(Employees)
 #admin.site.register(Tags)
