@@ -22,6 +22,7 @@ ua-parser==0.6.1 #Python port of Browserscope's user agent parser
 user-agents==1.0.1 #A library to identify devices (phones, tablets) and their capabilities by parsing (browser/HTTP) user agent strings
 djangorestframework==3.3.2
 django-filter==0.12
+django-colorful==1.1.0
 django-countries==3.4.1
 django-languages==0.1
 
