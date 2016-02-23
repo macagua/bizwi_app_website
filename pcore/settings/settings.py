@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_countries',
     'django_languages',
+    'colorful',
     'services',
     'rest_framework'
 ]
