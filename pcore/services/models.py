@@ -469,6 +469,27 @@ class Locations(models.Model):
         verbose_name_plural = 'locations'
 
 
+class MessageToCustomer(models.Model):
+    sender = models.ForeignKey(Users)
+    receiver = models.ForeignKey(Customers)
+    content = models.TextField()
+    date = models.DateTimeField(auto_now_add=True, editable=False)
+    read = models.BooleanField(default=False)
+
+    class Meta:
+        db_table = 'message_to_customer'
+
+
+class MessageToUser(models.Model):
+    sender = models.ForeignKey(Customers)
+    receiver = models.ForeignKey(Users)
+    content = models.TextField()
+    date = models.DateTimeField(auto_now_add=True, editable=False)
+    read = models.BooleanField(default=False)
+
+    class Meta:
+        db_table = 'message_to_user'
+
 class Pedestrians(models.Model):
     pd_id = models.BigIntegerField(primary_key=True)
     sensor = models.ForeignKey('Sensor', on_delete=models.DO_NOTHING)
@@ -822,7 +843,6 @@ class Vendors(models.Model):
         db_table = 'vendors'
         verbose_name = 'vendor'
         verbose_name_plural = 'vendors'
-
 
 # Users Models
 # class UserManager(BaseUserManager):
