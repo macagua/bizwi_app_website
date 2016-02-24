@@ -325,7 +325,6 @@ class Customers(models.Model):
     age_range = models.CharField(verbose_name=_('Age range'), max_length=2, default='')
     is_active = models.BooleanField(verbose_name=_('Is active?'), default=False)
     creation_date = models.DateTimeField(verbose_name=_('Creation date'), default=django.utils.timezone.now)
-    last_access = models.DateTimeField(verbose_name=_('Last date'), blank=True, null=True)
     mod_date = models.DateTimeField(verbose_name=_('Modification date'), blank=True, null=True)
 
     def __str__(self):
@@ -634,34 +633,23 @@ class PromotionsTypes(models.Model):
 
     class Meta:
         db_table = 'promotions_types'
-        verbose_name = 'Promotion type'
-        verbose_name_plural = 'Promotions types'
-
-
-# Sensor Models
-MODELS = (
-    ('Model 01', 'MR-01'),
-    ('Model 02', 'MR-02'),
-    ('Model 03', 'MR-03'),
-    ('Model 04', 'MR-04'),
-    ('Model 05', 'MR-05'),
-)
 
 
 @python_2_unicode_compatible  # only if you need to support Python 2
 class Sensor(models.Model):
     sensor_id = models.AutoField(primary_key=True, default='1')
     department = models.ForeignKey('Departments', verbose_name=_('Department'), null=True, on_delete=models.DO_NOTHING)
-    sid = models.CharField(verbose_name=_('SID'), max_length=120, unique=True)
-    model = models.CharField(verbose_name=_('Model'), max_length=30, choices=MODELS, null=True)
+    sid = models.CharField(verbose_name=_('Sensor SID'), max_length=120, unique=True)
     name = models.CharField(verbose_name=_('Name'), max_length=100, blank=True, null=True)
+    model = models.ForeignKey('SensorModels', verbose_name=_('Model'), on_delete=models.DO_NOTHING)
     mac = models.CharField(verbose_name=_('MAC Address'), max_length=17, unique=True)
+    sensor_ip = models.GenericIPAddressField(verbose_name=_('Sensor IP'), protocol='IPv4', null=True)
     call_home = models.BooleanField(verbose_name=_('Call home?'), default=False)
     rate = models.FloatField(verbose_name=_('Rate'), blank=True, null=True)
     public_key = models.CharField(verbose_name=_('Public Key'), max_length=700)
     essid = models.CharField(verbose_name=_('ESSID'), max_length=200, blank=True, null=True)
     register_time = models.DateTimeField(verbose_name=_('Register time'), null=True, default=django.utils.timezone.now)
-    sensor_ip = models.GenericIPAddressField(verbose_name=_('Sensor IP'), protocol='IPv4', null=True)
+    last_access = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
         return "%s" % self.mac
