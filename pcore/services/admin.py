@@ -52,6 +52,13 @@ class CustomersAdmin(admin.ModelAdmin):
     list_display = ('code_crm', 'customer_name', 'business_name', 'telephone', 'email', 'url')
     list_filter = ['customer_name', 'business_name', 'is_active']
 
+class DepartmentsAdmin(admin.ModelAdmin):
+    fieldsets = [
+        (None, {'fields': ['department_id', 'department', 'stores']}),
+    ]
+    list_display = ('stores', 'department')
+    list_filter = ['stores', 'department']
+
 
 class StoreStyleAdmin(admin.ModelAdmin):
     fieldsets = [
@@ -82,7 +89,7 @@ admin.site.register(CustomerCategories, CustomerCategoriesAdmin)
 admin.site.register(CustomerStyles, CustomerStylesAdmin)
 admin.site.register(CustomerTags)
 admin.site.register(Customers, CustomersAdmin)
-admin.site.register(Departments)
+admin.site.register(Departments, DepartmentsAdmin)
 admin.site.register(Districts)
 admin.site.register(LocationTags)
 admin.site.register(Locations)

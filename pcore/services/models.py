@@ -264,15 +264,15 @@ class Customers(models.Model):
 
 @python_2_unicode_compatible  # only if you need to support Python 2
 class Departments(models.Model):
-    department_id = models.IntegerField(primary_key=True, default='1')
+    department_id = models.IntegerField(verbose_name=_('Department ID'), primary_key=True, default='1')
     stores = models.ForeignKey('Stores', verbose_name=_('Stores'), default='', blank=False, null=False, on_delete=models.DO_NOTHING)
     department = models.CharField(verbose_name=_('Department'), max_length=250, default='')
 
     def __str__(self):
-        return "%s: %s" % self.department_name
+        return self.department
 
     def fullname(self):
-        return "%s: %s" % self.department_name
+        return "%s: %s" % self.department
 
     class Meta:
         db_table = 'departments'
