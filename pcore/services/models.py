@@ -22,6 +22,15 @@ from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
 
+class AuthTypes(models.Model):
+    auth_type_id = models.AutoField(primary_key=True)
+    auth_type = models.CharField(max_length=30)
+    enabled = models.BooleanField()
+
+    class Meta:
+        db_table = 'auth_types'
+
+
 class BrandStyle(models.Model):
     bstyle_id = models.AutoField(primary_key=True)
     brand = models.ForeignKey('Brands', verbose_name=_('Brand'), on_delete=models.DO_NOTHING)
@@ -30,6 +39,7 @@ class BrandStyle(models.Model):
     bgcolor = RGBColorField(verbose_name=_('Background color'), max_length=7, default='#ffffff')
     fgcolor = RGBColorField(verbose_name=_('Foreground color'), max_length=7, default='#000000')
     background_img = models.CharField(verbose_name=_('Background image'), max_length=512, blank=True, null=True)
+    # background_img = models.ImageField(verbose_name=_('Background image'), null=True)
     font = models.CharField(verbose_name=_('Font'), max_length=70, blank=True, null=True)
 
     # http://stackoverflow.com/questions/2443752/django-display-image-in-admin-interface
@@ -130,34 +140,99 @@ class Cities(models.Model):
     city = models.CharField(verbose_name=_('City'), max_length=100, default='')
     country = models.ForeignKey('Countries', verbose_name=_('Country'), on_delete=models.CASCADE)
 
-    def __str__(self):
-        return self.city
-
     class Meta:
         db_table = 'cities'
         verbose_name = 'city'
         verbose_name_plural = 'cities'
+
+    def __str__(self):
+        return self.city
     
     def __unicode__(self):
         return "%s" % self.city_name
 
 
-@python_2_unicode_compatible  # only if you need to support Python 2
 class Countries(models.Model):
     country_id = models.AutoField(primary_key=True, default='1')
     # country = models.CharField(max_length=200)
-    country = CountryField(blank_label='Select a country')
+    country = CountryField(blank_label='Select a country', default='ES')
 
-    def __str__(self):
-        return self.country
+#    def __unicode__(self):
+#        return self.country
 
     class Meta:
         db_table = 'countries'
         verbose_name = 'country'
         verbose_name_plural = 'countries'
-        
-    def __unicode__(self):
-        return "%s" % self.country_name
+
+
+class Coupons(models.Model):
+    coupon_id = models.BigIntegerField(primary_key=True)
+    promotion = models.ForeignKey('Promotions', models.DO_NOTHING)
+    coupon_code = models.CharField(max_length=250)
+    wallet_uuid = models.ForeignKey('UserWallets', models.DO_NOTHING, db_column='wallet_uuid')
+    claim_time = models.DateTimeField()
+    coupon_status = models.ForeignKey('CouponsStatus', models.DO_NOTHING)
+    coupon_type = models.ForeignKey('CouponsTypes', models.DO_NOTHING)
+    short_description = models.CharField(max_length=20)
+    long_description = models.CharField(max_length=70)
+    legal_statement = models.CharField(max_length=100)
+    redemption_start = models.DateTimeField()
+    redemption_end = models.DateTimeField()
+    publication_start = models.DateTimeField()
+    publication_end = models.DateTimeField()
+    expiration_time = models.DateTimeField(blank=True, null=True)
+    active = models.BooleanField()
+    used = models.BooleanField()
+
+    class Meta:
+        db_table = 'coupons'
+        verbose_name = 'coupon'
+        verbose_name_plural = 'coupons'
+
+
+class CouponsImpacts(models.Model):
+    coupon_impact_id = models.AutoField(primary_key=True)
+    coupon = models.ForeignKey(Coupons, models.DO_NOTHING)
+    user = models.ForeignKey('Users', models.DO_NOTHING)
+    store = models.ForeignKey('Stores', models.DO_NOTHING)
+    claim_time = models.DateTimeField()
+
+    class Meta:
+        db_table = 'coupons_impacts'
+        verbose_name = 'coupon impact'
+        verbose_name_plural = 'coupons impacts'
+
+
+class CouponsStatus(models.Model):
+    coupon_status_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=250)
+
+    class Meta:
+        db_table = 'coupons_status'
+        verbose_name = 'coupon status'
+        verbose_name_plural = 'coupons status'
+
+
+class CouponsTypes(models.Model):
+    coupon_type_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=20)
+
+    class Meta:
+        db_table = 'coupons_types'
+        verbose_name = 'coupon type'
+        verbose_name_plural = 'coupons types'
+
+
+class CustomerAuthTypes(models.Model):
+    cust_auth_id = models.AutoField(primary_key=True)
+    customer = models.ForeignKey('Customers', models.DO_NOTHING)
+    auth_type = models.ForeignKey(AuthTypes, models.DO_NOTHING)
+
+    class Meta:
+        db_table = 'customer_auth_types'
+        verbose_name = 'customer auth type'
+        verbose_name_plural = 'customer auth types'
 
 
 class CustomerCategories(models.Model):
@@ -280,6 +355,24 @@ class Departments(models.Model):
         verbose_name_plural = 'departments'
 
 
+class Devices(models.Model):
+    device_id = models.AutoField(primary_key=True)
+    vendor = models.ForeignKey('Vendors', models.DO_NOTHING)
+    mac = models.CharField(max_length=10, blank=True, null=True)
+    blue_mac = models.CharField(max_length=10, blank=True, null=True)
+    name = models.CharField(max_length=16, blank=True, null=True)
+    user_agent = models.CharField(max_length=20, blank=True, null=True)
+    os_ver = models.CharField(max_length=10)
+    os_family = models.CharField(max_length=10)
+    first_seen = models.DateTimeField()
+    last_seen = models.DateTimeField()
+
+    class Meta:
+        db_table = 'devices'
+        verbose_name = 'device'
+        verbose_name_plural = 'devices'
+
+
 @python_2_unicode_compatible  # only if you need to support Python 2
 class Districts(models.Model):
     district_id = models.AutoField(primary_key=True)
@@ -294,6 +387,56 @@ class Districts(models.Model):
         db_table = 'districts'
         verbose_name = 'district'
         verbose_name_plural = 'districts'
+
+
+class Employees(models.Model):
+    employee_id = models.AutoField(primary_key=True)
+    customer = models.ForeignKey(Customers, models.CASCADE)
+    firstname = models.CharField(max_length=30)
+    lastname = models.CharField(max_length=30)
+    uid = models.CharField(unique=True, max_length=16)
+    pwd = models.CharField(max_length=128, blank=True, null=True)
+    language = LanguageField(verbose_name=_('Language'), choices=LANGUAGES, max_length=3, blank=False, null=True, default='es') # default lang client
+    is_active = models.BooleanField()
+    creation_date = models.DateTimeField()
+    mod_date = models.DateTimeField(blank=True, null=True)
+    last_access = models.DateTimeField(blank=True, null=True)
+    token = models.CharField(max_length=64, blank=True, null=True)
+
+    class Meta:
+        db_table = 'employees'
+        verbose_name = 'employee'
+        verbose_name_plural = 'employees'
+
+
+class Events(models.Model):
+    event_id = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=20)
+    description = models.CharField(max_length=70)
+    event_header_url = models.URLField(verbose_name=_('Event Header Url'), max_length=512)
+    active = models.BooleanField()
+    end_date = models.DateField()
+    start_time = models.TimeField()
+    start_date = models.DateField()
+    end_time = models.TimeField()
+    client_id = models.IntegerField()
+    url = models.URLField(verbose_name=_('Event Url'), max_length=512)
+
+    class Meta:
+        db_table = 'events'
+        verbose_name = 'event'
+        verbose_name_plural = 'events'
+
+
+class FilterOnPromotion(models.Model):
+    promotion_filter = models.AutoField(primary_key=True)
+    filter = models.ForeignKey('PromotionsFilters', models.DO_NOTHING)
+    promotion = models.ForeignKey('Promotions', models.DO_NOTHING)
+
+    class Meta:
+        db_table = 'filter_on_promotion'
+        verbose_name = 'filter on promotion'
+        verbose_name_plural = 'filters on promotions'
 
 
 @python_2_unicode_compatible  # only if you need to support Python 2
@@ -324,6 +467,154 @@ class Locations(models.Model):
         db_table = 'locations'
         verbose_name = 'location'
         verbose_name_plural = 'locations'
+
+
+class Pedestrians(models.Model):
+    pd_id = models.BigIntegerField(primary_key=True)
+    sensor = models.ForeignKey('Sensor', models.DO_NOTHING)
+    department = models.ForeignKey(Departments, models.DO_NOTHING)
+    store = models.ForeignKey('Stores', models.DO_NOTHING)
+    sensor_sid = models.CharField(max_length=64)
+    device = models.ForeignKey(Devices, models.DO_NOTHING)
+    ss = models.DecimalField(max_digits=3, decimal_places=0)
+    distance = models.DecimalField(max_digits=2, decimal_places=0, blank=True, null=True)
+    band = models.CharField(max_length=10, blank=True, null=True)
+    rate = models.DecimalField(max_digits=2, decimal_places=0, blank=True, null=True)
+
+    class Meta:
+        db_table = 'pedestrians'
+        verbose_name = 'pedestrian'
+        verbose_name_plural = 'pedestrians'
+
+
+class PromoStyle(models.Model):
+    promotion = models.OneToOneField('Promotions', models.DO_NOTHING, primary_key=True)
+    header_url = models.URLField(verbose_name=_('Header Url'), max_length=512)
+    img_url = models.URLField(verbose_name=_('Image Url'), max_length=250)
+    logo_url = models.URLField(verbose_name=_('Logo Url'), max_length=512, blank=True, null=True)
+    favicon_url = models.URLField(verbose_name=_('Favicon Url'), max_length=512, blank=True, null=True)
+    bgcolor = RGBColorField(verbose_name=_('Background color'), max_length=7, default='#ffffff')
+    fgcolor = RGBColorField(verbose_name=_('Foreground color'), max_length=7, default='#000000')
+    background_img = models.CharField(verbose_name=_('Background image'), max_length=512, blank=True, null=True)
+    font = models.CharField(max_length=70, blank=True, null=True)
+
+    class Meta:
+        db_table = 'promo_style'
+        verbose_name = 'Promotion style'
+        verbose_name_plural = 'Promotions styles'
+
+
+class PromotionDuration(models.Model):
+    promotion_duration_id = models.AutoField(primary_key=True)
+    end_time = models.TimeField()
+    start_time = models.TimeField()
+    monday = models.BooleanField()
+    thursday = models.BooleanField()
+    wednesday = models.BooleanField()
+    friday = models.BooleanField()
+    saturday = models.BooleanField()
+    sunday = models.BooleanField()
+    tuesday = models.BooleanField()
+    promotion = models.ForeignKey('Promotions', models.DO_NOTHING)
+
+    class Meta:
+        db_table = 'promotion_duration'
+        verbose_name = 'Promotion duration'
+        verbose_name_plural = 'Promotions duration'
+
+
+class Promotions(models.Model):
+    promotion_id = models.IntegerField(primary_key=True)
+    client_id = models.IntegerField()
+    description = models.CharField(max_length=120)
+    short_description = models.CharField(max_length=70)
+    long_description = models.CharField(max_length=750)
+    name = models.CharField(max_length=250)
+    url = models.CharField(max_length=250)
+    active = models.BooleanField()
+    start_date = models.DateField()
+    end_date = models.DateField()
+    expiration_time_range = models.DateTimeField()
+    promotion_type = models.ForeignKey('PromotionsTypes', models.DO_NOTHING)
+    promotion_status = models.ForeignKey('PromotionsStatus', models.DO_NOTHING)
+    send_email = models.BooleanField()
+    send_msg = models.NullBooleanField()
+
+    class Meta:
+        db_table = 'promotions'
+        verbose_name = 'Promotion'
+        verbose_name_plural = 'Promotions'
+
+
+class PromotionsFilters(models.Model):
+    filter_id = models.IntegerField(primary_key=True)
+    filter_name = models.CharField(max_length=50)
+    short_description = models.CharField(max_length=70)
+    description = models.CharField(max_length=512)
+    is_enum = models.BooleanField()
+    enum_orig = models.CharField(max_length=20)
+    callback_obj = models.CharField(max_length=20)
+    enabled = models.BooleanField()
+
+    class Meta:
+        db_table = 'promotions_filters'
+        verbose_name = 'Promotion filter'
+        verbose_name_plural = 'Promotions filters'
+
+
+class PromotionsForBrands(models.Model):
+    brand = models.ForeignKey(Brands, models.DO_NOTHING)
+    promotion = models.ForeignKey(Promotions, models.DO_NOTHING)
+    updated_at = models.DateTimeField()
+
+    class Meta:
+        db_table = 'promotions_for_brands'
+        verbose_name = 'Promotion for brand'
+        verbose_name_plural = 'Promotions for brands'
+        unique_together = (('brand', 'promotion'),)
+
+
+class PromotionsLoyalty(models.Model):
+    promotion = models.OneToOneField(Promotions, models.DO_NOTHING, primary_key=True)
+    num_checkins = models.IntegerField()
+
+    class Meta:
+        db_table = 'promotions_loyalty'
+        verbose_name = 'Promotion loyalty'
+        verbose_name_plural = 'Promotions loyalties'
+
+
+class PromotionsOnStores(models.Model):
+    store = models.ForeignKey('Stores', models.DO_NOTHING)
+    promotion = models.ForeignKey(Promotions, models.DO_NOTHING)
+    updated_at = models.DateTimeField()
+
+    class Meta:
+        db_table = 'promotions_on_stores'
+        verbose_name = 'Promotion on store'
+        verbose_name_plural = 'Promotions on stores'
+        unique_together = (('store', 'promotion'),)
+
+
+class PromotionsStatus(models.Model):
+    promotion_status_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=150)
+
+    class Meta:
+        db_table = 'promotions_status'
+        verbose_name = 'Promotion status'
+        verbose_name_plural = 'Promotions status'
+
+
+class PromotionsTypes(models.Model):
+    promotion_type_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=250)
+
+    class Meta:
+        db_table = 'promotions_types'
+        verbose_name = 'Promotion type'
+        verbose_name_plural = 'Promotions types'
+
 
 # Sensor Models
 MODELS = (
@@ -357,6 +648,33 @@ class Sensor(models.Model):
         db_table = 'sensor'
         verbose_name = 'sensor'
         verbose_name_plural = 'sensors'
+
+
+class SensorLocation(models.Model):
+    sensor = models.OneToOneField('Sensor', models.DO_NOTHING, primary_key=True)
+    latitude = models.DecimalField(max_digits=7, decimal_places=5)
+    longitude = models.DecimalField(max_digits=8, decimal_places=5)
+    point = models.TextField(blank=True, null=True)
+    geoloc_poly = models.TextField(blank=True, null=True)
+    distance_threshold = models.DecimalField(max_digits=5, decimal_places=2)
+    accuracy = models.IntegerField()
+
+    class Meta:
+        db_table = 'sensor_location'
+        verbose_name = 'Sensor location'
+        verbose_name_plural = 'Sensor locations'
+
+
+class SensorModels(models.Model):
+    model_id = models.AutoField(primary_key=True)
+    model = models.CharField(max_length=20)
+    description = models.CharField(max_length=70, blank=True, null=True)
+    is_mobile = models.BooleanField()
+
+    class Meta:
+        db_table = 'sensor_models'
+        verbose_name = 'sensor model'
+        verbose_name_plural = 'sensors models'
 
 
 class StoreStyle(models.Model):
@@ -421,6 +739,88 @@ class Stores(models.Model):
         db_table = 'stores'
         verbose_name = 'store'
         verbose_name_plural = 'stores'
+
+
+class UserIdentities(models.Model):
+    user_identity_id = models.AutoField(primary_key=True)
+    user = models.ForeignKey('Users', models.DO_NOTHING)
+    email = models.CharField(max_length=75, blank=True, null=True)
+    phone = models.CharField(max_length=20, blank=True, null=True)
+    gravatar = models.CharField(max_length=512)
+    access_token = models.CharField(max_length=100, blank=True, null=True)
+    auth_social_id = models.CharField(max_length=10)
+    device = models.ForeignKey(Devices, models.DO_NOTHING)
+
+    class Meta:
+        db_table = 'user_identities'
+        verbose_name = 'user identity'
+        verbose_name_plural = 'user identities'
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField('Users', models.DO_NOTHING, primary_key=True)
+    relationship_status = models.CharField(max_length=60, blank=True, null=True)
+    screen_name = models.CharField(max_length=60)
+    interests = models.BinaryField()
+    profile_image_url = models.URLField(verbose_name=_('Profile Image Url'), max_length=512, blank=True, null=True)
+    gravatar = models.CharField(max_length=512)
+    bio = models.CharField(max_length=512, blank=True, null=True)
+    friends_count = models.IntegerField()
+    username = models.CharField(max_length=20, blank=True, null=True)
+    twitter_id = models.CharField(max_length=20)
+    facebook_link = models.CharField(max_length=512)
+    facebook_id = models.BigIntegerField(blank=True, null=True)
+    gplus_id = models.BigIntegerField(blank=True, null=True)
+    gplus_link = models.CharField(max_length=512, blank=True, null=True)
+    google_id = models.CharField(max_length=75, blank=True, null=True)
+
+    class Meta:
+        db_table = 'user_profile'
+        verbose_name = 'user profile'
+        verbose_name_plural = 'user profiles'
+
+
+class UserWallets(models.Model):
+    wallet_uuid = models.BigIntegerField(primary_key=True)
+    user = models.ForeignKey('Users', models.DO_NOTHING)
+    enabled = models.BooleanField()
+
+    class Meta:
+        db_table = 'user_wallets'
+        verbose_name = 'user wallet'
+        verbose_name_plural = 'user wallets'
+
+
+class Users(models.Model):
+    user_id = models.AutoField(primary_key=True)
+    uid = models.CharField(unique=True, max_length=20)
+    name = models.CharField(max_length=30)
+    lastname = models.CharField(max_length=30)
+    firstname = models.CharField(max_length=30)
+    city = models.ForeignKey(Cities, models.DO_NOTHING)
+    country = models.ForeignKey(Countries, models.DO_NOTHING)
+    timezone = models.IntegerField()
+    gender = models.CharField(max_length=1, blank=True, null=True)
+    birthdate = models.DateField(blank=True, null=True)
+    locale = models.CharField(max_length=8)
+    language = models.CharField(max_length=2)
+    date_joined = models.DateTimeField()
+    last_access = models.DateTimeField(blank=True, null=True)
+
+    class Meta:
+        db_table = 'users'
+        verbose_name = 'user'
+        verbose_name_plural = 'users'
+
+
+class Vendors(models.Model):
+    vendor_id = models.CharField(primary_key=True, max_length=10)
+    name = models.CharField(max_length=30)
+
+    class Meta:
+        db_table = 'vendors'
+        verbose_name = 'vendor'
+        verbose_name_plural = 'vendors'
 
 
 # Users Models

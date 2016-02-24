@@ -1,8 +1,8 @@
 from django.contrib import admin
 #from .models import Countries, Cities, Regions, Employees, Clients, Stores, Tags, Categories, Departments, Sensors, Brands, PromotionsTypes, PromotionsFilters, PromotionsLoyalties, PromotionsSpecials, Promotions, PromotionsImpacts
 from .models import BrandStyle, BrandTags, Brands, Categories, Cities, Countries, \
-    CustomerCategories, CustomerStyles, CustomerTags, Customers, Departments, Districts, \
-    LocationTags, Locations, Sensor, StoreStyle, Stores
+    CustomerCategories, CustomerStyles, CustomerTags, Customers, Departments, Districts, Employees, \
+    LocationTags, Locations, Sensor, StoreStyle, Stores, PromotionsTypes, PromotionsFilters, Promotions
 
 
 class BrandStyleAdmin(admin.ModelAdmin):
@@ -97,11 +97,11 @@ admin.site.register(Sensor)
 admin.site.register(StoreStyle, StoreStyleAdmin)
 admin.site.register(Stores, StoresAdmin)
 #admin.site.register(Regions)
-#admin.site.register(Employees)
+admin.site.register(Employees)
 #admin.site.register(Tags)
-#admin.site.register(PromotionsTypes)
-#admin.site.register(PromotionsFilters)
+admin.site.register(PromotionsTypes)
+admin.site.register(PromotionsFilters)
 #admin.site.register(PromotionsLoyalties)
 #admin.site.register(PromotionsSpecials)
-#admin.site.register(Promotions)
+admin.site.register(Promotions)
 #admin.site.register(PromotionsImpacts)
