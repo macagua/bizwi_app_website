@@ -63,7 +63,7 @@ class BrandStyle(models.Model):
 @python_2_unicode_compatible  # only if you need to support Python 2
 class BrandTags(models.Model):
     brand = models.OneToOneField('Brands', verbose_name=_('Brand'), on_delete=models.DO_NOTHING, primary_key=True)
-    tag = JSONField()
+    tag = JSONField(verbose_name=_('Tag'))
 
     def __str__(self):
         return self.tag
@@ -214,7 +214,7 @@ class CustomerStyles(models.Model):
 @python_2_unicode_compatible  # only if you need to support Python 2
 class CustomerTags(models.Model):
     customer = models.OneToOneField('Customers', on_delete=models.DO_NOTHING, primary_key=True)
-    tag = JSONField()
+    tag = JSONField(verbose_name=_('Tag'))
 
     def __str__(self):
         return self.tag
@@ -299,7 +299,7 @@ class Districts(models.Model):
 @python_2_unicode_compatible  # only if you need to support Python 2
 class LocationTags(models.Model):
     store = models.OneToOneField('Locations', on_delete=models.DO_NOTHING, primary_key=True)
-    tags = JSONField()
+    tags = JSONField(verbose_name=_('Tag'))
 
     def __str__(self):
         return self.tags
