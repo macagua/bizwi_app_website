@@ -6,20 +6,110 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 
-# import datetime
+import datetime
 import pytz
 # from __future__ import unicode_literals
 
 from colorful.fields import RGBColorField
 import django.utils.timezone
 from django.db import models
-# from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
+from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 from django.contrib.postgres.fields import JSONField
 from django_countries.fields import CountryField
 from django_languages import LanguageField
 from django_languages.languages import LANGUAGES
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
+
+
+# Users Models
+class UserManager(BaseUserManager):
+    def _create_user(self, username, email, password, is_staff, is_superuser, is_admin, **extra_fields):
+        now = datetime.datetime.now()
+        if not username:
+            raise ValueError(_('The given username must be set'))
+        email = self.normalize_email(email)
+        user = self.model(username=username, email=email,
+                          is_staff=is_staff, is_active=False,
+                          is_superuser=is_superuser, is_admin=is_admin,
+                          last_login=now, date_joined=now,
+                          **extra_fields)
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_user(self, username, email=None, password=None, **extra_fields):
+        return self._create_user(username, email, password, is_staff=False, is_superuser=False, is_admin=False,
+                                 **extra_fields)
+
+    def create_superuser(self, username, email, password, **extra_fields):
+        user = self._create_user(username, email, password, is_staff=True, is_superuser=True, is_admin=True,
+                                 **extra_fields)
+        user.is_active = True
+        user.save(using=self._db)
+        return user
+
+
+# Gender for Custom User model
+GENDER_CHOICES = (
+    ('M', 'Male'),
+    ('F', 'Female'),
+)
+
+
+class CustomUser(AbstractBaseUser):
+    """
+    """
+    username = models.CharField(max_length=30, unique=True, blank=True, null=True)
+    email = models.EmailField(max_length=255, unique=True, blank=False, null=False)
+    first_name = models.CharField(max_length=100, blank=False, null=False)
+    last_name = models.CharField(max_length=100, blank=False, null=False)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, null=True, blank=True)
+    birthday = models.DateField(null=True, blank=True)
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
+    is_admin = models.BooleanField(default=False)
+    is_customer_admin = models.BooleanField(default=False)
+    is_employee_admin = models.BooleanField(default=False)
+    date_joined = models.DateTimeField(default=datetime.datetime.now(), editable=False)
+    lang = models.CharField(max_length=2, default='es', blank=False, null=False)
+
+    class Meta:
+        db_table = 'customs_users'
+
+    objects = UserManager()
+
+
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = ['email']
+
+    def get_full_name(self):
+        full_name = '%s %s' % (self.first_name, self.last_name)
+        return full_name.strip()
+
+    def get_short_name(self):
+        return self.first_name
+
+    def has_perm(self, perm, obj=None):
+        # Does the user have a specific permission?
+        # Simplest possible answer: Yes, always
+        return True
+
+    def has_module_perms(self, app_label):
+        # Does the user have permissions to view the app `app_label`?
+        # Simplest possible answer: Yes, always
+        return True
+
+    def is_employee(self):
+        return False
+
+
+    def is_client(self):
+        return False
+
+    def is_people(self):
+        return False
 
 
 class AuthTypes(models.Model):
@@ -45,18 +135,21 @@ class BrandStyle(models.Model):
     # http://stackoverflow.com/questions/2443752/django-display-image-in-admin-interface
     def image_tag(self):
         return u'<img src="%s" />' % (self.logo_url)
+
     image_tag.short_description = 'Logo URL'
     image_tag.allow_tags = True
 
     def favicon_tag(self):
         return u'<img src="%s" />' % (self.favicon_url)
+
     favicon_tag.short_description = 'Favicon Url'
     favicon_tag.allow_tags = True
 
     # http://stackoverflow.com/questions/3442881/change-font-color-for-a-field-in-django-admin-interface-if-expression-is-true
     def bgfgcolor_brand(self):
         return '<span style="background-color: %s; color: %s;">The Background & Foreground Colors</span>' % (
-                             self.bgcolor, self.fgcolor)
+            self.bgcolor, self.fgcolor)
+
     bgfgcolor_brand.short_description = 'Background / Foreground Colors'
     bgfgcolor_brand.allow_tags = True
     # bgcolor_brand.admin_order_field = 'brand'
@@ -147,7 +240,7 @@ class Cities(models.Model):
 
     def __str__(self):
         return self.city
-    
+
     def __unicode__(self):
         return "%s" % self.city_name
 
@@ -157,8 +250,8 @@ class Countries(models.Model):
     # country = models.CharField(max_length=200)
     country = CountryField(blank_label='Select a country', default='ES')
 
-#    def __unicode__(self):
-#        return self.country
+    #    def __unicode__(self):
+    #        return self.country
 
     class Meta:
         db_table = 'countries'
@@ -262,18 +355,21 @@ class CustomerStyles(models.Model):
     # http://stackoverflow.com/questions/2443752/django-display-image-in-admin-interface
     def image_tag(self):
         return u'<img src="%s" />' % (self.logo_url)
+
     image_tag.short_description = 'Logo URL'
     image_tag.allow_tags = True
 
     def favicon_tag(self):
         return u'<img src="%s" />' % (self.favicon_url)
+
     favicon_tag.short_description = 'Favicon Url'
     favicon_tag.allow_tags = True
 
     # http://stackoverflow.com/questions/3442881/change-font-color-for-a-field-in-django-admin-interface-if-expression-is-true
     def bgfgcolor_brand(self):
         return '<span style="background-color: %s; color: %s;">The Background & Foreground Colors</span>' % (
-                             self.bgcolor, self.fgcolor)
+            self.bgcolor, self.fgcolor)
+
     bgfgcolor_brand.short_description = 'Background / Foreground Colors'
     bgfgcolor_brand.allow_tags = True
 
@@ -303,6 +399,7 @@ class CustomerTags(models.Model):
 @python_2_unicode_compatible  # only if you need to support Python 2
 class Customers(models.Model):
     customer_id = models.AutoField(primary_key=True)
+    customer_admin = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     customer_name = models.CharField(verbose_name=_('Customer name'), max_length=60)
     business_name = models.CharField(verbose_name=_('Business name'), max_length=250)
     code_crm = models.CharField(verbose_name=_('CRM Code'), max_length=6)
@@ -312,7 +409,8 @@ class Customers(models.Model):
     email = models.CharField(max_length=75, blank=True, null=True)
     fb_fanpage = models.CharField(verbose_name=_('Facebook Fan Page'), max_length=512, blank=True, null=True)
     fb_merchant_id = models.CharField(verbose_name=_('Facebook Merchant Id'), max_length=100, blank=True, null=True)
-    gtin = models.CharField(verbose_name=_('Global Trade Item Number'), max_length=70, default='', blank=True, null=True)
+    gtin = models.CharField(verbose_name=_('Global Trade Item Number'), max_length=70, default='', blank=True,
+                            null=True)
     url = models.URLField(max_length=512, null=True, blank=True)
     twitter_id = models.CharField(verbose_name=_('Twitter account'), max_length=100, blank=True, null=True)
     instagram_id = models.CharField(verbose_name=_('Instagram account'), max_length=100, blank=True, null=True)
@@ -320,7 +418,8 @@ class Customers(models.Model):
     gplus_id = models.CharField(verbose_name=_('Google++ account'), max_length=512, blank=True, null=True)
     lang = LanguageField(verbose_name=_('Language'), choices=LANGUAGES, max_length=3, default='es')
     locale = models.CharField(max_length=10, null=True, blank=True)
-    timezone = models.CharField(verbose_name=_('Timezone'), max_length=255, null=True, choices=[(x, x) for x in pytz.common_timezones], default='Europe/Madrid')
+    timezone = models.CharField(verbose_name=_('Timezone'), max_length=255, null=True,
+                                choices=[(x, x) for x in pytz.common_timezones], default='Europe/Madrid')
     brand_enabled = models.BooleanField(verbose_name=_('Brand enabled?'), default=False)
     age_range = models.CharField(verbose_name=_('Age range'), max_length=2, default='')
     is_active = models.BooleanField(verbose_name=_('Is active?'), default=False)
@@ -340,7 +439,8 @@ class Customers(models.Model):
 @python_2_unicode_compatible  # only if you need to support Python 2
 class Departments(models.Model):
     department_id = models.IntegerField(verbose_name=_('Department ID'), primary_key=True, default='1')
-    stores = models.ForeignKey('Stores', verbose_name=_('Stores'), default='', blank=False, null=False, on_delete=models.DO_NOTHING)
+    stores = models.ForeignKey('Stores', verbose_name=_('Stores'), default='', blank=False, null=False,
+                               on_delete=models.DO_NOTHING)
     department = models.CharField(verbose_name=_('Department'), max_length=250, default='')
 
     def __str__(self):
@@ -391,12 +491,14 @@ class Districts(models.Model):
 
 class Employees(models.Model):
     employee_id = models.AutoField(primary_key=True)
+    employee_admin = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     customer = models.ForeignKey(Customers, models.CASCADE)
     firstname = models.CharField(max_length=30)
     lastname = models.CharField(max_length=30)
     uid = models.CharField(unique=True, max_length=16)
     pwd = models.CharField(max_length=128, blank=True, null=True)
-    language = LanguageField(verbose_name=_('Language'), choices=LANGUAGES, max_length=3, blank=False, null=True, default='es') # default lang client
+    language = LanguageField(verbose_name=_('Language'), choices=LANGUAGES, max_length=3, blank=False, null=True,
+                             default='es')  # default lang client
     is_active = models.BooleanField()
     creation_date = models.DateTimeField()
     mod_date = models.DateTimeField(blank=True, null=True)
@@ -690,18 +792,21 @@ class StoreStyle(models.Model):
     # http://stackoverflow.com/questions/2443752/django-display-image-in-admin-interface
     def image_tag(self):
         return u'<img src="%s" />' % (self.logo_url)
+
     image_tag.short_description = 'Logo URL'
     image_tag.allow_tags = True
 
     def favicon_tag(self):
         return u'<img src="%s" />' % (self.favicon_url)
+
     favicon_tag.short_description = 'Favicon Url'
     favicon_tag.allow_tags = True
 
     # http://stackoverflow.com/questions/3442881/change-font-color-for-a-field-in-django-admin-interface-if-expression-is-true
     def bgfgcolor_brand(self):
         return '<span style="background-color: %s; color: %s;">The Background & Foreground Colors</span>' % (
-                             self.bgcolor, self.fgcolor)
+            self.bgcolor, self.fgcolor)
+
     bgfgcolor_brand.short_description = 'Background / Foreground Colors'
     bgfgcolor_brand.allow_tags = True
 
@@ -722,13 +827,14 @@ class Stores(models.Model):
     url = models.URLField(verbose_name=_('Website Url'), max_length=400, null=True, blank=True)
     address = models.CharField(verbose_name=_('Address'), max_length=512, null=True)
     phone = models.CharField(verbose_name=_('Phone'), max_length=20, null=True)
-    timezone = models.CharField(verbose_name=_('Timezone'), max_length=255, null=True, choices=[(x, x) for x in pytz.common_timezones], default='Europe/Madrid')
+    timezone = models.CharField(verbose_name=_('Timezone'), max_length=255, null=True,
+                                choices=[(x, x) for x in pytz.common_timezones], default='Europe/Madrid')
     lang = LanguageField(verbose_name=_('Language'), choices=LANGUAGES, max_length=3, default='es')
     is_active = models.BooleanField(verbose_name=_('Is active?'), default=False)
     creation_date = models.DateTimeField(verbose_name=_('Creation date'), default=django.utils.timezone.now)
     last_access = models.DateTimeField(verbose_name=_('Last date'), blank=True, null=True)
     mod_date = models.DateTimeField(verbose_name=_('Modification date'), blank=True, null=True)
-    
+
     def fullname(self):
         return "%s: %s" % self.store_name
 
@@ -821,7 +927,6 @@ class Vendors(models.Model):
         db_table = 'vendors'
         verbose_name = 'vendor'
         verbose_name_plural = 'vendors'
-
 
 # Users Models
 # class UserManager(BaseUserManager):

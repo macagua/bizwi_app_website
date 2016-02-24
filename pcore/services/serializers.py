@@ -1,20 +1,20 @@
 from rest_framework import serializers
 # from .models import CustomUser, Countries, Cities, Regions, Employees, Customers, Stores, Tags, Categories, Departments, Sensor, Brands, PromotionsTypes, PromotionsFilters, PromotionsLoyalties, PromotionsSpecials, Promotions, PromotionsImpacts
 from .models import Countries, Cities, Customers, \
-    Stores, Categories, Departments, Sensor, Brands
+    Stores, Categories, Departments, Sensor, Brands, CustomUser
 
 
-# class CustomUserSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = CustomUser
-#         fields = ('username',
-#                   'email',
-#                   'first_name',
-#                   'last_name',
-#                   'birthday',
-#                   'lang',
-#                   'gender',
-#                   'last_login')
+class CustomUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ('username',
+                  'email',
+                  'first_name',
+                  'last_name',
+                  'birthday',
+                  'lang',
+                  'gender',
+                  'last_login')
 
 
 class CountriesSerializer(serializers.ModelSerializer):

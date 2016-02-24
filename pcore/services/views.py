@@ -3,15 +3,15 @@ from django.views.generic import ListView
 #    Brands, PromotionsTypes, PromotionsFilters, PromotionsLoyalties, PromotionsSpecials, Promotions, \
 #    PromotionsImpacts, CustomUser
 from .models import Countries, Cities, Customers, Stores, Categories, Departments, Sensor, \
-    Brands
-# from .serializers import CountriesSerializer, CitiesSerializer, RegionsSerializer, EmployeeSerializer, \
+    Brands, CustomUser
+# from .serializers import CountriesSerializer, CitiesSerializer, RegionsSerializer, EmployeeSerializer
 #     CustomersSerializer, StoresSerializer, TagsSerializer, CategoriesSerializer, DepartmentsSerializer, \
 #     SensorSerializer, BrandsSerializer, PromotionsTypesSerializer, PromotionsFiltersSerializer, \
 #     PromotionsLoyaltiesSerializer, PromotionsSpecialsSerializer, PromotionsSerializer, \
 #     PromotionsImpactsSerializer, CustomUserSerializer
 from .serializers import CountriesSerializer, CitiesSerializer, \
     CustomersSerializer, StoresSerializer, CategoriesSerializer, DepartmentsSerializer, \
-    SensorSerializer, BrandsSerializer
+    SensorSerializer, BrandsSerializer, CustomUserSerializer
 from rest_framework import generics
 from rest_framework.decorators import api_view
 import random
@@ -43,7 +43,6 @@ def auth(request):
 
     except Exception as e:
         print e
-
 
 
 # @api_view(['GET', 'POST'])
@@ -97,41 +96,41 @@ def auth(request):
 #         return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
-# @api_view(['GET', 'POST'])
-# def custom_user(request, user_id):
-#     try:
-#         if request.method == "GET":
-#             serializer = CustomUserSerializer(CustomUser.objects.get(id=user_id))
-#             return Response(serializer.data)
+@api_view(['GET', 'POST'])
+def custom_user(request, user_id):
+    try:
+        if request.method == "GET":
+            serializer = CustomUserSerializer(CustomUser.objects.get(id=user_id))
+            return Response(serializer.data)
 
-#         elif request.method == 'POST':
-#             username = request.data.get('username')
-#             email = request.data.get('email')
-#             first_name = request.data.get('first_name')
-#             last_name = request.data.get('last_name')
-#             gender = request.data.get('gender')
-#             birthday = request.data.get('birthday')
-#             lang = request.data.get('lang')
-#             checkpass = bool(request.data.get('checkpass'))
-#             password = request.data.get('password')
+        elif request.method == 'POST':
+            username = request.data.get('username')
+            email = request.data.get('email')
+            first_name = request.data.get('first_name')
+            last_name = request.data.get('last_name')
+            gender = request.data.get('gender')
+            birthday = request.data.get('birthday')
+            lang = request.data.get('lang')
+            checkpass = bool(request.data.get('checkpass'))
+            password = request.data.get('password')
 
-#             usr = CustomUser.objects.get(id=user_id)
-#             usr.username = username
-#             usr.email = email
-#             usr.first_name = first_name
-#             usr.last_name = last_name
-#             usr.gender = gender
-#             usr.birthday = birthday
-#             usr.lang = lang
-#             if checkpass:
-#                 usr.set_password(password)
-#             usr.save()
+            usr = CustomUser.objects.get(id=user_id)
+            usr.username = username
+            usr.email = email
+            usr.first_name = first_name
+            usr.last_name = last_name
+            usr.gender = gender
+            usr.birthday = birthday
+            usr.lang = lang
+            if checkpass:
+                usr.set_password(password)
+            usr.save()
 
-#             return Response(status=status.HTTP_200_OK)
+            return Response(status=status.HTTP_200_OK)
 
-#     except Exception as e:
-#         print e
-#         return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    except Exception as e:
+        print e
+        return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 """"
