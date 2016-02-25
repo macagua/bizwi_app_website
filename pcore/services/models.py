@@ -72,7 +72,7 @@ class CustomUser(AbstractBaseUser):
     is_admin = models.BooleanField(default=False)
     is_customer_admin = models.BooleanField(default=False)
     is_employee_admin = models.BooleanField(default=False)
-    date_joined = models.DateTimeField(default=datetime.datetime.now(), editable=False)
+    date_joined = models.DateTimeField(verbose_name=_('Date joined'), default=django.utils.timezone.now, editable=False)
     lang = models.CharField(max_length=2, default='es', blank=False, null=False)
 
     class Meta:
